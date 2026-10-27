@@ -107,15 +107,13 @@
   },
   "figure_copies_match": true,
   "build": {
-    "pages": 4,
+    "pages": 5,
+    "body_pages": 4,
+    "figures": 3,
+    "tables": 1,
     "bibliography_entries": 14,
     "undefined_references": false,
-    "overfull_boxes": false,
-    "figures_and_table_present": true,
-    "warnings": [
-      "REVTeX/nameref label compatibility warning",
-      "REVTeX deferred-float warnings; all floats included and pages visually checked"
-    ]
+    "overfull_boxes": false
   },
   "revision_2": {
     "scope": "Reanalysis of existing JSON data only; no new eigensolver runs.",
@@ -170,6 +168,88 @@
     "A4_binding_length_sites": {
       "E7": 11.9,
       "chain_measured": 9.4
+    }
+  },
+  "revision_3": {
+    "new_computations": {
+      "open_chains": [
+        "open2_L26_th110_t0.2.json",
+        "open2_L28_th110_t0.2.json"
+      ],
+      "periodic_calibration": "calib_th110_t0.2.json (L=32,36; V2 scaled by 1-0.017..1+0.017)",
+      "method": "same ED/Lanczos as earlier (openspec2.py, masses.levels); peak memory about 2 GiB, about 3 minutes total"
+    },
+    "even_L_same_state_leakage": "below 1e-25 for L=26,28, both envelopes (reflection selection rule)",
+    "odd_L_tapered_leakage_percent": {
+      "L19": [
+        0.228,
+        4.53,
+        39.4,
+        8.98
+      ],
+      "L23": [
+        0.074,
+        0.009,
+        17.8,
+        4.42
+      ],
+      "L27": [
+        0.027,
+        0.019,
+        7.46,
+        1.94
+      ]
+    },
+    "calibration_L36": {
+      "max_abs_ratio_change_pp": [
+        0.128,
+        0.426,
+        0.195
+      ],
+      "m1_shift_percent": [
+        4.25,
+        -4.54
+      ],
+      "b4": [
+        0.0461,
+        0.0492,
+        0.053
+      ]
+    },
+    "calibration_L32": {
+      "max_abs_ratio_change_pp": [
+        0.129,
+        0.474,
+        0.243
+      ]
+    },
+    "b4_size": {
+      "L18": 0.159,
+      "L36": 0.0492,
+      "fit_Lmin26": {
+        "b4_inf": 0.0456,
+        "ell": 5.77
+      },
+      "fit_Lmin28": {
+        "b4_inf": 0.0447,
+        "ell": 6.51
+      },
+      "E7": 0.03038
+    },
+    "weights_L36_over_L24": {
+      "A1": 1.0003,
+      "A2": 1.0036,
+      "A3": 1.096,
+      "A4": 0.888,
+      "even_scatt": 0.622,
+      "odd_scatt": 0.377
+    },
+    "input_sha256": {
+      "open2_L26_th110_t0.2.json": "1d74029eddccf3cee9a11a6a09df09d6b7369f25b543115a90e79a71d5f92ef0",
+      "open2_L28_th110_t0.2.json": "861e98a668b9c8b717e90083c2e93e01877b39426525ed00fff61bbece4aeb37",
+      "calib_th110_t0.2.json": "7aef16fa09c49c714e44688d2bcb6225a5537e6228042b7fc8aa29ea2f20ffd5",
+      "lscan_th110_t0.3.json": "bfb2ce9e89a0cf843c5db9a8d88d2436b13acfba3db091bf9a55b3aa3b1ca725",
+      "open2_L23_th110_t0.2.json": "007447081a7593157834c9da3191069ffb904af866ced481986ee704ee02bc16"
     }
   }
 }

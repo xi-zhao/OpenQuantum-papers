@@ -17,13 +17,14 @@ to $\sigma$ and a uniform one to $\varepsilon$. Exact diagonalization of the
 strictly blockaded chain with a $1/r^6$ tail, up to $L=36$, locates a
 direction-dependent parameter region in which the four light particles
 $A_1$--$A_4$ appear as two sharp peaks per channel, with gap ratios within
-$3\%$ of $E_7$. This agreement changes by less than one percentage point across
-the reported $1.7\%$ calibration uncertainty of the interaction. On open chains of
-$19$--$27$ atoms, the four resonances are consistent with standing waves of the
-bulk particles, with the largest deviation for $A_4$; a tapered drive suppresses $A_1$ and $A_2$ cross-channel leakage
-below $0.03\%$, but leaves $7.5\%$ and $1.9\%$ for $A_3$ and $A_4$. The
-shallow bound state $A_4$ carries the slowest finite-size corrections and sets the
-resolution requirement. The heavy particles $A_5$--$A_7$ are not resolved.
+$3\%$ of $E_7$. Spectral weights distinguish these single-particle peaks from
+scattering levels, whose weights fall with system size. Shifting the interaction by
+its reported $1.7\%$ calibration uncertainty moves each ratio by less than
+half a percentage point. On open chains, reflection symmetry makes the two probes
+exactly orthogonal at even length, whereas odd chains of $19$--$27$ atoms leave
+up to $7.5\%$ leakage. The shallow bound state $A_4$ is the least converged: its
+binding energy, $2m_1-m_4$, still decreases with $L$ and remains about $50\%$
+above $E_7$ after extrapolation. The heavy particles $A_5$--$A_7$ are not resolved.
 \end{abstract}
 
 \maketitle
@@ -60,8 +61,8 @@ chain, including form-factor amplitude comparisons. That study uses $A_2$ to
 calibrate the mass scale; it does not independently resolve $A_1$.
 Here we show that a Rydberg chain gives access to both parity sectors, so that
 odd and even light particles can be compared on one platform. We map the
-parameter region where four light peaks match $E_7$, identify the standing-wave
-structure of open-chain resonances, and quantify the cross-channel leakage and
+parameter region where four light peaks match $E_7$, show that even open chains
+remove cross-channel leakage by symmetry, and quantify
 the finite-size constraint set by $A_4$.
 
 \begin{figure*}[t]
@@ -119,11 +120,9 @@ linear component in $g_\varepsilon$,
        \propto t^{5/9},\qquad m_1\propto t^{5/9}.
  \label{eq:RG}
 \end{equation}
-On the disordered side such paths approach the thermal $E_7$ theory as $t\to0$
-if the system size is increased simultaneously. The growing correlation length
-limits this approach at fixed $L$. We have not calibrated the map from lattice
-parameters to $(g_\varepsilon,g_{\varepsilon'})$; a region of small mass-ratio
-errors need not identify the pure thermal trajectory or separate competing corrections.
+Such paths approach $E_7$ as $t\to0$ only if $L$ grows with the correlation length.
+We have not calibrated the map to $(g_\varepsilon,g_{\varepsilon'})$, so a region
+of small ratio errors need not be the pure thermal trajectory.
 
 \emph{Probes and numerical method.}---For a periodic ground state, the connected
 density response is
@@ -144,27 +143,22 @@ $\Theta\propto\varepsilon$~\cite{Acerbi1996,CortesCubero2022}.
 Absolute interchannel amplitudes are not universal.
 
 We use sparse exact diagonalization in the constrained space for periodic
-$L\le36$ and open $L=19,23,27$. Spectra use reorthogonalized Lanczos iterations
-(up to 400 for the periodic spectra and 250 for the open spectra shown).
-Small-system checks compare momentum-sector energies and weights with full-space
-diagonalization to numerical precision. They do not establish convergence of the
-large-system continuum.
+$L\le36$ and open $L=19$--$28$, with reorthogonalized Lanczos spectra (up to 400
+iterations); light levels agree with direct eigensolver results to $10^{-6}$, and
+small systems match full-space diagonalization to machine precision.
 
 We denote the first two gaps in the $k=\pi$ sector by
 $\widehat m_1(L),\widehat m_3(L)$ and the first two excited gaps at $k=0$ by
-$\widehat m_2(L),\widehat m_4(L)$. These are candidate light-particle levels,
-not independently extrapolated masses. Throughout the parameter scan, the labels
-follow energy ordering within each sector. For open chains, $\omega_a^{\rm o}$
-denotes a candidate resonance energy selected by its dominant probe weight.
+$\widehat m_2(L),\widehat m_4(L)$. These are candidate levels, labeled by energy within each sector;
+$\omega_a^{\rm o}$ denotes the corresponding dominant open-chain resonance.
 
 Simultaneous crossings of $L$ times the lowest odd and lowest excited even gaps
 locate a finite-size TCI estimate. The $L=28/32$ crossing gives
 $(\Delta_c,V_{2c})=(-1.5011,-1.6260)$, within $10^{-3}$ of the $24/28$ estimate
 and close to the experimental calibration~\cite{Sun2026}.
-Fixing $v\simeq1.90$ using $x_\sigma=3/40$ gives other rescaled gaps near
-$0.875$ at $k=\pi$, and $0.198,1.18$ at $k=0$, consistent with
-$x_{\sigma'}=7/8$, $x_\varepsilon=1/5$, $x_{\varepsilon'}=6/5$.
-The value of $x_\sigma$ is an input to this comparison.
+Fixing $v\simeq1.90$ with $x_\sigma=3/40$, the other rescaled gaps,
+$0.875$ ($k=\pi$) and $0.198,1.18$ ($k=0$), match $x_{\sigma'}=7/8$,
+$x_\varepsilon=1/5$, $x_{\varepsilon'}=6/5$.
 
 \begin{figure}[htbp]
 \includegraphics[width=\columnwidth]{fig2_spectra.pdf}
@@ -180,16 +174,25 @@ not measured open-chain continuum edges.}
 \label{fig:spec}
 \end{figure}
 
+\begin{figure}[htbp]
+\includegraphics[width=\columnwidth]{fig3_size.pdf}
+\caption{Size dependence along $\theta=110^\circ$ from periodic spectra.
+(a) Binding $b_4=(2\widehat m_1-\widehat m_4)/\widehat m_1$ at $t=0.2$
+(working point) and $t=0.3$; the dashed line is $E_7$.
+(b) Weights at $t=0.2$ relative to $L=36$. Orange: odd; blue: even.
+Light particles converge; the lowest scattering levels (dotted, $L\ge24$)
+decrease at least as fast as the gray $1/L$ reference.}
+\label{fig:size}
+\end{figure}
+
 \emph{Matching region and finite size.}---We scan
 $(\Delta,V_2)=(\Delta_c,V_{2c})+t(\cos\theta,\sin\theta)$.
 Figure~\ref{fig:window} identifies a finite region of small errors among the
-three gap ratios. Along $\theta=110^\circ$, the sampled $L=36$ points at
-$t=0.1,0.15,0.2$ have maximal errors below $3\%$; at $t=0.3$ the maximum is
-$3.01\%$. Nearby directions $90^\circ$ and $130^\circ$ also contain matching
-points. In contrast, the sampled $\theta=180^\circ$ points never reach $5\%$
-accuracy; deviations near $210^\circ$ can reach $10$--$25\%$.
-This direction dependence concerns the accessible finite-chain window and does
-not contradict the generic asymptotic limit in Eq.~\eqref{eq:RG}.
+three gap ratios. Along $\theta=110^\circ$ at $L=36$, $t=0.1$--$0.2$ give maximal errors below
+$3\%$ ($3.01\%$ at $t=0.3$); $90^\circ$ and $130^\circ$ also contain matching
+points, whereas $\theta=180^\circ$ never reaches $5\%$ and $210^\circ$ gives
+$10$--$25\%$. This direction dependence concerns the finite-chain window, not the
+asymptotic limit of Eq.~\eqref{eq:RG}.
 
 At $\theta=110^\circ,t=0.2$, corresponding to
 $(\Delta,V_2)=(-1.5695,-1.4381)$, we find
@@ -199,14 +202,11 @@ $\widehat m_1(36)=0.9196\Omega$ and
  =(1.2678,\,1.9243,\,1.9508).
  \label{eq:point}
 \end{equation}
-The relative deviations are $(-1.39,+2.39,-0.95)\%$.
-At $t=0.1$, however, $\widehat m_3/\widehat m_1$ changes from $1.792$ to
-$1.887$ between $L=28$ and $36$, illustrating the limitation closer to TCI.
-At $t=0.3$ the three ratios change by less than $0.24\%$ over those sizes,
-but this comparison is not an infinite-volume extrapolation.
+The deviations are $(-1.39,+2.39,-0.95)\%$. Closer to TCI, at $t=0.1$,
+$\widehat m_3/\widehat m_1$ still moves from $1.792$ to $1.887$ between $L=28$
+and $36$; at $t=0.3$ all ratios move by less than $0.24\%$.
 
-The shallow $A_4$ bound state requires particular care. In the integrable theory,
-$A_4$ occurs in the $A_1A_1$ scattering channel, with
+The shallow bound state $A_4$ needs care. In $E_7$ it is an $A_1A_1$ bound state with
 \begin{equation}
  \mu_{11}^{4}=\sqrt{m_1^2-m_4^2/4}
              =m_1\sin(\pi/18)\simeq0.174m_1.
@@ -218,26 +218,38 @@ $e^{-m_1L/v}$~\cite{Pozsgay2008,CortesCubero2022}.
 With the working gap and $v\simeq1.90$, the $E_7$ value of $\mu_{11}^4$ gives
 $v/\mu_{11}^{4}\simeq12$ sites; the binding measured on the chain gives
 $\simeq9$ sites. Both exceed $v/m_1\simeq2$ sites considerably.
-In the data, $\widehat m_4/\widehat m_1$ changes from $1.9400$ to $1.9508$
-between $L=28$ and $36$: only $0.56\%$ of its value, but $22\%$ of the latter
-binding-energy estimate $2\widehat m_1-\widehat m_4$.
-A mass-ratio tolerance alone therefore does not control near-threshold binding.
+We therefore track the binding $b_4\equiv(2\widehat m_1-\widehat m_4)/\widehat m_1$
+directly [Fig.~\ref{fig:size}(a)]. At the working point it falls from $0.159$ at
+$L=18$ to $0.0492$ at $L=36$, still decreasing, although $\widehat m_1$ has
+converged to $10^{-5}$ for $L\ge28$. A fit $b_4(L)=b_4^\infty+ce^{-L/\ell}$ for $L\ge26$ gives
+$b_4^\infty\simeq0.045$, with $\ell\simeq6$ sites and a fit-window dependence
+of $0.001$; the $E_7$ value is $0.0304$. The remaining $\sim50\%$ excess is then
+a nonuniversal correction to the binding, although a slower finite-size component
+cannot be excluded. Since the $3\%$ ratio tolerance would allow $\widehat m_4>2\widehat m_1$,
+we state $b_4$ separately: it is the most sensitive light-sector test of $E_7$.
 
-At the working point, the periodic weight ratios are $w_4/w_2=0.129$ and
-$w_3/w_1=0.0483$. Mixing with $\sigma'$ contributes an effective relative
+Spectral weights identify single-particle levels. For the normalization of
+Eq.~\eqref{eq:spec}, a stable particle has an $L$-independent weight, whereas a
+scattering state at fixed total momentum carries weight $\propto1/L$.
+Figure~\ref{fig:size}(b) shows both behaviors. From $L=24$ to $36$, the weights
+of $A_1$ and $A_2$ change by less than $0.4\%$, and that of $A_3$ by $9\%$
+with decreasing increments. The lowest scattering levels fall by $2.6$ (odd) and $1.6$ (even),
+comparable to or faster than $1/L$. The $A_4$ weight decreases by $11\%$ and
+flattens, consistent with a bound state that is not yet converged.
+At $L=36$, $w_4/w_2=0.129$ and $w_3/w_1=0.0483$,
+$10\%$ and $28\%$ below the pure-field values. Mixing with $\sigma'$ contributes an effective relative
 amplitude proportional to $(c_{\sigma'}/c_\sigma)(m_1a/v)^{4/5}$ at fixed CFT
-normalization, since $x_{\sigma'}-x_\sigma=4/5$. The weights also contain
-interference, finite-size, and nonintegrable corrections. We do not isolate these
-sources or treat the pure-field ratios as precise lattice predictions.
+normalization, since $x_{\sigma'}-x_\sigma=4/5$. At $L=36$ along the cut, $w_3/w_1$ rises from $0.034$ at $t=0.4$ to
+$0.052$ at $t=0.1$, toward the pure-$\sigma$ value, while $w_4/w_2$ crosses
+$0.143$ near $t=0.15$ and overshoots closer to TCI, where finite size dominates.
+Interference and finite-size corrections are therefore not separated here.
 
 \emph{Spectra and boundaries.}---The periodic response in
 Fig.~\ref{fig:spec}(a) has two prominent subthreshold peaks in each sector,
 consistent with the four candidate levels in Eq.~\eqref{eq:point}.
-Momentum selection is exact. The next visible even-sector level at $L=36$ is
-at $2.105m_{\rm ref}$, so its separation from the $A_4$ candidate is
-$0.154m_{\rm ref}$, appreciably larger than the gap to the kinematic reference
-$2m_{\rm ref}$. Discrete scattering levels can thus make a small-system spectrum
-appear more separated than its infinite-volume counterpart.
+Momentum selection is exact. The next even level, at $2.105m_{\rm ref}$, lies
+well above $2m_{\rm ref}$, so a finite periodic spectrum overstates the gap
+between $A_4$ and the continuum.
 
 For open chains we use $O_{f,q}=\sum_j f_j e^{iqj}n_j$, where $q=0,\pi$ labels
 the drive pattern rather than an exact momentum sector. Spectral weights are
@@ -258,34 +270,38 @@ deviation occurs for $A_4$: $1.8\%$, $2.9\%$, and $5.2\%$ at $L=27$, $23$, and
 $19$. This size dependence is consistent with $A_4$ having the largest spatial
 extent, as estimated above.
 
-Table~\ref{tab:leakage} reports all four channel leakages, defined as the
-integrated weight at the same candidate eigenenergy in the unintended probe
-divided by its weight in the intended probe. At $L=27$, tapering reduces the
-$A_1$ leakage from $0.149\%$ to $0.0267\%$, but the $A_3$ leakage only from
-$9.22\%$ to $7.46\%$, and the $A_4$ leakage increases from $1.41\%$ to $1.94\%$.
-Tapering therefore does not separate all sectors uniformly; at $L=19$, two
-nearby uniform resonances also share substantial weight.
-The strongest satellite, at $1.160\,\omega_1^{\rm o}$ for $L=27$, is the $n=3$
-standing wave of $A_1$: under a flat drive, $(L+1)(E^2-\widehat m_1^2)^{1/2}$
-equals $16.6$, $16.4$, and $16.6$ at $L=19$, $23$, and $27$, about $2.7$--$2.8$
-times the $n=1$ value. The ratio below three is consistent with lattice-dispersion
-curvature at this momentum. A flat drive gives it $9$--$13\%$ of the $A_1$ weight,
-roughly as expected from its overlap with a uniform profile, and tapering reduces
-this to $1.7\%$ at $L=27$. Its origin is thus bulk $A_1$, not a boundary bound state.
+Reflection $R:n_j\to n_{L-1-j}$ fixes the leakage structure. For symmetric
+envelopes, $RO_{f,0}R^{-1}=O_{f,0}$ and $RO_{f,\pi}R^{-1}=(-1)^{L-1}O_{f,\pi}$.
+At even $L$ the two probes therefore create states of opposite reflection parity
+and cannot excite the same eigenstate. At odd $L$ both probes are reflection even.
+Table~\ref{tab:leakage} confirms this: the same-state leakage, defined as the
+weight at a candidate eigenenergy in the unintended probe relative to the intended
+probe, vanishes to machine precision for $L=26,28$. At odd $L$ it remains up to
+$7.5\%$ for $A_3$ at $L=27$ even with tapering, which reduces $A_1$ from
+$0.15\%$ to $0.027\%$ but raises $A_4$ from $1.4\%$ to $1.9\%$.
+
+Reflection parity is not the internal $\mathbb Z_2$, so even chains remove
+leakage, not the need for resolution: at $L=28$ the tapered $A_3$ and $A_4$ peaks
+remain $0.039\,\omega_1^{\rm o}$ apart in the two probes, and the $A_2$ response
+splits into lines at $1.250$ and $1.266\,\omega_1^{\rm o}$ with weights $27:73$.
+The strongest staggered satellite, at $1.160\,\omega_1^{\rm o}$ for $L=27$, is
+consistent with the $n=3$ standing wave of $A_1$: $(L+1)(E^2-\widehat m_1^2)^{1/2}$
+is $16.4$--$16.6$ for $L=19$--$27$, $2.7$--$2.8$ times the $n=1$ value, and its
+flat-drive weight ($9$--$13\%$ of $A_1$) drops to $1.7\%$ with the taper.
 
 \begin{table}[htbp]
-\caption{Leakage ratios in percent for tapered open-chain probes at the working
-point. The intended probe is staggered for $A_1,A_3$ and uniform for $A_2,A_4$.
-Labels denote finite-chain candidates.}
+\caption{Same-state leakage in percent for tapered open-chain probes at the
+working point. The intended probe is staggered for $A_1,A_3$ and uniform for
+$A_2,A_4$. Even-$L$ values vanish by reflection symmetry (below $10^{-25}$).}
 \label{tab:leakage}
 \begin{ruledtabular}
-\begin{tabular}{ccc}
-Candidate & $L=27$ & $L=19$ \\
+\begin{tabular}{cccccc}
+Candidate & $L=19$ & $23$ & $27$ & $26$ & $28$ \\
 \hline
-$A_1$ & $0.0267$ & $0.228$ \\
-$A_2$ & $0.0192$ & $4.53$ \\
-$A_3$ & $7.46$ & $39.4$ \\
-$A_4$ & $1.94$ & $8.98$
+$A_1$ & $0.228$ & $0.074$ & $0.027$ & $0$ & $0$ \\
+$A_2$ & $4.53$ & $0.009$ & $0.019$ & $0$ & $0$ \\
+$A_3$ & $39.4$ & $17.8$ & $7.46$ & $0$ & $0$ \\
+$A_4$ & $8.98$ & $4.42$ & $1.94$ & $0$ & $0$
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -299,12 +315,10 @@ channels~\cite{CortesCubero2022}. Here $S_{11}(0)=-1$ forces the identical-parti
 form factor to vanish, whereas the relevant $A_1A_2$ form factor is nonzero at
 threshold. These are integrable-limit predictions for the matrix-element-weighted response.
 
-At our working point, the next odd-sector spectral level above the two light
-peaks moves from $2.340\widehat m_1$ at $L=18$ to $2.284\widehat m_1$ at $L=36$,
-toward the gap sum $1+\widehat m_2/\widehat m_1=2.268$.
-The corresponding even-sector sequence moves from $2.296\widehat m_1$ at $L=24$
-to $2.105\widehat m_1$ at $L=36$. This is consistent with the two different onsets, but does not determine
-threshold exponents; on open chains, residual weight remains above $A_3$.
+At the working point, the lowest odd scattering level moves from $2.340$ to
+$2.284\widehat m_1$ between $L=18$ and $36$, toward $1+\widehat m_2/\widehat m_1=2.268$,
+and the even one from $2.296$ ($L=24$) to $2.105\widehat m_1$, toward $2$.
+This is consistent with the two onsets but does not determine the exponents.
 
 We do not resolve $A_5,A_6,A_7$. In the $E_7$ theory their masses lie above
 allowed thresholds in their own sectors: $A_5,A_7$ above $2m_1$, and $A_6$ above
@@ -318,6 +332,7 @@ excludes heavy resonances in larger systems.
 \emph{Experimental requirements.}---The protocol prepares a state near
 Eq.~\eqref{eq:point} with the demonstrated TCI preparation~\cite{Sun2026}, applies
 weak tapered uniform and staggered modulations, and compares the two responses.
+An even number of atoms is preferable, since it removes same-state leakage.
 The sign-changing staggered drive needs the two-color ($515$ and $813$ nm) tweezer
 scheme proposed in Ref.~\cite{Sun2026}, beyond the one-color light shifts used so far.
 
@@ -329,15 +344,16 @@ The illustrative open-chain broadening in Fig.~\ref{fig:spec} has
 $\mathrm{FWHM}=2\sqrt{2\ln2}\,\sigma=0.118m_{\rm ref}$, about
 $2\pi\times0.60$ MHz. Separating $A_4$ from the continuum therefore needs a linewidth below this
 scale; the $E_7$ threshold suppression of the $A_1A_1$ response would help in the
-scaling regime. Because of open-chain mixing, $A_3$ and $A_4$ should be assigned
+scaling regime. At odd $L$, mixing means that $A_3$ and $A_4$ should be assigned
 by comparing both probes rather than by channel label alone.
 
-The reported $1.7\%$ uncertainty in $V_2$~\cite{Sun2026} amounts to about
-$0.028\Omega$. At $\Delta\simeq-1.60\Omega$, the $3\%$ region of
-Fig.~\ref{fig:window}(a) extends over at least $0.14\Omega$ in $V_2$. Near the
-working point, $\delta_{32}$ changes by at most $0.7$ percentage points per
-$V_2$ grid step and $0.9$ per $\Delta$ step. Calibration errors of this size
-therefore move the gap ratios by less than one percentage point in this criterion.
+To test calibration, we recompute the working point with $V_2$ scaled by
+$1\pm0.017$, the reported uncertainty~\cite{Sun2026}. At $L=36$,
+$\widehat m_1$ shifts by $4.3$--$4.5\%$, but the ratios change by at most
+$0.12$, $0.43$, and $0.20$ percentage points for $a=2,3,4$
+($L=32$ is similar). The binding $b_4$ changes from $0.0492$ to
+$0.0461$ and $0.0530$, by $6$--$8\%$. Because ratios are taken at fixed parameters,
+this calibration error mainly rescales $m_1$ and is not the limiting systematic.
 
 Finite-blockade corrections, preparation, decoherence, and readout are not
 modeled; they must be included before the four-peak signature is used as an
@@ -345,14 +361,13 @@ experimental identification.
 
 \emph{Conclusion.}---Because one-site translation implements the tricritical
 $\mathbb Z_2$, a Rydberg chain can resolve both parity sectors of the $E_7$
-spectrum with uniform and staggered probes. In the strictly blockaded model, we find
-a direction-dependent region where four light particles appear as two peaks per
-channel at $E_7$ ratios within $3\%$. This agreement is stable against the
-reported interaction calibration uncertainty. Open-chain resonances follow the bulk
-masses through standing-wave dispersion; a tapered drive suppresses the dominant
-satellites, but channel mixing remains particle dependent. The shallow bound state
-$A_4$ sets the most demanding finite-size and resolution requirements; the heavy
-particles remain open. These results specify where to look and which systematics decide an observation.
+spectrum with uniform and staggered probes. In the strictly blockaded model, four
+light particles appear as two peaks per channel at $E_7$ ratios within $3\%$ in a
+direction-dependent region. Their weights separate them from scattering levels,
+and the ratios are insensitive to the reported calibration uncertainty. Even-length
+open chains make the two probes orthogonal by reflection symmetry. The shallow bound
+state $A_4$ is the least converged and sets the resolution requirement; the heavy
+particles remain open.
 
 \begin{acknowledgments}
 [Acknowledgments.]
