@@ -1,7 +1,7 @@
 \documentclass[aps,prl,reprint,superscriptaddress,amsmath,amssymb]{revtex4-2}
 \usepackage{graphicx,bm,amsthm}
 \usepackage[colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
-\hypersetup{pdftitle={Scrambled states survive local Pauli noise up to the hashing entropy},pdfauthor={Xi Zhao},pdfsubject={Finite-size information-spectrum bounds on noisy-state distinguishability and their design dependence}}
+\hypersetup{pdftitle={Scrambled states survive local Pauli noise up to the hashing entropy},pdfauthor={Xi Zhao},pdfsubject={Sharp threshold for the distinguishability of noisy random states}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newcommand{\E}{\mathbb E}
@@ -14,105 +14,91 @@
 \author{Xi Zhao}\noaffiliation
 \date{October 27, 2026}
 \begin{abstract}
-Information is encoded in a random pure state from a state 2-design, such as a
-random stabilizer state, and one layer of Pauli noise then acts without further
-randomization. We bound the optimal probability of distinguishing two encoded states
-at every system size by the information spectrum of the Pauli errors. For i.i.d.
-noise the states stay distinguishable until the error entropy reaches one bit per
-qubit, with a Gaussian crossover. For local depolarizing noise this threshold,
-$r=0.252$, lies well below the $r=0.423$ that purity bounds certify.
+Scrambling spreads quantum information over high-weight Pauli operators, which
+local noise damps exponentially, so scrambled encodings are expected to be
+fragile. We show that they survive up to a sharp threshold. Two pure states
+drawn independently from any state 2-design, such as random stabilizer states,
+stay distinguishable after one layer of i.i.d. Pauli noise until the error
+entropy reaches one bit per qubit, then become indistinguishable through a
+Gaussian crossover. For depolarizing noise this hashing threshold, $r=0.252$,
+lies far below the $r=0.423$ reachable by purity bounds.
 \end{abstract}
 \maketitle
 
-\emph{Introduction.}---A common model of a quantum computation that scrambles its
-input is a random state: the encoding is drawn from a state 2-design, an ensemble
-whose first two moments match Haar-random states, such as random stabilizer
-states~\cite{KuengGross}. Hardware noise then acts on the encoded state. How
-much of the encoded information survives? We ask this in its simplest
-operational form. Two pure states $\psi_1,\psi_2$ are drawn independently from a
-state 2-design. Both pass through the same Pauli channel $\N$, and nothing acts
-afterward. An observer who knows the two candidates measures the output to
-decide which one was prepared. With equal priors, the best success probability
-is $(1+\Tb)/2$, where
+\emph{Introduction.}---Random quantum states model the output of scrambling
+dynamics and of generic quantum circuits. A state 2-design, an ensemble whose
+first two moments match those of Haar-random states, captures their low-order
+statistics; random stabilizer states are a standard example~\cite{KuengGross}.
+Such states are delocalized: in the Pauli basis almost all of their weight sits
+on operators acting on a constant fraction of the qubits. Local depolarizing
+noise of strength $r$ multiplies a weight-$w$ Pauli operator by $(1-r)^w$, so a
+scrambled state loses almost all of its Pauli weight to noise. This picture
+underlies the exponential cost of quantum error mitigation (QEM): Takagi,
+Tajima, and Gu~\cite{Takagi} and Tsubouchi, Sagawa, and Yoshioka~\cite{Tsubouchi}
+proved that recovering ideal expectation values needs a number of samples
+exponential in circuit depth~\cite{TakagiPRR,TakagiNPJ}, and Quek
+\emph{et al.}~\cite{Quek} showed that random circuits reach this regime at very
+shallow depth.
+
+Here we ask how much information a scrambled encoding retains after one layer of
+noise, and find a sharp answer. Two pure states $\psi_1,\psi_2$ are drawn
+independently from a state 2-design and both pass through the same Pauli
+channel $\N$. An observer who knows the two candidates measures the output to
+decide which one was prepared. With equal priors the optimal success
+probability is $(1+\Tb)/2$, where
 \begin{equation}
-\Tb=\E_{\psi_1,\psi_2}\frac12\|\N(\psi_1)-\N(\psi_2)\|_1 .
+\Tb=\E_{\psi_1,\psi_2}\tfrac12\|\N(\psi_1)-\N(\psi_2)\|_1 .
 \label{eq:observable}
 \end{equation}
+We prove that, at every system size, $\Tb$ is bracketed by a single classical
+quantity: the probability that the Pauli error has surprisal below $n$. For
+i.i.d. noise this places a sharp threshold at the hashing entropy, one bit per
+qubit, with a universal Gaussian crossover. For local depolarizing noise the
+threshold is $r_c=0.252$: up to this strength the encoded states remain almost
+perfectly distinguishable, even though the noise has already damped their
+Pauli weight exponentially.
 
-The order of operations matters. The 2-design describes how the encoded states
-are chosen; it does not act on the noise. If another 2-design unitary $U$
-followed the noise, the effective channel $U^\dagger\N(U\cdot U^\dagger)U$
-averaged over $U$ is global depolarization
-$\rho\mapsto\theta\rho+(1-\theta)I/d$, with
-$\theta=(d^2p_I-1)/(d^2-1)$~\cite{Dankert}. For local depolarizing noise
-$p_I=(1-3r/4)^n$, so $\theta$ decays exponentially in $n$ for every $r>0$ and
-there is no threshold. Without the trailing randomization, the observer can
-exploit the local structure of the noise. At $n=8$ and $r=0.2$, for example,
-the Haar-averaged distance is $0.736$ (Fig.~\ref{fig:bounds}), versus about
-$0.272$ after twirling.
+Two observations put this in context. First, the noise must not be followed by
+another random unitary. Averaging $U^\dagger\N(U\cdot U^\dagger)U$ over a unitary
+2-design turns any Pauli channel into global depolarization
+$\rho\mapsto\theta\rho+(1-\theta)I/d$ with $\theta=(d^2p_I-1)/(d^2-1)$~\cite{Dankert},
+which decays exponentially in $n$ for every $r>0$. Without this twirl, the
+optimal measurement uses the local structure of the noise. At $n=8$ and $r=0.2$
+the distance is $0.736$, against about $0.272$ after twirling
+[Fig.~\ref{fig:bounds}(a)]. Second, purity cannot see the threshold. The purity
+argument behind Ref.~\cite{Quek} treats all errors alike and certifies loss
+only for $(1-r)^2<1/3$, i.e., $r>0.423$. Ibarrondo and Stilck
+Fran\c{c}a~\cite{Ibarrondo} and Liu \emph{et al.}~\cite{Liu} obtained the same
+two values, $0.25$ from below and $0.42$ from above, and left the interval
+between them open. Our bound closes it. Sommers \emph{et al.}~\cite{Sommers}
+found the same hashing transition, with an $n^{-1/2}$ window, in the coherent
+information of random codes.
 
-This question underlies known costs of quantum error mitigation (QEM).
-Takagi, Tajima, and Gu~\cite{Takagi} and Tsubouchi, Sagawa, and
-Yoshioka~\cite{Tsubouchi} showed that recovering ideal expectation values from
-noisy samples needs a number of samples that grows exponentially with circuit
-depth; see also Refs.~\cite{TakagiPRR,TakagiNPJ}. Their bounds concern a
-worst-case pair of inputs and contract a relative entropy toward $I/d$ at every
-layer, so they predict exponential cost for any noise strength. Quek
-\emph{et al.}~\cite{Quek} showed that random circuits make this cost appear at
-very shallow depth. Their mechanism is the one studied here: a 2-design spreads
-the state over high-weight Pauli operators, which local depolarizing noise of
-strength $r$ damps by $(1-r)^{w}$ at weight $w$. They control the outcome
-through the purity, which certifies decay only for $(1-r)^2<1/3$, i.e.,
-$r>0.423$.
-
-For the pairwise quantity~\eqref{eq:observable}, Ibarrondo and Stilck
-Fran\c{c}a~\cite{Ibarrondo} proved that the average contraction tends to one
-when the Choi-state entropy satisfies
-$S(\tau_{\N})<-\log_2\|\N(I/d_{\rm in})\|_\infty$; for Pauli channels this
-means the error entropy is below $n$ bits. Combined with a 2-design upper
-bound, this gives local-depolarizing thresholds near $0.25$ and $0.42$, leaving
-the interval between them open. Liu \emph{et al.}~\cite{Liu} found the same two
-values by decoupling, with an $O(n^{-1/2})$ upper bound in between. Sommers
-\emph{et al.}~\cite{Sommers} identified the hashing transition and an
-$n^{-1/2}$ window in the coherent information of random codes.
-
-Here we give two-sided bounds on $\Tb$ that hold for every Pauli distribution
-and system size and are controlled by a single quantity, the information
-spectrum of the error distribution. For i.i.d. noise they locate the threshold
-exactly at the hashing entropy, close the interval left open by
-Refs.~\cite{Ibarrondo,Liu}, and resolve the crossover as a Gaussian profile.
-The lower bound is the typical-image projector of Ref.~\cite{Ibarrondo}
-applied to Pauli errors; the upper bound splits off the likely errors before
-taking second moments, as in privacy amplification and quantum soft
-covering~\cite{Hayashi,Dupuis,Shen}. The same splitting explains why
-purity-based estimates are loose. We also show which conclusions depend only on
-the design's second moments.
-
-\emph{Setup.}---Let $d=2^n$, $\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$, and
+\emph{Information-spectrum bracket.}---Let $d=2^n$,
+$\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$, and
 \begin{equation}
 \N_p(\rho)=\sum_{P\in\mathcal P_n}p_PP\rho P,\qquad s(P)=-\log_2p_P,
 \label{eq:channel}
 \end{equation}
-where the surprisal $s$ is a random variable with $P\sim p$. The distribution
-$p$ is arbitrary, so errors may be correlated across qubits. Logarithms are base
-two. The channel does not depend on the state samples. Each
+with $p$ an arbitrary distribution, so errors may be correlated, and with the
+surprisal $s$ distributed as $P\sim p$. Logarithms are base two. Each
 $\psi_i=|\psi_i\rangle\langle\psi_i|$ is drawn independently from an exact
-pure-state 2-design on the full $d$-dimensional space:
+state 2-design on the full space,
 \begin{equation}
 \E\psi_i=I/d,\qquad\E\psi_i^{\otimes2}=(I+F)/[d(d+1)],
 \label{eq:design}
 \end{equation}
-where $F$ swaps the two copies. The two ensembles need not coincide.
+where $F$ swaps the two copies; the two ensembles may differ.
 
 \begin{theorem}
-For every Pauli distribution $p$ and $a\ge0$,
+For every Pauli distribution $p$ and every $a\ge0$,
 \begin{equation}
 \prob[s<n-a]-2^{-a}\le\Tb\le\prob[s<n+a]+2^{-a/2}/\sqrt2 .
 \label{eq:spectrum}
 \end{equation}
-More generally, for any subset $\mathcal G\subseteq\mathcal P_n$ and any
-partition $\{\mathcal C_j\}$ of $\mathcal P_n$, with
-$m_j=\sum_{\mathcal C_j}p_P$ and $v_j=\sum_{\mathcal C_j}p_P^2$,
+More generally, for any set $\mathcal G\subseteq\mathcal P_n$ and any partition
+$\{\mathcal C_j\}$ of $\mathcal P_n$, with $m_j=\sum_{\mathcal C_j}p_P$ and
+$v_j=\sum_{\mathcal C_j}p_P^2$,
 \begin{align}
 \Tb&\ge p(\mathcal G)-|\mathcal G|/d,\label{eq:lower}\\
 \Tb&\le\sum_j\min\left\{m_j,\sqrt{\frac{d^2v_j-m_j^2}{2(d+1)}}\right\}.
@@ -122,92 +108,75 @@ $m_j=\sum_{\mathcal C_j}p_P$ and $v_j=\sum_{\mathcal C_j}p_P^2$,
 
 \begin{proof}
 Fix $\psi_1$ and let $\Pi$ project onto the span of
-$\{P|\psi_1\rangle:P\in\mathcal G\}$. For each realization, the variational
-formula gives
+$\{P|\psi_1\rangle:P\in\mathcal G\}$. For each realization,
 $\frac12\|\N_p(\psi_1)-\N_p(\psi_2)\|_1\ge\tr\Pi[\N_p(\psi_1)-\N_p(\psi_2)]$.
-The first term is at least $p(\mathcal G)$. Averaging the second over the
-independent $\psi_2$ uses only $\E\psi_2=I/d$ and unitality, giving
-$\tr\Pi/d\le|\mathcal G|/d$. Averaging over $\psi_1$ proves
-\eqref{eq:lower}; only the second state needs to be a 1-design. This is the
-typical-Kraus-image argument of Ref.~\cite{Ibarrondo} (Theorem~18 there), with
-an arbitrary set of Pauli errors in place of a typical set.
+The first term is at least $p(\mathcal G)$. Averaged over the independent
+$\psi_2$, the second is $\tr\Pi/d\le|\mathcal G|/d$, using only
+$\E\psi_2=I/d$. Averaging over $\psi_1$ gives~\eqref{eq:lower}. This is the
+typical-image argument of Ref.~\cite{Ibarrondo}, applied to an arbitrary set
+of Pauli errors.
 
 For the upper bound let $\Delta=\psi_1-\psi_2$ and
-$\N_j(\rho)=\sum_{\mathcal C_j}p_PP\rho P$. Pauli orthogonality and
-\eqref{eq:design} give
+$\N_j(\rho)=\sum_{\mathcal C_j}p_PP\rho P$. Pauli orthogonality
+and~\eqref{eq:design} give
 \begin{align}
 \E\tr\N_j(\psi_i)^2&=\frac{dv_j+m_j^2}{d+1},\qquad
 \E\tr\N_j(\psi_1)\N_j(\psi_2)=\frac{m_j^2}{d},\nonumber\\
 \E\tr\N_j(\Delta)^2&=\frac{2d}{d+1}v_j-\frac{2m_j^2}{d(d+1)}.
 \label{eq:moment}
 \end{align}
-Jensen's inequality and $\|A\|_1\le\sqrt d\|A\|_2$ give the square-root term
-in~\eqref{eq:upper}; the triangle inequality gives
-$\frac12\|\N_j(\Delta)\|_1\le m_j$. Sum over classes.
-
+Jensen's inequality and $\|A\|_1\le\sqrt d\|A\|_2$ bound
+$\E\frac12\|\N_j(\Delta)\|_1$ by the square root in~\eqref{eq:upper}, and
+$\|\Delta\|_1\le2$ bounds it by $m_j$; summing over $j$ gives~\eqref{eq:upper}.
 For~\eqref{eq:spectrum}, take $\mathcal G=\{s<n-a\}$, which has fewer than
-$d2^{-a}$ elements, and split the partition at $s=n+a$: bound the head by its
-mass and the tail by $\sqrt{dv/2}$ with $v\le2^{-n-a}$.
+$d2^{-a}$ elements, and split the partition at $s=n+a$, where the tail has
+$v\le2^{-n-a}$.
 \end{proof}
 
-The two cumulative probabilities in~\eqref{eq:spectrum} are evaluated at
-$n\mp a$, so the bracket is tight whenever the surprisal concentrates. The
-event $s<n$ means $p_P>1/d$: the likely errors are those whose images
-$P|\psi_1\rangle$ fit into the $d$-dimensional space without overlapping. The
-lower bound is positive only when some error has $p_P>1/d$, which for i.i.d.
-noise requires $\max_ip_i>1/2$, i.e., $r<2/3$ for depolarizing noise.
+The theorem has a simple reading. The error images $P|\psi_1\rangle$ of a
+scrambled state are nearly orthogonal, and a $d$-dimensional space holds at
+most $d$ of them. An error with $p_P>1/d$, i.e., $s(P)<n$, is likely enough to
+be accommodated, and the projector onto these images separates $\psi_1$ from
+an independent $\psi_2$. The remaining errors are too numerous to fit, and
+their contributions average out. The distinguishability therefore equals the
+probability of a likely error, up to a window of width $a$ in surprisal and
+exponentially small corrections.
 
-The single-class partition, $\mathcal C=\mathcal P_n$, reduces~\eqref{eq:upper}
-to the purity of the noisy output, $\Tb\le[d\sum_Pp_P^2/2]^{1/2}$. This is the
-quantity that controls the error-mitigation bounds of Ref.~\cite{Quek}. For
-local depolarizing noise $\sum_Pp_P^2=[(1+3(1-r)^2)/4]^n$, which decays faster
-than $d^{-1}$ only for $r>1-1/\sqrt3=0.423$. Splitting off the likely errors is
-what lets the bracket follow the distance below that value.
+Taking the trivial partition, $\mathcal C=\mathcal P_n$, reduces the upper
+bound~\eqref{eq:upper} to the purity of the noisy output,
+$\Tb\le[d\sum_Pp_P^2/2]^{1/2}$, the quantity that controls the QEM bounds of
+Ref.~\cite{Quek}. For local depolarizing noise
+$\sum_Pp_P^2=[(1+3(1-r)^2)/4]^n$, which beats $d^{-1}$ only for
+$r>1-1/\sqrt3=0.423$. The purity bound is loose below that value because it
+spreads the likely errors over the whole space. Separating them at surprisal
+$n$ removes this looseness and lowers the threshold to the hashing point.
 
-\emph{Hashing threshold for i.i.d. noise.}---Let $p=\bm p^{\otimes n}$ with
-single-qubit distribution $\bm p=(p_0,p_x,p_y,p_z)$, entropy
-$H=\E[-\log_2p_i]$, and variance $\sigma^2=\operatorname{Var}[-\log_2p_i]$.
-The surprisal is then a sum of $n$ i.i.d. terms with mean $nH$. For $H<1$,
-choosing $a=\epsilon n$ with $0<\epsilon<1-H$ and a large-deviation
-bound~\cite{CoverThomas} give $\Tb\ge1-e^{-\Omega(n)}$. For $H>1$ the upper
-bound gives $\Tb\le e^{-\Omega(n)}$. The threshold $H=1$ is the zero of the
-coherent information $1-H$ of the Pauli channel at maximally mixed
-input~\cite{Bennett,Devetak}, the hashing point. (Degenerate codes can transmit
-quantum information slightly beyond it~\cite{SmithSmolin}; the present
-threshold concerns discrimination of two encoded states.) For depolarizing noise
-$\N_r(\rho)=(1-r)\rho+rI/2$, with $q=3r/4$ and $\bm p=(1-q,q/3,q/3,q/3)$, the
-threshold is $q_c=0.189290\ldots$, or $r_c=0.252386\ldots$. Local depolarizing
-noise is therefore tolerated up to $r_c$, whereas the purity bound above
-certifies loss only beyond $0.423$.
-
-Exponential decay above $r_c$ can also be obtained from decoupling. The
-unsmoothed R\'enyi bound of Ref.~\cite{Dupuis}
-applies because, for any reference-system operators $X_P$, Eq.~\eqref{eq:design}
-gives
-\begin{multline}
-\E_\psi\Big\|\sum_P(P\psi P-I/d)\otimes X_P\Big\|_2^2\\
-=\frac d{d+1}\sum_P\|X_P\|_2^2-\frac{\|\sum_PX_P\|_2^2}{d(d+1)}\le\|X\|_2^2 .
-\label{eq:randomizing}
-\end{multline}
-Theorem~8 of Ref.~\cite{Dupuis} then gives, for $1<\alpha\le2$,
+\emph{Sharp threshold.}---For i.i.d. noise, $p=\bm p^{\otimes n}$ with a
+single-qubit distribution $\bm p=(p_0,p_x,p_y,p_z)$. The surprisal is then a sum
+of $n$ independent terms with mean $nH$, where $H=\E[-\log_2p_i]$ is the
+entropy of $\bm p$, and variance $n\sigma^2$, where
+$\sigma^2=\operatorname{Var}[-\log_2p_i]$. Taking $a=\epsilon n$
+in~\eqref{eq:spectrum} with a large-deviation bound~\cite{CoverThomas} gives
 \begin{equation}
-\E\|\N_p(\psi)-I/d\|_1\le2^{2/\alpha-1}
-2^{-\frac{\alpha-1}{\alpha}[H_\alpha(p)-n]},
-\label{eq:dupuis}
+\Tb=\begin{cases}1-e^{-\Omega(n)},&H<1,\\ e^{-\Omega(n)},&H>1.\end{cases}
+\label{eq:threshold}
 \end{equation}
-which decays once $\alpha$ is close enough to one that $H_\alpha(\bm p)>1$.
-The smoothed bound of Ref.~\cite{Liu} gives the same with smoothing parameter
-$2^{-\kappa n}$ for small $\kappa>0$, via $H_{\min}\le H_2$ [Eq.~(48) of
-Ref.~\cite{TBH}] and the AEP~\cite{AEP}. Decoupling gives the decay but not the
-location of the transition or its shape; the bracket gives both.
+The threshold $H=1$ is the hashing point, where the coherent information
+$1-H$ of the Pauli channel at maximally mixed input
+vanishes~\cite{Bennett,Devetak}. For depolarizing noise
+$\N_r(\rho)=(1-r)\rho+rI/2$, with $q=3r/4$ and
+$\bm p=(1-q,q/3,q/3,q/3)$, it lies at $q_c=0.189290\ldots$, or
+$r_c=0.252386\ldots$. (Degenerate codes can transmit quantum information
+slightly beyond the hashing point~\cite{SmithSmolin}; $r_c$ is the threshold
+for distinguishing two encoded states.)
 
-Let the single-qubit distribution
-$\bm p_n$ depend on $n$, with i.i.d. errors at each $n$, and set
+The bracket also resolves the transition. Let the single-qubit distribution
+$\bm p_n$ depend on $n$, with i.i.d. errors at each $n$, and define
 $x_n=\sqrt n(1-H_n)/\sigma_n$.
 
 \begin{corollary}
-If $\bm p_n\to\bm p_*$ with $H(\bm p_*)=1$ and $\sigma(\bm p_*)>0$, then
-uniformly over independent exact 2-design inputs,
+If $\bm p_n\to\bm p_*$ with $H(\bm p_*)=1$ and $\sigma(\bm p_*)>0$, then for
+every pair of independent exact 2-design ensembles,
 \begin{equation}
 \Tb_n=\Phi(x_n)+O\!\left(\frac{\log n}{\sqrt n}\right),
 \label{eq:normal}
@@ -216,151 +185,138 @@ where $\Phi$ is the standard normal distribution function.
 \end{corollary}
 
 \begin{proof}
-With $\rho_n=\E|{-\log_2p_{n,i}}-H_n|^3$ and
-$b_n=C_{\rm BE}\rho_n/(\sigma_n^3\sqrt n)$, the Berry--Esseen
-theorem~\cite{BerryEsseen} applied to~\eqref{eq:spectrum} gives
-\begin{align}
-\Tb_n&\ge\Phi\!\left(x_n-\frac a{\sqrt n\sigma_n}\right)-b_n-2^{-a},\nonumber\\
-\Tb_n&\le\Phi\!\left(x_n+\frac a{\sqrt n\sigma_n}\right)+b_n+2^{-a/2}/\sqrt2.
-\label{eq:be}
-\end{align}
-On a four-letter alphabet the third moment is bounded uniformly, since
-$t|\log t|^3\to0$ at zero, and $\sigma_n$ stays bounded away from zero. Hence
-$b_n=O(n^{-1/2})$; set $a=2\log_2n$.
+The Berry--Esseen theorem~\cite{BerryEsseen} gives
+$\prob[s<n\mp a]=\Phi(x_n\mp a/\sqrt n\sigma_n)+O(n^{-1/2})$, uniformly
+because the third moment of the surprisal is bounded on a four-letter alphabet
+and $\sigma_n$ is bounded away from zero. Insert into~\eqref{eq:spectrum} with
+$a=2\log_2n$ and use the bounded density of $\Phi$.
 \end{proof}
 
-A transverse crossing of $H=1$ therefore has a noise window of width
-$n^{-1/2}$ with the universal profile $\Phi$. Figure~\ref{fig:bounds} shows the
-finite-size bracket and the approach to $\Phi$.
+Near threshold the distinguishability thus depends on $r$ only through
+$\sqrt n(r-r_c)$ and follows the universal profile $\Phi$. Figure~\ref{fig:bounds}
+shows the finite-size bracket at $n=8$, exact Haar averages, and the collapse
+onto $\Phi$ at large $n$.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{figures/bounds.pdf}
 \caption{Distinguishability after one layer of local depolarizing noise.
-(a) At $n=8$, the shaded interval lies between the projector lower bound
-(solid) and the two-class upper bound (dashed) of
-Eqs.~\eqref{eq:lower}--\eqref{eq:upper}, optimized over error-weight cutoffs;
-the thin vertical line marks $r_c$. The lower bound vanishes for $r\ge2/3$,
-where no single error has probability above $1/d$. Points are means over 64
-independent Haar-state pairs, computed from full density matrices; bars are
-one sample standard error, and the same pairs are reused at every $r$. The
-dash-dotted curve is the single-class (purity) bound, which falls below one
+(a) At $n=8$, the shaded band lies between the projector lower bound (solid)
+and the two-class upper bound (dashed) of Eqs.~\eqref{eq:lower}
+and~\eqref{eq:upper}, optimized over error-weight cutoffs; the thin vertical
+line marks $r_c$. Points are averages over 64 independent Haar-state pairs from
+full density matrices, with one-standard-error bars; the same pairs are used
+at every $r$. The dash-dotted curve is the purity bound, which drops below one
 only for $r\gtrsim0.37$ at this size and certifies decay only above $0.423$
 asymptotically. The dotted gray curve is the depolarizing parameter $\theta$
-that would result if a further 2-design unitary twirled the noise; it equals
-the twirled distance up to a factor $1-O(1/d)$.
-(b) The bracket~\eqref{eq:spectrum} with $a=2\log_2n$, evaluated from binomial
-distributions at fixed $x=\sqrt n(1-H)/\sigma$, for $n=1024$ and $65536$. The
-intervals approach $\Phi(x)$ (black). Panel (b) shows bounds, not simulations.}
+reached if a further 2-design unitary twirled the noise; it equals the
+twirled distance up to a factor $1-O(1/d)$. The lower bound is zero for
+$r\ge2/3$, where no single error has probability above $1/d$. (b) The
+bracket~\eqref{eq:spectrum} with $a=2\log_2n$, evaluated from binomial
+distributions at fixed $x=\sqrt n(1-H)/\sigma$ for $n=1024$ and $65536$,
+approaches $\Phi(x)$ (black).}
 \label{fig:bounds}
 \end{figure*}
 
-\emph{Correlated noise.}---For correlated errors the bracket still applies,
-and the relevant quantity is the full information spectrum rather than the
-entropy. Global depolarization
-$\N(\rho)=\theta\rho+(1-\theta)I/d$, $0<\theta<1$, has $p_I=\theta+(1-\theta)/d^2$
-and $p_P=(1-\theta)/d^2$ otherwise. Its entropy rate tends to $2(1-\theta)$,
-above one for $\theta<1/2$, yet
+Above threshold the distance decays exponentially. Grouping errors into
+empirical types in~\eqref{eq:upper} gives $\Tb_n\le\operatorname{poly}(n)
+2^{-nE(\bm p)}$, with~\cite{CoverThomas}
+\begin{align}
+E(\bm p)&=\min_{t}\{D(t\|\bm p)+\tfrac12[H(t)-1]_+\}\nonumber\\
+&=\max_{0\le s\le1}\frac{s}{1+s}[H_{1+s}(\bm p)-1],
+\label{eq:exponent}
+\end{align}
+where $D$ is the relative entropy and $H_\alpha$ the R\'enyi entropy. This
+equals the universal$_2$ privacy-amplification exponent~\cite{Hayashi} and
+follows without the polynomial prefactor from decoupling without
+smoothing~\cite{Dupuis}, since the family $X\mapsto\sum_PX_{PP}P\psi P$ is
+1-randomizing under~\eqref{eq:design}. Decoupling~\cite{Dupuis,Liu} therefore
+also yields decay for $H>1$; the bracket supplies the location of the
+transition and its Gaussian profile. Near threshold the lower
+bound~\eqref{eq:lower}, applied to types with $D(t\|\bm p)+H(t)<1$, matches
+$E$ to leading order. Writing $R_\pm$ for the upper and lower limits of
+$-n^{-1}\log_2\Tb_n$, both satisfy
+\begin{gather}
+R_\pm=\kappa(r-r_c)^2+O((r-r_c)^3),\nonumber\\
+\kappa=\frac{9}{32\ln2\,q_c(1-q_c)}=2.64\ldots
+\label{eq:quadratic}
+\end{gather}
+
+\emph{Correlated noise.}---The bracket applies to any Pauli distribution, and
+for correlated errors the full information spectrum, rather than the entropy,
+determines the answer. Global depolarization
+$\N(\rho)=\theta\rho+(1-\theta)I/d$ is a Pauli channel with
+$p_I=\theta+(1-\theta)/d^2$ and $p_P=(1-\theta)/d^2$ otherwise. Its entropy rate
+approaches $2(1-\theta)$, above one for $\theta<1/2$, yet
 $\N(\psi_1)-\N(\psi_2)=\theta(\psi_1-\psi_2)$ gives $\Tb\to\theta$. The bracket
-recovers this limit: with $a=n/2-1$, only the identity has surprisal below
-$n-a$, every other error lies above $n+a$, and $|\Tb-\theta|\le2^{-n/4+1}$ for
-large $n$.
+captures this exactly: with $a=n/2-1$ only the identity lies below surprisal
+$n-a$, all other errors lie above $n+a$, and $|\Tb-\theta|\le2^{-n/4+1}$.
 
-\emph{Design dependence.}---The bounds above hold for every exact 2-design.
-Two finer features depend on higher moments of the ensemble, which sets the
-reach of statements made for an arbitrary design of a given
-order~\cite{Ibarrondo,Liu}.
+\emph{Design dependence.}---The bracket depends on the ensemble only through its
+first two moments, so the threshold and the Gaussian profile are the same for
+every 2-design. Two finer features depend on higher moments.
 
-\emph{Degenerate critical noise.} The variance condition in Corollary~1 cannot
-be dropped. Complete dephasing, $\bm p_*=(1/2,0,0,1/2)$, has $H=1$ and
-$\sigma=0$. In dimension $d=2^n$ the uniform union of $d+1$ mutually unbiased
-bases (MUBs) is an exact 2-design~\cite{MUB}; take the computational basis as
-one of them. Its $d$ states are unchanged by dephasing, and every other state
-maps to $I/d$. Counting pairs,
+The first is the limit at a degenerate critical point. Complete dephasing,
+$\bm p_*=(1/2,0,0,1/2)$, has $H=1$ but $\sigma=0$, so Corollary~1 does not
+apply. The uniform union of a complete set of $d+1$ mutually unbiased bases
+(MUBs) is an exact 2-design~\cite{MUB}. Taking the computational basis as one
+of them, its $d$ states survive dephasing and all others map to $I/d$, so
 \begin{equation}
-\Tb_{\rm MUB}=\frac{(d-1)(2d+1)}{d(d+1)^2}\longrightarrow0.
-\label{eq:mub}
+\Tb_{\rm MUB}=\frac{(d-1)(2d+1)}{d(d+1)^2}\to0,\qquad
+\Tb_{\rm Haar}=\frac{d-1}{2d-1}\to\frac12 .
+\label{eq:dephasing}
 \end{equation}
-For Haar states the dephased outputs are diagonal, so their trace distance is
-the total-variation distance between two independent
-Dirichlet$(1,\ldots,1)$ vectors. Single coordinates $X,Y\sim\mathrm{Beta}(1,d-1)$
-satisfy $\E\min(X,Y)=\int_0^1(1-t)^{2d-2}dt=(2d-1)^{-1}$, hence
-\begin{equation}
-\Tb_{\rm Haar}=\frac d2\E|X-Y|=\frac{d-1}{2d-1}\longrightarrow\frac12.
-\label{eq:haar-dephasing}
-\end{equation}
-The two ensembles share their first two moments, yet their limits differ
-(Fig.~\ref{fig:dephasing}). This strengthens the observation of
-Ref.~\cite{Ibarrondo} that computational-basis states, a 1-design, are not
-contracted by dephasing. Positive variance at each $n$ is also not enough. Set
-$\epsilon_n=n^{-6}$ and $\bm p_n=(1/2-\epsilon_n+\delta_n,\epsilon_n,\epsilon_n,
-1/2-\epsilon_n-\delta_n)$, with $\delta_n>0$ solving $H(\bm p_n)=1$. Binary
-entropy bounds give $\delta_n=O(\sqrt{\epsilon_n\log(1/\epsilon_n)})$, so
-$n\|\bm p_n-\bm p_*\|_1\to0$. Replacing one tensor factor at a time and using
-$\|\mathcal A\otimes\mathcal B-\mathcal A'\otimes\mathcal B'\|_\diamond\le
-\|\mathcal A-\mathcal A'\|_\diamond+\|\mathcal B-\mathcal B'\|_\diamond$, the
-$n$-qubit channels differ in diamond norm by at most this quantity. MUB inputs
-still give $\Tb_n\to0$, although $\sigma_n>0$ and $x_n=0$ for every $n$.
+For Haar states the dephased outputs are diagonal; their trace distance is the
+total-variation distance of two independent flat Dirichlet vectors, and
+$\E\min(X,Y)=(2d-1)^{-1}$ for single coordinates $X,Y\sim\mathrm{Beta}(1,d-1)$.
+Two ensembles with identical second moments thus reach different limits
+(Fig.~\ref{fig:dephasing}), refining the observation of Ref.~\cite{Ibarrondo}
+that dephasing leaves computational-basis states uncontracted. The variance
+condition must also hold in the limit. With $\epsilon_n=n^{-6}$ and
+$\bm p_n=(1/2-\epsilon_n+\delta_n,\epsilon_n,\epsilon_n,1/2-\epsilon_n-\delta_n)$,
+where $\delta_n=O(\sqrt{\epsilon_n\log(1/\epsilon_n)})$ solves $H(\bm p_n)=1$,
+the $n$-qubit channel differs from complete dephasing by at most
+$n\|\bm p_n-\bm p_*\|_1\to0$ in diamond norm. MUB inputs still give
+$\Tb_n\to0$, although $\sigma_n>0$ for every $n$.
 
 \begin{figure}[t]
 \includegraphics[width=\columnwidth]{figures/dephasing.pdf}
-\caption{Design dependence at a degenerate critical channel. Under complete
+\caption{Design dependence at a degenerate critical point. Under complete
 dephasing both ensembles are exact 2-designs and the error entropy is one bit
-per qubit. Equations~\eqref{eq:mub} and~\eqref{eq:haar-dephasing}, evaluated
-without sampling, give different limits. The dotted gray line marks $1/2$.}
+per qubit, yet Eq.~\eqref{eq:dephasing} gives different limits. The dotted
+gray line marks $1/2$.}
 \label{fig:dephasing}
 \end{figure}
 
-\emph{Decay rates.} For i.i.d. errors, grouping Pauli strings into empirical
-types $t$ in~\eqref{eq:upper} gives
-$\Tb_n\le\operatorname{poly}(n)2^{-nE(\bm p)}$, using standard type
-bounds~\cite{CoverThomas}, with
-\begin{align}
-E(\bm p)&=\min_{t\ll\bm p}\{D(t\|\bm p)+\tfrac12[H(t)-1]_+\}\nonumber\\
-&=\max_{0\le s\le1}\frac{s}{1+s}[H_{1+s}(\bm p)-1].
-\label{eq:exponent}
-\end{align}
-Here $D(t\|p)=\sum_it_i\log_2(t_i/p_i)$ and
-$H_\alpha(p)=(1-\alpha)^{-1}\log_2\sum_ip_i^\alpha$. The second line follows by
-writing $[H-1]_+/2=\max_{0\le u\le1/2}u(H-1)$, exchanging extrema, and setting
-$s=u/(1-u)$. This is the known universal$_2$ privacy-amplification exponent at
-rate one~\cite{Hayashi}, and Eq.~\eqref{eq:dupuis} reproduces it without the
-polynomial prefactor. Applying~\eqref{eq:lower} to empirical types $t$ with
-$D(t\|\bm p)+H(t)<1$ gives a matching lower bound near threshold. With
-$R_\mp$ the lim\,inf and lim\,sup of $-n^{-1}\log_2\Tb_n$,
-\begin{equation}
-E(\bm p)\le R_-\le R_+\le\inf_{D(t\|\bm p)+H(t)<1}D(t\|\bm p).
-\label{eq:rates}
-\end{equation}
-For depolarizing noise both sides expand to the same leading order:
-$R_\pm=\kappa(r-r_c)^2+O((r-r_c)^3)$ with
-$\kappa=9/[32\ln2\,q_c(1-q_c)]=2.64\ldots$. Away from threshold the rate depends
-on the ensemble. Uniformly random stabilizer states can be written as
+The second is the decay rate away from threshold. A random stabilizer state is
 $\psi=d^{-1}[I+\sum_{P\ne I}z_PP]$ with $z_P\in\{0,\pm1\}$ and
-$\E|z_P|=1/(d+1)$. Local depolarization multiplies a weight-$w$ term by
-$(1-r)^w$, and the triangle inequality gives
+$\E|z_P|=1/(d+1)$. Local depolarization multiplies the weight-$w$ terms by
+$(1-r)^w$, so
 \begin{equation}
 \Tb_n^{\rm stab}\le\frac{[1+3(1-r)]^n-1}{2^n+1}.
 \label{eq:stabilizer}
 \end{equation}
-At $r=0.9$ this rate is at least $1-\log_2(1.3)=0.621\ldots$, larger than
-$E=0.479\ldots$ from~\eqref{eq:exponent}. Random stabilizer states form a
-3-design~\cite{KuengGross}, so even three matching moments leave the decay rate
-ensemble-specific; determining the Haar rate away from threshold is an open
-problem.
+At $r=0.9$ this decays at rate at least $1-\log_2(1.3)=0.621$, faster than the
+rate $E=0.479$ of Eq.~\eqref{eq:exponent}. Random stabilizer states form a
+3-design~\cite{KuengGross}, so the decay rate depends on the ensemble beyond
+three moments. The Haar rate away from threshold remains open.
 
-\emph{Discussion.}---Scrambling an encoding does not make it fragile to local
-Pauli noise: the information survives up to the hashing entropy, where the
-error distribution carries one bit per qubit. A single bracket, built from the
-error distribution and the dimension alone, captures this for every exact
-2-design and for correlated noise, and gives the transition its Gaussian shape.
-For error mitigation, Refs.~\cite{Takagi,Tsubouchi,Quek} show exponential cost
-at large depth for any noise strength. After one noisy layer, the purity-based
-estimate behind such bounds is loose throughout $0.252<r<0.423$, because it
-treats the likely low-surprisal errors, which the optimal measurement exploits,
-in the same way as the unlikely ones. Splitting the error distribution at
-surprisal $n$, as done here, is a natural way to sharpen those estimates.
-Natural next steps are worst-case versions relevant to error-mitigation cost,
-approximate designs from shallow circuits, and non-Pauli noise.
+\emph{Discussion.}---Scrambling does not make encoded information fragile to
+local Pauli noise. Two scrambled states remain distinguishable up to the
+hashing entropy, where the error distribution carries one bit per qubit, and
+the transition has a universal Gaussian shape. One bracket, built from the
+error distribution and the Hilbert-space dimension alone, controls this for
+every 2-design and for correlated noise.
+
+The result sharpens the information-theoretic view of noisy quantum
+computation. QEM costs are exponential at large depth for any noise
+strength~\cite{Takagi,Tsubouchi,Quek}, and the purity estimates behind those
+bounds treat all errors alike. After a single noisy layer, the optimal
+measurement exploits the likely errors, which these estimates miss; this
+moves the threshold from $0.423$ to $0.252$. Splitting the error distribution
+at surprisal $n$ is a direct way to sharpen purity-based bounds in other
+settings. Natural next steps are worst-case versions for QEM, deeper
+circuits with noise between layers, approximate designs from shallow circuits,
+and non-Pauli noise.
 
 \emph{Acknowledgments.}---Generative AI was used substantively in this work.
 Claude Opus~5.5 (Anthropic), accessed through Claude Code in October 2026, with
@@ -369,10 +325,10 @@ the problem, draft and revise the derivations, survey the literature, write the
 analysis code, generate the figures, and draft the text. A review with an
 OpenAI GPT model [version to be specified by the author] identified the
 omitted Ref.~\cite{Ibarrondo}. The author is responsible for all content.
-During preparation, proofs were rederived independently, the exact
-counterexamples were checked by explicit enumeration for $n\le2$, numerical
-claims were checked against independent implementations recorded with the
-data, and cited statements were checked against the primary sources.
+Proofs were rederived independently, the exact counterexamples were checked by
+explicit enumeration for $n\le2$, numerical claims were checked against
+independent implementations recorded with the data, and cited statements were
+checked against the primary sources.
 
 \emph{Data availability.}---The data that support the findings of this article
 and the code that generates every figure and numerical check accompany this
@@ -382,9 +338,6 @@ submission and will be deposited in a public repository~\cite{DataRepo}.
 \bibitem{KuengGross} R. Kueng and D. Gross, Qubit stabilizer states are
 complex projective 3-designs,
 \href{https://arxiv.org/abs/1510.02767}{arXiv:1510.02767} (2015).
-\bibitem{Dankert} C. Dankert, R. Cleve, J. Emerson, and E. Livine, Exact and
-approximate unitary 2-designs and their application to fidelity estimation,
-Phys. Rev. A \textbf{80}, 012304 (2009).
 \bibitem{Takagi} R. Takagi, H. Tajima, and M. Gu, Universal sampling lower
 bounds for quantum error mitigation, Phys. Rev. Lett. \textbf{131}, 210602 (2023).
 \bibitem{Tsubouchi} K. Tsubouchi, T. Sagawa, and N. Yoshioka, Universal cost
@@ -397,6 +350,9 @@ limits of quantum error mitigation, npj Quantum Inf. \textbf{8}, 114 (2022).
 \bibitem{Quek} Y. Quek, D. Stilck Fran\c{c}a, S. Khatri, J. J. Meyer, and
 J. Eisert, Exponentially tighter bounds on limitations of quantum error
 mitigation, Nat. Phys. \textbf{20}, 1648 (2024).
+\bibitem{Dankert} C. Dankert, R. Cleve, J. Emerson, and E. Livine, Exact and
+approximate unitary 2-designs and their application to fidelity estimation,
+Phys. Rev. A \textbf{80}, 012304 (2009).
 \bibitem{Ibarrondo} R. Ibarrondo and D. Stilck Fran\c{c}a, Average contraction
 coefficients of quantum channels,
 \href{https://arxiv.org/abs/2508.08214}{arXiv:2508.08214} (2025).
@@ -406,14 +362,6 @@ Can scrambling protect quantum state distinguishability under noise?,
 \bibitem{Sommers} G. M. Sommers, J. A. Jacoby, Z. Weinstein, D. A. Huse,
 and S. Gopalakrishnan, Spectral properties and coding transitions of
 Haar-random quantum codes, PRX Quantum \textbf{7}, 020328 (2026).
-\bibitem{Hayashi} M. Hayashi, Tight exponential analysis of universally
-composable privacy amplification and its applications,
-IEEE Trans. Inf. Theory \textbf{59}, 7728 (2013).
-\bibitem{Dupuis} F. Dupuis, Privacy amplification and decoupling without
-smoothing, IEEE Trans. Inf. Theory \textbf{69}, 7784 (2023).
-\bibitem{Shen} Y.-C. Shen, L. Gao, and H.-C. Cheng, Optimal second-order
-rates for quantum soft covering and privacy amplification,
-IEEE Trans. Inf. Theory \textbf{70}, 5077 (2024).
 \bibitem{CoverThomas} T. M. Cover and J. A. Thomas, \emph{Elements of
 Information Theory}, 2nd ed. (Wiley, Hoboken, 2006), Ch.~11.
 \bibitem{Bennett} C. H. Bennett, D. P. DiVincenzo, J. A. Smolin, and
@@ -423,14 +371,13 @@ Phys. Rev. A \textbf{54}, 3824 (1996).
 capacity of a quantum channel, IEEE Trans. Inf. Theory \textbf{51}, 44 (2005).
 \bibitem{SmithSmolin} G. Smith and J. A. Smolin, Degenerate quantum codes for
 Pauli channels, Phys. Rev. Lett. \textbf{98}, 030501 (2007).
-\bibitem{TBH} M. Tomamichel, M. Berta, and M. Hayashi, Relating different
-quantum generalizations of the conditional R\'enyi entropy,
-J. Math. Phys. \textbf{55}, 082206 (2014).
-\bibitem{AEP} M. Tomamichel, R. Colbeck, and R. Renner,
-A fully quantum asymptotic equipartition property,
-IEEE Trans. Inf. Theory \textbf{55}, 5840 (2009).
 \bibitem{BerryEsseen} W. Feller, \emph{An Introduction to Probability Theory and
 Its Applications}, Vol.~II, 2nd ed. (Wiley, New York, 1971), Sec.~XVI.5.
+\bibitem{Hayashi} M. Hayashi, Tight exponential analysis of universally
+composable privacy amplification and its applications,
+IEEE Trans. Inf. Theory \textbf{59}, 7728 (2013).
+\bibitem{Dupuis} F. Dupuis, Privacy amplification and decoupling without
+smoothing, IEEE Trans. Inf. Theory \textbf{69}, 7784 (2023).
 \bibitem{MUB} A. Klappenecker and M. R\"otteler, Mutually unbiased bases
 are complex projective 2-designs, in \emph{Proceedings of the 2005 IEEE
 International Symposium on Information Theory} (IEEE, 2005), pp.~1740--1744.
