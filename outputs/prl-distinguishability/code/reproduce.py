@@ -290,6 +290,39 @@ def verification():
     assert abs(near[-1]["achievable_over_delta2"]-kappa) < 0.01
     assert abs(near[-1]["projector_over_delta2"]-kappa) < 0.01
     report["near_threshold"] = {"kappa":kappa,"values":near}
+    # The projector lower bound is vacuous once max_i p_i <= 1/2 (r >= 2/3).
+    vacuous = {}
+    for n in (4, 8, 12):
+        below = cutoff_bounds(n, 0.6)[0]
+        at = [cutoff_bounds(n, r)[0] for r in (2/3, 0.7, 0.9)]
+        assert below > 0 and max(at) == 0.0
+        vacuous[str(n)] = {"lower_r0.6": below, "lower_r_ge_2/3": at}
+    report["lower_bound_vacuous_above_2_3"] = vacuous
+    # Second-moment identity behind the 1-randomizing property, with a reference
+    # system of dimension 2, averaged exactly over a complete n=1 MUB design.
+    d = 2
+    blocks = [rng.normal(size=(2, 2))+1j*rng.normal(size=(2, 2)) for _ in range(4)]
+    states = complete_mub_states(1)
+    lhs = 0.0
+    for v in states:
+        psi = np.outer(v, v.conj())
+        total = sum(np.kron(P@psi@P.conj().T-np.eye(d)/d, X)
+                    for P, X in zip(PAULIS, blocks))
+        lhs += np.linalg.norm(total)**2/len(states)
+    rhs = (d/(d+1))*sum(np.linalg.norm(X)**2 for X in blocks) \
+        - np.linalg.norm(sum(blocks))**2/(d*(d+1))
+    assert abs(lhs-rhs) < 1e-12 and rhs <= sum(np.linalg.norm(X)**2 for X in blocks)
+    report["randomizing_identity_error"] = float(abs(lhs-rhs))
+    # Haar dephasing formula against direct sampling of diagonal probabilities.
+    haar_checks = {}
+    for n in (4, 8):
+        d = 2**n
+        samples = rng.dirichlet(np.ones(d), size=(4000, 2))
+        estimate = float(np.mean(0.5*np.abs(samples[:, 0]-samples[:, 1]).sum(1)))
+        exact = haar_dephasing_distance(n)
+        assert abs(estimate-exact) < 0.01
+        haar_checks[str(n)] = {"sampled": estimate, "exact": exact}
+    report["haar_dephasing_sampling"] = haar_checks
     report["checks_passed"] = True
     return report
 
