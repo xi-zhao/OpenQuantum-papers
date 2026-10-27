@@ -1,0 +1,417 @@
+\documentclass[aps,prl,reprint,superscriptaddress,amsmath,amssymb]{revtex4-2}
+\usepackage{graphicx,bm,amsthm}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+\hypersetup{pdftitle={Information spectrum and design dependence of noisy-state distinguishability},pdfauthor={Xi Zhao},pdfsubject={Revised theoretical manuscript; finite-size bounds and exact design counterexamples}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Tb}{\overline T}
+\newcommand{\N}{\mathcal N}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\prob}{\mathbb P}
+\begin{document}
+\title{Information spectrum and design dependence of noisy-state distinguishability}
+\author{Xi Zhao}\noaffiliation
+\date{October 27, 2026}
+\begin{abstract}
+How much of the distinguishability of random quantum states survives Pauli noise?
+We give finite-size bounds on the average trace distance between two independent
+outputs from exact pure-state 2-designs. For an arbitrary distribution of Pauli
+errors on $n$ qubits, the bounds bracket this distance by the probability that the
+error surprisal lies below $n$, with explicit threshold shifts and exponentially
+small additive terms. For fixed independent noise they recover exponential
+separation across the hashing entropy $H(p)=1$. Near a nondegenerate critical
+distribution they give a Gaussian crossover with an explicit
+$O(\log n/\sqrt n)$ error. The nondegeneracy condition is essential: at complete
+dephasing, Haar states have limiting average distance $1/2$, whereas a complete
+set of mutually unbiased bases, itself a 2-design, has limiting distance zero.
+We also relate a type-class bound to the established privacy-amplification
+exponent and show why it cannot be a universally tight exponent for 2-designs.
+The results delineate which features of noisy distinguishability follow from
+second moments and which require more information about the ensemble.
+\end{abstract}
+\maketitle
+
+\emph{Introduction.}---Random states and state designs provide tractable models
+of scrambled quantum information. Their robustness depends on the operational
+task: distinguishing two known states, preserving an unknown quantum state,
+and learning a state by restricted measurements are different requirements.
+We consider unrestricted binary discrimination with equal priors. For a fixed
+channel $\N$, its ensemble-averaged optimal success probability is
+$(1+\Tb)/2$, where
+\begin{equation}
+\Tb=\E_{\psi_1,\psi_2}\frac12
+\|\N(\psi_1)-\N(\psi_2)\|_1 .
+\label{eq:observable}
+\end{equation}
+The measurement may depend on the two known candidate states.
+
+Liu \emph{et al.} bounded this quantity using decoupling and discussed a
+conditional-entropy threshold and an intermediate region between von Neumann
+and collision-entropy bounds~\cite{Liu}. For local depolarizing noise,
+Sommers \emph{et al.} identified the hashing transition and argued for an
+$n^{-1/2}$ window in coherent information at fixed logical size and vanishing
+code rate, supported by spectral analysis and numerics~\cite{Sommers}.
+Information-spectrum methods, R\'enyi exponents, and Gaussian second-order
+asymptotics are established in privacy amplification and quantum soft
+covering~\cite{Hayashi,Dupuis,Shen}. These results motivate asking for a direct
+finite-size characterization of the \emph{pairwise} quantity
+\eqref{eq:observable}, including its dependence on the state ensemble.
+
+Here a support-subspace test and a second-moment estimate give a two-sided
+information-spectrum bound for Pauli noise, without assuming independent errors.
+Their combination yields a Gaussian profile for regular sequences of critical
+channels. We then exhibit a degenerate critical channel for which two exact
+2-designs have different limiting distances. We distinguish these statements
+from known achievable decay exponents; neither the bounds nor our numerical
+checks determine the exact decay rate at general noise strength.
+
+\emph{Finite-size bounds.}---Let $d=2^n$,
+$\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$, and
+\begin{equation}
+\N_p(\rho)=\sum_{P\in\mathcal P_n}p_P P\rho P,
+\qquad s(P)=-\log_2p_P,
+\label{eq:channel}
+\end{equation}
+where $s$ is sampled with $P\sim p$ on the support of $p$. All logarithms and
+entropies below use base two. The channel is fixed independently of the state
+samples. Each $\psi_i=|\psi_i\rangle\langle\psi_i|$ is sampled independently
+from an exact pure-state 2-design on the \emph{full} $d$-dimensional Hilbert space:
+\begin{equation}
+\E\psi_i=I/d,\qquad \E\psi_i^{\otimes2}=(I+F)/[d(d+1)],
+\label{eq:design}
+\end{equation}
+where $F$ swaps the two copies. The two ensembles need not be identical.
+Examples include Haar states and uniformly random qubit stabilizer
+states~\cite{KuengGross}.
+
+\begin{theorem}
+For every Pauli distribution $p$ and $a\ge0$,
+\begin{equation}
+\prob[s<n-a]-2^{-a}\le\Tb
+\le\prob[s<n+a]+2^{-a/2}/\sqrt2 .
+\label{eq:spectrum}
+\end{equation}
+More precisely, for any subset $\mathcal G\subseteq\mathcal P_n$ and any
+partition $\{\mathcal C_j\}$, put
+$m_j=\sum_{\mathcal C_j}p_P$ and $v_j=\sum_{\mathcal C_j}p_P^2$. Then
+\begin{align}
+\Tb&\ge p(\mathcal G)-|\mathcal G|/d,\label{eq:lower}\\
+\Tb&\le\sum_j\min\left\{m_j,
+\sqrt{\frac{d^2v_j-m_j^2}{2(d+1)}}\right\}.
+\label{eq:upper}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Fix $\psi_1$ and project onto the span of
+$\{P|\psi_1\rangle:P\in\mathcal G\}$, with projector $\Pi$.
+The variational formula for trace distance gives
+$T\ge\tr\Pi[\N_p(\psi_1)-\N_p(\psi_2)]$.
+The first term is at least $p(\mathcal G)$; independence, the first moment of
+$\psi_2$, and unitality give conditional mean $\tr\Pi/d$ for the second.
+Since $\tr\Pi\le|\mathcal G|$, this proves \eqref{eq:lower}.
+Only the second state's 1-design property is needed here; the first can be
+any fixed pure state.
+
+For the upper bound let $\Delta=\psi_1-\psi_2$ and
+$\N_j(\rho)=\sum_{\mathcal C_j}p_P P\rho P$. Pauli orthogonality and
+\eqref{eq:design} imply
+\begin{align}
+\E\tr\N_j(\psi_i)^2&=\frac{dv_j+m_j^2}{d+1},\nonumber\\
+\E\tr\N_j(\psi_1)\N_j(\psi_2)&=m_j^2/d,\nonumber\\
+\E\tr\N_j(\Delta)^2
+&=\frac{2d}{d+1}v_j-\frac{2m_j^2}{d(d+1)}.
+\label{eq:moment}
+\end{align}
+Jensen's inequality and $\|A\|_1\le\sqrt d\|A\|_2$ give the square-root
+term in \eqref{eq:upper}; the triangle inequality also gives
+$\frac12\|\N_j(\Delta)\|_1\le m_j$. Sum over classes.
+
+For the lower side of \eqref{eq:spectrum}, use
+$\mathcal G=\{s<n-a\}$, which has fewer than $d2^{-a}$ elements.
+For the upper side split at $s=n+a$. Bound the head by its mass and the tail
+by $\sqrt{dv/2}$. On the tail $p_P\le2^{-n-a}$, so $v\le2^{-n-a}$.
+\end{proof}
+
+The two CDF arguments in \eqref{eq:spectrum} differ. Thus this is a
+\emph{bracketing inequality}, not a finite-size identity with
+$\prob[s<n]$. Concentration and regularity of $s$ make the bracket informative.
+The event $s<n$ means $p_P>1/d$; it is not synonymous with selecting the $d$
+most likely errors. The subspace test detects a collection of error images
+and does not identify individual errors or construct a quantum recovery map.
+
+\emph{Independent noise and the critical window.}---Now let
+$p=\bm p^{\otimes n}$ for a single-qubit distribution
+$\bm p=(p_0,p_x,p_y,p_z)$. Write
+\begin{equation}
+H=\E[-\log_2p_i],\qquad
+\sigma^2=\operatorname{Var}[-\log_2p_i].
+\end{equation}
+For fixed $\bm p$ with $H<1$, choose $a=\epsilon n$ with
+$0<\epsilon<1-H$ in the lower bound. A finite-alphabet large-deviation bound
+gives $\Tb\ge1-e^{-\Omega(n)}$. The upper bound similarly gives
+$\Tb\le e^{-\Omega(n)}$ if $H>1$. The constants depend on the fixed channel.
+For a qubit Pauli channel $1-H$ is the coherent information at maximally mixed
+input~\cite{Bennett,Devetak}; its zero locates the threshold for this
+observable, not a general quantum-capacity boundary.
+
+Exponential decay for fixed $H>1$ is also a direct consequence of the
+smoothed decoupling bound of Ref.~\cite{Liu} and the AEP~\cite{AEP}.
+Indeed, with $h=H-1>0$, those bounds have the form
+$\Tb\le2^{-H_2^\delta/2}+4\delta$ and
+$H_2^\delta\ge nh-C\sqrt{n\log_2(2/\delta^2)}$, for a channel-dependent
+constant $C$. Choosing $\delta=2^{-\kappa n}$ with sufficiently small fixed
+$\kappa>0$ makes both terms exponentially small. The AEP condition
+$n\ge(8/5)\log_2(2/\delta^2)$ permits $\kappa<5/16$ for large $n$.
+We therefore do not regard exclusion of an algebraic region at fixed $H>1$
+as a new decay mechanism.
+
+For the crossover, allow the single-qubit distribution $\bm p_n$ to vary with
+$n$; errors remain i.i.d. within each $n$-qubit system. Let $H_n,\sigma_n$
+be its entropy and standard deviation and
+$x_n=\sqrt n(1-H_n)/\sigma_n$.
+
+\begin{corollary}
+Suppose $\bm p_n\to\bm p_*$, $H(\bm p_*)=1$, and
+$\sigma(\bm p_*)>0$. Uniformly over independent exact pure-state 2-design
+inputs,
+\begin{equation}
+\Tb_n=\Phi(x_n)+O\!\left(\frac{\log n}{\sqrt n}\right),
+\label{eq:normal}
+\end{equation}
+where $\Phi$ is the standard normal CDF. In particular, if $x_n\to x$,
+then $\Tb_n\to\Phi(x)$.
+\end{corollary}
+
+\begin{proof}
+Let $\rho_n=\E|{-\log_2p_{n,i}}-H_n|^3$ and
+$b_n=C_{\rm BE}\rho_n/(\sigma_n^3\sqrt n)$.
+Berry--Esseen applied to the error surprisal gives
+\begin{align}
+\Tb_n&\ge\Phi\!\left(x_n-\frac a{\sqrt n\sigma_n}\right)-b_n-2^{-a},
+\nonumber\\
+\Tb_n&\le\Phi\!\left(x_n+\frac a{\sqrt n\sigma_n}\right)+b_n+2^{-a/2}/\sqrt2.
+\label{eq:be}
+\end{align}
+The four-letter alphabet bounds the third moment uniformly, since
+$t|\log t|^3\to0$ at zero, and $\sigma_n$ is bounded away from zero.
+Hence $b_n=O(n^{-1/2})$. Set $a=2\log_2n$ and use the bounded density of
+$\Phi$ to obtain \eqref{eq:normal}.
+\end{proof}
+
+For $\N_r(\rho)=(1-r)\rho+rI/2$, $0\le r\le1$, put $q=3r/4$.
+Then $\bm p=(1-q,q/3,q/3,q/3)$ and
+$H=h_2(q)+q\log_2 3$. The nondegenerate critical point is
+$q_c=0.189290\ldots$, or $r_c=0.252386\ldots$.
+A smooth transverse crossing of $H=1$ therefore has an $n^{-1/2}$ noise
+window. Equation~\eqref{eq:normal} specifies its pairwise trace-distance
+profile; it does not assert a common finite-size crossing of all curves.
+Figure~\ref{fig:bounds} separates small-system state-vector sampling from
+large-system evaluation of rigorous bounds.
+
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{figures/bounds.pdf}
+\caption{Finite-size statements for local depolarizing noise.
+(a) At $n=8$, the shaded interval is the rigorous projector lower bound
+and two-class upper bound from Eqs.~\eqref{eq:lower}--\eqref{eq:upper},
+optimized over error-weight cutoffs. Points are means from 64 independent
+Haar-state pairs, using full density matrices; bars are one sample standard
+error. The same pairs are reused across noise strengths. These samples check
+finite-size consistency and do not establish an asymptotic rate.
+(b) The explicit information-spectrum bracket \eqref{eq:spectrum}, with
+$a=2\log_2n$, is evaluated from binomial CDFs at fixed
+$x=\sqrt n(1-H)/\sigma$. Shaded intervals for $n=1024$ and $65536$ approach
+$\Phi(x)$ (black). These are bounds, not simulated distances.}
+\label{fig:bounds}
+\end{figure*}
+
+\emph{A degenerate critical point.}---The variance assumption cannot be
+omitted. Let $\bm p_*=(1/2,0,0,1/2)$; the channel is complete dephasing in
+the computational basis, with $H=1$ and $\sigma=0$.
+In prime-power dimension $d=2^n$, the uniform union of a complete set of
+$d+1$ mutually unbiased bases (MUBs) is an exact pure-state
+2-design~\cite{MUB}. Choose the computational basis as one member. Its $d$
+states remain unchanged by dephasing; every state from the other bases maps
+to $I/d$. Counting pairs gives
+\begin{align}
+\Tb_{\rm MUB}
+&=\frac{2d+1}{(d+1)^2}(1-1/d)\nonumber\\
+&=\frac{(d-1)(2d+1)}{d(d+1)^2}\longrightarrow0.
+\label{eq:mub}
+\end{align}
+For Haar states, the diagonal probabilities have a
+Dirichlet$(1,\ldots,1)$ distribution. Two independent coordinates
+$X,Y\sim\mathrm{Beta}(1,d-1)$ obey
+$\E\min(X,Y)=\int_0^1(1-t)^{2d-2}dt=(2d-1)^{-1}$.
+Consequently,
+\begin{equation}
+\Tb_{\rm Haar}=\frac d2\E|X-Y|
+=\frac{d-1}{2d-1}\longrightarrow\frac12.
+\label{eq:haar-dephasing}
+\end{equation}
+Both ensembles satisfy identical first and second moments, but their critical
+limits differ (Fig.~\ref{fig:dephasing}). This example concerns a legitimate
+Pauli channel at the entropy threshold, not approximate designs.
+
+Even positive variance at each finite $n$ is insufficient without control of
+the limiting distribution. For example, set $\epsilon_n=n^{-6}$ and
+$\bm p_n=(1/2-\epsilon_n+\delta_n,\epsilon_n,\epsilon_n,
+1/2-\epsilon_n-\delta_n)$, where $\delta_n>0$ solves $H(\bm p_n)=1$.
+For large $n$ this solution is unique and interior. Binary entropy bounds give
+$\delta_n=O(\sqrt{\epsilon_n\log(1/\epsilon_n)})$, so
+$n\|\bm p_n-\bm p_*\|_1\to0$.
+The tensor channels differ in diamond norm by at most this quantity.
+Thus MUB inputs still have $\Tb_n\to0$, although each $\sigma_n>0$ and
+$x_n=0$. The regularity in Corollary~1 excludes this sequence.
+
+\begin{figure}[t]
+\includegraphics[width=\columnwidth]{figures/dephasing.pdf}
+\caption{An exact counterexample to design-independent critical behavior.
+Under complete dephasing, both ensembles are pure-state 2-designs and the
+error entropy is one bit per qubit. Equations~\eqref{eq:mub} and
+\eqref{eq:haar-dephasing}, evaluated without sampling, give different limits.
+The dashed gray reference marks $1/2$.}
+\label{fig:dephasing}
+\end{figure}
+
+\emph{Decay bounds and their scope.}---For i.i.d. errors, partition Pauli
+strings into empirical types $t$ with masses $m_t$ and cardinalities $N_t$.
+All strings in a type have equal probability. Relaxing \eqref{eq:upper}
+therefore gives
+\begin{equation}
+\Tb_n\le\sum_t m_t\min\{1,\sqrt{2^n/(2N_t)}\}
+\le\operatorname{poly}(n)\,2^{-nE(\bm p)},
+\label{eq:exponent-bound}
+\end{equation}
+where standard type bounds $N_t=2^{nH(t)+O(\log n)}$ and
+$m_t\le2^{-nD(t\|\bm p)}$ yield
+\begin{align}
+E(\bm p)&=\min_{t\ll\bm p}
+\{D(t\|\bm p)+\tfrac12[H(t)-1]_+\}\nonumber\\
+&=\max_{0\le s\le1}\frac{s}{1+s}[H_{1+s}(\bm p)-1].
+\label{eq:exponent}
+\end{align}
+Here $D(t\|p)=\sum_i t_i\log_2(t_i/p_i)$,
+$H_\alpha(p)=(1-\alpha)^{-1}\log_2\sum_i p_i^\alpha$, and the $s=0$
+value is defined by continuity. To obtain the second line,
+write $[H-1]_+/2=\max_{0\le u\le1/2}u(H-1)$, interchange convex--concave
+extrema on the support simplex, minimize over $t$, and set $s=u/(1-u)$.
+The minimizing distribution at fixed $s$ is proportional to
+$p_i^{1+s}$.
+
+Equation~\eqref{eq:exponent} is the established universal$_2$
+privacy-amplification achievable exponent at rate one~\cite{Hayashi}.
+Its collision-entropy branch and escort-distribution critical rate are
+properties of that optimization. They do not prove a nonanalyticity of the
+true distance. The same bound follows from decoupling without
+smoothing~\cite{Dupuis}: the channel family
+$\mathcal R^\psi(X)=\sum_P X_{PP}P\psi P$ is 1-randomizing, since
+\eqref{eq:design} bounds its centered Hilbert--Schmidt second moment by
+$\|X\|_2^2$, also with a reference system. Applying Theorem~8 of
+Ref.~\cite{Dupuis} to diagonal $p$ gives, for $1<\alpha\le2$,
+\begin{equation}
+\E\|\N_p(\psi)-I/d\|_1
+\le2^{2/\alpha-1}
+2^{-\frac{\alpha-1}{\alpha}[H_\alpha(p)-\log_2d]}.
+\end{equation}
+The two-state triangle inequality and i.i.d. additivity recover
+\eqref{eq:exponent}, without a type-count prefactor. No matching converse
+for the present observable is implied by these references.
+
+A limited matching statement does follow near the depolarizing threshold.
+For any distribution $t\ll p$ with $c(t,p)=D(t\|p)+H(t)<1$,
+Eq.~\eqref{eq:lower}, applied to nearby empirical types, gives
+$\Tb_n\ge2^{-n[D(t\|p)+o(1)]}$: its mass exceeds its dimension cost by
+the factor $1-2^{-n[1-c(t,p)]}$. Thus, writing
+$R_-=\liminf_n[-n^{-1}\log_2\Tb_n]$ and $R_+$ for the corresponding limsup,
+\begin{gather}
+E(p)\le R_-\le R_+\le E_{\rm proj}(p),\nonumber\\
+E_{\rm proj}(p)=\inf_{c(t,p)<1}D(t\|p),
+\label{eq:rates}
+\end{gather}
+with an empty infimum interpreted as $+\infty$.
+For depolarizing $q=3r/4$ just above $q_c$, symmetry reduces the infimum
+to $t=(1-f,f/3,f/3,f/3)$. Its boundary $f=f_0(q)$ satisfies
+$-(1-f)\log_2(1-q)-f\log_2(q/3)=1$.
+Here $f_0(q_c)=q_c$ and $f'_0(q_c)=0$, whereas the minimizer in
+\eqref{eq:exponent} has $f=q_c$ near threshold. Expanding the binary relative
+entropies on both sides therefore yields
+\begin{gather}
+R_\pm(r)=\kappa(r-r_c)^2+O((r-r_c)^3),\nonumber\\
+\kappa=\frac{9}{32\ln2\,q_c(1-q_c)}=2.64\ldots.
+\label{eq:quadratic}
+\end{gather}
+The limits in $n$ are taken first, at fixed $r>r_c$. This establishes only
+the leading near-threshold rate, without assuming a full rate limit exists.
+
+The rate \eqref{eq:exponent} cannot be universally tight over 2-designs.
+For uniformly random stabilizer states, write
+$\psi=d^{-1}[I+\sum_{P\ne I}z_PP]$ with
+$z_P\in\{0,\pm1\}$ and $\E|z_P|=1/(d+1)$.
+Local depolarization multiplies a weight-$w$ coefficient by
+$\lambda^w$, where $\lambda=1-r$. Applying the triangle inequality termwise
+to the difference of two states gives
+\begin{equation}
+\Tb_n^{\rm stab}\le
+\frac{\sum_{P\ne I}\lambda^{w(P)}}{d+1}
+=\frac{(1+3\lambda)^n-1}{2^n+1}.
+\label{eq:stabilizer}
+\end{equation}
+Writing the asymptotic rate as $\liminf_n[-n^{-1}\log_2\Tb_n]$,
+Eq.~\eqref{eq:stabilizer} at $r=0.9$ implies a lower bound
+$1-\log_2(1.3)=0.621488\ldots$, strictly greater than
+$E=\tfrac12[1-\log_2(1.03)]=0.478678\ldots$.
+This comparison excludes universal equality with \eqref{eq:exponent}; it
+does not determine the exact Haar or stabilizer rate. At $r=1$ both outputs
+are exactly $I/d$ and $\Tb_n=0$ for every $n$.
+
+\emph{Discussion.}---Pauli error probabilities and Hilbert-space dimension
+suffice to bound pairwise distinguishability for all exact pure-state
+2-designs. The bracket gives the Gaussian critical profile when surprisal
+has nonzero limiting variance. At a degenerate critical channel the answer depends on the ensemble despite
+identical second moments. The achievable exponent is not universally tight,
+and the present bounds do not determine general exact rates.
+These distinctions connect a direct geometric lower bound with
+established information-spectrum and decoupling upper bounds, while keeping
+binary discrimination separate from error recovery and channel capacity.
+Extensions to approximate designs or non-Pauli channels require additional
+error control; they are not assumed here. Determining ensemble-specific
+rates away from the transition remains open in this analysis.
+
+\emph{Reproducibility.}---The accompanying script generates both figures from
+stored raw samples or from fixed seeds, evaluates the finite-size bounds,
+and checks independent implementations and exact limiting cases. No
+random-matrix replacement is used in the revised numerical evidence.
+
+\begin{thebibliography}{99}
+\bibitem{Liu} G. Liu, C. Qin, Z. Xu, X. Ma, and Z.-W. Liu,
+Can scrambling protect quantum state distinguishability under noise?,
+\href{https://arxiv.org/abs/2606.02122}{arXiv:2606.02122} (2026).
+\bibitem{Sommers} G. M. Sommers, J. A. Jacoby, Z. Weinstein, D. A. Huse,
+and S. Gopalakrishnan, Spectral properties and coding transitions of
+Haar-random quantum codes, PRX Quantum \textbf{7}, 020328 (2026).
+\bibitem{Hayashi} M. Hayashi, Tight exponential analysis of universally
+composable privacy amplification and its applications,
+IEEE Trans. Inf. Theory \textbf{59}, 7728 (2013).
+\bibitem{Dupuis} F. Dupuis, Privacy amplification and decoupling without
+smoothing, \href{https://arxiv.org/abs/2105.05342}{arXiv:2105.05342} (2022).
+\bibitem{Shen} Y.-C. Shen, L. Gao, and H.-C. Cheng, Optimal second-order
+rates for quantum soft covering and privacy amplification,
+\href{https://arxiv.org/abs/2202.11590}{arXiv:2202.11590} (2022).
+\bibitem{KuengGross} R. Kueng and D. Gross, Qubit stabilizer states are
+complex projective 3-designs,
+\href{https://arxiv.org/abs/1510.02767}{arXiv:1510.02767} (2015).
+\bibitem{Bennett} C. H. Bennett, D. P. DiVincenzo, J. A. Smolin, and
+W. K. Wootters, Mixed-state entanglement and quantum error correction,
+Phys. Rev. A \textbf{54}, 3824 (1996).
+\bibitem{Devetak} I. Devetak, The private classical capacity and quantum
+capacity of a quantum channel, IEEE Trans. Inf. Theory \textbf{51}, 44 (2005).
+\bibitem{AEP} M. Tomamichel, R. Colbeck, and R. Renner,
+A fully quantum asymptotic equipartition property,
+IEEE Trans. Inf. Theory \textbf{55}, 5840 (2009).
+\bibitem{MUB} A. Klappenecker and M. R\"otteler, Mutually unbiased bases
+are complex projective 2-designs, in \emph{Proceedings of the 2005 IEEE
+International Symposium on Information Theory} (IEEE, 2005), pp.~1740--1744.
+\end{thebibliography}
+\end{document}
