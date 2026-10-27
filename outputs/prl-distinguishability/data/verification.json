@@ -88,6 +88,35 @@
       "exact": 0.49902152641878667
     }
   },
+  "global_depolarizing_bracket": {
+    "theta": 0.25,
+    "values": {
+      "8": {
+        "entropy_rate": 1.6013870808417956,
+        "lower": 0.12501144409179688,
+        "upper": 0.5000114440917969
+      },
+      "16": {
+        "entropy_rate": 1.5507048824310028,
+        "lower": 0.24218750017462298,
+        "upper": 0.312500000174623
+      },
+      "32": {
+        "entropy_rate": 1.5253524413893478,
+        "lower": 0.249969482421875,
+        "upper": 0.25390625
+      },
+      "64": {
+        "entropy_rate": 1.512676220694674,
+        "lower": 0.2499999995343387,
+        "upper": 0.2500152587890625
+      }
+    }
+  },
+  "hmin_le_h2": {
+    "states": 39,
+    "min_gap": -3.2550213635573755e-09
+  },
   "checks_passed": true,
   "haar_means_within_bounds_plus_5se": true,
   "environment": {
@@ -122,5 +151,5 @@
   },
   "evidence_scope": "Exact finite-dimensional channel evaluation on sampled Haar inputs; large-n curves are rigorous bounds, not simulated distances.",
   "raw_sha256": "ab5794e5d9e33a64da41268e60f667bf25bad8c872e245f1a4ceb1b85911b354",
-  "script_sha256": "bf7b27be6d8895f4150773a3af3a5aba6b838988f054d72a6012a265e0973afa"
+  "script_sha256": "b0c625dd3758927c79dcd31bfc46d2396b4ddbff1c6c6441232e193655448ce1"
 }

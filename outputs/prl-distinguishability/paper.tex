@@ -16,11 +16,11 @@
 \begin{abstract}
 We bound the average trace distance between two independent random pure states,
 drawn from exact 2-designs, after arbitrary Pauli noise. Finite-size bounds place
-it between two information-spectrum probabilities of the error surprisal. This
-gives a sharp threshold at the hashing entropy and, near nondegenerate critical
-noise, a Gaussian crossover with explicit error. At degenerate critical noise, two
-exact 2-designs have different limits, and the known decay-rate bound is not
-tight for all 2-designs.
+it between two information-spectrum probabilities of the error surprisal. For
+independent errors this gives a sharp threshold at the hashing entropy and, near
+nondegenerate critical noise, a Gaussian crossover with explicit error. At
+degenerate critical noise, two exact 2-designs have different limits, and the
+known decay-rate bound is not tight even for 3-designs.
 \end{abstract}
 \maketitle
 
@@ -43,8 +43,10 @@ The measurement may depend on the two known candidate states.
 Two recent works bound essentially this quantity for tensor-power noise.
 Ibarrondo and Stilck Fran\c{c}a~\cite{Ibarrondo} study the average contraction
 coefficient, the ratio of output to input trace distance. For any 1-design they
-prove it tends to one when the Choi-state entropy is below the logarithm of
-the output dimension. Their proof projects onto the span of typical Kraus images
+prove it tends to one when the Choi-state entropy satisfies
+$S(\tau_{\N})<-\log_2\|\N(I/d_{\rm in})\|_\infty$, which reduces to the
+logarithm of the output dimension for unital channels such as Pauli channels.
+Their proof projects onto the span of typical Kraus images
 of the first state and averages the second state's first moment. Combined with
 a 2-design upper bound, this gives local-depolarizing thresholds near $0.25$ and
 $0.42$, leaving the interval between them open. Liu \emph{et al.}~\cite{Liu}
@@ -61,15 +63,22 @@ Our contribution is narrower and specific to Pauli noise. We match the
 projector lower bound of Ref.~\cite{Ibarrondo}, specialized to Pauli errors, with
 a second-moment upper bound on the same information-spectrum quantity. The
 result is a finite-size bracket valid for correlated Pauli distributions and
-exact 2-designs. It places the threshold exactly at the hashing entropy and
-yields the Gaussian crossover profile, with an explicit error, for
-nondegenerate critical channels. Exponential decay throughout the formerly open
-interval already follows from existing smoothed decoupling bounds; we record
-this rather than claim it. Finally, we show which statements are fixed by the
-first two design moments and which are not. A degenerate critical channel
-separates two exact 2-designs, and a stabilizer bound shows the known
-achievable decay rate is not tight for every 2-design. Neither the bounds nor
-our numerics determine the exact decay rate at general noise strength.
+exact 2-designs. For independent errors it places the threshold exactly at the
+hashing entropy and yields the Gaussian crossover profile, with an explicit
+error, for nondegenerate critical channels. For correlated errors the
+information spectrum, not the entropy, sets the answer. Exponential decay
+throughout the formerly open interval already follows from existing smoothed
+decoupling bounds; we record this rather than claim it.
+
+Both prior analyses state their conclusions for an arbitrary design of the
+relevant order~\cite{Ibarrondo,Liu}, and random stabilizer states are a common
+stand-in for Haar states because they form 3-designs~\cite{KuengGross}. We test
+how far such design-level statements reach. Our bounds hold for every exact
+2-design, but the critical limit does not: a degenerate critical channel
+separates two exact 2-designs. Away from threshold, a stabilizer bound shows
+that the known achievable decay rate is not tight even for 3-designs. Neither
+the bounds nor our numerics determine the exact decay rate at general noise
+strength.
 
 \emph{Finite-size bounds.}---Let $d=2^n$,
 $\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$, and
@@ -111,8 +120,9 @@ $m_j=\sum_{\mathcal C_j}p_P$ and $v_j=\sum_{\mathcal C_j}p_P^2$. Then
 \begin{proof}
 Fix $\psi_1$ and project onto the span of
 $\{P|\psi_1\rangle:P\in\mathcal G\}$, with projector $\Pi$.
-The variational formula for trace distance gives
-$T\ge\tr\Pi[\N_p(\psi_1)-\N_p(\psi_2)]$.
+For each realization, the variational formula for trace distance gives
+$\frac12\|\N_p(\psi_1)-\N_p(\psi_2)\|_1\ge
+\tr\Pi[\N_p(\psi_1)-\N_p(\psi_2)]$; we then average over $\psi_2$ and $\psi_1$.
 The first term is at least $p(\mathcal G)$; independence, the first moment of
 $\psi_2$, and unitality give conditional mean $\tr\Pi/d$ for the second.
 Since $\tr\Pi\le|\mathcal G|$, this proves \eqref{eq:lower}.
@@ -152,6 +162,16 @@ above $1/d$. For i.i.d. noise this requires $\max_ip_i>1/2$, i.e., $r<2/3$
 for depolarizing noise; beyond that every choice of $\mathcal G$ gives a
 nonpositive bound [Fig.~\ref{fig:bounds}(a)].
 
+For correlated noise the bracket is still sharp, but the Shannon entropy no
+longer locates the threshold. Global depolarization
+$\N(\rho)=\theta\rho+(1-\theta)I/d$, $0<\theta<1$, is a Pauli channel with
+$p_I=\theta+(1-\theta)/d^2$ and $p_P=(1-\theta)/d^2$ otherwise. Its entropy rate
+tends to $2(1-\theta)$, which exceeds one for $\theta<1/2$. Yet
+$\N(\psi_1)-\N(\psi_2)=\theta(\psi_1-\psi_2)$, so $\Tb\to\theta$. The bracket
+\eqref{eq:spectrum} with $a=n/2-1$ reproduces this: only the identity has
+surprisal below $n-a$, and every other error lies above $n+a$, so
+$|\Tb-\theta|\le 2^{-n/4+1}$ for large $n$.
+
 \emph{Independent noise and the critical window.}---Now let
 $p=\bm p^{\otimes n}$ for a single-qubit distribution
 $\bm p=(p_0,p_x,p_y,p_z)$. Write
@@ -173,9 +193,18 @@ shows that this condition is also where distinguishability is lost.
 
 Exponential decay for fixed $H>1$ is also a direct consequence of the
 smoothed decoupling bound of Ref.~\cite{Liu} and the AEP~\cite{AEP}.
-Indeed, with $h=H-1>0$, those bounds have the form
-$\Tb\le2^{-H_2^\delta/2}+4\delta$ and
-$H_2^\delta\ge nh-C\sqrt{n\log_2(2/\delta^2)}$, for a channel-dependent
+Those bounds have the form $\Tb\le2^{-H_2^\delta/2}+4\delta$, where
+$H_2^\delta$ is the smoothed sandwiched conditional collision entropy of the
+Choi state, conditioned on its own marginal. The AEP of Ref.~\cite{AEP}
+controls the smooth min-entropy. The link is $H_{\min}\le H_2$ for each state,
+a special case of the ordering between conditional R\'enyi
+entropies~\cite{TBH}. Taking the supremum over the same purified-distance ball
+gives $H_2^\delta\ge H_{\min}^\delta$, provided both smoothings use the same
+convention for the ball. The conclusion does not depend on that convention:
+the unsmoothed R\'enyi bound \eqref{eq:dupuis} below gives it directly, by
+choosing $\alpha>1$ close enough to one that $H_\alpha(\bm p)>1$.
+With $h=H-1>0$, the AEP then gives
+$H_2^\delta\ge nh-C\sqrt{n\log_2(2/\delta^2)}$ for a channel-dependent
 constant $C$. Choosing $\delta=2^{-\kappa n}$ with sufficiently small fixed
 $\kappa>0$ makes both terms exponentially small. The AEP condition
 $n\ge(8/5)\log_2(2/\delta^2)$ permits $\kappa<5/16$ for large $n$.
@@ -347,6 +376,7 @@ Ref.~\cite{Dupuis} to diagonal $p$ gives, for $1<\alpha\le2$,
 \E\|\N_p(\psi)-I/d\|_1
 \le2^{2/\alpha-1}
 2^{-\frac{\alpha-1}{\alpha}[H_\alpha(p)-\log_2d]}.
+\label{eq:dupuis}
 \end{equation}
 The two-state triangle inequality and i.i.d. additivity recover
 \eqref{eq:exponent}, without a type-count prefactor. No matching converse
@@ -395,18 +425,22 @@ Writing the asymptotic rate as $\liminf_n[-n^{-1}\log_2\Tb_n]$,
 Eq.~\eqref{eq:stabilizer} at $r=0.9$ implies a lower bound
 $1-\log_2(1.3)=0.621488\ldots$, strictly greater than
 $E=\tfrac12[1-\log_2(1.03)]=0.478678\ldots$.
-This comparison excludes universal equality with \eqref{eq:exponent}; it
-does not determine the exact Haar or stabilizer rate. At $r=1$ both outputs
+This comparison excludes universal equality with \eqref{eq:exponent}. Since
+stabilizer states form a 3-design~\cite{KuengGross}, even agreement of the first
+three moments with Haar does not make the achievable rate tight. It does not
+determine the exact Haar or stabilizer rate. At $r=1$ both outputs
 are exactly $I/d$ and $\Tb_n=0$ for every $n$.
 
 \emph{Discussion.}---Pauli error probabilities and Hilbert-space dimension
 suffice to bound pairwise distinguishability for all exact pure-state
-2-designs, with matched bounds that locate the threshold at the hashing entropy.
+2-designs, through the information spectrum of the error distribution. For
+independent errors the matched bounds locate the threshold at the hashing
+entropy; for correlated errors the entropy alone does not.
 The bracket gives the Gaussian critical profile when surprisal
 has nonzero limiting variance. At a degenerate critical channel the answer
 depends on the ensemble despite identical second moments. The achievable
-exponent is not universally tight, and the present bounds do not determine
-general exact rates. The ingredients---a typical-image projector, second
+exponent is not tight even for 3-designs, and the present bounds do not
+determine general exact rates. The ingredients---a typical-image projector, second
 moments, and information-spectrum truncation---are standard; the contribution
 is their matched combination for this observable and the resulting delineation
 of what second moments do and do not fix.
@@ -470,6 +504,9 @@ Pauli channels, Phys. Rev. Lett. \textbf{98}, 030501 (2007).
 \bibitem{AEP} M. Tomamichel, R. Colbeck, and R. Renner,
 A fully quantum asymptotic equipartition property,
 IEEE Trans. Inf. Theory \textbf{55}, 5840 (2009).
+\bibitem{TBH} M. Tomamichel, M. Berta, and M. Hayashi, Relating different
+quantum generalizations of the conditional R\'enyi entropy,
+J. Math. Phys. \textbf{55}, 082206 (2014).
 \bibitem{BerryEsseen} W. Feller, \emph{An Introduction to Probability Theory and
 Its Applications}, Vol.~II, 2nd ed. (Wiley, New York, 1971), Sec.~XVI.5.
 \bibitem{MUB} A. Klappenecker and M. R\"otteler, Mutually unbiased bases

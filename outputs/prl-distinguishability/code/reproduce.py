@@ -323,6 +323,62 @@ def verification():
         assert abs(estimate-exact) < 0.01
         haar_checks[str(n)] = {"sampled": estimate, "exact": exact}
     report["haar_dephasing_sampling"] = haar_checks
+    # Correlated noise: global depolarization theta*rho+(1-theta)I/d has entropy
+    # rate -> 2(1-theta) > 1, yet Tbar -> theta; the bracket with a=n/2-1 pins it.
+    theta = 0.25
+    global_dep = {}
+    for n in (8, 16, 32, 64):
+        d2 = 4.0**n
+        p_identity = theta+(1-theta)/d2
+        p_other = (1-theta)/d2
+        s_identity, s_other, a = -math.log2(p_identity), -math.log2(p_other), n/2-1
+        assert s_identity < n-a and s_other >= n+a
+        lower = p_identity-2.0**(-a)
+        upper = p_identity+2.0**(-a/2)/math.sqrt(2)
+        rate = -(p_identity*math.log2(p_identity)+(d2-1)*p_other*math.log2(p_other))/n
+        assert lower <= theta <= upper and upper-lower <= 2.0**(-n/4+2)
+        global_dep[str(n)] = {"entropy_rate": rate, "lower": lower, "upper": upper}
+    assert global_dep["64"]["entropy_rate"] > 1.5
+    # Small-n exact check that the channel output difference is theta*(psi1-psi2).
+    for n in (1, 2):
+        d = 2**n
+        a_, b_ = haar_state(d, rng), haar_state(d, rng)
+        delta = np.outer(a_, a_.conj())-np.outer(b_, b_.conj())
+        matrices = pauli_strings(n)
+        weights = [p_identity_n if k == 0 else (1-theta)/d**2
+                   for k, p_identity_n in enumerate([theta+(1-theta)/d**2]*len(matrices))]
+        out = sum(w*(P@delta@P.conj().T) for w, P in zip(weights, matrices))
+        assert np.max(np.abs(out-theta*delta)) < 1e-13
+    report["global_depolarizing_bracket"] = {"theta": theta, "values": global_dep}
+    # H_min <= sandwiched H_2 (conditioned on the marginal), the link from the AEP
+    # to the collision entropy, on random two-party states; SDP for H_min.
+    try:
+        import cvxpy as cp
+    except ImportError:
+        report["hmin_le_h2"] = "skipped: cvxpy not installed"
+    else:
+        gaps = []
+        for _ in range(40):
+            dA, dB = int(rng.choice([2, 3])), int(rng.choice([2, 3]))
+            G = rng.normal(size=(dA*dB, int(rng.integers(1, dA*dB+1))))
+            G = G+1j*rng.normal(size=G.shape)
+            rho = G@G.conj().T
+            rho = (rho+rho.conj().T)/(2*np.trace(rho).real)
+            S = cp.Variable((dB, dB), hermitian=True)
+            M = cp.kron(np.eye(dA), S)-rho
+            problem = cp.Problem(cp.Minimize(cp.real(cp.trace(S))), [(M+M.H)/2 >> 0])
+            problem.solve(solver="CLARABEL")
+            if problem.status != "optimal":
+                continue
+            h_min = -math.log2(problem.value)
+            marginal = np.einsum("ijik->jk", rho.reshape(dA, dB, dA, dB))
+            w, V = np.linalg.eigh((marginal+marginal.conj().T)/2)
+            keep = w > 1e-12
+            root = V[:, keep]@np.diag(w[keep]**-0.25)@V[:, keep].conj().T
+            X = np.kron(np.eye(dA), root)@rho@np.kron(np.eye(dA), root)
+            gaps.append(-math.log2(np.trace(X@X).real)-h_min)
+        assert len(gaps) >= 30 and min(gaps) > -1e-6
+        report["hmin_le_h2"] = {"states": len(gaps), "min_gap": float(min(gaps))}
     report["checks_passed"] = True
     return report
 
