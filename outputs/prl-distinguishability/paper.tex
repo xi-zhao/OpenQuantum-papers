@@ -15,12 +15,12 @@
 \date{October 27, 2026}
 \begin{abstract}
 Information is encoded in a random pure state from a state 2-design, such as a
-random stabilizer state, and one layer of Pauli noise then acts with no further
-randomization. We bound the optimal probability of telling two such encoded states
-apart at every system size, using the information spectrum of the Pauli errors.
-For i.i.d. noise the states stay distinguishable until the error entropy reaches
-one bit per qubit, then become indistinguishable through a Gaussian crossover.
-Purity-based bounds used for error mitigation give only a weaker threshold.
+random stabilizer state, and one layer of Pauli noise then acts without further
+randomization. We bound the optimal probability of distinguishing two encoded states
+at every system size by the information spectrum of the Pauli errors. For i.i.d.
+noise the states stay distinguishable until the error entropy reaches one bit per
+qubit, with a Gaussian crossover. For local depolarizing noise this threshold,
+$r=0.252$, lies well below the $r=0.423$ that purity bounds certify.
 \end{abstract}
 \maketitle
 
@@ -79,12 +79,14 @@ $n^{-1/2}$ window in the coherent information of random codes.
 Here we give two-sided bounds on $\Tb$ that hold for every Pauli distribution
 and system size and are controlled by a single quantity, the information
 spectrum of the error distribution. For i.i.d. noise they locate the threshold
-exactly at the hashing entropy and resolve the crossover as a Gaussian profile.
-The method is narrow and combines standard ingredients: the lower bound is the
-typical-image projector of Ref.~\cite{Ibarrondo} applied to Pauli errors,
-and the upper bound is a second-moment estimate of the kind used in privacy
-amplification and quantum soft covering~\cite{Hayashi,Dupuis,Shen}. We also
-determine which conclusions depend only on the design's second moments.
+exactly at the hashing entropy, close the interval left open by
+Refs.~\cite{Ibarrondo,Liu}, and resolve the crossover as a Gaussian profile.
+The lower bound is the typical-image projector of Ref.~\cite{Ibarrondo}
+applied to Pauli errors; the upper bound splits off the likely errors before
+taking second moments, as in privacy amplification and quantum soft
+covering~\cite{Hayashi,Dupuis,Shen}. The same splitting explains why
+purity-based estimates are loose. We also show which conclusions depend only on
+the design's second moments.
 
 \emph{Setup.}---Let $d=2^n$, $\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}$, and
 \begin{equation}
@@ -149,12 +151,11 @@ mass and the tail by $\sqrt{dv/2}$ with $v\le2^{-n-a}$.
 \end{proof}
 
 The two cumulative probabilities in~\eqref{eq:spectrum} are evaluated at
-different points, so the result is a bracket rather than an identity with
-$\prob[s<n]$. It is informative when the surprisal concentrates. The event
-$s<n$ means $p_P>1/d$; the test detects a set of error images, but does not
-identify individual errors or recover the state. The lower bound vanishes
-unless some error has $p_P>1/d$, which for i.i.d. noise requires
-$\max_ip_i>1/2$, i.e., $r<2/3$ for depolarizing noise.
+$n\mp a$, so the bracket is tight whenever the surprisal concentrates. The
+event $s<n$ means $p_P>1/d$: the likely errors are those whose images
+$P|\psi_1\rangle$ fit into the $d$-dimensional space without overlapping. The
+lower bound is positive only when some error has $p_P>1/d$, which for i.i.d.
+noise requires $\max_ip_i>1/2$, i.e., $r<2/3$ for depolarizing noise.
 
 The single-class partition, $\mathcal C=\mathcal P_n$, reduces~\eqref{eq:upper}
 to the purity of the noisy output, $\Tb\le[d\sum_Pp_P^2/2]^{1/2}$. This is the
@@ -171,16 +172,16 @@ choosing $a=\epsilon n$ with $0<\epsilon<1-H$ and a large-deviation
 bound~\cite{CoverThomas} give $\Tb\ge1-e^{-\Omega(n)}$. For $H>1$ the upper
 bound gives $\Tb\le e^{-\Omega(n)}$. The threshold $H=1$ is the zero of the
 coherent information $1-H$ of the Pauli channel at maximally mixed
-input~\cite{Bennett,Devetak}. It is the threshold for this discrimination task,
-not a general quantum-capacity boundary: degenerate codes transmit quantum
-information beyond it~\cite{SmithSmolin}. For depolarizing noise
+input~\cite{Bennett,Devetak}, the hashing point. (Degenerate codes can transmit
+quantum information slightly beyond it~\cite{SmithSmolin}; the present
+threshold concerns discrimination of two encoded states.) For depolarizing noise
 $\N_r(\rho)=(1-r)\rho+rI/2$, with $q=3r/4$ and $\bm p=(1-q,q/3,q/3,q/3)$, the
-threshold is $q_c=0.189290\ldots$, or $r_c=0.252386\ldots$. Thus local
-depolarizing noise is tolerated up to $r_c$, while the purity bound above
+threshold is $q_c=0.189290\ldots$, or $r_c=0.252386\ldots$. Local depolarizing
+noise is therefore tolerated up to $r_c$, whereas the purity bound above
 certifies loss only beyond $0.423$.
 
-The decay above $r_c$ also follows from existing results, so we do not present
-it as new. The unsmoothed R\'enyi decoupling bound of Ref.~\cite{Dupuis}
+Exponential decay above $r_c$ can also be obtained from decoupling. The
+unsmoothed R\'enyi bound of Ref.~\cite{Dupuis}
 applies because, for any reference-system operators $X_P$, Eq.~\eqref{eq:design}
 gives
 \begin{multline}
@@ -195,13 +196,12 @@ Theorem~8 of Ref.~\cite{Dupuis} then gives, for $1<\alpha\le2$,
 \label{eq:dupuis}
 \end{equation}
 which decays once $\alpha$ is close enough to one that $H_\alpha(\bm p)>1$.
-The smoothed bound of Ref.~\cite{Liu} gives the same conclusion with smoothing
-parameter $2^{-\kappa n}$ for small $\kappa>0$. (Its Lemma~1 derives from the
-min-entropy AEP~\cite{AEP} through $H_{\min}\le H_2$, Eq.~(48) of
-Ref.~\cite{TBH} at $\alpha\to\infty$; the two references use different
-smoothing conventions, which the unsmoothed route avoids.)
+The smoothed bound of Ref.~\cite{Liu} gives the same with smoothing parameter
+$2^{-\kappa n}$ for small $\kappa>0$, via $H_{\min}\le H_2$ [Eq.~(48) of
+Ref.~\cite{TBH}] and the AEP~\cite{AEP}. Decoupling gives the decay but not the
+location of the transition or its shape; the bracket gives both.
 
-What the bracket adds is the crossover. Let the single-qubit distribution
+Let the single-qubit distribution
 $\bm p_n$ depend on $n$, with i.i.d. errors at each $n$, and set
 $x_n=\sqrt n(1-H_n)/\sigma_n$.
 
@@ -254,8 +254,9 @@ intervals approach $\Phi(x)$ (black). Panel (b) shows bounds, not simulations.}
 \label{fig:bounds}
 \end{figure*}
 
-\emph{Correlated noise.}---The bracket holds for any Pauli distribution, but
-the Shannon entropy need not then locate the threshold. Global depolarization
+\emph{Correlated noise.}---For correlated errors the bracket still applies,
+and the relevant quantity is the full information spectrum rather than the
+entropy. Global depolarization
 $\N(\rho)=\theta\rho+(1-\theta)I/d$, $0<\theta<1$, has $p_I=\theta+(1-\theta)/d^2$
 and $p_P=(1-\theta)/d^2$ otherwise. Its entropy rate tends to $2(1-\theta)$,
 above one for $\theta<1/2$, yet
@@ -264,9 +265,10 @@ recovers this limit: with $a=n/2-1$, only the identity has surprisal below
 $n-a$, every other error lies above $n+a$, and $|\Tb-\theta|\le2^{-n/4+1}$ for
 large $n$.
 
-\emph{What the second moments do not fix.}---The bounds above hold for every
-exact 2-design. Two further statements do not, which limits conclusions stated
-for an arbitrary design of a given order~\cite{Ibarrondo,Liu}.
+\emph{Design dependence.}---The bounds above hold for every exact 2-design.
+Two finer features depend on higher moments of the ensemble, which sets the
+reach of statements made for an arbitrary design of a given
+order~\cite{Ibarrondo,Liu}.
 
 \emph{Degenerate critical noise.} The variance condition in Corollary~1 cannot
 be dropped. Complete dephasing, $\bm p_*=(1/2,0,0,1/2)$, has $H=1$ and
@@ -342,25 +344,23 @@ $(1-r)^w$, and the triangle inequality gives
 \end{equation}
 At $r=0.9$ this rate is at least $1-\log_2(1.3)=0.621\ldots$, larger than
 $E=0.479\ldots$ from~\eqref{eq:exponent}. Random stabilizer states form a
-3-design~\cite{KuengGross}, so matching three moments of Haar does not by itself
-make the achievable rate tight. This does not show that the Haar and stabilizer
-rates differ, and neither rate is determined here.
+3-design~\cite{KuengGross}, so even three matching moments leave the decay rate
+ensemble-specific; determining the Haar rate away from threshold is an open
+problem.
 
-\emph{Discussion.}---Encoding into a scrambled state does not make information
-fragile against local Pauli noise, provided nothing randomizes the noise
-afterward. The information survives up to the hashing entropy, where the error
-distribution has the same entropy as the Hilbert space. The bracket controlling
-this involves only the error distribution and the dimension, so it holds for
-every exact 2-design and for correlated noise. The remaining questions depend
-on more than two moments: the limit at degenerate critical noise, and decay
-rates away from threshold. For error mitigation, the bounds of
-Refs.~\cite{Takagi,Tsubouchi,Quek} imply exponential cost at large depth for
-any noise strength. The present results say that after a single noisy layer
-the purity-based estimate is loose throughout $0.252<r<0.423$, because it
-ignores the low-surprisal errors that the optimal measurement exploits.
-Translating the average-case statement into worst-case error-mitigation cost,
-and extending it to approximate designs and non-Pauli channels, would need
-further arguments that we do not supply.
+\emph{Discussion.}---Scrambling an encoding does not make it fragile to local
+Pauli noise: the information survives up to the hashing entropy, where the
+error distribution carries one bit per qubit. A single bracket, built from the
+error distribution and the dimension alone, captures this for every exact
+2-design and for correlated noise, and gives the transition its Gaussian shape.
+For error mitigation, Refs.~\cite{Takagi,Tsubouchi,Quek} show exponential cost
+at large depth for any noise strength. After one noisy layer, the purity-based
+estimate behind such bounds is loose throughout $0.252<r<0.423$, because it
+treats the likely low-surprisal errors, which the optimal measurement exploits,
+in the same way as the unlikely ones. Splitting the error distribution at
+surprisal $n$, as done here, is a natural way to sharpen those estimates.
+Natural next steps are worst-case versions relevant to error-mitigation cost,
+approximate designs from shallow circuits, and non-Pauli noise.
 
 \emph{Acknowledgments.}---Generative AI was used substantively in this work.
 Claude Opus~5.5 (Anthropic), accessed through Claude Code in October 2026, with
@@ -423,12 +423,12 @@ Phys. Rev. A \textbf{54}, 3824 (1996).
 capacity of a quantum channel, IEEE Trans. Inf. Theory \textbf{51}, 44 (2005).
 \bibitem{SmithSmolin} G. Smith and J. A. Smolin, Degenerate quantum codes for
 Pauli channels, Phys. Rev. Lett. \textbf{98}, 030501 (2007).
-\bibitem{AEP} M. Tomamichel, R. Colbeck, and R. Renner,
-A fully quantum asymptotic equipartition property,
-IEEE Trans. Inf. Theory \textbf{55}, 5840 (2009).
 \bibitem{TBH} M. Tomamichel, M. Berta, and M. Hayashi, Relating different
 quantum generalizations of the conditional R\'enyi entropy,
 J. Math. Phys. \textbf{55}, 082206 (2014).
+\bibitem{AEP} M. Tomamichel, R. Colbeck, and R. Renner,
+A fully quantum asymptotic equipartition property,
+IEEE Trans. Inf. Theory \textbf{55}, 5840 (2009).
 \bibitem{BerryEsseen} W. Feller, \emph{An Introduction to Probability Theory and
 Its Applications}, Vol.~II, 2nd ed. (Wiley, New York, 1971), Sec.~XVI.5.
 \bibitem{MUB} A. Klappenecker and M. R\"otteler, Mutually unbiased bases
