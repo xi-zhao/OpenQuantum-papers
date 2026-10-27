@@ -103,3 +103,14 @@ PDF 5 页，正文估计约 2650 词，摘要 557 字符。旧版正文备份在
 - 数学内容、数值、图和参考文献不变。PDF 由 5 页缩为 4 页，正文估计约 2300 词，摘要 589 字符。
 
 **投稿前仍需作者处理**：数据仓库 DOI、GPT 版本号两处占位。
+
+## 第八轮：nature-polishing 润色（2026-10-27）
+
+使用 nature-polishing 技能（Yuan1z0825/nature-skills @ c1637a89），参数 research / 全文 / en / generic，美式拼写。
+
+- 摘要拆成短句，交代设定（两个 2-design 态、一层 i.i.d. Pauli 噪声）后再给结论，596 字符。
+- 拆开 30 词以上的长句；去掉“beats”“see”这类口语化动词，改为 “falls below”“resolve”。
+- “hashing entropy”与“hashing point”统一：阈值称 hashing point，熵条件写成“one bit of error entropy per qubit”。
+- 定理解读段补上“p_P>1/d 的误差少于 d 个，所以放得下”这一步。
+- 讨论结尾把泛泛的“下一步”换成一个具体的开放问题：多层线路中后续打乱是否抹掉阈值。
+- 公式 12 个、所有数值和引用均与润色前一致（脚本逐项核对）。仍为 4 页。
