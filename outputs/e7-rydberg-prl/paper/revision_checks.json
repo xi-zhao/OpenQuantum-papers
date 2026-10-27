@@ -116,5 +116,60 @@
       "REVTeX/nameref label compatibility warning",
       "REVTeX deferred-float warnings; all floats included and pages visually checked"
     ]
+  },
+  "revision_2": {
+    "scope": "Reanalysis of existing JSON data only; no new eigensolver runs.",
+    "standing_wave": {
+      "formula": "E_a(n)=sqrt(m_a^2+(n v pi/(L+1))^2), v=1.90, m_a from periodic L=36",
+      "open_minus_pred_percent": {
+        "L27": {
+          "A1": -0.02,
+          "A2": 0.43,
+          "A3": 0.77,
+          "A4": 1.81
+        },
+        "L23": {
+          "A4": 2.94
+        },
+        "L19": {
+          "A4": 5.21
+        }
+      },
+      "satellite_flat_(L+1)k": {
+        "L19": 16.59,
+        "L23": 16.43,
+        "L27": 16.63
+      },
+      "satellite_over_n1_ratio": [
+        2.71,
+        2.72,
+        2.8
+      ],
+      "satellite_weight_over_A1_percent": {
+        "flat": [
+          9.09,
+          12.11,
+          12.97
+        ],
+        "taper": [
+          1.56,
+          1.71,
+          1.66
+        ]
+      }
+    },
+    "calibration": {
+      "dV2_1.7pct_over_Omega": 0.0276,
+      "3pct_span_V2_at_Delta_-1.60": [
+        -1.505,
+        -1.365
+      ],
+      "max_delta_change_per_V2_step_pp": 0.72,
+      "max_delta_change_per_Delta_step_pp": 0.86
+    },
+    "A4_binding_length_sites": {
+      "E7": 11.9,
+      "chain_measured": 9.4
+    }
   }
 }

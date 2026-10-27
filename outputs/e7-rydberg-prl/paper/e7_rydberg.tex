@@ -10,19 +10,20 @@
 \date{October 27, 2026}
 
 \begin{abstract}
-The thermal deformation of the tricritical Ising conformal field theory has an
-integrable $E_7$ spectrum with seven particles. We investigate its light-particle
-signatures in a strictly blockaded Rydberg-chain model with an attractive
-$1/r^6$ interaction tail. Uniform and staggered density probes select the even
-and odd sectors of the translation-invariant low-energy theory. Exact
-diagonalization up to $L=36$ identifies a direction-dependent region where three
-finite-chain gap ratios agree with those of $A_1$--$A_4$ to within $3\%$.
-Open-chain spectra retain four candidate resonances, but a smooth drive envelope
-suppresses channel mixing unevenly: at $L=27$ the leakage is below $0.03\%$ for
-$A_1,A_2$, but about $7.5\%$ and $1.9\%$ for $A_3,A_4$.
-Periodic spectra are consistent with the expected two-particle onsets; they do
-not determine threshold exponents. The three heavy particles remain unresolved.
-Shallow-bound-state corrections and experimental resolution remain to be controlled.
+The thermal deformation of the tricritical Ising conformal field theory is an
+integrable theory with seven $E_7$ particles. In a blockaded Rydberg chain, lattice
+momentum separates its odd and even particles: a staggered detuning probe couples
+to $\sigma$ and a uniform one to $\varepsilon$. Exact diagonalization of the
+strictly blockaded chain with a $1/r^6$ tail, up to $L=36$, locates a
+direction-dependent parameter region in which the four light particles
+$A_1$--$A_4$ appear as two sharp peaks per channel, with gap ratios within
+$3\%$ of $E_7$. This agreement changes by less than one percentage point across
+the reported $1.7\%$ calibration uncertainty of the interaction. On open chains of
+$19$--$27$ atoms, the four resonances are consistent with standing waves of the
+bulk particles, with the largest deviation for $A_4$; a tapered drive suppresses $A_1$ and $A_2$ cross-channel leakage
+below $0.03\%$, but leaves $7.5\%$ and $1.9\%$ for $A_3$ and $A_4$. The
+shallow bound state $A_4$ carries the slowest finite-size corrections and sets the
+resolution requirement. The heavy particles $A_5$--$A_7$ are not resolved.
 \end{abstract}
 
 \maketitle
@@ -44,13 +45,11 @@ with $\mathbb Z_2$ parities $(-,+,-,+,+,-,+)$ in the disordered
 phase~\cite{Lepori2008}. An experimental identification of this spectrum remains
 an open problem~\cite{Mussardo2022}.
 
-Rydberg chains support period-two order and Ising criticality, and an effective
-attraction can produce a tricritical point~\cite{Bernien2017,Slagle2021}.
-Sun \emph{et al.}~\cite{Sun2026} reached the TCI regime by preparing the upper
-edge of the blockaded sector and measured finite-size CFT spectra. In the
-projected model, reversing the Hamiltonian and the sign of the transverse drive
-maps this preparation to an attractive ground-state problem. This motivates
-spectroscopy of the neighboring gapped regime.
+Rydberg chains host Ising criticality, and an effective attraction produces a
+tricritical point~\cite{Bernien2017,Slagle2021}. Sun \emph{et al.}~\cite{Sun2026}
+reached it by preparing the upper edge of the blockaded sector, equivalent in the
+projected model to an attractive ground-state problem, and measured finite-size
+CFT spectra. This motivates spectroscopy of the neighboring gapped regime.
 
 The field-theory inputs are established: the Rydberg density--CFT operator
 correspondence~\cite{Slagle2021}, the $E_7$ form factors and selection
@@ -59,8 +58,11 @@ Kir\'aly and Lencs\'es~\cite{KiralyLencses2026} have also obtained lattice-quenc
 spectra compatible with the even particles $A_2,A_4,A_5$ in the Blume--Capel
 chain, including form-factor amplitude comparisons. That study uses $A_2$ to
 calibrate the mass scale; it does not independently resolve $A_1$.
-Here we compare both light-particle sectors of a Rydberg model and quantify
-finite-chain parameter dependence and boundary mixing.
+Here we show that a Rydberg chain gives access to both parity sectors, so that
+odd and even light particles can be compared on one platform. We map the
+parameter region where four light peaks match $E_7$, identify the standing-wave
+structure of open-chain resonances, and quantify the cross-channel leakage and
+the finite-size constraint set by $A_4$.
 
 \begin{figure*}[t]
 \includegraphics[width=0.95\textwidth]{fig1_window.pdf}
@@ -68,7 +70,7 @@ finite-chain parameter dependence and boundary mixing.
 the contour marks $3\%$. Grid spacings are $0.04\Omega$ in $\Delta$ and
 $0.035\Omega$ in $V_2$. Blank cells fail the numerical filters
 $L\widehat m_1/\Omega\ge18$ and $\widehat m_2\ge\widehat m_1/2$;
-These filters do not establish phases or convergence.
+these filters do not establish phases or convergence.
 The star estimates TCI; the arrow marks $\theta=110^\circ$.
 (b) Individual gap-ratio deviations along that direction. Symbols identify the
 candidate levels and line styles identify sizes. The band is $\pm3\%$; lines guide the eye.
@@ -93,9 +95,8 @@ finite chain.
 Equation~\eqref{eq:H} is the strict-blockade approximation to the sign-reversed
 experimental problem, not the full experimental Hamiltonian. It omits the
 finite-blockade correction $H_2$ of Ref.~\cite{Sun2026}, which contains diagonal
-shifts and correlated hopping of order $\Omega^2/V_1$. Our open chains have no
-additional boundary detuning profile. We compute ground-state response, without
-simulating the preparation sweep, leakage outside the blockade sector, or readout.
+shifts and correlated hopping of order $\Omega^2/V_1$. We compute ground-state response
+on open chains without boundary detuning.
 
 In the long-wavelength theory, one-site translation exchanges the two density-wave
 patterns and implements the internal $\mathbb Z_2$ together with spatial
@@ -123,8 +124,6 @@ if the system size is increased simultaneously. The growing correlation length
 limits this approach at fixed $L$. We have not calibrated the map from lattice
 parameters to $(g_\varepsilon,g_{\varepsilon'})$; a region of small mass-ratio
 errors need not identify the pure thermal trajectory or separate competing corrections.
-
-
 
 \emph{Probes and numerical method.}---For a periodic ground state, the connected
 density response is
@@ -166,8 +165,6 @@ Fixing $v\simeq1.90$ using $x_\sigma=3/40$ gives other rescaled gaps near
 $0.875$ at $k=\pi$, and $0.198,1.18$ at $k=0$, consistent with
 $x_{\sigma'}=7/8$, $x_\varepsilon=1/5$, $x_{\varepsilon'}=6/5$.
 The value of $x_\sigma$ is an input to this comparison.
-
-
 
 \begin{figure}[htbp]
 \includegraphics[width=\columnwidth]{fig2_spectra.pdf}
@@ -218,9 +215,9 @@ $A_4$ occurs in the $A_1A_1$ scattering channel, with
 Its finite-volume energy can receive a leading bound-state correction
 proportional to $e^{-\mu_{11}^{4}L/v}$, not simply
 $e^{-m_1L/v}$~\cite{Pozsgay2008,CortesCubero2022}.
-Using the working gap and critical velocity as estimates gives
-$v/\mu_{11}^{4}\simeq12$ sites, compared with $v/m_1\simeq2$ sites.
-This is an $E_7$-limit estimate, not a fitted correction to our nonintegrable chain.
+With the working gap and $v\simeq1.90$, the $E_7$ value of $\mu_{11}^4$ gives
+$v/\mu_{11}^{4}\simeq12$ sites; the binding measured on the chain gives
+$\simeq9$ sites. Both exceed $v/m_1\simeq2$ sites considerably.
 In the data, $\widehat m_4/\widehat m_1$ changes from $1.9400$ to $1.9508$
 between $L=28$ and $36$: only $0.56\%$ of its value, but $22\%$ of the latter
 binding-energy estimate $2\widehat m_1-\widehat m_4$.
@@ -232,8 +229,6 @@ amplitude proportional to $(c_{\sigma'}/c_\sigma)(m_1a/v)^{4/5}$ at fixed CFT
 normalization, since $x_{\sigma'}-x_\sigma=4/5$. The weights also contain
 interference, finite-size, and nonintegrable corrections. We do not isolate these
 sources or treat the pure-field ratios as precise lattice predictions.
-
-
 
 \emph{Spectra and boundaries.}---The periodic response in
 Fig.~\ref{fig:spec}(a) has two prominent subthreshold peaks in each sector,
@@ -254,23 +249,29 @@ At $L=27$, the latter gives dominant candidate resonance ratios
  =(1.2612,\,1.9030,\,1.9488),
  \label{eq:open}
 \end{equation}
-with $\omega_1^{\rm o}=0.9438\Omega$.
-The ratios lie within $2\%$ of $E_7$, but their denominator differs from
-$m_{\rm ref}$. In the common units of Fig.~\ref{fig:spec},
-$\omega_4^{\rm o}\simeq2.0001m_{\rm ref}$. Neither normalization alone
-establishes the binding energy of an open-chain resonance.
+with $\omega_1^{\rm o}=0.9438\Omega$, within $2\%$ of $E_7$. The open-chain
+energies are shifted upward by the lowest standing-wave momentum. With
+$E_a(n)=\{\widehat m_a^2+[n v\pi/(L+1)]^2\}^{1/2}$, $v=1.90$, and the periodic
+$L=36$ masses, the $n=1$ prediction reproduces $\omega_1^{\rm o}$ to $0.02\%$
+and $\omega_{2,3}^{\rm o}$ to better than $0.8\%$ at $L=27$. The largest
+deviation occurs for $A_4$: $1.8\%$, $2.9\%$, and $5.2\%$ at $L=27$, $23$, and
+$19$. This size dependence is consistent with $A_4$ having the largest spatial
+extent, as estimated above.
 
 Table~\ref{tab:leakage} reports all four channel leakages, defined as the
 integrated weight at the same candidate eigenenergy in the unintended probe
 divided by its weight in the intended probe. At $L=27$, tapering reduces the
 $A_1$ leakage from $0.149\%$ to $0.0267\%$, but the $A_3$ leakage only from
 $9.22\%$ to $7.46\%$, and the $A_4$ leakage increases from $1.41\%$ to $1.94\%$.
-Thus tapering does not uniformly separate the sectors. At $L=19$, two nearby
-uniform resonances share substantial weight, making the assignment less clean
-than at $L=27$. A further level at
-$1.160\,\omega_1^{\rm o}$ has staggered weight $1.7\%$ of the $A_1$ candidate,
-down from $13\%$ for a flat drive. Residual satellites and higher-particle leakage
-must be included in any experimental peak assignment.
+Tapering therefore does not separate all sectors uniformly; at $L=19$, two
+nearby uniform resonances also share substantial weight.
+The strongest satellite, at $1.160\,\omega_1^{\rm o}$ for $L=27$, is the $n=3$
+standing wave of $A_1$: under a flat drive, $(L+1)(E^2-\widehat m_1^2)^{1/2}$
+equals $16.6$, $16.4$, and $16.6$ at $L=19$, $23$, and $27$, about $2.7$--$2.8$
+times the $n=1$ value. The ratio below three is consistent with lattice-dispersion
+curvature at this momentum. A flat drive gives it $9$--$13\%$ of the $A_1$ weight,
+roughly as expected from its overlap with a uniform profile, and tapering reduces
+this to $1.7\%$ at $L=27$. Its origin is thus bulk $A_1$, not a boundary bound state.
 
 \begin{table}[htbp]
 \caption{Leakage ratios in percent for tapered open-chain probes at the working
@@ -296,17 +297,14 @@ amplitudes and form factors imply responses proportional to
 $(\omega-2m_1)^{1/2}$ and $(\omega-m_1-m_2)^{-1/2}$ in the corresponding
 channels~\cite{CortesCubero2022}. Here $S_{11}(0)=-1$ forces the identical-particle
 form factor to vanish, whereas the relevant $A_1A_2$ form factor is nonzero at
-threshold. These statements concern matrix-element-weighted response, not bare
-two-particle phase space, and are predictions of the integrable limit.
+threshold. These are integrable-limit predictions for the matrix-element-weighted response.
 
 At our working point, the next odd-sector spectral level above the two light
 peaks moves from $2.340\widehat m_1$ at $L=18$ to $2.284\widehat m_1$ at $L=36$,
 toward the gap sum $1+\widehat m_2/\widehat m_1=2.268$.
 The corresponding even-sector sequence moves from $2.296\widehat m_1$ at $L=24$
-to $2.105\widehat m_1$ at $L=36$. This behavior is consistent with different
-two-particle onsets, but does not determine continuum line shapes or threshold
-exponents. In open chains, residual weight above the $A_3$ candidate prevents
-interpreting the corresponding interval as a strictly empty spectral window.
+to $2.105\widehat m_1$ at $L=36$. This is consistent with the two different onsets, but does not determine
+threshold exponents; on open chains, residual weight remains above $A_3$.
 
 We do not resolve $A_5,A_6,A_7$. In the $E_7$ theory their masses lie above
 allowed thresholds in their own sectors: $A_5,A_7$ above $2m_1$, and $A_6$ above
@@ -314,18 +312,14 @@ $m_1+m_2$. Nonintegrable perturbations can open decay channels such as
 $A_5\to A_1A_1$ and $A_6\to A_1A_2$~\cite{Lepori2008}.
 Across $L=18$--$36$ at $\theta=110^\circ$, $t=0.2,0.3$, the higher spectra do
 not provide a stable heavy-particle assignment by energy and weight.
-Finite closed-chain spectra do not measure decay widths; this outcome neither
-establishes nor excludes heavy resonances in larger systems or experiments.
+Finite chains do not measure decay widths, so this neither establishes nor
+excludes heavy resonances in larger systems.
 
-\emph{Experimental requirements.}---The demonstrated TCI preparation and
-spatial detuning control provide relevant starting capabilities~\cite{Sun2026}.
-A candidate protocol would prepare a state near Eq.~\eqref{eq:point}, apply weak
-uniform and staggered modulations, and compare the two responses.
-However, the sign-changing staggered drive needed for a pure $\sigma$ probe is
-not established by those capabilities alone. Reference~\cite{Sun2026} discusses
-the one-color light-shift constraint and proposes combining $515$ and $813$ nm
-tweezers as a future implementation. Unwanted static components and the tapered
-spatial profile would also need to be controlled.
+\emph{Experimental requirements.}---The protocol prepares a state near
+Eq.~\eqref{eq:point} with the demonstrated TCI preparation~\cite{Sun2026}, applies
+weak tapered uniform and staggered modulations, and compares the two responses.
+The sign-changing staggered drive needs the two-color ($515$ and $813$ nm) tweezer
+scheme proposed in Ref.~\cite{Sun2026}, beyond the one-color light shifts used so far.
 
 Spectral resolution is especially consequential for $A_4$. The finite-chain
 estimate $2\widehat m_1-\widehat m_4\simeq0.049m_{\rm ref}$ is about
@@ -333,27 +327,32 @@ $2\pi\times0.25$ MHz for $\Omega=2\pi\times5.5$ MHz; in ideal $E_7$ the relative
 binding is smaller, $0.0304m_1$.
 The illustrative open-chain broadening in Fig.~\ref{fig:spec} has
 $\mathrm{FWHM}=2\sqrt{2\ln2}\,\sigma=0.118m_{\rm ref}$, about
-$2\pi\times0.60$ MHz. A visible local maximum under this smoothing does not
-establish separability from a continuum and noise. The $E_7$ threshold suppression
-may help in its scaling regime, but is not verified at this lattice working point.
-Likewise, open-chain mixing means that separating $A_3$ and $A_4$ cannot rely
-solely on ideal channel labels.
+$2\pi\times0.60$ MHz. Separating $A_4$ from the continuum therefore needs a linewidth below this
+scale; the $E_7$ threshold suppression of the $A_1A_1$ response would help in the
+scaling regime. Because of open-chain mixing, $A_3$ and $A_4$ should be assigned
+by comparing both probes rather than by channel label alone.
 
-The quoted $1.7\%$ uncertainty in $V_2$~\cite{Sun2026} corresponds to roughly
-$0.028\Omega$ near TCI, comparable to our $0.035\Omega$ grid spacing.
-Figure~\ref{fig:window} therefore does not certify robustness to that uncertainty.
-A joint error budget for $\Delta$, $V_2$, $\Omega$, boundary control, finite
-blockade, preparation, and detection remains outside this calculation.
+The reported $1.7\%$ uncertainty in $V_2$~\cite{Sun2026} amounts to about
+$0.028\Omega$. At $\Delta\simeq-1.60\Omega$, the $3\%$ region of
+Fig.~\ref{fig:window}(a) extends over at least $0.14\Omega$ in $V_2$. Near the
+working point, $\delta_{32}$ changes by at most $0.7$ percentage points per
+$V_2$ grid step and $0.9$ per $\Delta$ step. Calibration errors of this size
+therefore move the gap ratios by less than one percentage point in this criterion.
 
-\emph{Conclusion.}---A strictly blockaded Rydberg-chain model exhibits four
-light spectral candidates with the expected two-channel organization and
-few-percent agreement with $E_7$ gap ratios in a finite parameter region.
-Open chains preserve recognizable resonances but have particle-dependent channel
-mixing. Periodic higher levels are consistent with the expected two-particle
-onsets; the three heavy particles remain unresolved. Establishing an experimental
-$E_7$ identification requires controlling the shallow $A_4$ bound state and
-validating the full driven, noisy response. The present results specify a model
-regime and its limitations rather than a completed observability demonstration.
+Finite-blockade corrections, preparation, decoherence, and readout are not
+modeled; they must be included before the four-peak signature is used as an
+experimental identification.
+
+\emph{Conclusion.}---Because one-site translation implements the tricritical
+$\mathbb Z_2$, a Rydberg chain can resolve both parity sectors of the $E_7$
+spectrum with uniform and staggered probes. In the strictly blockaded model, we find
+a direction-dependent region where four light particles appear as two peaks per
+channel at $E_7$ ratios within $3\%$. This agreement is stable against the
+reported interaction calibration uncertainty. Open-chain resonances follow the bulk
+masses through standing-wave dispersion; a tapered drive suppresses the dominant
+satellites, but channel mixing remains particle dependent. The shallow bound state
+$A_4$ sets the most demanding finite-size and resolution requirements; the heavy
+particles remain open. These results specify where to look and which systematics decide an observation.
 
 \begin{acknowledgments}
 [Acknowledgments.]
