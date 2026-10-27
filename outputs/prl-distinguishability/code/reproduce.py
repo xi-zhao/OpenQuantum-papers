@@ -350,6 +350,37 @@ def verification():
         out = sum(w*(P@delta@P.conj().T) for w, P in zip(weights, matrices))
         assert np.max(np.abs(out-theta*delta)) < 1e-13
     report["global_depolarizing_bracket"] = {"theta": theta, "values": global_dep}
+    # Unitary-2-design twirl of a Pauli channel is global depolarization with
+    # theta=(d^2 p_I-1)/(d^2-1); exact check by averaging over the n=1 Clifford
+    # group, a unitary 2-design.
+    H1 = np.array([[1, 1], [1, -1]])/np.sqrt(2)
+    S1 = np.diag([1, 1j])
+    group, frontier = [np.eye(2, dtype=complex)], [np.eye(2, dtype=complex)]
+    def same_up_to_phase(A, B):
+        k = np.argmax(np.abs(B))
+        return np.allclose(A*B.flat[k]/A.flat[k] if A.flat[k] != 0 else A, B)
+    while frontier:
+        new = []
+        for U in frontier:
+            for G in (H1, S1):
+                V = G@U
+                if not any(same_up_to_phase(V, W) for W in group):
+                    group.append(V); new.append(V)
+        frontier = new
+    assert len(group) == 24
+    p1 = rng.dirichlet(np.ones(4))
+    v = haar_state(2, rng); rho1 = np.outer(v, v.conj())
+    twirled = sum(U.conj().T@sum(w*(Pm@(U@rho1@U.conj().T)@Pm.conj().T)
+                                 for w, Pm in zip(p1, PAULIS))@U for U in group)/24
+    th = (4*p1[0]-1)/3
+    twirl_error = float(np.max(np.abs(twirled-(th*rho1+(1-th)*np.eye(2)/2))))
+    assert twirl_error < 1e-12
+    report["twirl_to_global_depolarizing_error"] = twirl_error
+    # Single-class upper bound equals the purity route: sum p^2 for depolarizing.
+    for r in (0.3, 0.5):
+        q = 3*r/4
+        assert abs(((1-q)**2+q*q/3)-(1+3*(1-r)**2)/4) < 1e-14
+    report["purity_threshold_r"] = 1-1/math.sqrt(3)
     # H_min <= sandwiched H_2 (conditioned on the marginal), the link from the AEP
     # to the collision entropy, on random two-party states; SDP for H_min.
     try:
@@ -443,15 +474,22 @@ def plot_figures(small,large,degenerate):
     ax.plot(rs,bounds[:,1],color=BLUE,ls="--")
     ax.errorbar(small[:,0],small[:,1],small[:,2],fmt="o",markersize=6,
                 color=INK,mec="white",mew=.7,capsize=2,elinewidth=.9,zorder=4)
+    d = 2.0**N_SIM
+    purity = np.minimum(1.0, np.sqrt(d*((1+3*(1-rs)**2)/4)**N_SIM/2))
+    twirl = (d*d*(1-3*rs/4)**N_SIM-1)/(d*d-1)
+    ax.plot(rs, purity, color=ORANGE, lw=1.2, ls="-.")
+    ax.plot(rs, twirl, color="#898781", lw=1.2, ls=(0, (1, 1.5)))
     rc=critical_r()
-    ax.axvline(rc,color="#898781",lw=.9,ls=":")
-    ax.text(rc+.009,.055,r"$r_c$",fontsize=9)
-    ax.annotate("lower",xy=(.40,cutoff_bounds(N_SIM,.40)[0]),xytext=(.41,.045),
+    ax.axvline(rc,color=INK,lw=.6)
+    ax.text(rc+.009,.9,r"$r_c$",fontsize=9)
+    ax.annotate("lower",xy=(.30,cutoff_bounds(N_SIM,.30)[0]),xytext=(.07,.22),
                 fontsize=8,arrowprops={"arrowstyle":"-","color":"#898781","lw":.7})
     ax.annotate("upper",xy=(.60,cutoff_bounds(N_SIM,.60)[1]),xytext=(.62,.36),
                 fontsize=8,arrowprops={"arrowstyle":"-","color":"#898781","lw":.7})
-    ax.legend(handles=[Patch(facecolor=BLUE,alpha=.15,label="rigorous bounds"),
-                       Line2D([0],[0],marker="o",color=INK,ls="none",label="Haar sample mean")],
+    ax.legend(handles=[Patch(facecolor=BLUE,alpha=.15,label="rigorous bracket"),
+                       Line2D([0],[0],marker="o",color=INK,ls="none",label="Haar sample mean"),
+                       Line2D([0],[0],color=ORANGE,ls="-.",label="purity bound"),
+                       Line2D([0],[0],color="#898781",ls=(0,(1,1.5)),label="if noise twirled")],
               frameon=False,loc="upper right")
     ax.set(xlim=(.04,.76),ylim=(0,1.03),xlabel="Depolarizing strength $r$",ylabel=r"$\overline{T}$")
     ax.set_title("(a) Finite system: $n=8$",loc="left",pad=9)

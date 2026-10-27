@@ -1,6 +1,6 @@
 # Noisy-state distinguishability — revised manuscript
 
-本目录的有效稿件是 `paper.tex` / `paper.pdf`。题目为 **Information spectrum and design dependence of noisy-state distinguishability**。
+本目录的有效稿件是 `paper.tex` / `paper.pdf`。题目为 **Scrambled states survive local Pauli noise up to the hashing entropy**（第五轮重写前为 Information spectrum and design dependence of noisy-state distinguishability）。
 
 新版保留可证明的结论：任意 Pauli 分布的有限尺寸双侧界、固定 i.i.d. 噪声的阈值两侧指数分离、非退化临界信道族的高斯标度，以及退极化阈值附近由上下界夹出的首阶二次速率。它同时给出退相干下不同 2-design 的精确反例，以及稳定子态排除通用紧衰减指数的界。隐私放大指数按已有结果引用；不宣称发现物理冻结相变，不使用高斯替代模型作数值证据，不保证 PRL 接收或 hep-th 适配。
 

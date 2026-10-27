@@ -113,9 +113,11 @@
       }
     }
   },
+  "twirl_to_global_depolarizing_error": 3.3307244178815313e-16,
+  "purity_threshold_r": 0.42264973081037416,
   "hmin_le_h2": {
-    "states": 39,
-    "min_gap": -3.2550213635573755e-09
+    "states": 40,
+    "min_gap": -1.5084368198969855e-09
   },
   "checks_passed": true,
   "haar_means_within_bounds_plus_5se": true,
@@ -151,5 +153,5 @@
   },
   "evidence_scope": "Exact finite-dimensional channel evaluation on sampled Haar inputs; large-n curves are rigorous bounds, not simulated distances.",
   "raw_sha256": "ab5794e5d9e33a64da41268e60f667bf25bad8c872e245f1a4ceb1b85911b354",
-  "script_sha256": "b0c625dd3758927c79dcd31bfc46d2396b4ddbff1c6c6441232e193655448ce1"
+  "script_sha256": "cc75a22d3fd913a9673aaaa7e52d25130ddee85bd4a6e5ce9adc46a4f3bd7059"
 }
