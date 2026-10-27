@@ -55,3 +55,18 @@
 数值脚本新增两项检查：全局去极化在 n=8–64 的熵率与夹逼区间（及 n=1、2 的精确信道输出）；40 个随机两方态上 H_min≤H₂ 的 SDP 验证（最小差 −3×10⁻⁹，在求解器精度内）。原始 Haar 样本未变。
 
 **投稿前仍需作者处理**：数据仓库 DOI、GPT 版本号两处占位不变。
+
+## 第四轮修订（2026-10-27，依据外部审稿第三轮意见）
+
+| 审稿意见 | 处理 |
+|---|---|
+| “information spectrum, not the entropy, sets the answer” 过强（MUB 反例中信息谱相同而极限不同） | 改为 “the bounds depend on the full information spectrum; the Shannon entropy alone need not determine the limiting distinguishability” |
+| “the bracket is still sharp” 超出已证范围 | 改为 “remains valid”，并说明在全局去极化例子中它给出正确极限 |
+| independent → i.i.d. | 摘要、贡献段、讨论段、节标题和 Corollary 统一为 i.i.d. |
+| Ref.[15] 需精确到具体结论 | 写明 H_min≤H₂ 是 Tomamichel–Berta–Hayashi Eq.(48) 在 α→∞ 的情形 |
+| 平滑约定未说明 | 重写该段：指数衰减的主要依据改为无需平滑的 Dupuis 界（式 16）；Liu 等的路线放进括号旁注，写明其 Lemma 1 直接对 H₂^δ 陈述、Liu 等用归一化态加 purified distance 平滑而 AEP 原文用次归一化态，二者平滑参数不必一致 |
+| “not tight even for 3-designs” 可被读成对一切 3-design 成立（本轮自查补充） | 摘要、引言、讨论改为“随机稳定子态（一种 3-design）达不到已知衰减率上界”；正文补一句：这不说明 Haar 与稳定子的真实速率不同 |
+
+已核对 AEP 原文（arXiv:0811.1221v3 Eq.(12)）：平滑球取次归一化态。正文和数值脚本没有其他改动，原始数据不变。PDF 仍为 5 页，摘要 544 字符，正文估计约 3140 词。
+
+**投稿前仍需作者处理**：数据仓库 DOI、GPT 版本号两处占位不变。
