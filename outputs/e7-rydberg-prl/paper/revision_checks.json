@@ -1,0 +1,120 @@
+{
+  "scope": "Reanalysis of pre-existing JSON data and manuscript/figure checks only; no new eigensolver runs.",
+  "working_point": {
+    "theta_degrees": 110,
+    "t_over_Omega": 0.2,
+    "L": 36,
+    "gap1_over_Omega": 0.9195672045198506,
+    "gap_ratios": [
+      1.2677580509695539,
+      1.9243048455145326,
+      1.9508298221634925
+    ],
+    "deviations_percent": [
+      -1.385929670627406,
+      2.3901222032129743,
+      -0.9537741657427157
+    ],
+    "weight3_over_weight1": 0.04832276908855203,
+    "weight4_over_weight2": 0.1290302188729578
+  },
+  "open_taper": {
+    "19": {
+      "peak_energies_over_Omega": [
+        0.9692178949558132,
+        1.207187030688496,
+        1.8373795361557386,
+        1.913272048336593
+      ],
+      "leakage_percent": [
+        0.22764316631126688,
+        4.52566656519117,
+        39.44419063716337,
+        8.976320080189579
+      ],
+      "peak_ratios_to_open_gap1": [
+        1.0,
+        1.2455269728006124,
+        1.8957342262438364,
+        1.9740370646208707
+      ],
+      "peak_ratios_to_common_reference": [
+        1.0539935419531274,
+        1.312777385660274,
+        1.9980916317205124,
+        2.080622317686506
+      ]
+    },
+    "27": {
+      "peak_energies_over_Omega": [
+        0.9437552475654112,
+        1.1902581842941462,
+        1.7959575922938287,
+        1.8392290837838774
+      ],
+      "leakage_percent": [
+        0.026662363569455054,
+        0.01920592756853811,
+        7.458154565777373,
+        1.9399525369488662
+      ],
+      "peak_ratios_to_open_gap1": [
+        1.0,
+        1.2611937124213448,
+        1.902990841033021,
+        1.9488411730991742
+      ],
+      "peak_ratios_to_common_reference": [
+        1.0263037251944955,
+        1.2943678052499012,
+        1.9530465891631952,
+        2.000102955764093
+      ]
+    }
+  },
+  "fig2": {
+    "periodic_L": 36,
+    "size_averaging": false,
+    "common_reference_over_Omega": 0.9195672045198506,
+    "Gaussian_sigma_over_reference": [
+      0.03,
+      0.05
+    ],
+    "Gaussian_FWHM_over_reference": [
+      0.07064460135092848,
+      0.11774100225154747
+    ],
+    "gap_sum_references": [
+      2,
+      2.2677580509695536
+    ],
+    "instrumental_linewidth_validated": false
+  },
+  "finite_size": {
+    "mu_over_m1_E7": 0.17364817766693033,
+    "bound_state_length_E7_estimate_sites": 11.89871046313147
+  },
+  "input_sha256": {
+    "grid_L32.json": "29e8b6816a503664355e0c252e3211ed35745d3cb02ab0d0a22ef8bde54e6fef",
+    "thscan_L28.json": "0d6fedd3341a445358a40f7045721aaa5e762732fbda425898447943074fc964",
+    "thscan_L32.json": "d71126a615ab82df7ed8a08c66720c07f5998c92c9b47ce27490498903409818",
+    "line_L36.json": "350fd030893c8ae8b3ae275aee7dc30fe31dc311d6670d6b84bcc2eb9cb053a7",
+    "lscan_th110_t0.2.json": "7c1a03ee25c3bd3218c809fd9e8075827b1ad88cbd45bf6f9f76af79f18d1d8a",
+    "lscan_th110_t0.3.json": "bfb2ce9e89a0cf843c5db9a8d88d2436b13acfba3db091bf9a55b3aa3b1ca725",
+    "open2_L19_th110_t0.2.json": "fe1de646be22a6fb3195186d3c566daebcc8fc6dd79a8721729898bc26d4b361",
+    "open2_L27_th110_t0.2.json": "8e5710e5d223c2d3688ab7c43b95cac107b2a6e7e2b6e66660e8a063201c3e00",
+    "tci.json": "c6b001edbf2f5ad72f612ff61c930b695f6d065faffda64466953f0ffd18c4c1"
+  },
+  "figure_copies_match": true,
+  "build": {
+    "pages": 4,
+    "bibliography_entries": 14,
+    "undefined_references": false,
+    "overfull_boxes": false,
+    "figures_and_table_present": true,
+    "warnings": [
+      "REVTeX/nameref label compatibility warning",
+      "REVTeX deferred-float warnings; all floats included and pages visually checked"
+    ]
+  }
+}
