@@ -1,0 +1,15 @@
+# Local build and inspection products; manuscript and vector figures are retained.
+__pycache__/
+*.pyc
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*Notes.bib
+review/page-*.jpg
+review/manuscript_text.txt
+review/build.log
+pra-ep-source.zip

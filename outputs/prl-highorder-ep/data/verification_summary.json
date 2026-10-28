@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-28",
+  "environment": {
+    "python": "3.13.2",
+    "numpy": "2.2.6",
+    "scipy": "1.16.3",
+    "mpmath": "1.3.0",
+    "sympy": "1.14.0",
+    "matplotlib": "3.10.7"
+  },
+  "perron": {
+    "solves": 99,
+    "all_converged": true,
+    "max_n": 512,
+    "max_relative_collatz_width": 1.9988895624454912e-12,
+    "bound_type": "floating-point Collatz diagnostics, not rigorous interval arithmetic"
+  },
+  "precision": {
+    "cases": 12,
+    "digits": [
+      50,
+      70
+    ],
+    "max_n": 64,
+    "max_gap_difference": 7.624123554705875e-12,
+    "max_perron_relative_crosscheck_error": 5.576788155527492e-13
+  },
+  "blocks": {
+    "full_matrix_cases": 10,
+    "max_n": 4,
+    "max_matrix_residual": 1.9560100690747755e-14,
+    "integer_sign_cases": 4134,
+    "principal_submatrix_cases": 49,
+    "max_spin_intertwiner_residual": 8.881784197001252e-15
+  },
+  "limitations": [
+    "Formal fixed-d semiclassical expansion; no uniform spectral remainder proof.",
+    "Positive radial edge localization is supported numerically; off-axis roots excluded by an existing exact theorem.",
+    "Literature search covers direct neighbors, not a proof of exhaustive novelty.",
+    "Equation-by-equation source comparison uses arXiv v2, not the access-restricted publisher PDF."
+  ],
+  "trace_domain": {
+    "cases": 9,
+    "boundary_and_both_sides": true,
+    "warnings_treated_as_errors": true
+  },
+  "document": {
+    "format": "REVTeX 4.2 PRA reprint",
+    "pages": 4,
+    "figures": 2,
+    "unresolved_citations": false,
+    "overfull_boxes": false,
+    "author_metadata": "left unset for author review"
+  }
+}
