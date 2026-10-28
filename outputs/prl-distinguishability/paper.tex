@@ -16,31 +16,33 @@
 \author{Xi Zhao}\noaffiliation
 \date{October 28, 2026}
 \begin{abstract}
-Reading classical messages requires less than restoring quantum coherence.
-For random codes under Pauli noise, we show that both tasks have the same
-critical performance. A finite-size information-spectrum bound sandwiches
-optimal entanglement fidelity and classical decoding success for every exact
-unitary 2-design. With independent identical errors, it yields a common Gaussian
-crossover at positive coding rate, in mean and with high probability.
-Clifford codes realize the classical optimum by inverse encoding and basis
-measurement followed by classical decoding.
+Reading a classical message requires less than restoring quantum coherence.
+For the same random encoder under Pauli noise, we prove that optimal
+complete-message decoding success and entanglement fidelity share a critical
+curve. An information-spectrum bracket holds for every exact unitary 2-design.
+With independent identical errors, fluctuations of the error self-information
+yield a common Gaussian crossover at positive rate, in mean and with high
+probability. For Clifford codes, inverse encoding, basis measurement, and
+classical decoding attain the classical optimum.
 \end{abstract}
 \maketitle
 
-Recovering a classical label and recovering a quantum state impose different
-demands on an encoding. A phase error can leave every computational-basis
-message readable while destroying a superposition. Random quantum encoders
-spread both kinds of information over a register. Does allowing the receiver
-to discard coherence then postpone the failure of the code?
+A quantum code must preserve logical populations and coherences. A message
+encoded in a logical basis state is insensitive to logical phase errors,
+which can alter a superposition. This distinction suggests that classical messages
+could remain decodable when quantum recovery fails. Does it produce a
+separate decoding threshold for a random quantum code?
 
-We compare these two tasks for the \emph{same} random encoder followed by
-Pauli noise. The receiver either guesses a uniformly distributed logical-basis
-message or restores entanglement with a reference. Each receiver is optimized
-with knowledge of the realized encoder. Our result is that, at positive rate,
-their optimal performances approach the same Gaussian curve across the coding
-transition. Thus the easier classical task has no separate threshold or
-second-order rate advantage within this ensemble, even though its finite-size
-success probability is larger.
+We compare the two tasks for the \emph{same} random encoder followed by
+Pauli noise. The classical receiver guesses the entire uniformly distributed
+logical-basis message; the quantum receiver restores entanglement with a
+reference. Both know the realized encoder and optimize their decoders
+separately. At positive rate, their optimal performances approach the same
+Gaussian curve across the coding transition. The classical task therefore
+has no separate threshold or second-order rate advantage in this ensemble,
+despite its finite-size advantage. This is a statement about complete-message
+success and entanglement fidelity; partial information about the message
+can remain when complete decoding is unlikely.
 
 The hashing rate $1-H(\bm p)$ is an established quantum-coding
 benchmark~\cite{Bennett,Devetak}. Klesse's random-code argument already yields
@@ -90,8 +92,28 @@ here is the overlap, not its square root. Both optimizations precede averaging
 over $U$. Encoding and decoding are ideal; neither a noise record nor access
 to the environment is supplied.
 
-\emph{A common finite-size bracket.}---The following bounds compare the two
-optimized tasks without identifying their decoders.
+\emph{Bit errors and phase errors.}---Clifford encoders make the distinction
+concrete. Conjugating a physical Pauli through the known inverse $U^\dagger$
+gives logical bit-flip and phase labels $(x,z)$ and an auxiliary bit-flip
+syndrome $s$. Let $w(s,x,z)$ sum the probabilities of all errors with those
+labels, including auxiliary phase degeneracy. The orthogonal syndrome sectors
+give~\cite{StabilizerConverse}
+\begin{align}
+\Fq&=\sum_s\max_{x,z}w(s,x,z),\nonumber\\
+\Pc&=\sum_s\max_x\sum_z w(s,x,z).
+\label{eq:clifford}
+\end{align}
+Quantum recovery corrects the most likely logical Pauli in each sector;
+classical decoding can add the probabilities of all phase labels for the
+same bit flip. This is its finite-size advantage. The classical output states
+commute, so inverse encoding, basis measurement, and classical
+maximum-likelihood processing attain $\Pc$. The processing can be
+computationally costly. The Supplemental Material (SM)~\cite{SM} proves both
+optimality statements. We now compare the tasks for any exact unitary 2-design,
+including non-Clifford encoders.
+
+\emph{A common finite-size bracket.}---The error spectrum constrains both
+optimized tasks.
 \begin{theorem}
 For any distribution in Eq.~\eqref{eq:noise}, any exact unitary 2-design
 encoder, and every $a>0$,
@@ -110,12 +132,16 @@ $F_-=\Fs(n-k-a)$ and $F_+=\Fs(n-k+2a)$, for any $\eta>0$,
 \end{align}
 \end{theorem}
 
-The relevant spectral budget is $n-k$. Likely errors consume physical space
-that would otherwise hold logical messages. Quantum recovery is possible for
-a sufficiently small likely-error family; the classical converse shows that
-abandoning phase information does not recover the spectral mass outside the
-same budget. The proof controls overlaps in aggregate and does not replace
-error images by independent or exactly orthogonal vectors.
+The scale $n-k$ has a familiar coding interpretation. For i.i.d. errors with
+single-qubit Shannon entropy $H$, there are roughly $2^{nH}$ typical errors,
+each mapping a $2^k$-dimensional
+code into the $2^n$-dimensional physical space. Comparing
+$2^k2^{nH}$ with $2^n$ suggests the hashing rate $R=k/n=1-H$.
+This counting picture motivates the scale; the theorem controls the actual
+overlaps and degeneracies without assuming orthogonal error images.
+Its converse shows that allowing classical decoding to combine phase errors
+does not shift the asymptotic complete-message threshold. At finite size,
+the full error spectrum, including its fluctuations, enters the bracket.
 
 \emph{Proof.}---For a recovered logical channel with Kraus operators $A_\ell$,
 \begin{equation}
@@ -179,17 +205,38 @@ Putting $\gamma=cd$ and $c'=c2^{-a}$ gives
 \end{equation}
 Choose $\gamma=M2^{-a}$. The same pointwise constructions control the
 positive deviations from $F_-$ and $F_+$; Markov's inequality gives
-Eq.~\eqref{eq:highprob}. Full details appear in the Supplemental Material
-(SM)~\cite{SM}.
+Eq.~\eqref{eq:highprob}. Full details appear in the SM~\cite{SM}.
 
-\emph{The shared critical curve.}---For independent identical errors,
-$p=\bm p^{\otimes n}$, write $H=\E[-\log_2p_\alpha]$ and
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{figures/recovery.pdf}
+\caption{Two optimal tasks and one asymptotic transition. (a) Exact classical
+success and entanglement fidelity for uniform Clifford encoders with $k/n=1/4$;
+64 encoders per size, reused across noise strengths. Markers show encoder
+means and one-standard-error bars; lines join points. The vertical line solves
+$H(1-3r/4,r/4,r/4,r/4)=3/4$. The finite-size classical advantage is resolved.
+(b) Rigorous bounds in Eq.~\eqref{eq:bracket} for $r=0.1$, $a=2\log_2n$,
+and $k$ chosen by Eq.~\eqref{eq:window}, compared with $\Phi(-z)$. These are
+binomial-CDF evaluations, not large-system decoding simulations.
+(c) The common random-code rate $[1-H]_+$ compared with the optimized
+classical capacity $1-h_2(r/2)$ of the same depolarizing channel.}
+\label{fig:results}
+\end{figure*}
+
+\emph{Error fluctuations and the shared critical curve.}---For independent
+identical errors, $p=\bm p^{\otimes n}$, write
+$H=\E[-\log_2p_\alpha]$ and
 $\sigma^2=\operatorname{Var}[-\log_2p_\alpha]$ for one qubit.
-At fixed positive rate $R=k/n$, Eq.~\eqref{eq:bracket} gives exponential
-approach to one for $R<1-H$, and exponential decay to zero for
-$R>\max(1-H,0)$. These are ensemble-specific coding thresholds.
+The total error self-information $s(P)$ is a sum of $n$ independent terms,
+with mean $nH$ and standard deviation $\sqrt n\,\sigma$. For $0<H<1$ and
+$\sigma>0$, moving the coding budget $n-k$ through that distribution produces
+a window of width $O(\sqrt n)$ in $k$, or $O(n^{-1/2})$ in rate. The Gaussian
+form comes from the central limit theorem for error self-information.
+Equation~\eqref{eq:bracket} transfers that form to both optimized recovery
+performances through matching quantum achievability and a classical converse.
 
-More precisely, fix $\bm p$ with $0<H<1$ and $\sigma>0$, and let
+At fixed positive rate $R=k/n$, the bracket gives exponential approach to
+one for $R<1-H$, and exponential decay to zero for
+$R>\max(1-H,0)$. More precisely, fix $\bm p$ with $0<H<1$ and $\sigma>0$, and let
 \begin{equation}
 k_n=n(1-H)+\sqrt n\,\sigma z+O(1)
 \label{eq:window}
@@ -218,61 +265,34 @@ the second-order term, not just the hashing rate. Fixed message dimension,
 zero surprisal variance, and the endpoint $H=1$ are outside this Gaussian
 statement; Eq.~\eqref{eq:bracket} remains valid there.
 
-\begin{figure*}[t]
-\includegraphics[width=\textwidth]{figures/recovery.pdf}
-\caption{Two optimal tasks and one asymptotic transition. (a) Exact classical
-success and entanglement fidelity for uniform Clifford encoders with $k/n=1/4$;
-64 encoders per size, reused across noise strengths. Markers show encoder
-means and one-standard-error bars; lines join points. The vertical line solves
-$H(1-3r/4,r/4,r/4,r/4)=3/4$. The finite-size classical advantage is resolved.
-(b) Rigorous bounds in Eq.~\eqref{eq:bracket} for $r=0.1$, $a=2\log_2n$,
-and $k$ chosen by Eq.~\eqref{eq:window}, compared with $\Phi(-z)$. These are
-binomial-CDF evaluations, not large-system decoding simulations.
-(c) The common random-code rate $[1-H]_+$ compared with the optimized
-classical capacity $1-h_2(r/2)$ of the same depolarizing channel.}
-\label{fig:results}
-\end{figure*}
-
-\emph{Exact Clifford decoding.}---For a Clifford encoder, conjugating a
-physical error through $U^\dagger$ produces logical Pauli labels $(x,z)$ and
-an auxiliary bit-flip syndrome $s$. Let $w(s,x,z)$ include the probability of
-all physical errors with these labels. Auxiliary phase errors are summed.
-Orthogonal syndrome sectors reduce optimal quantum recovery to correction of
-the most likely logical Pauli~\cite{StabilizerConverse}, while phase labels
-are irrelevant to a classical basis message. Consequently,
-\begin{align}
-\Fq&=\sum_s\max_{x,z}w(s,x,z),\nonumber\\
-\Pc&=\sum_s\max_x\sum_z w(s,x,z).
-\label{eq:clifford}
-\end{align}
-The classical outputs commute. Inverse Clifford encoding, computational-basis
-measurement, and classical maximum-likelihood processing attain $\Pc$.
-The processing is not guaranteed to be efficient. Equation~\eqref{eq:clifford}
-also makes the finite-size advantage transparent: classical decoding can
-combine errors that differ only in their logical phase. The theorem states
-that this advantage does not survive at leading order inside the regular
-critical window.
-
-We evaluate Eq.~\eqref{eq:clifford} for $n=4,8,12,16$, using an exact binary
-Fourier sum over syndrome and logical labels. No independent-vector or
-random-matrix replacement is made. Figure~\ref{fig:results}(a) shows the
-smallest and largest sizes. Independent direct Pauli enumeration and
-primal--dual semidefinite optimization at $n\le3$ check both scores and the
-explicit recovery construction; methods, all sizes, seeds, and raw encoder
-values accompany the SM. The modest simulated sizes illustrate finite-size
-behavior; the shared asymptotic curve follows from the proof and its spectral
+\emph{Finite-size decoding.}---We evaluate Eq.~\eqref{eq:clifford} for
+$n=4,8,12,16$ by an exact binary Fourier sum over syndrome and logical labels.
+Figure~\ref{fig:results}(a) shows how combining logical phase errors improves
+classical success at the smallest and largest sizes. Direct Pauli enumeration
+and primal--dual semidefinite optimization at $n\le3$ independently check
+both optima and the explicit recovery. Methods, all sizes, seeds, and raw
+encoder values accompany the SM. The finite-size samples illustrate the
+decoder difference; the shared asymptotic curve is established by the spectral
 bounds [Fig.~\ref{fig:results}(b)].
 
-\emph{What random encoding costs.}---The common rate is a property of random
-quantum encoders, not an equality of classical and quantum channel capacities.
-For $\N_r(\rho)=(1-r)\rho+rI/2$, classical product-state coding achieves the
-capacity $1-h_2(r/2)$~\cite{King}. At $r=0.1$ it is $0.714$ bits per qubit,
-whereas the common random-code rate is $0.497$. The latter vanishes at
-$r_c=0.252386\ldots$, where the optimized classical capacity is still
-$0.453$ [Fig.~\ref{fig:results}(c)]. Thus the noise continues to support
-classical communication after these random encodings lose every positive
-rate. The receiver's permission to discard coherence does not recover the
-encoding advantage of a code designed specifically for classical messages.
+\emph{Reliable decoding and retained information.}---The classical task
+requires the entire message to be correct. A vanishing $\Pc$ can coexist
+with substantial partial information: a receiver who learns half of a
+uniform $k$-bit message and nothing about the rest has success $2^{-k/2}$,
+yet retains $k/2$ bits. Our converse bounds complete-message success for the
+specified random codebooks. It does not establish vanishing accessible
+information or failure to recover a smaller logical subsystem.
+
+The distinction also separates this ensemble threshold from channel
+capacity. For $\N_r(\rho)=(1-r)\rho+rI/2$, classical product-state coding
+achieves capacity $1-h_2(r/2)$~\cite{King}. At $r=0.1$ it is $0.714$ bits
+per qubit, whereas the common random-code rate is $0.497$. The latter
+vanishes at $r_c=0.252386\ldots$, where the classical capacity is still
+$0.453$ [Fig.~\ref{fig:results}(c)]. Codes designed for classical messages
+therefore still support reliable communication where complete-message
+success for these random codebooks vanishes at every positive rate.
+Permitting the receiver to ignore coherence does not supply that encoding
+advantage.
 
 Random-state contraction~\cite{Ibarrondo} and coherent
 information~\cite{Sommers} probe related aspects of noisy encodings.
@@ -307,9 +327,9 @@ identifier has yet been assigned.
 \bibitem{MaTanWright} F. Ma, X. Tan, and J. Wright, Haar random codes attain the quantum Hamming bound, approximately, \href{https://arxiv.org/abs/2510.07158}{arXiv:2510.07158} (2025).
 \bibitem{StabilizerConverse} M. Tomamichel, A strong converse for stabilizer codes over Pauli channels via the blowing-up lemma, \href{https://arxiv.org/abs/2607.23450}{arXiv:2607.23450} (2026).
 \bibitem{Dankert} C. Dankert, R. Cleve, J. Emerson, and E. Livine, Exact and approximate unitary 2-designs and their application to fidelity estimation, Phys. Rev. A \textbf{80}, 012304 (2009).
+\bibitem{SM} See Supplemental Material for the full recovery proof, probability bounds, second-order inversion, Clifford optimality, and numerical methods.
 \bibitem{BarnumKnill} H. Barnum and E. Knill, Reversing quantum dynamics with near-optimal quantum and classical fidelity, J. Math. Phys. \textbf{43}, 2097 (2002).
 \bibitem{HayashiNagaoka} M. Hayashi and H. Nagaoka, General formulas for capacity of classical-quantum channels, IEEE Trans. Inf. Theory \textbf{49}, 1753 (2003).
-\bibitem{SM} See Supplemental Material for the full recovery proof, probability bounds, second-order inversion, Clifford optimality, and numerical methods.
 \bibitem{Feller} W. Feller, \emph{An Introduction to Probability Theory and Its Applications}, Vol.~II, 2nd ed. (Wiley, New York, 1971), Sec.~XVI.5.
 \bibitem{King} C. King, The capacity of the quantum depolarizing channel, IEEE Trans. Inf. Theory \textbf{49}, 221 (2003).
 \bibitem{Ibarrondo} R. Ibarrondo and D. Stilck Fran\c{c}a, Average contraction coefficients of quantum channels, \href{https://arxiv.org/abs/2508.08214}{arXiv:2508.08214} (2025).

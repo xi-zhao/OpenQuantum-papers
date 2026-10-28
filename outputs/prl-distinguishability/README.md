@@ -2,7 +2,9 @@
 
 当前稿件：**A Common Recovery Transition for Classical and Quantum Information in Random Codes**，2026-10-28。
 
-同一个随机量子编码器用于两项任务：读取均匀逻辑基消息，或恢复与参考系的纠缠。接收方知道编码器与固定 Pauli 信道，分别优化解码。正文给出任意 exact unitary 2-design 的有限尺寸信息谱夹逼；在固定 iid 噪声、0 < H < 1、正 surprisal 方差的正码率窗口中，两个最优性能具有相同的高斯极限与二阶码长，并给出编码器概率界。
+同一个随机量子编码器用于两项任务：完整猜出均匀逻辑基消息，或恢复与参考系的纠缠。接收方知道编码器与固定 Pauli 信道，分别优化解码。正文给出任意 exact unitary 2-design 的有限尺寸信息谱夹逼；在固定 iid 噪声、0 < H < 1、正 surprisal 方差的正码率窗口中，错误自信息之和的涨落使两个最优性能具有相同的高斯极限与二阶码长，并给出编码器概率界。完整消息成功率趋于零不意味着互信息或 accessible information 消失，也不排除部分逻辑信息仍可恢复。
+
+第十二轮物理表述精修已将 Clifford 位翻转／相位解码的区别前置，说明典型错误计数与严格定理的关系，并区分完整消息解码和部分信息保留。定理、全部展示公式、补充证明、数值代码与数据均保留。
 
 文献定位：hashing 率、量子二阶可达性及量子信息谱可达侧已有直接先例（包括 Klesse 2007）。当前结果的重点是经典最优读取的匹配 converse，以及与量子恢复的共同操作性能。它不等于一般 Pauli 信道容量定理，不承诺高效解码，也不包含含噪编码线路或实际硬件实验。
 
@@ -19,7 +21,7 @@
 - `data/recovery_rates.csv`：共同随机码率与已知最优经典容量的比较。
 - `data/recovery_verification.json`：原始/对偶 SDP、显式恢复、枚举和 CDF 检查，含求解器尝试、版本与文件摘要。
 - `VALIDATION.md`：本轮验证范围与结果。
-- `REVIEW_ROUND11.md`：本轮独立模型审稿与处理记录。
+- `REVIEW_ROUND11.md`：第十一轮独立模型审稿与处理记录；第十二轮是保留数学与数值结果的物理表述精修。
 - `LITERATURE_ROUND11.md`：直接相关原始文献、精确结果位置与重叠范围。
 - `recovery-manuscript-source.zip`：当前正文、补充材料、源码、图表、数据和审查记录的交付包；包内有 SHA-256 清单。
 - `REVISION_NOTES.md`：累积修订历史；较早结论仅代表相应轮次。
