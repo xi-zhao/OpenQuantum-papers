@@ -1,0 +1,7 @@
+# Versions used for the accompanying numerical evidence; Python 3.13.2.
+# This file is a reproduction record. No dependency is installed automatically.
+numpy==2.2.6
+scipy==1.16.3
+qutip==5.3.1
+matplotlib==3.10.7
+sympy==1.14.0

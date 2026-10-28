@@ -1,0 +1,64 @@
+\documentclass[aps,prl,onecolumn,superscriptaddress,amsmath,amssymb]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+\newcommand{\Lc}{\mathcal{L}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\begin{document}
+\title{Supplemental Material for ``The avoided crossing that accompanies a mean-field fold in a many-body Liouvillian''}
+\maketitle
+
+\section{S1. Exact permutation-symmetric Liouvillian}
+We build $\Lc_N$ in the Dicke-block basis of PIQS~\cite{Shammah2018}, keeping the block-diagonal sector (dimension $\binom{N+3}{3}$). Checks: the $N=1$ steady state agrees with the analytic Bloch solution to $10^{-16}$; the $N=3$ steady state agrees with brute-force $2^3$-dimensional QuTiP to $5\times10^{-10}$; an independent reconstruction of the compressed generator differs from the full $64\times64$ projection by $3.8\times10^{-15}$. Eigenvalues come from ARPACK shift-invert with several complex shifts. Restricting the shifts to the real axis misses the oscillatory pair, which is slower than both real modes in part of the window near the left fold [Fig.~1(b)]. For example, at $N=30$, $\Delta=3.1915$: $-0.7328\pm2.864i$ versus $-0.7412$ and $-0.7675$.
+
+\section{S2. Fold Jacobian}
+On the Bloch manifold the stationary coherence is slaved to $n$. Substituting the stationarity condition $\Omega^2=4n(u^2+1/4)/(1-2n)$, with $u=\Delta-Vn$, and the fold condition $\partial_nF=0$ into the characteristic polynomial of the $3\times3$ Jacobian gives Eq.~(2) of the main text identically (symbolic computation). We verified it numerically at four fold points.
+
+\section{S3. EP location and avoided crossing}
+For each $N$ we solve $(\lambda_a-\lambda_b)^2=0$ in complex $\Delta$ by secant iteration, continuing from the previous $N$ (data in \texttt{cep\_all2.json}, $N=8$--$58$). Encircling the $N=30$ EP at radius $0.004$ exchanges the two eigenvalues. The real-axis half-gap $g_N$ and diabatic slopes reproduce ${\rm Im}\,\Delta_{\rm EP}$ via $2g/|s_a-s_b|$ to $0.52$, $0.947$, $0.998$ at $N=20,30,40$. For the mode identification by excitation-number profiles, see \texttt{g1\_modes.json} and \texttt{fig\_profile.json}.
+
+\section{S4. Parameter-free fold normal form}
+The centre-manifold reduction at the left fold ($\Omega=2$) gives $\dot x=a\mu+bx^2+\sqrt{Q/N}\,\xi$ with $a=0.257$, $b=-6.87$, $Q=0.335$. In scaled variables its Fokker--Planck escape eigenvalue $\Lambda_1(M)$ is independent of domain size and boundary condition to $10^{-4}$. The condition $N^{-1/3}\Lambda_1=-\kappa_{\rm hi}$ predicts ${\rm Re}\,\Delta_{\rm EP}-\Delta_f$ to $0.64$, $0.71$, $0.75$, $0.78$, $0.80$ of the exact values at $N=20,30,40,50,58$.
+
+\section{S5. Instanton Hamiltonian and Lin's method}
+This section implements the real-time instanton approach of Refs.~\cite{PCE2026L,CEP2026} in a coherent-state (Doi) form adapted to the permutation-symmetric Liouville space; the only new element is the occupation endpoint for the excitation-number quasipotential.
+\emph{Hamiltonian.} Vectorizing $\rho_N$ in the symmetric sector maps it to $N$ bosons in the four single-atom Liouville modes. In a coherent-state representation with conjugate pair $(\hat\rho,\hat X)$, the large-$N$ action is $N\!\int[{\rm Tr}(\hat X\dot{\hat\rho})-h]dt$, with $h$ given in Eq.~(3). We checked the hand-coded Hamilton equations against the symbolic gradient to $10^{-15}$. The gauge-fixed reduction ${\rm Tr}(\hat X\hat\rho)=1$ uses $\hat\rho=[[1-n,u-iv],[u+iv,n]]$ and $\hat X_{gg}=1-np_n-up_u-vp_v$, $\hat X_{ee}=\hat X_{gg}+p_n$, $\hat X_{ge}=(p_u-ip_v)/2$. This makes ${\rm Tr}(\hat X\,d\hat\rho)=p\cdot dq$. We verified that the reduced flow is the projection of the 8D flow to $10^{-16}$.
+
+\emph{Structure.} $h$ is quadratic in $p$, with momentum Hessian eigenvalues $(-a,0,a)$. Restricted to $p_u=p_v=0$, $h=-p_n(\Omega v+n)$.
+
+\emph{Lin's method.} Forward rays leave the high fixed point inside its 3D unstable subspace. The real basis is built from one representative of each complex pair; doubling the pair produced a non-isotropic basis and failed shootings. Backward rays leave the target manifold. The mismatch on a section $n=n_{\rm sec}$ is driven to $10^{-8}$--$10^{-11}$ by least squares. The action is integrated along the ODE as an extra component, $S=S_{\rm fwd}-S_{\rm bwd}$. At $\Delta=3.9$ three sections give $S=0.15358$ identically.
+
+\emph{Quasipotential endpoint.} $x=\hat X\!\circ\!\hat\rho$ has $\sum x=1$ and $x_{ge}x_{eg}=(p_u^2+p_v^2)(u^2+v^2)/4$. The point $x=(1-n,n,0,0)$ therefore requires $p_u=p_v=0$ (branch A) or $u=v=0$ (branch B). On branch A, $h=0$ forces $v=-n_\rho/\Omega$, and $x_{ee}=n_\rho(1+(1-n_\rho)p_n)=n$ fixes $p_n$. The boundary term reduces to $D(n\|n_\rho)$. Branch B produced no admissible rays at any tested point. For Gate A$'$ and v4 we used backward-to-$A$ shooting from the 2-parameter branch-A family, minimising the closest approach to the high fixed point; converged solutions have closest approach about $1.3\times10^{-6}$.
+
+\section{S6. Pre-registration record}
+\texttt{PREREGISTRATION\_v2.md}, \texttt{\_v3.md} and \texttt{\_v4.md} record every hypothesis, criterion, solver change and result in chronological order, including failures (v1, not formally registered: MF fold state; v2: bottleneck hyperplane in $\hat\rho$ coordinates, with one solver correction during the run) and one withdrawn erroneous conclusion. Exact couplings were written to sealed files (\texttt{v3\_g\_SEALED.jsonl}, \texttt{v4\_SEALED.jsonl}) by the same jobs that located $\Delta_{\min}$. They were opened only after \texttt{v3/v4\_prediction\_frozen.json} existed.
+
+\begin{table}[h]
+\caption{Tests of Eq.~(5). Criteria: slope and local-exponent ratio within $1\pm0.15$. $^*$v1 was not formally pre-registered. The null row (not a registered test) shows that a constant exponent passes three of four criteria.}
+\begin{tabular}{lcccc}
+\hline\hline
+test & $\Omega$ & $\Phi$ source & slope & local ratio\\\hline
+v1$^*$ & 2 & action to MF fold state & -- & 0.27\\
+v2 & 2 & action to bottleneck ($\hat\rho$ coords) & $-0.05$ & 0.42\\
+v3 & 2.5 & exact steady state & 0.957 & 0.944\\
+v3 & 3.0 & exact steady state & 0.878 & 0.878\\
+v4 & 2.25 & a-priori instanton, Eq.~(4) & 0.958 & 0.963\\
+v4 & 2.75 & a-priori instanton, Eq.~(4) & 0.929 & 0.934\\\hline
+null & 2.25/2.5/2.75/3.0 & constant $\sigma=0.141$ (from $\Omega=2$) & 1.01/0.99/0.94/0.84 & 1.02/1.00/0.94/0.84\\\hline\hline
+\end{tabular}
+\end{table}
+
+\section{S7. Chiral switching: fold rule and direction-memory window}
+\emph{Fold rule.} In the quasi-static MF limit the final branch is that of the fold through which the bistable arc containing the start point is last entered. Encircling the cusp is neither necessary nor sufficient. In the three-level ladder model of Ref.~\cite{Xie2025} with its published parameters, the experimental $(\Omega_p,\Delta_c)$ loop switches ($n=0.059$ CW vs $0.198$ CCW at $T=50$). The location of the cusp relative to the loop, however, is not robust to $\pm10$--$20\%$ changes of the fitted parameters. In the four-level microwave model, the loop formula of arXiv:2402.02779v1 (Methods) reproduces the published loop drawings and outcomes only with $\Delta_c=\Delta_0+\delta\sin\theta$. With that sign, the quasi-static MF outcomes of all three published loops agree with the reported measurements. Only the magenta loop encloses the cusp, at $(\Delta_c,\Omega_{\rm mw})/2\pi\approx(-73,70)$\,MHz. The black loop switches without enclosing it.
+
+\emph{Memory window.} With $\rho\simeq p\rho_{\rm hi}+(1-p)\rho_{\rm lo}$, the exact two-state solution of $\dot p=-\lambda_{\rm sw}(p-q)$ entering an arc at a fold with $p=q$ is $p(1)-q(1)=-\int_0^1 q'(v)\exp[-T\int_v^1\lambda_{\rm sw}]dv$. For large $N$, $q$ becomes a step at the Maxwell point $u_M$, with width $\propto N^{-1}$ (measured $0.103,0.064,0.041,0.030$ for $N=10$--$40$). Hence the chirality is $\mathcal C\to\exp(-T\Lambda_N)$ with $\Lambda_N=\int_{u_M}^{1}\lambda_{\rm sw}du$. The maximal deviation from the two-state solution for $T\Lambda_N<3$ is $0.35,0.05,0.03,0.02$ at $N=10$--$40$. Full $\Lc_N$ BDF2 dynamics ($N\le30$) converges in step size to $10^{-4}$ and differs from the two-state reduction by at most $15\%$, mostly at short $T$. An earlier scaling form $\mathcal C=F(T\lambda_{\min})$ is not implied by the two-state equation and is withdrawn.
+
+\begin{thebibliography}{9}
+\bibitem{Shammah2018} N.~Shammah \textit{et al.}, Phys. Rev. A \textbf{98}, 063815 (2018).
+\bibitem{Xie2025} C.~Xie \textit{et al.}, Sci. Bull. \textbf{70}, 3345 (2025); arXiv:2402.02779.
+\bibitem{PCE2026L} K.~Ptaszy\'nski, M.~Chudak, and M.~Esposito, arXiv:2604.15091.
+\bibitem{CEP2026} M.~Chudak, M.~Esposito, and K.~Ptaszy\'nski, arXiv:2610.21684.
+\end{thebibliography}
+\end{document}

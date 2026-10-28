@@ -1,0 +1,366 @@
+{
+  "title": "Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble",
+  "created": "2026-10-28",
+  "files": {
+    "PRA_README.md": {
+      "bytes": 9171,
+      "sha256": "47dfd66e20c0393560cf8def67580279df2b08844291a9cecee78aeaf65088a4"
+    },
+    "PRA_REPORT_2026-10-28.md": {
+      "bytes": 6114,
+      "sha256": "b38bf349a992cbc311f7dfc7ca45418d264458806ee2e61b1792a626c9be9cc4"
+    },
+    "code/biorthogonal_analysis.py": {
+      "bytes": 7462,
+      "sha256": "0c983c9e9c29e8bc1f76abf1c5e51ffc47f862abb2c0d466454bae1947a966bb"
+    },
+    "code/biorthogonal_audit.py": {
+      "bytes": 8836,
+      "sha256": "4430125dc9a96e6375dac4c69b689ec8de4e31cc61c26a5823149f3ce24553c9"
+    },
+    "code/biorthogonal_flux.py": {
+      "bytes": 2857,
+      "sha256": "87de8aea0c4e8fed5f0d6332a3b1ec0d3d337ca0604af43fce76cd3d7f4dd433"
+    },
+    "code/biorthogonal_generator.py": {
+      "bytes": 3150,
+      "sha256": "2458ea0e64ff0e61faf5fbb9cc337fa90f14a29868f411bbd39840fea9e5282d"
+    },
+    "code/biorthogonal_validate.py": {
+      "bytes": 2635,
+      "sha256": "a126d4c34cdb39fdd81a3a5ae22d46f9c64e3b3017edb5e8be2bfde502ccc2ca"
+    },
+    "code/coherence_fraction.py": {
+      "bytes": 5174,
+      "sha256": "3a8f45740f0ec3d4e7c5a878a48413959afe5a5ed95671455996a5e633437e0c"
+    },
+    "code/coherence_fraction_derivatives.py": {
+      "bytes": 2813,
+      "sha256": "3c3c3aa752219cb58582c5d041d1e131982d8308fb03af3b8c434834b1002a05"
+    },
+    "code/coherence_recurrence.py": {
+      "bytes": 2300,
+      "sha256": "b972b526bd52f913bad7d89faf536261ac891e16758ac92d41748996e2216fc8"
+    },
+    "code/coherence_validate.py": {
+      "bytes": 6330,
+      "sha256": "2e2439f47948256ae92f41be149fcfcb7f5a672a177e1c95586b07d6d3f94d09"
+    },
+    "code/mf.py": {
+      "bytes": 909,
+      "sha256": "4ce6ff1ec7321b6b78edbe5ba3ce1a0c73020ce0c9271a799fb899e65084c8be"
+    },
+    "code/pra_ep_verify.py": {
+      "bytes": 25171,
+      "sha256": "b01fa7715aaad7f65f2cd799398ea08cc6abcff4fa104a323dbae5f79aedd3fc"
+    },
+    "code/pra_figures.py": {
+      "bytes": 10893,
+      "sha256": "434728106cac3b63d1c822d2f2d1978361cad7ebb834b15eee927416e812fb7d"
+    },
+    "code/pra_meanfield.py": {
+      "bytes": 2176,
+      "sha256": "f0589aa6696cd6e70f4c5a192fae91666ab3d4e02823a3acde71fc794f3dc370"
+    },
+    "code/pra_modes.py": {
+      "bytes": 11039,
+      "sha256": "f95a5f5e166662ac3d51ee820e7ae4befc30a85fec0f5846b3af5358c8707938"
+    },
+    "code/pra_package.py": {
+      "bytes": 4614,
+      "sha256": "55f7f942938eb2a055d03e0bcb67a31c49593bd2e8a39d24cff69d3fe877afed"
+    },
+    "code/pra_validate.py": {
+      "bytes": 9229,
+      "sha256": "99385ad4a9f31353a6414501b82e6fdb913af1444cd7606b523015635d575123"
+    },
+    "data/biorthogonal_audit/N24_float64_s17_t-0.76.json": {
+      "bytes": 43857,
+      "sha256": "57104535f110d712745a8c48335afb22f0e25691afaffb0e82db36fe81804ce3"
+    },
+    "data/biorthogonal_audit/N24_float64_s17_t-0.76.npz": {
+      "bytes": 117090,
+      "sha256": "2517a6027f90438f2d19003847f156bbe920538546e28944b611a945db7220b9"
+    },
+    "data/biorthogonal_audit/N28_float64_s17_t-0.76.json": {
+      "bytes": 50366,
+      "sha256": "ab76f163eae595cf75bf261afdbfb6c2ddb005bc0b349d84cd06e05680e7345c"
+    },
+    "data/biorthogonal_audit/N28_float64_s17_t-0.76.npz": {
+      "bytes": 183224,
+      "sha256": "64ea20a41682d3f24488d21101e93df998270dc52401a8fff0532e3e21b49ebb"
+    },
+    "data/biorthogonal_audit/N32_float64_s17_t-0.76.json": {
+      "bytes": 56851,
+      "sha256": "1a48fd822d5186d86420655ee3bec01a5662311925c613c7745a0fd32c845378"
+    },
+    "data/biorthogonal_audit/N32_float64_s17_t-0.76.npz": {
+      "bytes": 269554,
+      "sha256": "7eb8757ec9c279eed771cb51bb51e0eee3e45a0ec42faf1ff2f753e13c82ab25"
+    },
+    "data/biorthogonal_audit/N36_float64_s17_t-0.76.json": {
+      "bytes": 63105,
+      "sha256": "352680d033d87a6ab2057f5c9f1901ea959910ef37662f35bd38f431e0701c10"
+    },
+    "data/biorthogonal_audit/N36_float64_s17_t-0.76.npz": {
+      "bytes": 377567,
+      "sha256": "48b68ec5fc275e3c52831394d94c29570f0bacaf16f785939df8a34ed08678f9"
+    },
+    "data/biorthogonal_audit/N40_float64_s17_t-0.76.json": {
+      "bytes": 69619,
+      "sha256": "a67bc696ef83355639f5fdd82c91a6117cafd2457961a30ccae95b0b7ec213ec"
+    },
+    "data/biorthogonal_audit/N40_float64_s17_t-0.76.npz": {
+      "bytes": 524800,
+      "sha256": "3d1846cabe024def6bed097fa567ccd9e477fcd9e1b21e98023b57bf5e8ce28f"
+    },
+    "data/biorthogonal_audit/N44_float64_s17_t-0.76.json": {
+      "bytes": 76099,
+      "sha256": "30619ca00a272ab63319f5ed7e379bac315b8f646dd8eae9f5b34563f8d0a44e"
+    },
+    "data/biorthogonal_audit/N44_float64_s17_t-0.76.npz": {
+      "bytes": 702765,
+      "sha256": "38a4d2ad05b187aa354dadded54eb49af4f07e7a1e7d8d84b6ba6b8171af1b70"
+    },
+    "data/biorthogonal_audit/N48_float64_s17_t-0.76.json": {
+      "bytes": 82558,
+      "sha256": "f9d17867edb1a466fddaf817bc0e17da66bece7db54287eff0fd7e47400e2f0b"
+    },
+    "data/biorthogonal_audit/N48_float64_s17_t-0.76.npz": {
+      "bytes": 924760,
+      "sha256": "324ca5a879e9ebeb3da58170e30ebc1d4289ec21a984bb49fc017ac3e1b19caf"
+    },
+    "data/biorthogonal_audit/N52_float64_s17_t-0.76.json": {
+      "bytes": 88939,
+      "sha256": "3794fbf6e203a8960c3c84a094a8563a2c0c90e1b927b7b2647a4bb591f01e84"
+    },
+    "data/biorthogonal_audit/N52_float64_s17_t-0.76.npz": {
+      "bytes": 1215601,
+      "sha256": "eca27f26d202b12407712eee2a95377c39e9095c0fb6d3995de302057bcde0f3"
+    },
+    "data/biorthogonal_audit/N56_float64_s17_t-0.76.json": {
+      "bytes": 95405,
+      "sha256": "0a7eb9fc92b861c570fd49110d629fdad5e5b693fece343f0115b3b8c4fab65a"
+    },
+    "data/biorthogonal_audit/N56_float64_s17_t-0.76.npz": {
+      "bytes": 1537992,
+      "sha256": "2b4e576259be025b9d0878f889c2e38819f9b6359070abb4d76e114f6fa4cbf1"
+    },
+    "data/biorthogonal_audit/N56_piqs_s17_t-0.76.json": {
+      "bytes": 95428,
+      "sha256": "0176224dbd842864c4869db2eeb428ab792b8541688748487c33bbc1b4bbf5ff"
+    },
+    "data/biorthogonal_audit/analysis.json": {
+      "bytes": 391126,
+      "sha256": "aa3a562033b7567f1c742cd3ab35186ccecfa0cac41b204d791de2e711abf794"
+    },
+    "data/biorthogonal_audit/boundary_flux.json": {
+      "bytes": 78618,
+      "sha256": "e5e3bf0db6af1a7ff8afa76597b395c82985e31f224a81b41397449c1d255986"
+    },
+    "data/biorthogonal_audit/generator_validation.json": {
+      "bytes": 857,
+      "sha256": "f1fa918ee28b1f9e0730ba9f5ad05a89ebfb6ae739fb83ca05fd1fe2c929de50"
+    },
+    "data/biorthogonal_audit/inputs.json": {
+      "bytes": 1170,
+      "sha256": "9879122f9fe7f3d5b5955d200797a03f998167ca4a82eb90dfe302ccdc594996"
+    },
+    "data/coherence_mechanism/coherence_N40.json": {
+      "bytes": 11520,
+      "sha256": "2321d015c7d488778c0eac4f45bb2f60298237abc245f861ec62e5a97819d3d4"
+    },
+    "data/coherence_mechanism/coherence_N56.json": {
+      "bytes": 11487,
+      "sha256": "7b5d163776edb366b125786272f63d99f9dcef66384f717587a605e0dbb39e60"
+    },
+    "data/coherence_mechanism/derivative_validation.json": {
+      "bytes": 397,
+      "sha256": "ffaf3baf3ce3a67c9d8872d35712666236cdeaf151ff45e8b966ca9d8bfa6b64"
+    },
+    "data/coherence_mechanism/failure_path_validation.json": {
+      "bytes": 833,
+      "sha256": "81fdd1fb256523db1a51cafcc9aaa947865739cb3f74434f8182a5e4f74fe3d3"
+    },
+    "data/coherence_mechanism/fraction_N24_q24.json": {
+      "bytes": 3538,
+      "sha256": "aa12c2afb3fa753bbb9f6047bf1100c88b9ffb101a32c5cebc440043ec0e48f3"
+    },
+    "data/coherence_mechanism/fraction_N32_q32.json": {
+      "bytes": 5241,
+      "sha256": "dad2df5999aee183a0d5ac7e791ca7ded477348f041be1d1183978b76746e29f"
+    },
+    "data/coherence_mechanism/fraction_N40_q40.json": {
+      "bytes": 5621,
+      "sha256": "38fe8c4152cf23d4fe25be5122f4f29dc71c5473c4820142f39d35e6dcf5d84f"
+    },
+    "data/coherence_mechanism/fraction_N48_q48.json": {
+      "bytes": 4998,
+      "sha256": "ec2ce97f390d09af99525a7feea57084a1d24baa6607515c39a13ce867a8d915"
+    },
+    "data/coherence_mechanism/fraction_derivatives_N24.json": {
+      "bytes": 428,
+      "sha256": "bdc3814c359e30a4098146fded50b4f02662fc4f866c4adebc23ddf19ef99953"
+    },
+    "data/coherence_mechanism/fraction_derivatives_N32.json": {
+      "bytes": 434,
+      "sha256": "7fed233c833f64a3d49c38f04389b50945a0b941058f7c244284e261b55dab02"
+    },
+    "data/coherence_mechanism/fraction_derivatives_N40.json": {
+      "bytes": 436,
+      "sha256": "9fee9d3b6fb86112e49ea447c7bec18cd3a4956e22643c3deea68facb9409bea"
+    },
+    "data/coherence_mechanism/fraction_derivatives_N48.json": {
+      "bytes": 438,
+      "sha256": "f7b8d4dfacae4d2be6247471489af0e9e77d1577ba59eeaf99390d1b3c3859b1"
+    },
+    "data/coherence_mechanism/validation.json": {
+      "bytes": 33574,
+      "sha256": "8730d75f4db5725ab40f4f694ebf735a7c25229d883097f177da58cc0bfe4862"
+    },
+    "data/pra_spectral/ep_N24.json": {
+      "bytes": 25671,
+      "sha256": "6c7e188c0eee7cc49bdfe45411499e76a011354cd0d22e8cede47db07ea30f68"
+    },
+    "data/pra_spectral/ep_N24_vectors.npz": {
+      "bytes": 971985,
+      "sha256": "6782076a6db3410565e53cd542cda3c9b928fe7b7790bb8a9a4c94d2f4936992"
+    },
+    "data/pra_spectral/ep_N32.json": {
+      "bytes": 25301,
+      "sha256": "a89b7b2815469f085b4754de2dcb5ceedb770cc1d8255445100ad37da2fbf082"
+    },
+    "data/pra_spectral/ep_N32_loop_s17_steps24.json": {
+      "bytes": 470920,
+      "sha256": "555e7efaf94209b8c3c867ccbd5cac2d8ca6c0b67c88c972719e902d9af48ecd"
+    },
+    "data/pra_spectral/ep_N32_loop_s83_steps48.json": {
+      "bytes": 930260,
+      "sha256": "bac08636afe87046471ccbb97aad8f7b3b445e53aefc069faa25d7b70be997e9"
+    },
+    "data/pra_spectral/ep_N32_stability.json": {
+      "bytes": 29140,
+      "sha256": "0b7b505165116f94086b1d79e24531323ea5cd31df6c99e9b116b959a13c719c"
+    },
+    "data/pra_spectral/ep_N32_stability_vectors.npz": {
+      "bytes": 2179449,
+      "sha256": "21d3be8af6dc8bcaa24fff9fec1b19bf987fc09f3bdcd7c40e980bbf5f902f9b"
+    },
+    "data/pra_spectral/ep_N32_vectors.npz": {
+      "bytes": 2175405,
+      "sha256": "e68bbadadd1e018f2a46e38d8545c487bb8433809f199c34549edf42b2f90b03"
+    },
+    "data/pra_spectral/ep_N40.json": {
+      "bytes": 21815,
+      "sha256": "b90b07b07a17c934c5e19902220e896e97d2b47c8c07d7b7d117db330f8ff429"
+    },
+    "data/pra_spectral/ep_N40_vectors.npz": {
+      "bytes": 4103538,
+      "sha256": "49911c12f7f88b4cb71e55162dbb9ebb6bea7e2817595a0a6389c46aa3e4ce7d"
+    },
+    "data/pra_spectral/ep_summary.json": {
+      "bytes": 12836,
+      "sha256": "a93615d6cbc49f2018e684cccc54291d337f9df92d0ee5dfb33b385fac909600"
+    },
+    "data/pra_spectral/meanfield.json": {
+      "bytes": 1350,
+      "sha256": "b1aeb58c35ab90cccdf1d208cfe5dfd3e12789f53b0dbad0081d7e08ac0bb664"
+    },
+    "data/pra_spectral/mode_stability.json": {
+      "bytes": 1130,
+      "sha256": "536076f57a4ceb491e4c8749c752028fb2fcd955b01052ac7153ee65c47c364f"
+    },
+    "data/pra_spectral/modes_N32.json": {
+      "bytes": 202679,
+      "sha256": "d6a7fe4eb56132124c7c3a65ca9e557b84827a0a80477c10e53c13ba034e4882"
+    },
+    "data/pra_spectral/modes_N40_quick.json": {
+      "bytes": 18428,
+      "sha256": "931e926597e9fdb21c98408c4b8c2e579d37d749bf693b423e8667d9a7205c6e"
+    },
+    "data/pra_spectral/validation_repeat.json": {
+      "bytes": 15242,
+      "sha256": "54f8a7d97a6207948932447c332a2e3ccd7995557b6e832104d1e57e1f5a64ca"
+    },
+    "figs/pra_coherence.pdf": {
+      "bytes": 25316,
+      "sha256": "7b1fcd6673277cc57d182d45daf86aecd12caee0bb7240f9f970c84e243ce357"
+    },
+    "figs/pra_coherence.png": {
+      "bytes": 73665,
+      "sha256": "15f1a79d13b074de4f63c1c2b56f4f0d3a40f0c038376e8bc974543131645bdf"
+    },
+    "figs/pra_couplings.pdf": {
+      "bytes": 22353,
+      "sha256": "ad1145c4973ef71d5c115bc173e37474454f46f17edc9f4e84d3a200e5c24ae0"
+    },
+    "figs/pra_couplings.png": {
+      "bytes": 70864,
+      "sha256": "c3ba6db685cb96a1a3d5c55d5e1673d5e4ae8b58abb08b3ada1c45df3ccd0d5d"
+    },
+    "figs/pra_dynamics.pdf": {
+      "bytes": 23362,
+      "sha256": "f7a163a36bf55cfb7f1c8a5e9d1214fc19256c3c1dac30c7aa8bb7169f06add8"
+    },
+    "figs/pra_dynamics.png": {
+      "bytes": 87682,
+      "sha256": "c42b064dfc5559c50403ddd4fc260f720846d8d2d11d6c6f6a09a5300ef7f8c1"
+    },
+    "figs/pra_ep_loop.pdf": {
+      "bytes": 18087,
+      "sha256": "a75ec5f1767697c1f7a59f9de050655b88aa904d565e5b7bd235790df014261c"
+    },
+    "figs/pra_ep_loop.png": {
+      "bytes": 81776,
+      "sha256": "520f0d374a3dcbe162411d9a8f425b8c51c5a9b93f51673a08dece2337a8feb7"
+    },
+    "figs/pra_residues.pdf": {
+      "bytes": 22343,
+      "sha256": "ce34851c4f94e635f634d68560233520d8d5dda040496f655651b89b4370a881"
+    },
+    "figs/pra_residues.png": {
+      "bytes": 84536,
+      "sha256": "716f342c8a716be09795c928922af2591d890687c94f080b4d63837b975faebb"
+    },
+    "figs/pra_spectrum.pdf": {
+      "bytes": 163570,
+      "sha256": "b02385cd2feec15f7805f88e35ade5a534791d1cc964df479f7674b97ed4709b"
+    },
+    "figs/pra_spectrum.png": {
+      "bytes": 69443,
+      "sha256": "a0c133888d8a460a45459d1e1a1bf1a2ff0ff8e3ab122747c3dde91b1e1fe211"
+    },
+    "paper/main.pdf": {
+      "bytes": 496689,
+      "sha256": "cfe97a71b3b97ecd1199289461a1ebf8bd2c4480eafafa3d40c3e2eae5f6cd69"
+    },
+    "paper/main.tex": {
+      "bytes": 33113,
+      "sha256": "e066aa284c52e9b732db65606c88356b977decec111666138b2cae1885a80b91"
+    },
+    "paper/supplement.pdf": {
+      "bytes": 295444,
+      "sha256": "54b74610a15ec81b99c81083b2912651d15a8e964d183b8dde0764da1b083208"
+    },
+    "paper/supplement.tex": {
+      "bytes": 22680,
+      "sha256": "3acb3c64a805f91360d5e8b4a656e88fce4c7fc3f77adcada20d0301a330b930"
+    },
+    "requirements-pra.txt": {
+      "bytes": 225,
+      "sha256": "a705aca3d43f62d14b7026805da18234baeebf9554df7a69d5177c17f3dee497"
+    }
+  },
+  "total_bytes": 20023466,
+  "evidence": {
+    "real gaps and gauge dependence": "data/biorthogonal_audit/analysis.json",
+    "signed boundary flux": "data/biorthogonal_audit/boundary_flux.json",
+    "physical residues and transients": "data/pra_spectral/modes_N32.json",
+    "independent size control": "data/pra_spectral/modes_N40_quick.json",
+    "small-N physical evolution and repeatability": "data/pra_spectral/validation_repeat.json",
+    "complex EPs and monodromy": "data/pra_spectral/ep_summary.json",
+    "Schur back-substitution and failure paths": "data/coherence_mechanism/validation.json"
+  },
+  "interpretation": "Finite-size numerical evidence; no established sigma=Phi identity or thermodynamic-limit mechanism.",
+  "review_status": "Local mathematical/data/layout checks completed; final independent manuscript review unavailable due to provider quota."
+}
