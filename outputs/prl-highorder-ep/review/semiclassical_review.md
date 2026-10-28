@@ -40,4 +40,4 @@ The separation relative to the leading eigenvalue controls normalized conditiona
 
 ## Disposition
 
-The final manuscript includes the explicit fixed-low-excitation qualification and the radial-edge localization limitation. No further mandatory coefficient or physical correction was identified. The formal asymptotic evidence has not been promoted to a rigorous global spectral theorem.
+The observable-focused revision retains the explicit fixed-low-excitation qualification and radial-edge localization limitation in its main text; the full derivation and original spectral tests are now in `paper/supplement.tex`. The coefficients themselves are unchanged. No further mandatory coefficient or physical correction was identified. The formal asymptotic evidence has not been promoted to a rigorous global spectral theorem.

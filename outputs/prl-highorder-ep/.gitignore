@@ -12,4 +12,8 @@ paper/*Notes.bib
 review/page-*.jpg
 review/manuscript_text.txt
 review/build.log
+review/*-run.log
+review/supplement_text.txt
+review/supplement-page-*.jpg
+review/symmetry-source-*/
 pra-ep-source.zip

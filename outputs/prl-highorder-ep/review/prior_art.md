@@ -2,6 +2,19 @@
 
 Checked on 2026-10-28. This record lists sources and directly verified evidence for the PRA manuscript. Bibliographic metadata were checked against arXiv and/or Crossref; mathematical statements were checked against the downloaded full texts. It is not a claim of exhaustive literature coverage. No unpublished manuscript was uploaded to external services.
 
+## van Caspel and Gritsev: observable-sector selection is established prior art
+
+Moos van Caspel and Vladimir Gritsev, “Symmetry-protected coherent relaxation of open quantum systems,” *Physical Review A* **97**, 052106 (2018). DOI: [10.1103/PhysRevA.97.052106](https://doi.org/10.1103/PhysRevA.97.052106).
+
+- Full text: https://arxiv.org/abs/1802.05293 ; checked v3 dated 2018-05-07.
+- Eq. (4) resolves an expectation value into the product of an initial-state overlap, an observable overlap, and the mode exponential. The text explicitly states that different observables can have different decay rates because they see different symmetry sectors.
+- Section III develops weak-symmetry sector selection; Section V, including Eq. (14), applies it to magnetization in a spin chain.
+- This directly precedes the present manuscript's central organizing idea. The present work cannot claim that observable-selected relaxation or exclusion of a slow mode by symmetry is a new general principle.
+- The checked example concerns weak discrete spin-chain symmetries, not fermionic parity superselection. It does not give the present uniform multiparticle-pump Boolean-spin reduction, exact N/D conditional channels, or the stated fixed-d rate hierarchy.
+- Local full-text evidence: `review/symmetry-source-fn5l8aoc/paper.txt`, Eq. (4) and Sections III/V. The downloaded full text is excluded from the source bundle and Git submission.
+
+The revised manuscript's narrower contribution is a quantitative realization in the Xu–Yi model: exact assignment of N and D to two spin blocks, physically admissible simultaneous preparation, explicit normalized dynamics and readout mixing, and a semiclassical rate hierarchy. The readout crossover of two exponentials is elementary and is not claimed as an independent general result. These distinctions strengthen the physical question without making a claim of PRL-level novelty or guaranteeing PRA acceptance.
+
 ## Xu and Yi: source model and characteristic-polynomial approximation
 
 Mingtao Xu and Wei Yi, “Higher-order Liouvillian exceptional points in the dissipative dynamics of quadratic fermions,” *Physical Review A* **113**(6), 062455 (2026). DOI: [10.1103/5sk1-qjm1](https://doi.org/10.1103/5sk1-qjm1).
