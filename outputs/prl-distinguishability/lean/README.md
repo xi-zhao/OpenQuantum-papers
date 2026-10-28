@@ -1,4 +1,11 @@
-# Lean formalization
+# Lean formalization of the earlier two-state manuscript
+
+**Scope (2026-10-28):** This directory checks results from the earlier two-state
+distinguishability manuscript. All theorem and equation numbers below refer to
+that version. It does **not** formalize the current classical/quantum recovery
+bracket, its probability bound, or the common Gaussian coding curve in
+`../paper.tex` and `../supplement.tex`. No new Lean build was needed for the
+current revision; the build statement below records the earlier validation.
 
 Lean 4 (v4.36.0-rc1) + Mathlib (tag `v4.36.0-rc1`). `lake build` succeeds.
 No `sorry`, `admit`, or new `axiom`. `#print axioms` in `Audit.lean`

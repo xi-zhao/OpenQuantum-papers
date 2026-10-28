@@ -1,61 +1,65 @@
-# Noisy-state distinguishability — revised manuscript
+# Classical and quantum recovery in random codes
 
-本目录的有效稿件是 `paper.tex` / `paper.pdf`。题目为 **How long does a scrambled quantum memory remember?**（第十轮前为 Scrambled states survive local Pauli noise up to the hashing entropy）。
+当前稿件：**A Common Recovery Transition for Classical and Quantum Information in Random Codes**，2026-10-28。
 
-新版保留可证明的结论：任意 Pauli 分布的有限尺寸双侧界、固定 i.i.d. 噪声的阈值两侧指数分离、非退化临界信道族的高斯标度，以及退极化阈值附近由上下界夹出的首阶二次速率。它同时给出退相干下不同 2-design 的精确反例，以及稳定子态排除通用紧衰减指数的界。隐私放大指数按已有结果引用；不宣称发现物理冻结相变，不使用高斯替代模型作数值证据，不保证 PRL 接收或 hep-th 适配。
+同一个随机量子编码器用于两项任务：读取均匀逻辑基消息，或恢复与参考系的纠缠。接收方知道编码器与固定 Pauli 信道，分别优化解码。正文给出任意 exact unitary 2-design 的有限尺寸信息谱夹逼；在固定 iid 噪声、0 < H < 1、正 surprisal 方差的正码率窗口中，两个最优性能具有相同的高斯极限与二阶码长，并给出编码器概率界。
 
-## 文件
+文献定位：hashing 率、量子二阶可达性及量子信息谱可达侧已有直接先例（包括 Klesse 2007）。当前结果的重点是经典最优读取的匹配 converse，以及与量子恢复的共同操作性能。它不等于一般 Pauli 信道容量定理，不承诺高效解码，也不包含含噪编码线路或实际硬件实验。
 
-- `paper.tex`：英文正文及内嵌参考文献。
-- `paper.pdf`：由当前正文编译的短篇双栏 PDF。
-- `figures/bounds.pdf`、`figures/dephasing.pdf`：论文矢量图；同名 PNG 为预览。
-- `code/reproduce.py`：唯一有效的数值复现入口，无导入副作用。
-- `data/haar_n8_raw.csv`：64 对独立 Haar 态，n=8，15 个噪声强度；保留每个样本值。
-- `data/haar_n8_summary.csv`：均值、样本标准误及严格有限尺寸界。
-- `data/critical_brackets.csv`：n=1024、65536 的信息谱上下界，非态模拟结果。
-- `data/dephasing_exact.csv`：MUB 与 Haar 的解析退相干迹距离。
-- `data/verification.json`：检查结果、随机种子、环境版本和数据摘要。
-- `REVISION_NOTES.md`：审稿问题的逐项处理和仍存在的限制。
-- `VALIDATION.md`：数值、排版、复现验证范围及已知构建提示。
-- `REVIEW.md`：对初稿的审稿意见，链接指向历史版本。
-- `archive/initial-draft/`：原稿、原始启发式脚本和审稿时证据的只读历史快照；不属于新版复现链。
+## 当前文件
+
+- `paper.tex` / `paper.pdf`：英文短篇正文与内嵌参考文献。
+- `supplement.tex` / `supplement.pdf`：完整证明、Clifford 最优性、数值方法和前作对照。
+- `code/recovery.py`：当前数值复现入口；导入不会执行模拟或写文件。
+- `figures/recovery.pdf` / `figures/recovery.png`：论文矢量图与预览。
+- `data/recovery_clifford_raw.csv`：4、8、12、16 比特各 64 个 Clifford 编码器，12 个噪声强度，共 3072 条记录。
+- `data/recovery_encoders.json`：每个样本的种子及逆编码 symplectic matrix。
+- `data/recovery_clifford_summary.csv`：每个尺寸、噪声强度的均值与标准误。
+- `data/recovery_critical_brackets.csv`：大 n 的解析信息谱界；不是量子解码模拟。
+- `data/recovery_rates.csv`：共同随机码率与已知最优经典容量的比较。
+- `data/recovery_verification.json`：原始/对偶 SDP、显式恢复、枚举和 CDF 检查，含求解器尝试、版本与文件摘要。
+- `VALIDATION.md`：本轮验证范围与结果。
+- `REVIEW_ROUND11.md`：本轮独立模型审稿与处理记录。
+- `LITERATURE_ROUND11.md`：直接相关原始文献、精确结果位置与重叠范围。
+- `recovery-manuscript-source.zip`：当前正文、补充材料、源码、图表、数据和审查记录的交付包；包内有 SHA-256 清单。
+- `REVISION_NOTES.md`：累积修订历史；较早结论仅代表相应轮次。
+
+旧两态研究的 `code/reproduce.py`、不以 `recovery_` 开头的数据与旧图保留为历史记录。`archive/round10-memory/` 保存重写前正文与 PDF。`lean/` 仅覆盖旧两态稿的条件形式化，**没有形式化当前恢复定理**。
 
 ## 复现
 
-已使用现有 Python 3、NumPy、SciPy、Matplotlib、TeX Live 与 REVTeX 环境；没有安装新依赖。确切 Python 包版本写入 `data/verification.json`。
+使用现有 Python、NumPy、SciPy、Qiskit、CVXPY、CLARABEL、SCS、Matplotlib 以及 TeX Live / REVTeX；本轮未安装依赖。准确版本见验证 JSON。以下命令从本目录运行，脚本也支持绝对路径调用。
 
-从本目录运行以下任一命令。脚本以自身路径定位数据，所以从其他目录以绝对路径调用也可。
-
-只读运行独立检查，不生成文件：
+只运行数值检查，不改写数据或图：
 
 ```bash
-python3 -I code/reproduce.py --check-only
+python3 -I code/recovery.py --check-only
 ```
 
-利用已保存的原始样本重新生成全部表格与图：
+利用保存的样本生成汇总表、图和验证报告：
 
 ```bash
-python3 -I code/reproduce.py
+python3 -I code/recovery.py
 ```
 
-使用固定种子重新计算全部 Haar 原始样本（会更新本任务的生成物）：
+按固定种子重新计算全部 Clifford 样本，并更新生成物：
 
 ```bash
-python3 -I code/reproduce.py --resimulate
+python3 -I code/recovery.py --simulate
 ```
 
-编译论文，辅助文件保留在忽略的 `build/` 中：
+编译正文：
 
 ```bash
 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build paper.tex
 ```
 
-成功后更新交付 PDF：
+编译补充材料：
 
 ```bash
-cp build/paper.pdf paper.pdf
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build supplement.tex
 ```
 
-数值脚本检查显式 Pauli 求和与逐比特通道实现、n=1/2 完整 MUB 的二阶矩与解析迹距离、相关两比特 Pauli 分布的精确二阶矩和双侧界、信息谱 CDF、Rényi 优化恒等式及完全退极化极限。样本均值落在界内仅是有限尺寸一致性检查，不能替代证明，也不是对每个样本的保证。
+编译产物保存在 `build/`，目录根的同名 PDF 是交付副本。若自行修改源文件，请在检查后同步副本。
 
-图 1(a) 的噪声扫描复用相同态对，不同噪声点因而相关；图中误差条只表示每个噪声点的样本标准误。图 1(b) 完全由严格界计算，不把大 n 结果伪装成精确态模拟。图 2 是解析值，无抽样误差。
+Clifford 数值对有限尺寸模型精确求和，仅有浮点误差；它不以独立随机向量代替同一编码器的相关错误像。噪声扫描复用同一编码器，因此不同噪声点相关；误差条是编码器样本均值的标准误。小系统数值是独立一致性检查，不能替代渐近定理的证明，也不能单独证明 PRL 重要性。
