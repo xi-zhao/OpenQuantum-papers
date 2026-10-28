@@ -54,6 +54,99 @@ def critical_r():
     return brentq(lambda r: entropy_sigma(r)[0] - 1, 0.05, 0.5, xtol=1e-14)
 
 
+def twirled_idle(t, ratio):
+    """Pauli-twirled idling for time t (units of T1) with T2 = ratio*T1, ratio<=2."""
+    if not 0 < ratio <= 2:
+        raise ValueError("Pauli twirl needs 0 < T2/T1 <= 2")
+    a = 1-math.exp(-t)
+    px = a/4
+    pz = (1-math.exp(-t/ratio))/2-a/4
+    return np.array([1-2*px-pz, px, px, pz])
+
+
+def biased_noise(p, eta):
+    """Total error p with bias eta = p_z/(p_x+p_y)."""
+    return np.array([1-p, p/(2*(eta+1)), p/(2*(eta+1)), p*eta/(eta+1)])
+
+
+def purity_window(probs_of_p, grid):
+    """Parameter values at which 2*sum p_i^2 < 1, i.e. the purity bound decays."""
+    ok = [x for x in grid if 2*float(np.sum(probs_of_p(x)**2)) < 1]
+    return (min(ok), max(ok)) if ok else None
+
+
+def memory_and_bias_checks(rng):
+    out = {}
+    # Retention time: entropy threshold H=1 versus purity threshold 2 sum p^2 = 1.
+    memory = {}
+    for ratio in (2.0, 1.0, 0.5, 0.2):
+        tc = brentq(lambda t: entropy(twirled_idle(t, ratio))-1, 1e-6, 20, xtol=1e-12)
+        tp = brentq(lambda t: 2*float(np.sum(twirled_idle(t, ratio)**2))-1, 1e-6, 20, xtol=1e-12)
+        assert tp > tc
+        memory[str(ratio)] = {"t_c_over_T1": tc, "t_purity_over_T1": tp}
+    rc = critical_r()
+    assert abs(memory["1.0"]["t_c_over_T1"]+math.log(1-rc)) < 1e-9
+    assert abs(memory["1.0"]["t_purity_over_T1"]-math.log(3)/2) < 1e-9
+    out["memory_retention"] = memory
+    # Biased noise: hashing threshold and the finite purity window.
+    grid = np.linspace(1e-4, 1-1e-6, 200001)
+    bias = {}
+    for eta in (0.5, 1, 3, 10, 100):
+        pc = brentq(lambda p: entropy(biased_noise(p, eta))-1, 1e-4, 0.5-1e-9, xtol=1e-12)
+        window = purity_window(lambda p: biased_noise(p, eta), grid)
+        assert window is not None and window[0] > pc
+        bias[str(eta)] = {"p_c": pc, "purity_window": window}
+    assert bias["3"]["purity_window"][1] < 1 and bias["0.5"]["purity_window"][1] > 0.999
+    out["biased_noise"] = bias
+    # Pure dephasing: H<1 for every q<1/2, and the purity bound never decays.
+    qs = np.linspace(1e-6, 0.5-1e-6, 100001)
+    assert all(entropy([1-q, 0, 0, q]) < 1 for q in qs)
+    assert min(2*((1-q)**2+q*q) for q in qs) >= 1-1e-9
+    out["dephasing"] = {"entropy_below_one_for_q_lt_half": True,
+                        "min_2_sum_p2": float(min(2*((1-q)**2+q*q) for q in qs))}
+    # Codebook: optimal success (SDP) versus achievability and strong-converse bounds.
+    try:
+        import cvxpy as cp
+    except ImportError:
+        out["codebook"] = "skipped: cvxpy not installed"
+    else:
+        n, d = 2, 4
+        mats = pauli_strings(n)
+        rows = []
+        for r, M in ((0.05, 2), (0.2, 4), (0.5, 4), (0.15, 8)):
+            q = 3*r/4
+            p1 = np.array([1-q, q/3, q/3, q/3])
+            p = np.array([math.prod(p1[s] for s in w) for w in itertools.product(range(4), repeat=n)])
+            s = -np.log2(p)
+            F = lambda u: float(p[s < u].sum())
+            values = []
+            for _ in range(10):
+                outs = [sum(w*(P@np.outer(v, v.conj())@P.conj().T) for w, P in zip(p, mats))
+                        for v in (haar_state(d, rng) for _ in range(M))]
+                E = [cp.Variable((d, d), hermitian=True) for _ in range(M)]
+                prob = cp.Problem(cp.Maximize(cp.real(sum(cp.trace(Ei@o) for Ei, o in zip(E, outs)))/M),
+                                  [Ei >> 0 for Ei in E]+[sum(E) == np.eye(d)])
+                prob.solve(solver="CLARABEL")
+                values.append(prob.value)
+            succ = float(np.mean(values))
+            converse = min(g/M+1/(4*g)+2**(-a)/4+F(n-math.log2(g)+a)
+                           for g in np.geomspace(0.05, 64, 120) for a in np.linspace(0, 8, 41))
+            achievable = max(1-(2*(1-F(n-a))+4*(M-1)*2**(-a)) for a in np.linspace(-2, 6, 81))
+            assert achievable <= succ+0.03 and succ <= converse+0.03
+            rows.append({"r": r, "M": M, "optimal_success": succ,
+                         "converse": min(converse, 1.0), "achievable": achievable})
+        out["codebook"] = rows
+    # QEM pair selection: overlap tail used in the sample bound.
+    tails = {}
+    for n in (4, 6, 8):
+        d = 2**n
+        ov = np.array([abs(np.vdot(haar_state(d, rng), haar_state(d, rng)))**2 for _ in range(4000)])
+        assert np.mean(ov > 4/d) <= 0.25
+        tails[str(n)] = float(np.mean(ov > 4/d))
+    out["qem_pair_selection"] = {"P_overlap_gt_4_over_d": tails}
+    return out
+
+
 def haar_state(d, rng):
     vector = rng.normal(size=d) + 1j * rng.normal(size=d)
     return vector / np.linalg.norm(vector)
@@ -381,6 +474,7 @@ def verification():
         q = 3*r/4
         assert abs(((1-q)**2+q*q/3)-(1+3*(1-r)**2)/4) < 1e-14
     report["purity_threshold_r"] = 1-1/math.sqrt(3)
+    report.update(memory_and_bias_checks(rng))
     # H_min <= sandwiched H_2 (conditioned on the marginal), the link from the AEP
     # to the collision entropy, on random two-party states; SDP for H_min.
     try:
