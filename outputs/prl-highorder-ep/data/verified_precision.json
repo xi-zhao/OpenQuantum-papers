@@ -1,0 +1,167 @@
+{
+  "points": [
+    {
+      "n": 16,
+      "d": 2,
+      "digits": 70,
+      "perron": 23.542710592040457,
+      "gap": 4.85738247058998,
+      "next_imag": -9.15977475761507e-70,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 1.904421602227088e-13
+    },
+    {
+      "n": 32,
+      "d": 2,
+      "digits": 70,
+      "perron": 59.9050294674748,
+      "gap": 6.145400636311448,
+      "next_imag": -3.4948905533350264e-65,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 2.4706782247588773e-13
+    },
+    {
+      "n": 48,
+      "d": 2,
+      "digits": 70,
+      "perron": 103.18999803057271,
+      "gap": 7.044831252375132,
+      "next_imag": 6.496980034924182e-63,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 2.685450840539192e-13
+    },
+    {
+      "n": 64,
+      "d": 2,
+      "digits": 70,
+      "perron": 151.67393629401556,
+      "gap": 7.75947277760508,
+      "next_imag": 5.7969924436726235e-62,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 2.792064878517488e-13
+    },
+    {
+      "n": 16,
+      "d": 3,
+      "digits": 70,
+      "perron": 24.360902237576912,
+      "gap": 6.709852710710478,
+      "next_imag": -4.944158714660312e-71,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 3.411120496964367e-13
+    },
+    {
+      "n": 32,
+      "d": 3,
+      "digits": 70,
+      "perron": 70.3469252104315,
+      "gap": 9.493818674628839,
+      "next_imag": 4.304972866859142e-66,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 4.529087259489542e-13
+    },
+    {
+      "n": 48,
+      "d": 3,
+      "digits": 70,
+      "perron": 130.10550974516366,
+      "gap": 11.63370190798349,
+      "next_imag": 1.637568011702508e-63,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 4.88893866446026e-13
+    },
+    {
+      "n": 64,
+      "d": 3,
+      "digits": 70,
+      "perron": 200.97626904596294,
+      "gap": 13.437869362456155,
+      "next_imag": 2.7008362950090586e-61,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 4.241132895261785e-13
+    },
+    {
+      "n": 16,
+      "d": 4,
+      "digits": 70,
+      "perron": 22.87514688234579,
+      "gap": 7.829098441685433,
+      "next_imag": 7.805720875854249e-71,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 5.032008047212687e-13
+    },
+    {
+      "n": 32,
+      "d": 4,
+      "digits": 70,
+      "perron": 71.5922881087989,
+      "gap": 11.735351619320419,
+      "next_imag": -2.403867697378541e-69,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 5.551961208170254e-13
+    },
+    {
+      "n": 48,
+      "d": 4,
+      "digits": 70,
+      "perron": 138.36806949007746,
+      "gap": 14.929462141565656,
+      "next_imag": -9.669489730109589e-64,
+      "precision_comparison": {
+        "perron_difference": 0.0,
+        "gap_difference": 0.0
+      },
+      "positive_iteration_error": 5.576788155527492e-13
+    },
+    {
+      "n": 64,
+      "d": 4,
+      "digits": 70,
+      "perron": 220.35136237143976,
+      "gap": 17.723127315630876,
+      "next_imag": -1.2729791106938273e-61,
+      "precision_comparison": {
+        "perron_difference": 4.831690603168681e-13,
+        "gap_difference": 7.624123554705875e-12
+      },
+      "positive_iteration_error": 5.465034641066964e-13
+    }
+  ],
+  "provenance": {
+    "python": "3.13.2",
+    "numpy": "2.2.6",
+    "scipy": "1.16.3",
+    "mpmath": "1.3.0",
+    "elapsed_seconds": 101.87320399284363
+  }
+}

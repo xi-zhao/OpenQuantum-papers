@@ -1,0 +1,156 @@
+{
+  "random_complex_h_matrix_identities": [
+    {
+      "n": 1,
+      "d": 1,
+      "fock_unitarity_residual": 0.0,
+      "covariance_residual": 0.0,
+      "sign_gauge_block_residual": 0.0,
+      "even_operator_dimension": 2
+    },
+    {
+      "n": 2,
+      "d": 1,
+      "fock_unitarity_residual": 2.64097631315622e-17,
+      "covariance_residual": 4.965068306494546e-16,
+      "sign_gauge_block_residual": 4.965068306494546e-16,
+      "even_operator_dimension": 8
+    },
+    {
+      "n": 2,
+      "d": 2,
+      "fock_unitarity_residual": 1.110618824369239e-16,
+      "covariance_residual": 4.965068306494546e-16,
+      "sign_gauge_block_residual": 4.965068306494546e-16,
+      "even_operator_dimension": 8
+    },
+    {
+      "n": 3,
+      "d": 1,
+      "fock_unitarity_residual": 4.446983835641344e-16,
+      "covariance_residual": 3.553033383931166e-15,
+      "sign_gauge_block_residual": 3.553033383931166e-15,
+      "even_operator_dimension": 32
+    },
+    {
+      "n": 3,
+      "d": 2,
+      "fock_unitarity_residual": 1.9984827496033868e-15,
+      "covariance_residual": 1.2434497875801753e-14,
+      "sign_gauge_block_residual": 1.2434497875801753e-14,
+      "even_operator_dimension": 32
+    },
+    {
+      "n": 3,
+      "d": 3,
+      "fock_unitarity_residual": 4.0011990189532825e-16,
+      "covariance_residual": 2.5121479338940403e-15,
+      "sign_gauge_block_residual": 2.5121479338940403e-15,
+      "even_operator_dimension": 32
+    },
+    {
+      "n": 4,
+      "d": 1,
+      "fock_unitarity_residual": 1.1103455590908315e-15,
+      "covariance_residual": 1.3557455178480059e-14,
+      "sign_gauge_block_residual": 1.3557455178480059e-14,
+      "even_operator_dimension": 128
+    },
+    {
+      "n": 4,
+      "d": 2,
+      "fock_unitarity_residual": 1.998589670459352e-15,
+      "covariance_residual": 1.888293221827313e-14,
+      "sign_gauge_block_residual": 1.9560100690747755e-14,
+      "even_operator_dimension": 128
+    },
+    {
+      "n": 4,
+      "d": 3,
+      "fock_unitarity_residual": 8.88286372574127e-16,
+      "covariance_residual": 1.432144669219779e-14,
+      "sign_gauge_block_residual": 1.432144669219779e-14,
+      "even_operator_dimension": 128
+    },
+    {
+      "n": 4,
+      "d": 4,
+      "fock_unitarity_residual": 8.881912358737923e-16,
+      "covariance_residual": 8.379058453350832e-15,
+      "sign_gauge_block_residual": 8.379058453350832e-15,
+      "even_operator_dimension": 128
+    }
+  ],
+  "exact_integer_sign_checks": 4134,
+  "spin_intertwiners": [
+    {
+      "m": 0,
+      "irreducible_copies": 1,
+      "orthogonality_residual": 0.0,
+      "max_intertwiner_residual": 0.0
+    },
+    {
+      "m": 1,
+      "irreducible_copies": 1,
+      "orthogonality_residual": 0.0,
+      "max_intertwiner_residual": 0.0
+    },
+    {
+      "m": 2,
+      "irreducible_copies": 2,
+      "orthogonality_residual": 2.220446049250313e-16,
+      "max_intertwiner_residual": 1.1102230246251565e-16
+    },
+    {
+      "m": 3,
+      "irreducible_copies": 3,
+      "orthogonality_residual": 2.220446049250313e-16,
+      "max_intertwiner_residual": 2.7755575615628914e-17
+    },
+    {
+      "m": 4,
+      "irreducible_copies": 6,
+      "orthogonality_residual": 2.220446049250313e-16,
+      "max_intertwiner_residual": 4.440892098500626e-16
+    },
+    {
+      "m": 5,
+      "irreducible_copies": 10,
+      "orthogonality_residual": 5.092037779127451e-16,
+      "max_intertwiner_residual": 5.486259882098167e-16
+    },
+    {
+      "m": 6,
+      "irreducible_copies": 20,
+      "orthogonality_residual": 8.881784197001252e-16,
+      "max_intertwiner_residual": 1.118981582335166e-15
+    },
+    {
+      "m": 7,
+      "irreducible_copies": 35,
+      "orthogonality_residual": 1.3555412037060034e-15,
+      "max_intertwiner_residual": 8.881784197001252e-15
+    }
+  ],
+  "principal_submatrix_checks": 49,
+  "d1_exact_checks": {
+    "max_ladder_error": 1.7763568394002505e-14,
+    "full_gap": 0.6082762530298149,
+    "even_gap": 1.216552506059636,
+    "expected_full_gap": 0.6082762530298219,
+    "expected_even_gap": 1.2165525060596438,
+    "right_operator_residual": 1.3877787807814457e-17,
+    "t19_d1_zeta1_brentq_endpoint": 0.0,
+    "exact_d1_zeta1_filling": 0.5
+  },
+  "internal_root_counterexample": {
+    "n": 4,
+    "d": 4,
+    "z": 1,
+    "kappa_n": 1.888175022589804,
+    "max_internal_nonperron_real_part": 0.5834781703345497,
+    "kappa_n_minus_1": 0,
+    "kappa_n_minus_2": 0,
+    "full_and_even_gap_for_gamma1": 1.3046968522552542
+  }
+}

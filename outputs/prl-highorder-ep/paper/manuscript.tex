@@ -1,0 +1,200 @@
+\documentclass[aps,pra,reprint,superscriptaddress,nofootinbib]{revtex4-2}
+\usepackage{amsmath,amssymb,bm,graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\begin{document}
+\title{Spectral sectors and finite-size scaling of fermionic Liouvillian exceptional points}
+\hypersetup{pdftitle={Spectral sectors and finite-size scaling of fermionic Liouvillian exceptional points}}
+\begin{abstract}
+Simultaneous creation of $d$ fermions unfolds a size-$(n+1)$ Liouvillian Jordan block with a fractional exponent $1/(d+1)$. We revisit the uniformly pumped, post-selected quadratic-fermion model of Xu and Yi and resolve the spectrum into finite collective-spin blocks, including the complementary coherence sectors. An exact characteristic-polynomial recurrence clarifies why a truncation linear in the perturbation, although valid at fixed spectral parameter, does not determine all split roots. For fixed $d$ and large $n$, a semiclassical expansion gives the spectral edge, its first finite-size correction, and the local level spacing. Combining the spin sectors distinguishes unrestricted operator-space decay from parity-even relaxation and from particle-number dynamics. The leading spectral-edge coefficient for $d=2$ agrees with the known quasi-exactly solvable quartic-potential result. We also specify the trace-nonincreasing parameter range, within which the formal spectral scaling describes a physical conditional evolution.
+\end{abstract}
+\maketitle
+
+\emph{Introduction.---}
+A high-order exceptional point does not by itself fix the response to a structured perturbation. The perturbation's bandwidth can select fractional powers and several rings of eigenvalues, rather than one ring containing the entire Jordan block~\cite{MaEdelman,Graefe}. This distinction is relevant to the post-selected fermion dynamics studied by Xu and Yi~\cite{XuYi}, where uniform $d$-particle creation perturbs a Liouvillian exceptional point of order $n+1$.
+Their fractional exponent is correct. What requires refinement is the use of the characteristic polynomial truncated at first order in the perturbation [their Eq.~(54), numbering as in arXiv v2]: terms beyond first order need not be negligible on the scale of the split eigenvalues.
+
+Here we give an exact polynomial recurrence and resolve the complementary operator space into the same family of spin matrices. The latter reduction yields exact, sector-dependent formulas for the real-part spectral gaps without diagonalizing a $4^n$ matrix. A large-spin expansion then supplies explicit finite-size corrections and separates three relaxation scales. We do not claim the fractional exponent or eigenvalue-ring structure as new, and explicitly identify the known $d=2$ spectral-edge asymptotic~\cite{ShapiroTater}. Our purpose is a quantitative spectral and dynamical account of this particular Liouvillian, including the conditions needed for its conditional interpretation.
+
+\emph{Model and physical domain.---}
+Let $c_j$ be canonical fermion annihilation operators on $n$ modes, $H=\sum_{ij}h_{ij}c_i^\dagger c_j$ with $h=h^\dagger$, and $\gamma>0$. Consider
+\begin{align}
+\mathcal L\rho={}&-\ii[H,\rho]+\gamma\sum_jc_j\rho c_j^\dagger-n\gamma\rho
+ +z\gamma\sum_{|I|=d}c_I^\dagger\rho c_I,
+\label{eq:model}
+\end{align}
+where $1\le d\le n$, $z>0$, and $c_I^\dagger=c_{i_1}^\dagger\cdots c_{i_d}^\dagger$ for $i_1<\cdots<i_d$; $c_I$ is its adjoint. Every $d$-mode subset has the same coefficient. The pump is a recycling term, as in Ref.~\cite{XuYi}, not a full Lindblad dissipator added to an otherwise unchanged generator.
+Writing $\hat N=\sum_jc_j^\dagger c_j$ gives
+\begin{equation}
+\mathcal L^\dagger\mathbb 1
+=\gamma\left[-(n-\hat N)+z\binom{n-\hat N}{d}\right].
+\label{eq:trace}
+\end{equation}
+The semigroup is completely positive for $z\ge0$, and is trace nonincreasing if and only if
+\begin{equation}
+0\le z\le \frac{n}{\binom nd}.
+\label{eq:physical}
+\end{equation}
+Indeed, the omitted jump can have squared amplitude $K=\gamma[n-\hat N-z\binom{n-\hat N}{d}]\ge0$; the total retained and omitted jump intensities then equal $n\gamma\mathbb 1$. Conversely, positivity of $K$ is necessary, and its strongest inequality occurs at $\hat N=0$. Outside Eq.~\eqref{eq:physical} the algebraic spectrum remains defined, but its growing trace is not a post-selection probability for this unchanged generator.
+
+\emph{Exact polynomial in the symmetric sector.---}
+Let $P_k$ project onto the $k$-particle sector without normalization. On $\rho=\sum_{k=0}^n v_kP_k$, the shifted generator $(\mathcal L+n\gamma)/\gamma$ is the matrix $N_{n,d}(z)$ with
+\begin{equation}
+N_{k-1,k}=n-k+1,\qquad
+N_{k+d,k}=z\binom{k+d}{d}.
+\label{eq:N}
+\end{equation}
+All other entries vanish. The physical probability of $k$ particles is proportional to $\binom nk v_k$, not to $v_k$ alone.
+With $q=z^{1/(d+1)}$ and $D_{kk}=q^k$,
+\begin{equation}
+D^{-1}N_{n,d}(z)D=qN_{n,d}(1).
+\label{eq:homogeneity}
+\end{equation}
+Thus the fractional scaling is exact for every nonzero eigenvalue, not merely its leading Puiseux term.
+
+For an explicit polynomial, define $p_\ell(\mu,z)$ as the determinant of the first $\ell$ rows and columns of $\mu\mathbb1-N_{n,d}(z)$, with the full $n$ held fixed. Set $p_0=1$ and $p_\ell=\mu^\ell$ for $1\le\ell\le d$. Then
+\begin{align}
+p_\ell&=\mu p_{\ell-1}-z w_{\ell-d-1}p_{\ell-d-1},\quad \ell\ge d+1,
+\label{eq:recurrence}\\
+w_i&=\binom{i+d}{d}\frac{(n-i)!}{(n-i-d)!}.
+\nonumber
+\end{align}
+A determinant permutation consists of fixed points and nonoverlapping cycles on consecutive intervals of length $d+1$. Consequently,
+\begin{equation}
+p_{n+1}=\sum_{j=0}^{\lfloor(n+1)/(d+1)\rfloor}
+(-z)^j W_j\mu^{n+1-(d+1)j},\qquad W_j>0,
+\label{eq:polynomial}
+\end{equation}
+where $W_0=1$ and $W_j$ sums products of the $w_i$ over $j$ disjoint intervals, as in the structured-Jordan analysis of Ref.~\cite{MaEdelman}. The zero eigenvalue has algebraic multiplicity $r=(n+1)\bmod(d+1)$. McMillen's positive double-band theorem~\cite{McMillen} further implies that every nonzero root is simple and has the form $\rho_a e^{2\pi\ii j/(d+1)}$, with distinct positive radii $\rho_a$. Since the transpose is an unreduced upper-Hessenberg matrix, it is cyclic; when $r>0$, the zero generalized eigenspace is one Jordan block of size $r$. This is a special, exactly homogeneous realization of known structured-unfolding results~\cite{MaEdelman,Graefe,McMillen}.
+
+For $n=7$, $d=2$, Eq.~\eqref{eq:recurrence} gives
+\begin{equation}
+p_8=\mu^8-504z\mu^5+27504z^2\mu^2.
+\label{eq:example}
+\end{equation}
+There are two cubic triplets and a residual size-two Jordan block (Fig.~\ref{fig:splitting}). The linear truncation instead yields one triplet and five zero roots. At fixed nonzero $\mu$, the discarded term is indeed $O(z^2)$. At $\mu=q x$, however, \emph{every} term in Eq.~\eqref{eq:polynomial} is proportional to $q^{n+1}$. The truncation is therefore nonuniform on the splitting scale. It is exact when $n+1<2(d+1)$; otherwise it does not fix the full root pattern or its coefficients. This limits the inference one can draw from Eq.~(54) of Ref.~\cite{XuYi}, while preserving that work's exponent. Its Fig.~2 uses $n=4$, where the truncation is complete for $d=2,3,4$; $d=1$ is independently solved in its Appendix~C. Those checks are not contradicted.
+
+\begin{figure}[t]
+\includegraphics[width=\columnwidth]{../figs/splitting.pdf}
+\caption{Exact roots of Eq.~\eqref{eq:example} (circles) and roots of its linear-in-$z$ truncation (crosses). The axes divide out the exact factor $z^{1/3}$. The difference survives as $z\to0$, and the residual zero multiplicity is two rather than five.}
+\label{fig:splitting}
+\end{figure}
+
+\emph{Reduction of the complete operator space.---}
+Diagonalize $h$, with single-particle energies $\epsilon_j$. The loss sum and the sum of all $d$-particle creation channels are invariant under this change of modes: the latter channels transform by the unitary $d$th exterior power of the single-particle rotation. This step would fail for generic nonuniform pumping.
+
+In the energy basis, label an operator by disjoint frozen sets $A,B$, occupied only on the ket or only on the bra, respectively, and a common occupied set $C$ in the remaining $m=n-|A|-|B|$ modes. All vectors $|A\cup C\rangle\langle B\cup C|$ share the Hamiltonian shift $-\ii(E_A-E_B)$, with $E_A=\sum_{a\in A}\epsilon_a$. Their fermionic recycling signs are removed by multiplying each vector by
+\begin{equation}
+g_{A,B}(C)=(-1)^{\sum_{c\in C}|\{f\in A\cup B:f<c\}|}.
+\label{eq:gauge}
+\end{equation}
+In this basis the remaining matrix on subsets $C$ is
+\begin{equation}
+G_{m,d}=J_-+\frac{z}{d!}J_+^d,\qquad
+J_\pm=\sum_{j=1}^m\sigma_j^\pm.
+\label{eq:spin}
+\end{equation}
+One loss removes an arbitrary occupied mode, and one pump adds any $d$ empty modes, with amplitudes $1$ and $z$. The factor $d!$ removes the orderings in $J_+^d$.
+The tensor product of $m$ spin-$1/2$ representations decomposes into spin $s=(m-2j)/2$ with multiplicity
+$\eta_{m,j}=\binom mj-\binom m{j-1}$, where $\binom m{-1}=0$. Its spin-$s$ matrix is similar to $N_{m-2j,d}(z)$. Therefore the complete spectrum, including multiplicities, is
+\begin{equation}
+\biguplus_{\substack{A\cap B=\varnothing\\0\le j\le\lfloor m/2\rfloor}}
+\left[-n\gamma-\ii(E_A-E_B)+\gamma\spec N_{m-2j,d}(z)\right]^{\eta_{m,j}}.
+\label{eq:full}
+\end{equation}
+For an index $M<d$, $N_{M,d}$ is simply nilpotent. Fermionic even-parity operators have $|A|+|B|$ even. Equation~\eqref{eq:full} is an algebraic block reduction, rather than a closed-form expression for every polynomial root. It applies to arbitrary number-conserving quadratic $H$, including broken translation symmetry. Jordan-form methods for quadratic open fermions provide broader context~\cite{Prosen}, but the $d>1$ recycling term here is not quadratic in fermionic superoperators.
+
+Define $\kappa_{M,d}$ as the Perron root of $N_{M,d}(1)$ and
+\begin{equation}
+\delta_{n,d}=\kappa_{n,d}-\max_{\nu\in\spec N_{n,d}(1),\,\nu\ne\kappa_{n,d}}\Re\nu.
+\label{eq:delta}
+\end{equation}
+Set $\kappa_{M,d}=0$ for $M<d$. For $m\ge d$, $G_{m,d}$ is irreducible and nonnegative. Its positive Perron vector is permutation invariant, hence belongs to the maximal-spin sector. Embedding $G_{m,d}$ as a principal submatrix of $G_{m+1,d}$ proves monotonicity of $\kappa_{m,d}$. Thus the leading Liouvillian eigenvalue is
+$\lambda_*=-n\gamma+\gamma q\kappa_{n,d}$, and the exact real-part separations are
+\begin{align}
+\Delta_{\rm all}&=\gamma q\min\{\delta_{n,d},\kappa_{n,d}-\kappa_{n-1,d}\},
+\label{eq:gaps}\\
+\Delta_{\rm even}&=\gamma q\min\{\delta_{n,d},\kappa_{n,d}-\kappa_{n-2,d}\},\quad n\ge2.
+\nonumber
+\end{align}
+The minimum cannot generally be dropped: at $n=d=4$, the symmetric block has fifth-root eigenvalues, including a subleading root with positive real part, whereas $\kappa_{3,4}=0$.
+
+\emph{Large-$n$ edge and level spacing.---}
+Take fixed $d$ and $n\to\infty$, and define
+\begin{align}
+\alpha_d&=\frac{2d}{d+1},\quad \beta_d=\frac{d-1}{d+1},\quad
+\Omega_d=\sqrt{\frac{d+1}{2}},\nonumber\\
+a_d&=\left[\frac{2^{-(d-1)}}{(d-1)!}\right]^{1/(d+1)},\qquad C_d=\frac{a_d}{\alpha_d}.
+\label{eq:constants}
+\end{align}
+The discrete WKB ansatz $v_k\sim\exp[nS(k/n)]$, at $z=\zeta n^{1-d}$, has the leading symbol
+\begin{equation}
+\frac{\mu}{n}=h(x,p)=(1-x)e^p+\frac{\zeta x^d}{d!}e^{-dp},\quad p=S'(x).
+\label{eq:symbol}
+\end{equation}
+Minimizing over real $p$ and maximizing the resulting envelope over $x$ gives $x_*=1/2$ and $\mu/n\sim C_d\zeta^{1/(d+1)}$. In particular,
+\begin{equation}
+C_d=(d+1)d^{-d/(d+1)}(d!)^{-1/(d+1)}4^{-d/(d+1)}.
+\end{equation}
+The saddle coordinate is a spectral construction; it need not equal the mean physical particle filling.
+
+A large-spin expansion supplies the correction and local spacing. Use the orthonormal spin-$s$ representation $\mathsf N_s=J_-+zJ_+^d/d!$, similar to Eq.~\eqref{eq:N}, with $s=n/2$. The nonunitary spin rotation $S=e^{\eta J_z}$, where $e^{(d+1)\eta}=zs^{d-1}/(d-1)!$, gives
+\begin{equation}
+S^{-1}\mathsf N_s S=e^\eta\left[J_-+\frac{J_+^d}{d s^{d-1}}\right].
+\end{equation}
+Around the $+x$-polarized spin, introduce $[X,P]=\ii$, $J_x=s-b^\dagger b$, and $J_y=\sqrt{s}X+O(s^{-1/2})$. The terms linear in $X$ cancel, leaving
+\begin{equation}
+e^{-\eta}S^{-1}\mathsf N_s S=
+ s(1+1/d)+1-P^2-\frac{d+1}{2}X^2+O(s^{-1/2}).
+\label{eq:oscillator}
+\end{equation}
+The remainder here is an expansion in the fixed low-excitation sector, not a norm bound on the entire spin space. Its leading term is odd under oscillator parity and has zero diagonal expectation. For fixed oscillator index $\ell$, this gives the formal edge expansion
+\begin{equation}
+\mu_\ell=q\left\{C_dn^{\alpha_d}+a_d[1-(2\ell+1)\Omega_d]n^{\beta_d}
++O(n^{\beta_d-1})\right\}.
+\label{eq:edge}
+\end{equation}
+It predicts the first Perron correction $a_d(1-\Omega_d)n^{\beta_d}$ and, on identifying $\ell=1$ with the next positive radial root, the spacing
+\begin{equation}
+\delta_{n,d}\sim 2a_d\Omega_d n^{\beta_d}.
+\label{eq:spacing}
+\end{equation}
+McMillen's theorem excludes a competing off-axis edge: those roots have a real-part separation at least $\kappa_{n,d}[1-\max\{0,\cos(2\pi/(d+1))\}]$, of order $n^{\alpha_d}$. The identification of the two largest positive roots with the local oscillator levels is the usual edge-localization assumption of this semiclassical expansion; Fig.~\ref{fig:scaling} tests it directly. We do not establish a uniform spectral error bound.
+Equations~\eqref{eq:edge}--\eqref{eq:spacing} are fixed-$d$ semiclassical asymptotics, not estimates uniform in $d/n$ or in the oscillator index. For $d=1$ they reduce to the exact spin spectrum $\mu_\ell=q(n-2\ell)$. For $d=2$, $N_{n,2}(2)^T$ is the $a=0$ matrix of Shapiro and Tater~\cite{ShapiroTater}; their spectral radius $\tfrac34 n^{4/3}[1+o(1)]$ gives precisely $C_2=3/2^{7/3}$. The finite-size correction and the use of the complete Liouvillian sectors are the additional information needed here.
+
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{../figs/scaling.pdf}
+\caption{Parameter-free tests for $d=2,3,4$. (a) Perron root divided by its leading asymptotic value. (b) The scaled residual approaches $\alpha_d(1-\Omega_d)$ (dashed lines), testing the first correction in Eq.~\eqref{eq:edge}. (c) Symmetric-block real-part spacing divided by Eq.~\eqref{eq:spacing}. Panels (a,b) use log-space positive iteration through $n=512$ with numerical Collatz bounds of relative width below $2\times10^{-12}$. Panel (c) uses dense 50- and 70-decimal-digit eigenproblems through $n=64$. Lines connect data; no coefficient is fitted. The $z=1$ values shown are rescalable to the physical domain by Eq.~\eqref{eq:homogeneity}.}
+\label{fig:scaling}
+\end{figure*}
+
+At fixed $d$, the differences between adjacent spin edges obey
+$\kappa_{n,d}-\kappa_{n-r,d}\sim r a_dn^{\beta_d}$ for fixed $r$. Since $2\Omega_d>2$ for $d>1$, the edge expansion and Eq.~\eqref{eq:gaps} give the asymptotic predictions
+\begin{equation}
+\Delta_{\rm all}\sim\gamma q a_dn^{\beta_d},\qquad
+\Delta_{\rm even}\sim2\gamma q a_dn^{\beta_d}.
+\label{eq:asymgaps}
+\end{equation}
+These differ from the symmetric-block spacing $2\gamma q a_d\Omega_dn^{\beta_d}$. The slowest unrestricted modes are odd-parity coherences with one frozen mode, excluded from physical fermionic density matrices. Even within the physical operator space, a particular observable need not couple to the slowest sector. Total particle number and trace couple only to the permutation-symmetric diagonal sector in the energy basis; their conditional expectation therefore samples the symmetric block, with a generic relaxation exponent $\gamma q\delta_{n,d}$ when the corresponding overlap is nonzero. For $d=1$, the checks are $\Delta_{\rm all}=\gamma\sqrt z$ and $\Delta_{\rm even}=\gamma q\delta_{n,1}=2\gamma\sqrt z$.
+
+\emph{Scaling within conditional dynamics.---}
+Holding the coefficient of each $d$-particle channel fixed while increasing $n$ eventually violates Eq.~\eqref{eq:physical} for $d>1$. A physically admissible large-size scaling is instead $z=\zeta n^{1-d}$ with fixed $0<\zeta<d!$. In this scaling,
+\begin{align}
+\frac{\lambda_*}{\gamma n}&=-1+C_d\zeta^{1/(d+1)}+O(n^{-1}),\nonumber\\
+\Delta_{\rm even}&\sim2\gamma a_d\zeta^{1/(d+1)},\qquad
+\Delta_{P}\sim2\gamma a_d\Omega_d\zeta^{1/(d+1)}.
+\label{eq:physicalscaling}
+\end{align}
+The gaps can remain finite while the conditional survival weight still decays extensively. For $d>1$,
+$C_d(d!)^{1/(d+1)}=(d+1)/(4d)^{d/(d+1)}<1$, so the leading decay rate stays negative even at the limiting upper bound. A fractional spectral response alone therefore establishes neither improved sensitivity nor a favorable post-selection cost.
+
+\emph{Verification and scope.---}
+We checked the polynomial recurrence against exact symbolic characteristic polynomials, including Eq.~\eqref{eq:example}, and the mode rotation and sign gauge against the full superoperator with random complex Hermitian $h$. Matrix identities, rather than numerical splitting of defective eigenvalues, were used to check the sector reduction. Figure~\ref{fig:scaling} tests both coefficients of the Perron asymptotic and the local spacing. The positive iteration retains every component in logarithmic representation; its Collatz bounds are floating-point convergence diagnostics, not rigorous interval enclosures. Independent 50- and 70-digit spectra agree to better than $10^{-10}$ in the reported spacings. The accompanying calculation files preserve bounds, precision comparisons, and exact-polynomial checks.
+
+The polynomial correction leaves the established $z^{1/(d+1)}$ exponent intact. The full sector reduction explains which complementary blocks can control relaxation, while the finite-size expansion fixes the coefficients that a fractional exponent alone cannot supply. All results rely on uniform sums over the loss modes and the $d$-particle creation channels and on number-conserving quadratic $H$. Nonuniform reservoirs, pairing terms, or additional pump anticommutators require a different spectral analysis.
+
+\bibliography{references}
+\end{document}
