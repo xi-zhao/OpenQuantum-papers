@@ -1,0 +1,34 @@
+[
+  {
+    "N": 1,
+    "dimension": 4,
+    "spectral_max_error": 1.9860273225978185e-15,
+    "reference_invariance_error": 1.0235750533041806e-15,
+    "trace_defect": 0.0,
+    "hermiticity_defect": 0.0
+  },
+  {
+    "N": 2,
+    "dimension": 10,
+    "spectral_max_error": 1.0126792072454708e-14,
+    "reference_invariance_error": 1.5681286149399937e-15,
+    "trace_defect": 0.0,
+    "hermiticity_defect": 0.0
+  },
+  {
+    "N": 3,
+    "dimension": 20,
+    "spectral_max_error": 3.7734519129358555e-14,
+    "reference_invariance_error": 6.013913766946566e-15,
+    "trace_defect": 1.1102230246251565e-16,
+    "hermiticity_defect": 0.0
+  },
+  {
+    "N": 4,
+    "dimension": 35,
+    "spectral_max_error": 4.459504840295804e-14,
+    "reference_invariance_error": 2.3306541285909728e-14,
+    "trace_defect": 2.220446049250313e-16,
+    "hermiticity_defect": 0.0
+  }
+]
