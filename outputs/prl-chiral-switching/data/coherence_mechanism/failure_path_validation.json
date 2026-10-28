@@ -1,0 +1,32 @@
+[
+  {
+    "case": "nearest-branch jump with no root",
+    "rejected": true,
+    "reason": "Root failed residual check: z=-0.7599999999998059, f=0.03999999999980597"
+  },
+  {
+    "case": "complex pair with small imaginary parts",
+    "rejected": true,
+    "reason": "Nearest effective eigenvalue is complex: (-0.75+1e-09j)"
+  },
+  {
+    "case": "complex detuning",
+    "rejected": true,
+    "reason": "Conjugate-sector reduction requires real detuning"
+  },
+  {
+    "case": "complex spectral parameter",
+    "rejected": true,
+    "reason": "The 2 Re Sigma formula is restricted to real z"
+  },
+  {
+    "case": "negative coherence cutoff",
+    "rejected": true,
+    "reason": "depth must be an available nonnegative coherence order"
+  },
+  {
+    "case": "valid smooth root",
+    "accepted": true,
+    "root": -0.7999999999999787
+  }
+]

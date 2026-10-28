@@ -1,0 +1,22 @@
+[
+  {
+    "detuning": 3.8,
+    "mu": 0.20036310954283199,
+    "T": 36.79033326565998,
+    "scale": 1.0,
+    "manifold": true,
+    "ok": false,
+    "status": 1,
+    "message": "The maximum number of mesh nodes is exceeded.",
+    "action": 0.18588351613791781,
+    "energy_max": 1.576999614921748e-08,
+    "energy_mean": 3.829439829432516e-10,
+    "momentum_end_norms": [
+      1.003566819713033e-06,
+      9.567808655491832e-07
+    ],
+    "collocation_residual_max": 6.712029019553678e-06,
+    "nodes": 9879,
+    "seconds": 0.5982442909880774
+  }
+]
