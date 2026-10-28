@@ -93,7 +93,7 @@ state 2-design on the full space,
 where $F$ swaps the two copies; the two ensembles may differ.
 
 \begin{theorem}
-For every Pauli distribution $p$ and every $a\ge0$,
+For every Pauli distribution $p$ and every real $a$,
 \begin{equation}
 \prob[s<n-a]-2^{-a}\le\Tb\le\prob[s<n+a]+2^{-a/2}/\sqrt2 .
 \label{eq:spectrum}
@@ -134,6 +134,13 @@ For~\eqref{eq:spectrum}, take $\mathcal G=\{s<n-a\}$, which has fewer than
 $d2^{-a}$ elements, and split the partition at $s=n+a$, where the tail has
 $v\le2^{-n-a}$.
 \end{proof}
+
+We have checked this argument in Lean~4 with Mathlib~\cite{Lean,Mathlib}.
+Taking Eq.~\eqref{eq:lower} and the two-class case of Eq.~\eqref{eq:upper} as
+hypotheses, the formal proof derives Eq.~\eqref{eq:spectrum} and the
+Gaussian estimate of Corollary~1 below. The counting steps, the algebra from
+Eq.~\eqref{eq:moment} to the square root in Eq.~\eqref{eq:upper}, and the
+examples and thresholds quoted below are proved in full~\cite{DataRepo}.
 
 The theorem has a simple reading. The error images $P|\psi_1\rangle$ of a
 scrambled state are nearly orthogonal, and a $d$-dimensional space holds at
@@ -331,17 +338,20 @@ survives at depth, or whether it is erased as the twirling argument suggests.
 Claude Opus~5.5 (Anthropic), accessed through Claude Code in October 2026, with
 one review pass by another Claude model, was directed by the author to select
 the problem, draft and revise the derivations, survey the literature, write the
-analysis code, generate the figures, and draft the text. A review with an
+analysis code and the Lean formalization, generate the figures, and draft the
+text. A review with an
 OpenAI GPT model [version to be specified by the author] identified the
 omitted Ref.~\cite{Ibarrondo}. The author is responsible for all content.
-Proofs were rederived independently, the exact counterexamples were checked by
+Proofs were rederived independently and machine-checked in Lean as described
+in the text, the exact counterexamples were checked by
 explicit enumeration for $n\le2$, numerical claims were checked against
 independent implementations recorded with the data, and cited statements were
 checked against the primary sources.
 
-\emph{Data availability.}---The data that support the findings of this article
-and the code that generates every figure and numerical check accompany this
-submission and will be deposited in a public repository~\cite{DataRepo}.
+\emph{Data availability.}---The data that support the findings of this article,
+the code that generates every figure and numerical check, and the Lean
+formalization accompany this submission and will be deposited in a public
+repository~\cite{DataRepo}.
 
 \begin{thebibliography}{99}
 \bibitem{KuengGross} R. Kueng and D. Gross, Qubit stabilizer states are
@@ -371,6 +381,15 @@ Can scrambling protect quantum state distinguishability under noise?,
 \bibitem{Sommers} G. M. Sommers, J. A. Jacoby, Z. Weinstein, D. A. Huse,
 and S. Gopalakrishnan, Spectral properties and coding transitions of
 Haar-random quantum codes, PRX Quantum \textbf{7}, 020328 (2026).
+\bibitem{Lean} L. de Moura and S. Ullrich, The Lean~4 theorem prover and
+programming language, in \emph{Automated Deduction -- CADE 28}, Lecture Notes in
+Computer Science Vol.~12699 (Springer, Cham, 2021), pp.~625--635.
+\bibitem{Mathlib} The mathlib Community, The Lean mathematical library, in
+\emph{Proceedings of the 9th ACM SIGPLAN International Conference on Certified
+Programs and Proofs} (ACM, New York, 2020), pp.~367--381.
+\bibitem{DataRepo} X. Zhao, Data, code, and Lean formalization for ``Scrambled states survive local
+Pauli noise up to the hashing entropy'' [repository and DOI to be assigned on
+deposit].
 \bibitem{CoverThomas} T. M. Cover and J. A. Thomas, \emph{Elements of
 Information Theory}, 2nd ed. (Wiley, Hoboken, 2006), Ch.~11.
 \bibitem{Bennett} C. H. Bennett, D. P. DiVincenzo, J. A. Smolin, and
@@ -390,8 +409,5 @@ smoothing, IEEE Trans. Inf. Theory \textbf{69}, 7784 (2023).
 \bibitem{MUB} A. Klappenecker and M. R\"otteler, Mutually unbiased bases
 are complex projective 2-designs, in \emph{Proceedings of the 2005 IEEE
 International Symposium on Information Theory} (IEEE, 2005), pp.~1740--1744.
-\bibitem{DataRepo} X. Zhao, Data and code for ``Scrambled states survive local
-Pauli noise up to the hashing entropy'' [repository and DOI to be assigned on
-deposit].
 \end{thebibliography}
 \end{document}
