@@ -30,4 +30,4 @@
 
 OpenQuantum 中原来的八个路径保留本地兼容符号链接；后续科研维护请直接在本仓库进行。教学资源库、公司监控表和服务产品集成的工程实验继续留在 OpenQuantum。
 
-当前仅建立本地 Git 仓库；未配置远端、推送、投稿或公开发布。
+GitHub 远端：[xi-zhao/OpenQuantum-papers](https://github.com/xi-zhao/OpenQuantum-papers)，可见性为私有。默认分支为 `main`；七条研究历史分支保存在 `history/openquantum/c/*`。2026-10-29 完成私有远端备份；文献下载和缓存仍仅在本地，本次未投稿或公开发布。
