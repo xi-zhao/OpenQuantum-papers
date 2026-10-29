@@ -21,7 +21,9 @@ FIGURES = ('spectrum', 'residues', 'couplings', 'coherence', 'dynamics', 'ep_loo
 
 
 def payload():
-  paths = [ROOT/'PRA_README.md', ROOT/'PRA_REPORT_2026-10-28.md', ROOT/'requirements-pra.txt']
+  paths = [ROOT/'PRA_README.md', ROOT/'PRA_REPORT_2026-10-28.md',
+    ROOT/'PRA_REVISION_2026-10-29.md', ROOT/'requirements-pra.txt',
+    ROOT/'paper/references_suggested_2026-10-29.bib']
   paths += [ROOT/f'code/{name}.py' for name in CODE]
   paths += [ROOT/f'paper/{name}.{ext}' for name in ('main', 'supplement') for ext in ('tex', 'pdf')]
   paths += [ROOT/f'figs/pra_{name}.{ext}' for name in FIGURES for ext in ('pdf', 'png')]
@@ -56,7 +58,7 @@ def main():
   files = {str(p.relative_to(ROOT)): dict(bytes=p.stat().st_size,
     sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths}
   manifest = dict(title='Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble',
-    created='2026-10-28', files=files, total_bytes=total,
+    created='2026-10-29', files=files, total_bytes=total,
     evidence={
       'real gaps and gauge dependence': 'data/biorthogonal_audit/analysis.json',
       'signed boundary flux': 'data/biorthogonal_audit/boundary_flux.json',
@@ -64,14 +66,15 @@ def main():
       'independent size control': 'data/pra_spectral/modes_N40_quick.json',
       'small-N physical evolution and repeatability': 'data/pra_spectral/validation_repeat.json',
       'complex EPs and monodromy': 'data/pra_spectral/ep_summary.json',
-      'Schur back-substitution and failure paths': 'data/coherence_mechanism/validation.json'},
+      'Schur back-substitution and failure paths': 'data/coherence_mechanism/validation.json',
+      'literature attribution and manuscript build checks': 'PRA_REVISION_2026-10-29.md'},
     interpretation='Finite-size numerical evidence; no established sigma=Phi identity or thermodynamic-limit mechanism.',
     review_status='Local mathematical/data/layout checks completed; final independent manuscript review unavailable due to provider quota.')
   manifest_path = ROOT/'data/pra_spectral/artifact_manifest.json'
   manifest_path.write_text(json.dumps(manifest, indent=2, allow_nan=False)+'\n')
   outdir = ROOT/'deliverables'
   outdir.mkdir(exist_ok=True)
-  archive = outdir/'pra-decay-mode-source-2026-10-28.zip'
+  archive = outdir/'pra-decay-mode-source-2026-10-29.zip'
   with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
     for p in paths+[manifest_path]:
       bundle.write(p, p.relative_to(ROOT))

@@ -51,6 +51,28 @@ $N$&Dimension&Maximum spectral difference&Invariance residual\\
 
 This precision choice matters for a small gap. In the earlier PIQS-backed implementation used for exploratory calculations, internal emission coefficients led to a trace defect of approximately $4.7\times10^{-7}$ at $N=56$. The double-precision implementation reduces this to approximately $7.1\times10^{-15}$ and changes that half-gap from $0.0003260261$ to $0.0003309798$. The finite-window gap exponent changes only from $0.140624$ to $0.140501$, but all figures retained in the present paper use the double-precision results. Earlier multi-drive quasipotential tests are not used as quantitative evidence in this manuscript.
 
+\section{Finite-size model conventions and literature comparisons}
+The locally damped Rydberg model in the main text is equivalent to those of Refs.~\cite{Lee2012,LeeChan2013}, after matching interaction and detuning conventions. With $\hat N_e=\hat J_z+N/2$ and $\hat J_\alpha=\frac12\sum_i\hat\sigma_i^\alpha$, its Hamiltonian becomes, up to a scalar,
+\begin{equation}
+ H=\Omega J_x+\frac{V}{2N}J_z^2+
+ \left[-\Delta+\frac{V(N-1)}{2N}\right]J_z.
+ \label{eq:spinmap}
+\end{equation}
+The exact finite-$N$ correspondences are:
+\begin{itemize}
+\item Lee, H\"affner, and Cross~\cite{Lee2012} use $V_{\rm L}\sum_{i<j}n_i n_j/(N-1)$, giving $V_{\rm L}=V(N-1)/N$, $\Delta_{\rm L}=\Delta$, and $\Omega_{\rm L}=\Omega$ for $N>1$.
+\item In number-operator notation, Lee and Chan~\cite{LeeChan2013} use $V_{\rm LC}N_e^2/(2N)-\Delta_{\rm LC}N_e+\Omega_{\rm LC}J_x$. Thus $V_{\rm LC}=V$, $\Delta_{\rm LC}=\Delta+V/(2N)$, and $\Omega_{\rm LC}=\Omega$. Their collective Pauli operators are twice our $J_\alpha$.
+\item Roberts and Clerk~\cite{RobertsClerk2023} use $J_{\rm RC}\sum_{i\ne j}S_i^zS_j^z+h^zJ_z+h^xJ_x$, with $S_i^z=\sigma_i^z/2$. Equation~\eqref{eq:spinmap} gives $J_{\rm RC}=V/(2N)$, $h^z=-\Delta+V(N-1)/(2N)$, and $h^x=\Omega$. Their collective-decay rate is set to zero; their exact steady state includes all spin blocks.
+\item For the Hamiltonian $\bar J J_z^2/N+\Delta_{\rm NC}J_z+\Omega_{\rm NC}J_x$ of Noachtar and Clerk~\cite{NoachtarClerk2026}, the mapping is $\bar J=V/2$, $\Delta_{\rm NC}=-\Delta+V(N-1)/(2N)$, and $\Omega_{\rm NC}=\Omega$. The coefficient $\bar\Gamma/N$ of $\mathcal D[J_-]$ is set to zero.
+\end{itemize}
+The local decay rate in every mapping is $\gamma$. The $O(1/N)$ detuning terms matter for a finite-size comparison, even though they vanish in the factorized limit.
+
+Xiang et al.~\cite{Xiang2026} instead use a heuristic jump operator within the maximum-spin Hilbert space $S=N/2$,
+\begin{equation}
+ L_{\rm eff}=\sum_{M=-S+1}^{S}\sqrt{M+S}\,|S,M-1\rangle\langle S,M|.
+\end{equation}
+Their construction neglects phase differences from individual atomic jumps. It does not reproduce all inter-$j$ transfers of $\sum_i\mathcal D[\sigma_i^-]$, which our generator retains. This distinction concerns the finite-$N$ dissipator, independently of any shared mean-field equations.
+
 \section{Mean-field Jacobian and interpretation of the fold}
 For the Bloch coordinates $q=(n,u,v)$ of the main text, the Jacobian is
 \begin{equation}
@@ -62,7 +84,9 @@ For the Bloch coordinates $q=(n,u,v)$ of the main text, the Jacobian is
 \end{equation}
 At stationarity, $v=-n/\Omega$ and $u=2n(\Delta-Vn)/\Omega$. Substituting these relations into $\det(\lambda I-J)$, and reducing its difference from $\lambda[(\lambda+1)^2+\Omega^2/2]$ by the polynomial constraints $F=F_n=0$, gives zero identically. This is implemented symbolically in \texttt{pra\_meanfield.py} and also checked numerically at both folds. For the parameters of the paper, the right fold is $(\Delta,n)=(4.5749637137,0.4305200135)$; both folds have Jacobian eigenvalues $0,-1\pm i\sqrt2$ to numerical precision.
 
-The simple zero eigenvalue describes the linearization at the coalescing fixed points. The stationary cubic has a higher-order root at the cusp, but this does not change the algebraic multiplicity of the zero root in the displayed Jacobian polynomial. None of these identities identifies a finite-$N$ spectral pair with a universal escape problem.
+The simple zero eigenvalue describes the linearization at the coalescing fixed points. The stationary cubic has a higher-order root at the cusp, without changing the zero root's algebraic multiplicity in this Jacobian. The stationary-root exponents of Li, Sun, and Yi~\cite{LiSunYi2026} concern the former polynomial. Their mean-field conventions map to ours through $\Omega_{\rm CPB}=\Omega/2$, $\Delta_{\rm CPB}=-\Delta$, $V_{\rm CPB}=V$, and $\Gamma=\gamma$. This mapping does not identify their nonlinear stationary-root structure with a defective Jacobian or a finite-$N$ many-body EP.
+
+The separate exclusion of nontrivial Jordan blocks at zero follows from bounded evolution under a finite-dimensional CPTP semigroup~\cite{AlbertJiang2014}. It applies to the physical real-parameter generator. The complex-detuning continuation below is generally not CPTP, so that argument does not constrain its Jordan structure.
 
 \section{Construction and validation of physical preparations}
 Let a strictly positive single-atom density matrix have Bloch vector $\bm b$, with $r=|\bm b|<1$. In the spin convention used by PIQS, the coordinates of the main text give
@@ -97,7 +121,14 @@ For each detuning the real spectral pair is computed together with its transpose
 At $N=32$, changing the ARPACK seed and shift from $-0.76$ to $-0.80$ changes the two real eigenvalues at the three diagnostic detunings by less than $9.0\times10^{-15}$. Halving $\eta$ changes the residue vector divided by $2\eta$ by $4.96\times10^{-6}$, $7.29\times10^{-6}$, and $5.75\times10^{-6}$ in relative Euclidean norm, respectively. These checks support the perturbative interpretation of the first preparation. They do not turn the second, finite displacement into a linearized mean-field trajectory.
 
 \section{Biorthogonal projection and normalization conventions}
-The left eigenvectors are computed from $L^T$. In column-major vectorization the bilinear pairing $W^TR$ is the algebraic dual; physical observables are represented with the corresponding transpose. For a real decay mode of a Hermiticity-preserving generator, we phase-align and Hermitize the right and dual left eigenoperators, then enforce $W^TR=I$ in the selected two-dimensional subspace. Eigensolver, Hermiticity, trace, and subspace residuals are retained separately.
+The left eigenvectors are computed from $L^T$. In column-major vectorization the bilinear pairing $W^TR$ is the algebraic dual; physical observables use the corresponding transpose. For each simple real decay mode, we phase-align and Hermitize its right and dual left eigenoperators. We then enforce $W^TR=I$ in the selected two-dimensional subspace. Eigensolver, Hermiticity, trace, and subspace residuals are retained separately. Observable residues involve both excitation and detection overlaps; small left-right overlaps can produce large expansion coefficients~\cite{MoriShirai2020}.
+
+For the two real modes, the combined density response can be written exactly as
+\begin{equation}
+ a_+e^{(\bar\lambda+g)t}+a_-e^{(\bar\lambda-g)t}
+ =e^{\bar\lambda t}\left[(a_++a_-)\cosh(gt)+(a_+-a_-)\sinh(gt)\right].
+\end{equation}
+If, along a limiting sequence, $g\to0$, $\bar\lambda\to\lambda_0$, $a_++a_-\to A$, and $g(a_+-a_-)\to B$, the fixed-time limit is $(A+Bt)e^{\lambda_0t}$. Molina~\cite{Molina2026} derives the corresponding opposite-residue structure for a collective-spin exceptional spectral phase. Our finite-$N$ values demonstrate cancellation, but do not establish these limits or a real-axis Jordan block. Eigenmode residues are not probabilities of metastable phases.
 
 In this basis the derivative matrix $W^TL_1R$ has two distinct real eigenvalues. Diagonalizing it defines the local diabatic modes. At the projection point, the derivative of the two-eigenvalue discriminant is unaffected by basis-derivative commutators. This gives the stationarity identity used in the main text. Numerically, the minimum is refined using
 \begin{equation}
@@ -105,7 +136,7 @@ In this basis the derivative matrix $W^TL_1R$ has two distinct real eigenvalues.
 \end{equation}
 until $|\delta\Delta|<10^{-11}$, with independently checked eigenmode and subspace residuals.
 
-Let $P=R_dW_d^T$ be the generally oblique spectral projector at $\Delta_*$ and $Q=I-P$. Since $P$ commutes with $L_*=L(\Delta_*)$, the exact spectral effective matrix away from that point is
+Let $P=R_dW_d^T$ be the generally oblique spectral projector at $\Delta_*$ and $Q=I-P$. Applying the spectral-parameter-dependent projection construction~\cite{Feshbach1958,FSElimination2020}, with $[P,L_*]=0$ at $L_*=L(\Delta_*)$, gives
 \begin{align}
  H_{\rm eff}(z,\delta)={}&H_P(\delta)\nonumber\\
  &+\delta^2 W_d^TL_1Q
@@ -182,14 +213,16 @@ $N$&$\zeta_{\rm EP}$&$\lambda_{\rm EP}$&$\|M\|_F$&$\|M^2\|_F/\|M\|_F^2$\\
 
 The largest left or right subspace residual at the final EP points is $1.61\times10^{-12}$. Independent full-matrix ARPACK candidates have target-mode residuals below $1.68\times10^{-13}$. Direct eigenvalues at the EP still split by roughly $4$--$7\times10^{-8}$ in floating-point arithmetic; we do not report this as an exact zero. The nonzero nilpotent part, simple zero of $D$, and the branch exchange provide complementary local evidence. Eight nearby candidate modes are retained; the nearest sampled external-mode distance is $0.457$--$0.460$. This is not a global exclusion of other EPs or other spectral sectors.
 
-For $N=32$, we take $\zeta(\theta)=\zeta_{\rm EP}+r e^{i\theta}$ with $r=0.00223936747$, less than the distance to the conjugate EP. At 24 points per circuit, the one-circuit exchange and two-circuit return errors are $9.75\times10^{-14}$ and $8.41\times10^{-14}$. The discriminant winds once and twice, respectively. Repeating with a different random seed, inverse-iteration shift, initial detuning, and 48 points per circuit changes the EP by $4.83\times10^{-15}$ and common-node eigenvalues by at most $2.24\times10^{-13}$. A complex-direction central difference of $D$ agrees with $D'$ to relative error $4.10\times10^{-8}$.
+For $N=32$, we take $\zeta(\theta)=\zeta_{\rm EP}+r e^{i\theta}$ with $r=0.00223936747$, less than the distance to the conjugate EP. At 24 points per circuit, the one-circuit exchange and two-circuit return errors are $9.75\times10^{-14}$ and $8.41\times10^{-14}$. The discriminant winds once and twice, respectively. These tests concern the square-root eigenvalue branches~\cite{Heiss2012}; a two-circuit eigenvalue return does not determine the phase holonomy of normalized eigenvectors. Repeating with a different random seed, inverse-iteration shift, initial detuning, and 48 points per circuit changes the EP by $4.83\times10^{-15}$ and common-node eigenvalues by at most $2.24\times10^{-13}$. A complex-direction central difference of $D$ agrees with $D'$ to relative error $4.10\times10^{-8}$.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=.96\textwidth]{../figs/pra_ep_loop.pdf}
 \caption{Full-generator eigenvalue continuation around the $N=32$ complex-detuning EP. Branch labels are followed continuously, rather than resorted at each point. The two branches exchange after one circuit and return after two. This complex-parameter loop is a spectral diagnostic, not a physical CPTP evolution.}
 \end{figure}
 
 \section{Coherence recursion, derivatives, and real-root validation}
+The recursion in the main text is a matrix continued fraction~\cite{GarciaPalaciosZueco2006} evaluating a Schur effective operator~\cite{FSElimination2020}. It retains spectral dependence exactly where the eliminated block and intermediate denominators are invertible. No adiabatic or Markov approximation is introduced by this algebraic elimination.
+
 For real $z$, each denominator $X_q=zI-A_q-\Sigma_q(z)$ is inverted by a linear solve. Set $G_q=X_q^{-1}$ and $E_q=I-\Sigma_q'$. Differentiation of the positive-order recursion gives
 \begin{align}
  \Sigma_{q-1}'&=-U_{q-1}G_qE_qG_qD_{q-1},\\
@@ -206,6 +239,16 @@ The middle equation is solved as a bordered linear system. All derivatives are w
 The root search selects the nearest effective real eigenvalue only within the local window. Such a selection is not a global branch-tracking algorithm and can jump between branches. A final residual check is therefore mandatory. In particular, $K=\operatorname{diag}(-0.80,-0.72)$ has no self-consistent root in $[-0.78,-0.74]$, although nearest-branch selection changes sign there and can make Brent's method report convergence. The implementation rejects this false root because the final residual is about $0.04$. It also rejects a nearest effective eigenvalue with any nonzero imaginary part returned by the real-matrix eigensolver; a small complex pair is not rounded into a real root. Complex spectral inputs or detunings are rejected by the $2\operatorname{Re}\Sigma$ implementation.
 
 For all eight retained roots, back-substitution reconstructs the complete right eigenoperator. The largest $\|LR-zR\|_2/\|R\|_2$ is $1.13\times10^{-13}$ and the largest normalized trace is $8.2\times10^{-14}$. The $q=0$ component carries between $0.360$ and $0.419$ of the full Euclidean norm. The smallest one-norm reciprocal condition estimates of the intermediate denominators at the roots range from $4.33\times10^{-4}$ to $1.73\times10^{-3}$. These checks test the computed points, not absence of poles over an entire real or complex domain. Small residuals alone are not rigorous forward-error bounds for a nonnormal matrix; the agreement with independent full-generator spectra is also retained.
+
+\subsection{Derivative pairing and elimination poles}
+For $T(z)=zI-K(z)$ at a simple nonlinear eigenvalue $\lambda$, the singular part of the reduced resolvent is
+\begin{equation}
+ T(z)^{-1}=\frac{r l^T}{(z-\lambda)\,l^T T'(\lambda)r}+O(1),
+ \qquad T'(\lambda)=I-K'(\lambda).
+\end{equation}
+This derivative normalization is standard in nonlinear eigenvalue theory~\cite{GuttelTisseur2017} and appears in Liouvillian projection methods~\cite{FSElimination2020}. With the main text's back-substitution, its denominator equals the full left-right pairing. At an effective eigenbranch's off-root minimum, a vanishing derivative pairing does not imply a pole, because $T(z_c)$ still has no zero eigenvalue on that branch.
+
+If elimination remains regular, the effective branch is algebraically simple, and $f=f'=0$ with $f''\ne0$, the Schur determinant has a double zero. Back-substitution preserves the one-dimensional kernel, producing the usual EP2 structure~\cite{Heiss2012}. At a pole of the eliminated resolvent these arguments do not apply without examining the full block matrix. Neither this conditional criterion nor a local quadratic fit determines the large-$N$ minimum depth.
 
 \subsection{Truncating coherence orders}
 Keeping only $|q|\le q_{\max}$ defines a truncated matrix, not a CPTP approximation. At low cutoffs the nearest real pair can change identity; all candidate eigenvalues are saved. Representative relative half-gap errors are given in Table~\ref{tab:cutoff}. Nonmonotonicity and different errors in the individual eigenvalues prevent treating one favorable gap value as convergence of the full spectrum.
@@ -250,12 +293,34 @@ $+0.06$&25.78&0.529&4.99&0.256
 \end{ruledtabular}
 \end{table}
 
-These are finite-time, preparation-dependent tests. The oscillatory pair has the less negative real part at the crossing, so it cannot be omitted solely because the target real pair has a small separation. Conversely, including four modes is not claimed to close the dynamics exactly or uniformly over all initial states.
+These are finite-time, preparation-dependent tests. The oscillatory pair has the less negative real part at the crossing, so the target real pair's small separation does not justify omitting it. Four modes do not close the dynamics exactly or uniformly over all initial states. More generally, large expansion coefficients can extend transients beyond an inverse-gap estimate~\cite{MoriShirai2020,Mori2021}. Our reported errors test the specified preparations and time interval, without establishing or excluding such behavior for every physical initial state.
+
+\section{Stationary potentials and the scope of the splitting exponent}
+The ordinary Liouvillian gap is $\Gamma_{\rm diss}=-\max_{\lambda\ne0}\operatorname{Re}\lambda$ in the relevant symmetry sector. Our half-gap $g_N=(\lambda_+-\lambda_-)/2$ instead compares two nonzero real eigenvalues. A prediction for $\Gamma_{\rm diss}$ therefore does not automatically predict $g_N$.
+
+The exact steady-state construction of Roberts and Clerk~\cite{RobertsClerk2023} supplies analytical information for the model family containing Eq.~\eqref{eq:spinmap}. Noachtar and Clerk~\cite{NoachtarClerk2026} use hidden time-reversal symmetry and a particular steady-state purification to define a barrier. Their Conjecture~1 relates this barrier to the leading exponential scaling of $\Gamma_{\rm diss}$, with numerical tests in selected examples. The purification potential is not an arbitrary excitation-number marginal, and the conjecture is not a theorem for the finite-rate doublet considered here. Their spin-model tests include collective decay; we do not claim they verify our purely local-decay parameter point.
+
+Accordingly, comparing a finite-window fit for $g_N$ with a stationary marginal rate function $\Phi(n_f)$ is descriptive. It supplies neither a derivation of the relevant boundary conditions nor a relation between the two spectral observables. The main text's Schur-root and coupling-product results remain finite-size identities and numerical checks, rather than an independent action prediction.
 
 \section{Reproduction and evidence scope}
 The source bundle provides commands, scripts, JSON records, arrays, and a SHA256 manifest. The environment used Python 3.13.2, NumPy 2.2.6, SciPy 1.16.3, and QuTiP 5.3.1, with one linear-algebra thread. All calculations use \texttt{biorthogonal\_generator.py}. The stored $N=24$ coherence sample predates local geometric bracketing, and all four original root files predate the final branch-discontinuity guards. All eight roots were subsequently back-substituted with the final verifier; raw samples and source hashes preserve this provenance. Earlier quasipotential tests and unconverged instanton trajectories are not used as quantitative evidence here.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 \bibitem{Shammah2018} N. Shammah, S. Ahmed, N. Lambert, S. De Liberato, and F. Nori, Open quantum systems with local and collective incoherent processes: Efficient numerical simulations using permutational invariance, Phys. Rev. A \textbf{98}, 063815 (2018).
+\bibitem{Lee2012} T. E. Lee, H. H\"affner, and M. C. Cross, Collective quantum jumps of Rydberg atoms, \href{https://doi.org/10.1103/PhysRevLett.108.023602}{Phys. Rev. Lett. \textbf{108}, 023602 (2012)}.
+\bibitem{LeeChan2013} T. E. Lee and C.-K. Chan, Dissipative transverse-field Ising model: Steady-state correlations and spin squeezing, \href{https://doi.org/10.1103/PhysRevA.88.063811}{Phys. Rev. A \textbf{88}, 063811 (2013)}.
+\bibitem{RobertsClerk2023} D. Roberts and A. A. Clerk, Exact solution of the infinite-range dissipative transverse-field Ising model, \href{https://doi.org/10.1103/PhysRevLett.131.190403}{Phys. Rev. Lett. \textbf{131}, 190403 (2023)}.
+\bibitem{NoachtarClerk2026} D. D. Noachtar and A. A. Clerk, Exact metastability in a class of driven-dissipative quantum many-body systems, \href{https://arxiv.org/abs/2606.07736v1}{arXiv:2606.07736v1} (2026).
+\bibitem{Xiang2026} Y.-X. Xiang, W. Li, Z. Bai, and Y.-Q. Ma, Switching metastable dynamics in many-body open quantum systems, \href{https://doi.org/10.1093/nsr/nwag146}{Natl. Sci. Rev. \textbf{13}, nwag146 (2026)}.
+\bibitem{LiSunYi2026} C. Li, K. Sun, and W. Yi, Critical exponents near the Liouvillian exceptional structure in Rydberg vapors, \href{https://doi.org/10.1088/1674-1056/adfb57}{Chin. Phys. B \textbf{35}, 030302 (2026)}.
+\bibitem{AlbertJiang2014} V. V. Albert and L. Jiang, Symmetries and conserved quantities in Lindblad master equations, \href{https://doi.org/10.1103/PhysRevA.89.022118}{Phys. Rev. A \textbf{89}, 022118 (2014)}.
+\bibitem{MoriShirai2020} T. Mori and T. Shirai, Resolving a discrepancy between Liouvillian gap and relaxation time in boundary-dissipated quantum many-body systems, \href{https://doi.org/10.1103/PhysRevLett.125.230604}{Phys. Rev. Lett. \textbf{125}, 230604 (2020)}.
+\bibitem{Molina2026} R. A. Molina, Spectroscopic signatures of a Liouvillian exceptional spectral phase in a collective spin, \href{https://doi.org/10.21468/SciPostPhysCore.9.3.045}{SciPost Phys. Core \textbf{9}, 045 (2026)}.
+\bibitem{Feshbach1958} H. Feshbach, Unified theory of nuclear reactions, Ann. Phys. (N.Y.) \textbf{5}, 357 (1958).
+\bibitem{FSElimination2020} D. Finkelstein-Shapiro, D. Viennot, I. Saideh, T. Hansen, T. Pullerits, and A. Keller, Adiabatic elimination and subspace evolution of open quantum systems, \href{https://doi.org/10.1103/PhysRevA.101.042102}{Phys. Rev. A \textbf{101}, 042102 (2020)}.
+\bibitem{Heiss2012} W. D. Heiss, The physics of exceptional points, \href{https://doi.org/10.1088/1751-8113/45/44/444016}{J. Phys. A: Math. Theor. \textbf{45}, 444016 (2012)}.
+\bibitem{GarciaPalaciosZueco2006} J. L. Garc\'ia-Palacios and D. Zueco, Solving spin quantum master equations with matrix continued-fraction methods: application to superparamagnets, \href{https://doi.org/10.1088/0305-4470/39/42/005}{J. Phys. A: Math. Gen. \textbf{39}, 13243--13284 (2006)}.
+\bibitem{GuttelTisseur2017} S. G\"uttel and F. Tisseur, The nonlinear eigenvalue problem, \href{https://doi.org/10.1017/S0962492917000034}{Acta Numer. \textbf{26}, 1--94 (2017)}.
+\bibitem{Mori2021} T. Mori, Metastability associated with many-body explosion of eigenmode expansion coefficients, \href{https://doi.org/10.1103/PhysRevResearch.3.043137}{Phys. Rev. Research \textbf{3}, 043137 (2021)}.
 \end{thebibliography}
 \end{document}

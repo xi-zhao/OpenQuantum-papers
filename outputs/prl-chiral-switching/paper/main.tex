@@ -1,4 +1,4 @@
-\documentclass[aps,pra,twocolumn,superscriptaddress,amsmath,amssymb,reprint]{revtex4-2}
+\documentclass[aps,pra,twocolumn,superscriptaddress,amsmath,amssymb,reprint,floatfix]{revtex4-2}
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
@@ -15,15 +15,15 @@ Mean-field multistability and the spectrum of a finite open quantum system descr
 \maketitle
 
 \section{Introduction}
-Nonlinear mean-field equations often provide the first description of bistability in driven open systems. Examples include optical and Rydberg ensembles, nonlinear resonators, and collective spin models~\cite{Carr2013,Casteels2017,Minganti2018,Xie2025}. A stable branch terminates at a saddle-node fold, whereas a finite quantum system evolves under a linear, trace-preserving Liouvillian. Relating these descriptions requires distinguishing roots of the stationary mean-field equations, eigenvalues of their Jacobian, and eigenvalues of the many-body generator.
+Driven Rydberg ensembles connect nonlinear mean-field bistability with finite quantum dynamics~\cite{Lee2012,LeeChan2013,Carr2013,Xie2025}. A stable mean-field branch terminates at a saddle-node fold, whereas a finite quantum system evolves under a linear, trace-preserving Liouvillian. Relating these descriptions requires distinguishing stationary mean-field roots, eigenvalues of their stability Jacobian, and eigenvalues of the many-body generator.
 
-This distinction is particularly relevant when exceptional points (EPs) are used to interpret nonlinear switching~\cite{SunYi2024,Xie2025}. A fold of stationary solutions need not be a defective eigenvalue of the mean-field Jacobian. Nor can a nontrivial Jordan block at zero describe the stationary sector of a finite-dimensional quantum dynamical semigroup: such a block would produce unbounded polynomial growth. Metastability instead involves small but nonzero decay eigenvalues and a separation of relaxation scales~\cite{Macieszczak2016,Minganti2018}.
+This distinction matters for exceptional-point (EP) interpretations of nonlinear switching and stationary-root singularities~\cite{SunYi2024,Xie2025,LiSunYi2026}. A fold of stationary solutions need not be a defective eigenvalue of the mean-field Jacobian. The stationary sector of a finite-dimensional quantum dynamical semigroup cannot contain a nontrivial Jordan block, which would produce unbounded polynomial growth~\cite{AlbertJiang2014}. In the spectral-separation framework, metastability involves low-lying decay modes separated from faster relaxation~\cite{Macieszczak2016,Minganti2018}. More generally, large eigenmode-expansion coefficients can prolong transients, so decay eigenvalues alone do not determine relaxation times~\cite{MoriShirai2020,Mori2021}.
 
-Several parts of this connection are already understood. Switching between metastable attractors produces exponentially small rates, and quantum-instanton methods can predict these rates in collective spin systems, including models with local dissipation~\cite{PCE2026,CEP2026}. Few-mode descriptions of hysteresis have been developed~\cite{Krimer2019}. Cabot, Giorgi, and Zambrini identified a finite-size Liouvillian EP approaching a mean-field bifurcation and mediating between phase diffusion and quantum activation in a driven oscillator~\cite{Cabot2024}. These results motivate, but do not establish, an equivalent mechanism for a pair of modes whose common decay rate remains finite near a bistable fold.
+For uniformly interacting spins with local decay, collective switching and steady-state correlations have been studied~\cite{Lee2012,LeeChan2013}, and an exact finite-$N$ steady state is available~\cite{RobertsClerk2023}. Exponentially slow switching is central to first-order dissipative transitions~\cite{Casteels2017}; quantum-instanton methods predict switching rates for collective spin systems, including local dissipation~\cite{PCE2026,CEP2026}. A related conjecture connects a symmetry-selected steady-state purification potential to the ordinary Liouvillian gap~\cite{NoachtarClerk2026}. These results concern relaxation toward the stationary sector, rather than the separation of two modes with a finite common decay rate.
 
-Here we study such a pair in a uniformly interacting Rydberg model. Our focus is its finite-size spectral structure: which physical perturbations excite it, how its small splitting enters a non-Hermitian two-mode reduction, and what information is lost by eliminating quantum coherences without retaining spectral-parameter dependence. All new comparisons use the same double-precision generator. We restrict the quantitative claims to $\Omega=2\gamma$, $V=10\gamma$, and the sizes specified below.
+Finite-size avoided crossings from mode mixing~\cite{Kessler2012} and few-mode descriptions of hysteresis~\cite{Krimer2019} also have precedents. Cabot, Giorgi, and Zambrini connected a Liouvillian EP to a mean-field bifurcation between phase diffusion and quantum activation in a driven oscillator~\cite{Cabot2024}. Collective-spin models exhibit spectral doublets approaching finite nonzero decay rates~\cite{RubioGarcia2022}, with preparation-dependent visibility and cancelling spectral residues~\cite{Molina2026}. For the locally damped Rydberg model, we ask how a real-mode avoided crossing redistributes physical response and is represented after eliminating coherences.
 
-We find an exchange of high-branch response between two real modes across an avoided crossing on the monostable side of the left fold. Their half-gap decreases approximately exponentially over $N=24$--$56$, but they are not always the two slowest decay modes. A biorthogonal reduction and an exact coherence-sector elimination provide complementary descriptions of the splitting. The latter exposes two self-consistent roots of a single effective eigenvalue branch and connects the slope of that branch to the biorthogonal norm of the full modes. These are applications of standard projection methods~\cite{Feshbach1958}; the model-specific result is the spectral and dynamical structure they resolve. We do not derive an asymptotic tunneling action or a universal fold-to-EP correspondence.
+We address this question in the complete permutation-invariant operator space at $\Omega=2\gamma$ and $V=10\gamma$. Physical product-state perturbations resolve an exchange of high-branch response on the monostable side of the left fold. A biorthogonal projection identifies the invariant coupling product, while coherence elimination recovers the pair as two self-consistent roots of one effective eigenvalue branch. We apply established projection and nonlinear spectral methods to identify this model-specific response exchange, root structure, and dynamical limits. We restrict claims to the reported sizes and do not infer an asymptotic switching action or a universal fold-to-EP correspondence.
 
 \section{Model, mean-field fold, and finite-size spectrum}
 \label{sec:model}
@@ -34,11 +34,11 @@ We consider $N$ two-level atoms with excited-state number $\hat N_e=\sum_i\hat n
  \hat H&=-\Delta\hat N_e+\Omega\hat J_x
  +\frac{V}{2N}\hat N_e(\hat N_e-1),\label{eq:H}
 \end{align}
-where $\mathcal D[c]\rho=c\rho c^\dagger-\{c^\dagger c,\rho\}/2$. We set $\gamma=1$, so frequencies and eigenvalues below are measured in units of $\gamma$, and time in $\gamma^{-1}$.
+where $\mathcal D[c]\rho=c\rho c^\dagger-\{c^\dagger c,\rho\}/2$. This is the uniformly interacting, locally damped model of Refs.~\cite{Lee2012,LeeChan2013}, within the exactly solvable steady-state family of Ref.~\cite{RobertsClerk2023}. The Supplemental Material (SM) gives the finite-$N$ parameter mappings, including the detuning shift associated with $\hat N_e(\hat N_e-1)$. We set $\gamma=1$, so frequencies and eigenvalues below are measured in units of $\gamma$, and time in $\gamma^{-1}$.
 
-Permutation invariance reduces the operator space to dimension $\binom{N+3}{3}$~\cite{Shammah2018}. We retain every Dicke $j$ block and the couplings between blocks caused by local decay; this is not a restriction to the maximum-spin sector. Throughout, ``full generator'' means the generator on this complete permutation-invariant operator space. This space contains the product states and observables considered here, but does not enumerate modes in other permutation-symmetry sectors.
+Permutation invariance reduces the operator space to dimension $\binom{N+3}{3}$~\cite{Shammah2018}. We retain every Dicke $j$ block and the transitions between blocks caused by local decay. This differs from the maximum-spin effective-jump approximation used in recent Rydberg switching calculations~\cite{Xiang2026}. Throughout, ``full generator'' denotes this complete permutation-invariant operator space, which contains the product states and observables considered here. It does not enumerate modes in other permutation-symmetry sectors.
 
-In the large-$N$ factorized limit, writing the single-atom coherence as $\rho_{eg}=u+iv$ and the excited population as $n$, the mean-field equations are
+In the large-$N$ factorized limit~\cite{Lee2012,LeeChan2013}, write the single-atom coherence as $\rho_{eg}=u+iv$ and the excited population as $n$. The mean-field equations are
 \begin{align}
  \dot n&=-n-\Omega v,\nonumber\\
  \dot u&=-(\Delta-Vn)v-u/2,\label{eq:mf}\\
@@ -58,7 +58,7 @@ Using $F=\partial_nF=0$, the characteristic polynomial of the Bloch Jacobian at 
  \chi(\lambda)=\lambda[(\lambda+1)^2+\Omega^2/2].
  \label{eq:foldjac}
 \end{equation}
-Thus the zero eigenvalue is simple for the present nonzero drive. The identity also applies when the fold reaches the cusp: a triple root of the stationary cubic does not imply an EP3 of the Jacobian. The coalescing mean-field fixed points and the surviving high-population branch must also be distinguished; Eq.~\eqref{eq:foldjac} describes the former.
+Thus the zero eigenvalue is simple, including when the fold reaches the cusp. Li, Sun, and Yi~\cite{LiSunYi2026} obtained square-root and cube-root singularities of stationary excitation densities near fold and cusp points. Those exponents describe roots of the nonlinear stationary equation; Eq.~\eqref{eq:foldjac} concerns the distinct linear stability problem. In particular, a triple stationary root does not imply an EP3 of this Jacobian. The coalescing fixed points and the surviving high-population branch must also be distinguished; Eq.~\eqref{eq:foldjac} describes the former.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{../figs/pra_spectrum.pdf}
@@ -83,11 +83,11 @@ whereas an oscillatory pair occurs at
  \lambda_{\rm osc}=-0.725036287\pm2.864794973i.
  \label{eq:oscpair}
 \end{equation}
-The oscillatory pair decays more slowly than both real modes. The target crossing is therefore not, in general, a crossing of the two slowest modes.
+The oscillatory pair decays more slowly than both real modes. Thus $g_N$ is an excited-mode separation, distinct from the ordinary Liouvillian gap $\Gamma_{\rm diss}=-\max_{\lambda\ne0}\operatorname{Re}\lambda$. It does not measure the slowest relaxation toward the stationary sector.
 
 \section{Physical response and mode character}
 \label{sec:modes}
-A right eigenoperator is traceless and signed; its excitation-number profile is not a probability distribution. To test mode character without assigning identities solely from profile peaks, we evaluate signed spectral residues in a physical observable.
+A Hermitian right eigenoperator at a nonzero decay eigenvalue is traceless; its signed excitation-number profile is not a probability distribution. We test mode character through observable residues, whose dependence on both preparation and detection is essential in nonnormal dynamics~\cite{MoriShirai2020,Molina2026}.
 
 Let $R_i$ and $W_i$ be right and transpose-left eigenvectors of the stored generator, normalized by $W_i^TR_j=\delta_{ij}$. The transpose denotes the algebraic dual of the chosen vectorization. For the excitation-density observable $o^T\rho=\langle\hat N_e\rangle/N$, an initial difference $\delta\rho$ gives the exact contribution of a simple mode,
 \begin{equation}
@@ -95,9 +95,9 @@ Let $R_i$ and $W_i$ be right and transpose-left eigenvectors of the stored gener
  a_i=(o^TR_i)(W_i^T\delta\rho).
  \label{eq:residue}
 \end{equation}
-Each residue is invariant under rescaling the corresponding left and right eigenvectors. The residues are signed and are not mode probabilities.
+Each residue is invariant under reciprocal rescaling of its left and right eigenvectors. These signed weights are not probabilities of physical states or metastable phases.
 
-We use two preparations, specified in detail in the Supplemental Material (SM). The first is the difference of two positive product states displaced by $\pm\eta$ from the high mean-field fixed point along its real relaxation direction, with $\eta=0.005$. The second is a product state having the single-atom Bloch vector of the left fold, minus the exact finite-size stationary state at the chosen detuning. The latter is a controlled low-population preparation, not a finite-size metastable state assumed to exist outside the bistable interval.
+We use two physical preparations, whose construction is specified in the SM. The first subtracts two positive product states displaced by $\pm\eta$, with $\eta=0.005$, along the real relaxation direction of the high mean-field fixed point. The second subtracts the exact stationary state from a product state prepared at the left-fold Bloch vector. This provides a controlled low-population preparation without assuming a finite-size metastable state outside the bistable interval.
 
 For $N=32$, at $\delta=\Delta-\Delta_*=-0.06$, the high-branch perturbation has real-mode residues
 \begin{equation}
@@ -109,7 +109,7 @@ At $\delta=+0.06$, they become
 \end{equation}
 The dominant high-branch response transfers from $\lambda_+$ to $\lambda_-$ [Fig.~\ref{fig:residues}(a)]. A separate $N=40$ calculation gives the same exchange, with the nondominant residue below $7.3\times10^{-7}$ at either endpoint. Halving $\eta$ changes the normalized residue vector by less than $7.3\times10^{-6}$ in relative Euclidean norm.
 
-The fold-state preparation excites both modes and reveals large, opposite residues near the crossing [Fig.~\ref{fig:residues}(b)]. At $N=32$, $\delta=0$, they are approximately $(-1.666,1.423)$; at $N=40$ they are $(-5.475,5.217)$. Such values are allowed because individual spectral contributions can cancel. They do not imply that a physical density signal is unbounded.
+The fold-state preparation excites both modes, with large opposite residues near the crossing [Fig.~\ref{fig:residues}(b)]. At $\delta=0$, they are approximately $(-1.666,1.423)$ for $N=32$ and $(-5.475,5.217)$ for $N=40$. Opposite residues can cancel in a bounded physical signal, as analyzed for collective-spin exceptional spectral phases~\cite{Molina2026}. Our values establish neither a $1/g_N$ residue asymptote nor a real-axis Jordan limit; the SM states the additional limiting conditions.
 
 The second diagnostic is the signed excitation-number profile $P_i(k)=\Tr(\Pi_kR_i)$. We measure its absolute-profile fraction in the region $k/N<0.22$, using the same fixed diagnostic cutoff on both sides. For $N=32$, the fractions change from $(0.209,0.0305)$ at $\delta=-0.06$ to $(0.0314,0.237)$ at $\delta=+0.06$ [Fig.~\ref{fig:residues}(c)]. Thus the branch with greater low-density support exchanges places with the high-branch response. Neither profile is purely localized in that region. We describe the second branch as having enhanced low-density character; a rigorous identification with a universal ghost-escape mode would require an independently controlled escape problem and is not assumed here.
 
@@ -131,7 +131,7 @@ Write $\Lc_N(\Delta)=L_0+\Delta L_1$, with $L_1\rho=i[\hat N_e,\rho]$. At $\Delt
 \end{equation}
 Here $a$ denotes the smaller-absolute-slope branch. At $\delta=0$ the projection is exact. Coupling to the complementary invariant subspace produces a spectral self-energy starting at order $\delta^2$ (SM); its small absolute size does not alone establish its smallness relative to an exponentially small coupling.
 
-The squared separation at the projection point is
+The usual two-by-two discriminant~\cite{Heiss2012} gives the squared separation and its derivative at the projection point:
 \begin{equation}
  d^2=(e_a-e_b)^2+4V_{ab}V_{ba},
  \qquad
@@ -185,11 +185,11 @@ The local linear model predicts $|\operatorname{Im}\zeta_{\rm EP}|\simeq2g_N/|s_
 \section{Exact elimination of coherence sectors}
 \label{sec:coherence}
 \subsection{Spectral-parameter-dependent effective operator}
-To retain coherences without using full-generator eigenvectors as inputs, group the Dicke operator basis by signed coherence order $q=m-m'$. The diagonal Hamiltonian and local decay preserve $q$, whereas the drive connects only $q$ to $q\pm1$. The generator is therefore block tridiagonal in $q$.
+We use projection methods that retain the spectral parameter~\cite{Feshbach1958,FSElimination2020}, evaluated by matrix continued fractions as in spin master equations~\cite{GarciaPalaciosZueco2006}. Group the Dicke operator basis by signed coherence order $q=m-m'$. The diagonal Hamiltonian and local decay preserve $q$, whereas the drive connects $q$ only to $q\pm1$. This gives a block-tridiagonal generator while retaining every Dicke $j$ block.
 
-Let $A_q=L_{q,q}$, $U_q=L_{q,q+1}$, and $D_q=L_{q+1,q}$. Starting at the highest positive order $Q=N$, define
+Let $A_q=L_{q,q}$, $U_q=L_{q,q+1}$, and $D_q=L_{q+1,q}$. Starting at the highest positive order $q_{\rm top}=N$, define
 \begin{align}
- \Sigma_Q(z)&=0,\nonumber\\
+ \Sigma_{q_{\rm top}}(z)&=0,\nonumber\\
  \Sigma_{q-1}(z)&=U_{q-1}[zI-A_q-\Sigma_q(z)]^{-1}D_{q-1}.
  \label{eq:cf}
 \end{align}
@@ -208,7 +208,7 @@ With $P$ projecting onto $q=0$ and $Q=I-P$, the Schur identity reads
 \end{equation}
 It applies where $z-L_{QQ}$ is invertible; the recursion also requires invertible intermediate denominators. Purely coherent modes with zero $q=0$ projection and points at elimination poles require separate treatment. For complex $z$, the analytic continuation involves $\Sigma_+(z)+\overline{\Sigma_+(\bar z)}$, not $2\operatorname{Re}\Sigma_+(z)$. Our real-axis recursion is not used to compute Eq.~\eqref{eq:ep}.
 
-The spectral dependence has a direct time-domain meaning. Eliminating $x_Q$ from the linear equations gives
+The spectral dependence has a time-domain counterpart in the projection-operator memory formalism~\cite{Nakajima1958,Zwanzig1960}. Direct elimination of $x_Q$ from our linear equations gives
 \begin{align}
  \dot x_0(t)={}&L_{00}x_0(t)+L_{0Q}e^{tL_{QQ}}x_Q(0)\nonumber\\
  &+\int_0^t L_{0Q}e^{(t-s)L_{QQ}}L_{Q0}x_0(s)\,ds.
@@ -230,7 +230,7 @@ Its two nearby roots give the two decay eigenvalues. Expanding around the minimu
 \end{equation}
 The derivatives are calculated analytically through the matrix recursion and the non-Hermitian effective eigenproblem (SM).
 
-\begin{table}[b]
+\begin{table}[!htbp]
 \caption{Local real-axis coherence reduction. $g_N$ is the independently computed full-generator half-gap; the last column is $g_{N,\rm quad}/g_N-1$. All entries use $\gamma=1$.}
 \label{tab:cf}
 \begin{ruledtabular}
@@ -266,7 +266,7 @@ Then
  \boxed{W^TR=l^T(I-K_z)r=1-\mu_z=-f_z.}
  \label{eq:norm}
 \end{equation}
-These vectors are full eigenvectors only at a root. Away from it,
+At a root, this is the standard derivative pairing for the nonlinear eigenvalue problem $T(z)=zI-K(z)$~\cite{GuttelTisseur2017,FSElimination2020}. Its appearance here follows from Schur back-substitution, rather than a new normalization principle. Away from a root, the vectors instead satisfy
 \begin{equation}
  (L-zI)R=\binom{f(z)r}{0},\qquad
  W^T(L-zI)=(f(z)l^T,0).
@@ -277,11 +277,11 @@ For comparison, if the elimination is regular, the selected eigenvalue of $K(z_c
 
 \section{Dynamical reach and limits of the real-mode pair}
 \label{sec:dynamics}
-Spectral hybridization does not ensure that two modes describe a measured transient. We compare Eq.~\eqref{eq:residue}, summed over the two real modes, with the action of $e^{tL}$ on the two physical initial differences used above. For $N=32$, we also include the oscillatory conjugate pair in Eq.~\eqref{eq:oscpair}. The time evolution is computed directly by sparse exponential multiplication, without fitting transient amplitudes or rates.
+Spectral hybridization does not ensure that two modes describe a measured transient. Large expansion coefficients and preparation-dependent visibility make a direct dynamical comparison necessary~\cite{MoriShirai2020,Mori2021,Molina2026}. We sum Eq.~\eqref{eq:residue} over the two real modes and compare with $e^{tL}\delta\rho$ for both preparations. At $N=32$, we also include the oscillatory conjugate pair in Eq.~\eqref{eq:oscpair}. Sparse exponential multiplication provides the reference evolution, without fitting transient amplitudes or rates.
 
 At the crossing, the relative $L^2$ error over $6\le t\le12$ for the high-branch preparation is $25.1\%$ with the two real modes and $0.506\%$ with all four modes. For the fold-state preparation the corresponding errors are $69.5\%$ and $5.00\%$. The latter initial condition has larger contributions from other modes and stronger cancellations; the same four-mode truncation need not be equally accurate for different preparations. On the two sides $\delta=\pm0.06$, the high-branch four-mode errors over the same window remain below $0.53\%$.
 
-Figure~\ref{fig:dynamics} removes the common real-pair decay envelope only for visibility. Error definitions are in the SM, and the unscaled signals are supplied with the source data. The oscillatory pair is needed to account for the observed oscillations; omitting it leaves a substantial error even at late times. In particular, a small real-pair splitting does not by itself imply a long-lived physical response, since the pair's mean decay rate stays of order $\gamma$ over the studied sizes. These tests support a specific assignment of high-branch response and mode exchange, rather than a universal two-mode law for relaxation or chiral switching.
+Figure~\ref{fig:dynamics} removes the common real-pair decay envelope only for visibility. Error definitions are in the SM, and the unscaled signals are supplied with the source data. The oscillatory pair is needed to account for the observed oscillations over the tested time window. The real-pair mean decay rate remains of order $\gamma$, so its small splitting alone establishes no long-lived response. Possible size-dependent transient enhancement would also require analyzing residues; it cannot be decided from these eigenvalues alone. The present tests support the specific response exchange and quantify the two-mode truncation's error.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{../figs/pra_dynamics.pdf}
@@ -290,29 +290,45 @@ Figure~\ref{fig:dynamics} removes the common real-pair decay envelope only for v
 \end{figure*}
 
 \section{Discussion and conclusions}
-We have established a finite-size description of a real decay-mode avoided crossing on the monostable side of a mean-field Rydberg fold. The physical residue test shows exchange of high-branch relaxation response, supported by the simultaneous exchange of low-density profile character. This is stronger evidence than a visual assignment from population peaks, but does not identify a universal ghost-escape mode. The fold itself has a simple zero Jacobian eigenvalue, and the finite-size crossing involves modes with finite decay rates.
+We have resolved a finite-size exchange of physical relaxation response in a Rydberg model retaining independent local decay and all permutation-invariant spin blocks. Prior collective-spin studies establish finite-rate doublets and cancelling residues~\cite{RubioGarcia2022,Molina2026}; here physical preparations identify a detuning-dependent exchange near the mean-field fold. The invariant coupling product and two self-consistent Schur roots quantify its splitting using established methods. Freezing the Schur operator loses the pair, while a slower oscillatory pair is required for the tested transients. Together, these results separate spectral hybridization from a universal two-mode relaxation law.
 
-Two complementary reductions make the small gap precise. The exact two-dimensional spectral subspace gives the invariant product $V_{ab}V_{ba}=g_N^2$, while its directional factors depend on normalization and involve coherence-sensitive contractions. The coherence-sector Schur reduction recovers the two eigenvalues as self-consistent roots and provides an accurate local formula in terms of a minimum depth and curvature. Its spectral derivative also determines the full-mode biorthogonal norm. Complex-detuning EPs are separately verified by a regular invariant-subspace calculation and eigenvalue exchange, without treating the complex continuation as a physical generator.
+The unresolved asymptotic target is the scaling of $\epsilon_N/c_N$, or equivalently $V_{ab}V_{ba}$, independently of the exact pair. Exact steady-state information is available~\cite{RobertsClerk2023}, and Noachtar and Clerk~\cite{NoachtarClerk2026} conjecture a barrier relation using a purification selected by hidden time-reversal symmetry. That conjecture concerns the ordinary Liouvillian gap, not our finite-rate splitting or an arbitrary excitation-number marginal potential $\Phi(n_f)$. Likewise, applying switching-instanton theory~\cite{PCE2026,CEP2026} to this excited pair requires a controlled construction for that spectral observable. Numerical agreement between finite-window exponents supplies neither derivation.
 
-The remaining asymptotic question is the origin of the small quantity $\epsilon_N/c_N$, or equivalently the invariant coupling product. A numerical proximity between a finite-window gap exponent and a stationary excitation-number rate function $\Phi(n_f)$ does not establish their equality. The stationary marginal discards information about left modes, coherence-sensitive residuals, and boundary matching. Quantum-instanton theory supplies a route to switching exponents~\cite{PCE2026,CEP2026}, but applying it to this finite-rate excited-mode splitting requires additional analysis. We make no quasipotential prediction here.
-
-Our results also delimit the dynamical meaning of the spectral pair. An independently computed, more slowly decaying oscillatory pair substantially improves the density transient, demonstrating why the target real modes cannot simply be called the two slowest modes or assumed to govern every preparation. The present conclusions concern finite sizes and uniform interactions with local decay. They do not establish a thermodynamic-limit fold correspondence, extend to short-range nucleation, or provide a universal scaling law for direction-dependent switching.
+Our conclusions concern the reported finite sizes, uniform interactions, and local decay. The data do not establish a thermodynamic fold correspondence, a universal ghost-escape mode, or short-range switching. Size-dependent transient enhancement also remains a separate question requiring residues, rather than eigenvalues alone~\cite{MoriShirai2020,Mori2021}.
 
 \section*{Data and numerical methods}
-The accompanying Supplemental Material specifies the generator convention, physical product-state construction, projection identities, root validation, and complex-continuation checks. The accompanying source bundle contains the plotted numerical records and reproduction scripts. The generator has been independently checked against the symmetrized full-spin Liouvillian for $N=1$--$4$. No fitted stochastic noise model is used in the finite-size spectral or transient calculations.
+The SM specifies the generator, preparations, projection identities, and numerical checks. Plotted records and reproduction scripts accompany the source bundle. Independent full-spin checks cover $N=1$--$4$; the finite-size calculations use no fitted stochastic noise model.
 
 \begin{thebibliography}{99}
+\bibitem{Lee2012} T. E. Lee, H. H\"affner, and M. C. Cross, Collective quantum jumps of Rydberg atoms, \href{https://doi.org/10.1103/PhysRevLett.108.023602}{Phys. Rev. Lett. \textbf{108}, 023602 (2012)}.
+\bibitem{LeeChan2013} T. E. Lee and C.-K. Chan, Dissipative transverse-field Ising model: Steady-state correlations and spin squeezing, \href{https://doi.org/10.1103/PhysRevA.88.063811}{Phys. Rev. A \textbf{88}, 063811 (2013)}.
 \bibitem{Carr2013} C. Carr, R. Ritter, C. G. Wade, C. S. Adams, and K. J. Weatherill, Nonequilibrium phase transition in a dilute Rydberg ensemble, Phys. Rev. Lett. \textbf{111}, 113901 (2013).
-\bibitem{Casteels2017} W. Casteels, R. Fazio, and C. Ciuti, Critical dynamical properties of a first-order dissipative phase transition, Phys. Rev. A \textbf{95}, 012128 (2017).
-\bibitem{Minganti2018} F. Minganti, A. Biella, N. Bartolo, and C. Ciuti, Spectral theory of Liouvillians for dissipative phase transitions, Phys. Rev. A \textbf{98}, 042118 (2018).
-\bibitem{Xie2025} C. Xie, K. Sun, K.-D. Wu, C.-F. Li, G.-C. Guo, W. Yi, and G.-Y. Xiang, Chiral switching of many-body steady states in a dissipative Rydberg gas, Sci. Bull. \textbf{70}, 3345 (2025); arXiv:2402.02779.
+\bibitem{Xie2025} C. Xie, K. Sun, K.-D. Wu, C.-F. Li, G.-C. Guo, W. Yi, and G.-Y. Xiang, Chiral switching of many-body steady states in a dissipative Rydberg gas, \href{https://doi.org/10.1016/j.scib.2025.08.051}{Sci. Bull. \textbf{70}, 3345--3350 (2025)}.
 \bibitem{SunYi2024} K. Sun and W. Yi, Encircling the Liouvillian exceptional points: a brief review, AAPPS Bull. \textbf{34}, 22 (2024).
+\bibitem{LiSunYi2026} C. Li, K. Sun, and W. Yi, Critical exponents near the Liouvillian exceptional structure in Rydberg vapors, \href{https://doi.org/10.1088/1674-1056/adfb57}{Chin. Phys. B \textbf{35}, 030302 (2026)}.
+\bibitem{AlbertJiang2014} V. V. Albert and L. Jiang, Symmetries and conserved quantities in Lindblad master equations, \href{https://doi.org/10.1103/PhysRevA.89.022118}{Phys. Rev. A \textbf{89}, 022118 (2014)}.
 \bibitem{Macieszczak2016} K. Macieszczak, M. Gu\c{t}\u{a}, I. Lesanovsky, and J. P. Garrahan, Towards a theory of metastability in open quantum dynamics, Phys. Rev. Lett. \textbf{116}, 240404 (2016).
-\bibitem{PCE2026} K. Ptaszy\'nski, M. Chudak, and M. Esposito, Quantum instanton theory for metastable collective spin systems, arXiv:2604.15091 (2026).
-\bibitem{CEP2026} M. Chudak, M. Esposito, and K. Ptaszy\'nski, Quantum instanton approach to metastable collective spin systems: Numerical implementation and applications, arXiv:2610.21684 (2026).
+\bibitem{Minganti2018} F. Minganti, A. Biella, N. Bartolo, and C. Ciuti, Spectral theory of Liouvillians for dissipative phase transitions, Phys. Rev. A \textbf{98}, 042118 (2018).
+\bibitem{MoriShirai2020} T. Mori and T. Shirai, Resolving a discrepancy between Liouvillian gap and relaxation time in boundary-dissipated quantum many-body systems, \href{https://doi.org/10.1103/PhysRevLett.125.230604}{Phys. Rev. Lett. \textbf{125}, 230604 (2020)}.
+\bibitem{Mori2021} T. Mori, Metastability associated with many-body explosion of eigenmode expansion coefficients, \href{https://doi.org/10.1103/PhysRevResearch.3.043137}{Phys. Rev. Research \textbf{3}, 043137 (2021)}.
+\bibitem{RobertsClerk2023} D. Roberts and A. A. Clerk, Exact solution of the infinite-range dissipative transverse-field Ising model, \href{https://doi.org/10.1103/PhysRevLett.131.190403}{Phys. Rev. Lett. \textbf{131}, 190403 (2023)}.
+\bibitem{Casteels2017} W. Casteels, R. Fazio, and C. Ciuti, Critical dynamical properties of a first-order dissipative phase transition, Phys. Rev. A \textbf{95}, 012128 (2017).
+\bibitem{PCE2026} K. Ptaszy\'nski, M. Chudak, and M. Esposito, Quantum instanton theory for metastable collective spin systems, \href{https://arxiv.org/abs/2604.15091}{arXiv:2604.15091} (2026).
+\bibitem{CEP2026} M. Chudak, M. Esposito, and K. Ptaszy\'nski, Quantum instanton approach to metastable collective spin systems: Numerical implementation and applications, \href{https://arxiv.org/abs/2610.21684}{arXiv:2610.21684} (2026).
+\bibitem{NoachtarClerk2026} D. D. Noachtar and A. A. Clerk, Exact metastability in a class of driven-dissipative quantum many-body systems, \href{https://arxiv.org/abs/2606.07736v1}{arXiv:2606.07736v1} (2026).
+\bibitem{Kessler2012} E. M. Kessler, G. Giedke, A. Imamoglu, S. F. Yelin, M. D. Lukin, and J. I. Cirac, Dissipative phase transition in a central spin system, \href{https://doi.org/10.1103/PhysRevA.86.012116}{Phys. Rev. A \textbf{86}, 012116 (2012)}.
 \bibitem{Krimer2019} D. O. Krimer and M. Pletyukhov, Few-mode geometric description of a driven-dissipative phase transition in an open quantum system, Phys. Rev. Lett. \textbf{123}, 110604 (2019).
 \bibitem{Cabot2024} A. Cabot, G. L. Giorgi, and R. Zambrini, Nonequilibrium transition between dissipative time crystals, PRX Quantum \textbf{5}, 030325 (2024).
-\bibitem{Feshbach1958} H. Feshbach, Unified theory of nuclear reactions, Ann. Phys. (N.Y.) \textbf{5}, 357 (1958).
+\bibitem{RubioGarcia2022} \'A. Rubio-Garc\'ia, \'A. L. Corps, A. Rela\~no, R. A. Molina, F. P\'erez-Bernal, J.-E. Garc\'ia-Ramos, and J. Dukelsky, Exceptional spectral phase in a dissipative collective spin model, \href{https://doi.org/10.1103/PhysRevA.106.L010201}{Phys. Rev. A \textbf{106}, L010201 (2022)}.
+\bibitem{Molina2026} R. A. Molina, Spectroscopic signatures of a Liouvillian exceptional spectral phase in a collective spin, \href{https://doi.org/10.21468/SciPostPhysCore.9.3.045}{SciPost Phys. Core \textbf{9}, 045 (2026)}.
 \bibitem{Shammah2018} N. Shammah, S. Ahmed, N. Lambert, S. De Liberato, and F. Nori, Open quantum systems with local and collective incoherent processes: Efficient numerical simulations using permutational invariance, Phys. Rev. A \textbf{98}, 063815 (2018).
+\bibitem{Xiang2026} Y.-X. Xiang, W. Li, Z. Bai, and Y.-Q. Ma, Switching metastable dynamics in many-body open quantum systems, \href{https://doi.org/10.1093/nsr/nwag146}{Natl. Sci. Rev. \textbf{13}, nwag146 (2026)}.
+\bibitem{Heiss2012} W. D. Heiss, The physics of exceptional points, \href{https://doi.org/10.1088/1751-8113/45/44/444016}{J. Phys. A: Math. Theor. \textbf{45}, 444016 (2012)}.
+\bibitem{Feshbach1958} H. Feshbach, Unified theory of nuclear reactions, Ann. Phys. (N.Y.) \textbf{5}, 357 (1958).
+\bibitem{FSElimination2020} D. Finkelstein-Shapiro, D. Viennot, I. Saideh, T. Hansen, T. Pullerits, and A. Keller, Adiabatic elimination and subspace evolution of open quantum systems, \href{https://doi.org/10.1103/PhysRevA.101.042102}{Phys. Rev. A \textbf{101}, 042102 (2020)}.
+\bibitem{GarciaPalaciosZueco2006} J. L. Garc\'ia-Palacios and D. Zueco, Solving spin quantum master equations with matrix continued-fraction methods: application to superparamagnets, \href{https://doi.org/10.1088/0305-4470/39/42/005}{J. Phys. A: Math. Gen. \textbf{39}, 13243--13284 (2006)}.
+\bibitem{Nakajima1958} S. Nakajima, On quantum theory of transport phenomena: Steady diffusion, \href{https://doi.org/10.1143/PTP.20.948}{Prog. Theor. Phys. \textbf{20}, 948--959 (1958)}.
+\bibitem{Zwanzig1960} R. Zwanzig, Ensemble method in the theory of irreversibility, \href{https://doi.org/10.1063/1.1731409}{J. Chem. Phys. \textbf{33}, 1338--1341 (1960)}.
+\bibitem{GuttelTisseur2017} S. G\"uttel and F. Tisseur, The nonlinear eigenvalue problem, \href{https://doi.org/10.1017/S0962492917000034}{Acta Numer. \textbf{26}, 1--94 (2017)}.
 \end{thebibliography}
 \end{document}
