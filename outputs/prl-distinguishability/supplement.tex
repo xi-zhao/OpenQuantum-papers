@@ -1,0 +1,262 @@
+\documentclass[aps,prl,onecolumn,superscriptaddress,amsmath,amssymb]{revtex4-2}
+\usepackage{graphicx,bm,amsthm}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\N}{\mathcal N}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Pc}{P_{\mathrm c}^{*}}
+\newcommand{\Fq}{F_{\mathrm q}^{*}}
+\newcommand{\Fs}{\mathcal F}
+\renewcommand{\theequation}{S\arabic{equation}}
+\begin{document}
+\title{Supplemental Material: A Common Recovery Transition for Classical and Quantum Information in Random Codes}
+\author{Xi Zhao}\noaffiliation
+\date{October 28, 2026}
+\maketitle
+
+\section{Tasks, normalization, and randomness}
+
+Let $d=2^n$, $2\le M\le d$, and let $V_0:\mathbb C^M\to\mathbb C^d$ be a fixed isometry. Choose $U$ from an exact unitary 2-design and set $V=UV_0$. The logical basis $\{|j\rangle\}_{j=1}^M$ is fixed before drawing $U$. The ensemble may depend on $n$ and need not be Haar. The Pauli channel
+\begin{equation}
+\N_p(\rho)=\sum_{P\in\{I,X,Y,Z\}^{\otimes n}}p_P P\rho P^\dagger
+\end{equation}
+is fixed independently of $U$; spatially correlated probabilities are allowed. For zero-probability errors define the surprisal as $+\infty$, and set
+\begin{equation}
+s(P)=-\log_2p_P,\qquad \Fs(t)=\Prb_{P\sim p}[s(P)<t],\qquad k=\log_2M.
+\end{equation}
+Each decoder knows the realized $V$ and the channel. Optimization precedes ensemble averaging. No random-unitary label is discarded.
+
+For $\rho_j=\N_p(V|j\rangle\langle j|V^\dagger)$, the classical task is
+\begin{equation}
+\Pc(V)=\max_{\{E_j\}}\frac1M\sum_j\tr(E_j\rho_j),\qquad E_j\ge0,\quad\sum_jE_j=I_d.
+\end{equation}
+The quantum task is
+\begin{equation}
+\Fq(V)=\max_{\mathcal D}\langle\Phi_M|[\mathrm{id}\otimes(\mathcal D\circ\N_p\circ\mathcal V)](\Phi_M)|\Phi_M\rangle,
+\quad |\Phi_M\rangle=M^{-1/2}\sum_j|j\rangle|j\rangle,
+\quad\mathcal V(\rho)=V\rho V^\dagger.
+\end{equation}
+The decoder $\mathcal D:\mathbb C^d\to\mathbb C^M$ is any completely positive trace-preserving map. Our fidelity is the overlap, not its square root. These definitions allow different optimal decoders for the two tasks. They do not assert worst-input or diamond-norm recovery, efficient decoding, noisy-encoder tolerance, or an optimized channel capacity.
+
+\section{Two exact second-moment identities}
+
+For a fixed logical column $|\psi_j\rangle=V|j\rangle$,
+\begin{equation}
+\E|\psi_j\rangle\langle\psi_j|^{\otimes2}=\frac{I+F}{d(d+1)}.
+\label{eq:momentstate}
+\end{equation}
+For any traceless unitary $A$ and orthogonal logical columns $i\ne j$,
+\begin{align}
+\E|\langle\psi_j|A|\psi_j\rangle|^2&=\frac1{d+1},\\
+\E|\langle\psi_i|A|\psi_j\rangle|^2&=\frac d{d^2-1}.
+\label{eq:crossmoment}
+\end{align}
+To see the latter coefficient, extend $V_0$ to a full orthonormal basis. For Haar $U$, the off-diagonal matrix elements of $U^\dagger A U$ have equal mean squared modulus. Their sum together with the diagonal term in one column is one. Thus the off-diagonal mean is $[1-1/(d+1)]/(d-1)=d/(d^2-1)$. All expressions are degree $(2,2)$ in $U,U^*$ and therefore have the same averages for an exact unitary 2-design. For distinct Pauli labels, $P^\dagger Q$ is a traceless unitary even when its phase is $\pm i$.
+
+For a set of errors $\mathcal T$, let $B_j=\sum_{P\in\mathcal T}p_PP|\psi_j\rangle\langle\psi_j|P^\dagger$, $m=\sum_{\mathcal T}p_P$, and $v=\sum_{\mathcal T}p_P^2$. Pauli orthogonality and Eq.~\eqref{eq:momentstate} give
+\begin{equation}
+\E\tr B_j^2=\sum_{P,Q\in\mathcal T}p_Pp_Q\E|\langle\psi_j|P^\dagger Q|\psi_j\rangle|^2
+=v+\frac{m^2-v}{d+1}=\frac{dv+m^2}{d+1}.
+\label{eq:tailmoment}
+\end{equation}
+No independence between columns is used.
+
+\section{A classical converse that also bounds quantum recovery}
+
+For every $c>0$ and every POVM,
+\begin{equation}
+P_{\rm succ}\le\frac{cd}{M}+\frac1M\sum_j\tr(\rho_j-cI)_+.
+\label{eq:positive}
+\end{equation}
+For a threshold $c'>0$, write $\rho_j=A_j+B_j$, with $A_j$ containing errors of probability $p_P>c'$ and $B_j$ the remaining errors. Positivity gives
+\begin{equation}
+\tr(A_j+B_j-cI)_+\le\tr A_j+\tr(B_j-cI)_+\le \Fs(\log_2(1/c'))+\frac{\tr B_j^2}{4c}.
+\end{equation}
+The first inequality follows by maximizing $\tr Q(A_j+B_j-cI)$ over $0\le Q\le I$; the second follows from $(\lambda-c)_+\le\lambda^2/(4c)$ for $\lambda\ge0$. Since $v\le c'm\le c'$ and $m\le1$, Eq.~\eqref{eq:tailmoment} implies $\E\tr B_j^2\le c'+1/d$. Put $\gamma=cd$ and $c'=c2^{-a}$ to obtain
+\begin{equation}
+\E\Pc\le\frac\gamma M+\frac1{4\gamma}+\frac{2^{-a}}4+
+\Fs(n-\log_2\gamma+a),\qquad \gamma>0,\ a>0.
+\label{eq:converse}
+\end{equation}
+In particular, $\gamma=M2^{-a}$ yields the upper bound in the main text. This is a bound on the optimized decoder for each sampled code, not just on a measurement chosen in advance.
+
+For any recovered logical channel with Kraus operators $A_\ell$, Cauchy--Schwarz gives
+\begin{equation}
+F_e=\frac1{M^2}\sum_\ell|\tr A_\ell|^2
+\le\frac1M\sum_{j,\ell}|(A_\ell)_{jj}|^2\le\Pc(V).
+\label{eq:order}
+\end{equation}
+The middle expression is the success probability for that recovery followed by a logical-basis measurement. Maximizing over recoveries proves $\Fq(V)\le\Pc(V)$ pointwise. This inequality alone is not an equality of the two tasks.
+
+\section{An explicit quantum recovery for likely errors}
+
+Let $\mathcal G=\{P:s(P)<n-k-a\}$ and $L=|\mathcal G|$. Its probability threshold implies $L<d2^{-a}/M$. If $\mathcal G$ is empty the claimed lower bound is trivial. Otherwise define
+\begin{equation}
+B_P=PV,\qquad S=\sum_{P\in\mathcal G}B_PB_P^\dagger,\qquad
+R_P=B_P^\dagger S^{-1/2}.
+\label{eq:recovery}
+\end{equation}
+All inverses are on the support of $S$. Then $\sum_PR_P^\dagger R_P=\Pi_{\mathrm{supp}S}$. If $\{|e_b\rangle\}$ is an orthonormal basis of $\ker S$, the additional Kraus operators $K_b=|0_{\rm L}\rangle\langle e_b|$ complete a trace-preserving decoder. The label $P$ indexes a Kraus representation of this fixed decoder; it is not a supplied record of the actual noise event. The decoder is a transpose/square-root recovery for the uniformly weighted truncated error family~\cite{BarnumKnill}.
+
+Let $|v_{jP}\rangle=B_P|j\rangle$ and $a_{jP}=\langle v_{jP}|S^{-1/2}|v_{jP}\rangle$. The fine-grained square-root POVM has effects
+\begin{equation}
+E_{jP}=S^{-1/2}|v_{jP}\rangle\langle v_{jP}|S^{-1/2},\qquad
+\sum_{j,P}E_{jP}=\Pi_{\mathrm{supp}S}.
+\end{equation}
+Consequently $0\le a_{jP}\le1$. Applying the Hayashi--Nagaoka inequality~\cite{HayashiNagaoka} with the rank-one projector onto $v_{jP}$ as its first argument gives
+\begin{equation}
+1-a_{jP}^2\le4C_{jP},\qquad
+C_{jP}=\sum_{(i,Q)\ne(j,P)}|\langle v_{jP}|v_{iQ}\rangle|^2.
+\label{eq:HN}
+\end{equation}
+The term $2(I-|v_{jP}\rangle\langle v_{jP}|)$ has zero expectation in $v_{jP}$.
+
+The Kraus operators of the recovered noisy channel include $\sqrt{p_Q}R_PQV$. Retaining only terms with $Q=P\in\mathcal G$ in its nonnegative fidelity sum gives
+\begin{align}
+F_e&\ge\sum_{P\in\mathcal G}p_P\left(\frac1M\sum_ja_{jP}\right)^2\\
+&\ge p(\mathcal G)-8X(U),\qquad
+X(U)=\sum_{P\in\mathcal G}\frac{p_P}{M}\sum_j C_{jP}.
+\label{eq:pointlower}
+\end{align}
+Here $(\overline a)^2\ge1-2\overline{(1-a)}\ge1-2\overline{(1-a^2)}$. The recovery is unweighted, but its performance is evaluated with the true error probabilities; these need not be equal.
+
+Same-error columns are exactly orthogonal. Equation~\eqref{eq:crossmoment} therefore implies
+\begin{equation}
+\E C_{jP}=\frac{L-1}{d+1}+\frac{(M-1)(L-1)d}{d^2-1}
+=\frac{(L-1)(dM-1)}{d^2-1}\le\frac{M(L-1)}d,
+\end{equation}
+where the inequality uses $M\le d$. Thus $\E X\le p(\mathcal G)ML/d\le2^{-a}$, and
+\begin{equation}
+\E\Fq\ge\Fs(n-k-a)-8\,2^{-a}.
+\label{eq:lower}
+\end{equation}
+A sharper bound for an arbitrary nonempty $\mathcal G$ follows from the same computation:
+\begin{equation}
+\E\Fq\ge p(\mathcal G)
+\left[1-\frac{8(|\mathcal G|-1)(dM-1)}{d^2-1}\right].
+\label{eq:sharplower}
+\end{equation}
+It can be more useful at small sizes, although a negative right-hand side is simply uninformative.
+
+\section{Probability over encoders and second-order consequences}
+
+Set $F_- =\Fs(n-k-a)$ and $F_+=\Fs(n-k+2a)$. Equation~\eqref{eq:pointlower} implies
+\begin{equation}
+\E(F_- -\Fq)_+\le8\,2^{-a}.
+\end{equation}
+The pointwise proof of Eq.~\eqref{eq:converse}, with $\gamma=M2^{-a}$, gives
+\begin{equation}
+\E(\Pc-F_+)_+\le\frac54\,2^{-a}+\frac{2^a}{4M}.
+\end{equation}
+These are bounds on positive deviations, stronger than a pair of inequalities for means. Markov's inequality and a union bound give, for every $\eta>0$,
+\begin{equation}
+\Prb_U[\Fq<F_--\eta\ \text{or}\ \Pc>F_++\eta]
+\le \frac{37\,2^{-a}}{4\eta}+\frac{2^a}{4M\eta}.
+\label{eq:probability}
+\end{equation}
+Together with Eq.~\eqref{eq:order}, this brackets both operational quantities for the same realized encoder.
+
+Now fix a single-qubit distribution $\bm p$ with $0<H<1$ and $\sigma^2>0$, where
+\begin{equation}
+H=-\sum_\alpha p_\alpha\log_2p_\alpha,\qquad
+\sigma^2=\sum_\alpha p_\alpha(-\log_2p_\alpha-H)^2.
+\end{equation}
+Errors are i.i.d., so $s(P)$ is a sum of $n$ independent variables. The third absolute centered moment is finite, even if some error probabilities vanish (zero-probability symbols are omitted). For
+\begin{equation}
+k_n=n(1-H)+\sqrt n\,\sigma z+O(1)
+\end{equation}
+with fixed $z$, $M_n$ grows exponentially and remains below $d$ eventually. Berry--Esseen~\cite{Feller}, including its left-limit version for the strict CDF, gives
+\begin{equation}
+\Fs(n-k_n+b)=\Phi\!\left(-z+\frac b{\sqrt n\sigma}+O(n^{-1/2})\right)+O(n^{-1/2}).
+\end{equation}
+Choose $a=2\log_2n$. The two CDF shifts are $O(\log n/\sqrt n)$, and $2^a/M_n$ is exponentially small. This proves
+\begin{equation}
+\E\Fq=\Phi(-z)+O(\log n/\sqrt n),\qquad
+\E\Pc=\Phi(-z)+O(\log n/\sqrt n).
+\label{eq:gaussian}
+\end{equation}
+Constants depend on the fixed distribution and on a bounded interval of $z$, not on which exact 2-design is chosen. With $\eta=n^{-1/2}$, the exceptional probability in Eq.~\eqref{eq:probability} is at most
+\begin{equation}
+\frac{37}{4}n^{-3/2}+\frac{n^{5/2}}{4M_n}.
+\end{equation}
+Thus both optimal performances have the same Gaussian limit in probability, and on the complement of this event differ by at most $O(\log n/\sqrt n)$. This does not assert equality at finite $n$ or a uniform statement for every encoder.
+
+For fixed $0<\epsilon<1$, let $k_{\epsilon,n}^{\mathrm c}$ and $k_{\epsilon,n}^{\mathrm q}$ denote the greatest integer logical sizes for which the respective ensemble-mean performance is at least $1-\epsilon$, using the specified family of exact 2-design encoders for each size. The finite bracket is uniform in $k$. Evaluating its lower and upper sides at $k=n(1-H)+\sqrt n\sigma\Phi^{-1}(\epsilon)\mp C\log n$ and using the positive Gaussian density at the fixed quantile proves
+\begin{equation}
+k_{\epsilon,n}^{\mathrm c}=n(1-H)+\sqrt n\sigma\Phi^{-1}(\epsilon)+O(\log n),\qquad
+k_{\epsilon,n}^{\mathrm q}=n(1-H)+\sqrt n\sigma\Phi^{-1}(\epsilon)+O(\log n).
+\end{equation}
+The spectrum upper bound decreases with $k$ at fixed $a$, which bounds all larger sizes; no unproved monotonicity of an arbitrarily specified code family is needed.
+
+For fixed positive rate $R=k/n$, taking $a=\alpha n$ with $\alpha>0$ sufficiently small yields exponential approach to one if $R<1-H$, and exponential decay if $R>\max(1-H,0)$. This follows from classical large deviations for the finite-alphabet surprisal. At $H=1$, fixed $M$, or zero surprisal variance, Eq.~\eqref{eq:gaussian} is not claimed. The term $2^a/(4M)$ explicitly records why a growing message space is needed for this particular common-curve statement.
+
+\section{Clifford decoding: exact classical formulas for both optima}
+
+For this section take the standard embedding $V_0|j\rangle=|j\rangle_{\rm L}|0\rangle_{\rm A}$ with $M=2^k$, and let $U$ be Clifford. Conjugating a physical Pauli through the known inverse encoder produces a Pauli on logical and auxiliary qubits. Denote its logical $X$ and $Z$ labels by $x,z\in\{0,1\}^k$ and its auxiliary $X$ label by $s\in\{0,1\}^{n-k}$. Auxiliary $Z$ labels only contribute phases on $|0\rangle_{\rm A}$ and are summed. Let $w(s,x,z)$ be the resulting joint probability, including all Pauli degeneracies.
+
+The auxiliary register is in the orthogonal computational state $|s\rangle$. Conditional on $s$, the logical channel is a Pauli channel with unnormalized probabilities $w(s,x,z)$. For a decoder on that syndrome block with Kraus operators $D_\ell$, define
+\begin{equation}
+f_{x,z}=\frac1{M^2}\sum_\ell|\tr[D_\ell X^xZ^z]|^2\ge0.
+\end{equation}
+Pauli orthogonality and trace preservation imply $\sum_{x,z}f_{x,z}=1$. Thus the conditional contribution to entanglement fidelity is at most $\max_{x,z}w(s,x,z)$, attained by correcting the most probable logical Pauli. Since syndrome blocks are orthogonal, an arbitrary decoder cannot improve by coherently mixing them. Therefore
+\begin{equation}
+\Fq=\sum_s\max_{x,z}w(s,x,z).
+\label{eq:cliffordq}
+\end{equation}
+This standard syndrome/logical-coset representation is also the basis of stabilizer-code converse results~\cite{StabilizerConverse}.
+
+For a classical basis message $j$, the observed logical bit string after inverse encoding is $y=j\oplus x$. Phase labels $z$ have no effect. All output states commute, so dephasing any POVM in this common basis preserves its success. For uniform messages the optimal rule chooses the most probable $x$ at each syndrome, giving
+\begin{equation}
+\Pc=\sum_s\max_x\sum_z w(s,x,z).
+\label{eq:cliffordc}
+\end{equation}
+A known inverse Clifford followed by computational-basis measurement and classical maximum-likelihood processing implements this optimum. Computing that processing need not be efficient. Encoder, inverse encoder, and syndrome measurements are ideal in this model.
+
+\section{Numerical method and reproducibility}
+
+The active entry point is \texttt{code/recovery.py}. It uses the existing NumPy, SciPy, Qiskit, CVXPY, CLARABEL, and Matplotlib installations. Qiskit's \texttt{random\_clifford} samples the Clifford group using the Bravyi--Maslov construction~\cite{BravyiMaslov}. We store each sampled inverse symplectic matrix as well as its seed, making the code ensemble reproducible independently of future changes in the sampler. The Pauli phase of a Clifford is immaterial to Eqs.~\eqref{eq:cliffordq}--\eqref{eq:cliffordc}.
+
+We use $k/n=1/4$ and $n=4,8,12,16$, with 64 independently sampled encoders at each size. Each encoder is reused throughout the noise scan. For depolarizing noise $\N_r(\rho)=(1-r)\rho+rI/2$, the Fourier transform of a single physical Pauli probability is $1$ at the trivial character and $1-r$ at each nontrivial character. The retained variable $(s,x,z)$ has $n+k$ bits. Its binary dual map, obtained from the inverse Clifford symplectic matrix, maps each character to a physical Pauli support of weight $w$. The characteristic function is consequently $(1-r)^w$. An inverse Walsh--Hadamard transform computes the entire $w(s,x,z)$ distribution, summing the discarded auxiliary-$Z$ labels exactly. Equations~\eqref{eq:cliffordq} and \eqref{eq:cliffordc} then give both optima without a density-matrix approximation. Negative Fourier roundoff smaller than $2\times10^{-12}$ is clipped and the distribution renormalized; larger negativity aborts the calculation.
+
+Independent direct enumeration of all $4^n$ physical errors for $n\le3$ checks the conjugation convention and Fourier implementation. For $n=2,3$, we separately optimize classical POVMs and quantum recovery Choi matrices for Haar and Clifford encoders. Both primal and dual semidefinite programs are solved with CLARABEL. If it returns \texttt{optimal\_inaccurate}, the same problem is independently solved with the installed SCS solver; all attempts and their statuses are retained. Only a final \texttt{optimal} status is accepted. Independently computed trace-preservation/completeness residuals, primal and dual minimum eigenvalues, and primal--dual objective gaps must satisfy an absolute $2\times10^{-7}$ tolerance. The identity-channel endpoints are one; under complete depolarization the endpoints are $1/M$ for classical guessing and $1/M^2$ for entanglement fidelity. Explicit truncated square-root recoveries are checked for trace preservation and against both the analytical lower estimate and the optimal recovery SDP.
+
+The large-$n$ critical panel evaluates binomial CDFs in the proved bounds; it is not a quantum simulation. The strict surprisal inequality is checked against neighboring error-weight levels; near a floating-point boundary we use 80-digit decimal comparison, with exact logarithms for binary-power probabilities. Regression checks include exact lattice thresholds and the immediately adjacent floating-point thresholds. The dataset and machine-readable verification report distinguish these analytic evaluations from sampled Clifford codes. Sampling uncertainty is the standard error across encoders, $s/\sqrt{64}$; it is not a confidence band for every encoder or an estimate of experimental noise. No hardware experiments or noisy gate simulations are performed.
+
+\section{Relation to earlier results and scope of proof checking}
+
+The hashing rate and its use in random quantum coding are established results~\cite{Bennett,Devetak}. A particularly direct precursor is Klesse's bound for a trace-decreasing completely positive operation~\cite{Klesse}. In the notation of this manuscript, applying Eqs.~(35) and (38) of its arXiv v2 to the truncated Pauli map $\N_{\mathcal G}$ gives
+\begin{equation}
+\E\Fq(\N_p)\ge\E\Fq(\N_{\mathcal G})
+\ge q-\sqrt{ML}\,\|\N_{\mathcal G}(I/d)\|_2
+=q\left(1-\sqrt{ML/d}\right),
+\end{equation}
+where $q=p(\mathcal G)$, $L=|\mathcal G|$, and $\|\cdot\|_2$ is the Hilbert--Schmidt norm. There is no normalization by the truncation probability. Thus the same surprisal cut gives $\E\Fq\ge\Fs(n-k-a)-2^{-a/2}$, already sufficient for the Gaussian achievable side at $a=2\log_2n$. Klesse states the result for Haar codes; its projection second moment, Eq.~(26), also applies to exact unitary 2-designs, as discussed in Sec.~VI.1 of Ref.~\cite{Sommers}. Moreover, Klesse's pointwise Eq.~(36) and its averaged estimate imply
+\begin{equation}
+\E\bigl(q-\Fq\bigr)_+\le q\sqrt{ML/d}\le2^{-a/2}.
+\end{equation}
+Markov's inequality then supplies quantum high-probability achievability. Taking $a=4\log_2n$ and $\eta=n^{-1/2}$ gives polynomially vanishing exceptional probability at the same $O(\log n/\sqrt n)$ Gaussian accuracy. Our explicit recovery proof improves the truncation loss to $8\,2^{-a}$. The additional conclusion here comes from matching quantum achievability to the classical optimal-decoding converse; neither the quantum Gaussian side nor its 2-design and high-probability extensions are claimed as separate innovations.
+
+Finite-resource quantum coding already has second-order achievability bounds and matching converses for some channels~\cite{TBR}. The published Appendix D of Ref.~\cite{Darmawan} develops smooth-entropy second-order achievability estimates for random Clifford block encodings; its arXiv version does not contain that same appendix. Ref.~\cite{Sommers} studies coherent information and spectra of Haar-random codes, including hashing transitions and a square-root finite-size window. Ref.~\cite{MaTanWright} proves high-probability approximate correction by Haar codes for a bounded set of errors. Ref.~\cite{StabilizerConverse} supplies a strong converse for full stabilizer-eigenspace codes under an input-dependent coherent-information condition. These are direct precedents for the ingredients and motivation.
+
+Our statement compares the optimal classical and quantum tasks for the same random encoder by a common finite-size information-spectrum bracket. It supplies a matching operational profile throughout a positive-rate Gaussian window for every exact unitary 2-design, and a probability bound over realized codes. It does not identify the optimized quantum capacity of a general Pauli channel or claim that hashing, Gaussian corrections, square-root recovery, or stabilizer converses are new. Pairwise random-state contraction bounds~\cite{Ibarrondo} concern a different operational quantity. Ref.~\cite{Liu} additionally studies measurement channels, mutual information, and accessible information in Sec.~IV.3 and Appendix C. Its state-ensemble statements use the entire state-2-design alphabet. Our conditional alphabet, for each known $U$, consists of only the $M$ orthogonal columns $\{UV_0|j\rangle\}$ and is not itself a state 2-design. The receiver chooses a POVM for that alphabet, giving $\E_U\max_{\{E_j^{(U)}\}}P_{\rm succ}(U)$; averaging the codewords over $U$ does not turn this into the accessible-information problem for a full design alphabet. The distinction is both the alphabet and the optimization order, not merely binary versus many-message discrimination.
+
+An earlier version of this project contains a Lean formalization of conditional two-state information-spectrum inequalities and some algebraic examples. The new recovery theorem, its probability statement, and the present Gaussian coding result are not formalized there. This manuscript relies on the explicit proofs above, numerical consistency checks, and independent model-assisted mathematical review; it makes no claim that these new results were machine-checked by Lean.
+
+\begin{thebibliography}{99}
+\bibitem{BarnumKnill} H. Barnum and E. Knill, Reversing quantum dynamics with near-optimal quantum and classical fidelity, J. Math. Phys. \textbf{43}, 2097 (2002).
+\bibitem{HayashiNagaoka} M. Hayashi and H. Nagaoka, General formulas for capacity of classical-quantum channels, IEEE Trans. Inf. Theory \textbf{49}, 1753 (2003).
+\bibitem{Feller} W. Feller, \emph{An Introduction to Probability Theory and Its Applications}, Vol.~II, 2nd ed. (Wiley, New York, 1971), Sec.~XVI.5.
+\bibitem{StabilizerConverse} M. Tomamichel, A strong converse for stabilizer codes over Pauli channels via the blowing-up lemma, \href{https://arxiv.org/abs/2607.23450}{arXiv:2607.23450} (2026).
+\bibitem{BravyiMaslov} S. Bravyi and D. Maslov, Hadamard-free circuits expose the structure of the Clifford group, IEEE Trans. Inf. Theory \textbf{67}, 4546 (2021).
+\bibitem{Bennett} C. H. Bennett, D. P. DiVincenzo, J. A. Smolin, and W. K. Wootters, Mixed-state entanglement and quantum error correction, Phys. Rev. A \textbf{54}, 3824 (1996).
+\bibitem{Devetak} I. Devetak, The private classical capacity and quantum capacity of a quantum channel, IEEE Trans. Inf. Theory \textbf{51}, 44 (2005).
+\bibitem{Klesse} R. Klesse, Approximate quantum error correction, random codes, and quantum channel capacity, Phys. Rev. A \textbf{75}, 062315 (2007); equation numbers refer to \href{https://arxiv.org/abs/quant-ph/0701102v2}{arXiv:quant-ph/0701102v2}.
+\bibitem{TBR} M. Tomamichel, M. Berta, and J. M. Renes, Quantum coding with finite resources, Nat. Commun. \textbf{7}, 11419 (2016).
+\bibitem{Darmawan} A. S. Darmawan, Y. Nakata, S. Tamiya, and H. Yamasaki, Low-depth random Clifford circuits for quantum coding against Pauli noise using a tensor-network decoder, Phys. Rev. Research \textbf{6}, 023055 (2024).
+\bibitem{Sommers} G. M. Sommers, J. A. Jacoby, Z. Weinstein, D. A. Huse, and S. Gopalakrishnan, Spectral properties and coding transitions of Haar-random quantum codes, PRX Quantum \textbf{7}, 020328 (2026).
+\bibitem{MaTanWright} F. Ma, X. Tan, and J. Wright, Haar random codes attain the quantum Hamming bound, approximately, \href{https://arxiv.org/abs/2510.07158}{arXiv:2510.07158} (2025).
+\bibitem{Ibarrondo} R. Ibarrondo and D. Stilck Fran\c{c}a, Average contraction coefficients of quantum channels, \href{https://arxiv.org/abs/2508.08214}{arXiv:2508.08214} (2025).
+\bibitem{Liu} G. Liu, C. Qin, Z. Xu, X. Ma, and Z.-W. Liu, Can scrambling protect quantum state distinguishability under noise?, \href{https://arxiv.org/abs/2606.02122}{arXiv:2606.02122} (2026).
+\end{thebibliography}
+\end{document}

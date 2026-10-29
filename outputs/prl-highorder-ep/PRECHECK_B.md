@@ -1,6 +1,6 @@
 # 候选 B：预检结论的更正与正式稿入口
 
-更新：2026-10-28。用户已授权写成 PRA 短文。正式稿见 `paper/manuscript.tex`、`paper/manuscript.pdf`；复现说明见 `README.md`。本文件替代早期预检中未经充分限定的结论。
+更新：2026-10-28。按用户最新授权，正式稿已改为以物理可观测量弛豫为主线的 PRA 短文，见 `paper/manuscript.tex`、`paper/manuscript.pdf`。同一满秩偶初态下的 N/D 精确通道、宇称限制、读出混合与存活概率成为正文中心；Eq. (54) 的截断讨论移入 `paper/supplement.tex`、`paper/supplement.pdf`。新增验证见 `data/verified_observables.json` 和 `review/observable_selection_review.md`，复现与查新边界见 `README.md`。本文件保留原谱预检的更正，不能代替新版主张范围。
 
 ## 已经精确建立的结果
 

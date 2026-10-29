@@ -1,0 +1,87 @@
+{
+  "source_repository": "https://github.com/xi-zhao/OpenQuantum.git",
+  "source_head": "6dd02de9a9fbce4a56c7833170b4dabad6d88a1b",
+  "paths": [
+    "outputs/e7-rydberg-prl",
+    "outputs/prl-chiral-switching",
+    "outputs/prl-critical-noise",
+    "outputs/prl-dissipative-syk",
+    "outputs/prl-distinguishability",
+    "outputs/prl-highorder-ep",
+    "outputs/prl-adiabatic-chirality",
+    "outputs/prl-nh-neutral"
+  ],
+  "refs": [
+    {
+      "source_ref": "refs/heads/c/chiral-biorthogonal-sigma",
+      "source_tip": "7f0f8be1e0e3a3f6435d5f0e0b514cb9ebf3df4f",
+      "destination_ref": "refs/heads/history/openquantum/c/chiral-biorthogonal-sigma",
+      "destination_tip": "c66b79c9ebae83c3f58eb7b5a024f92c53e557c9"
+    },
+    {
+      "source_ref": "refs/heads/c/distinguishability-rigorous-revision",
+      "source_tip": "18615df8cad0837c57f95bbb4514cdee2c36cffc",
+      "destination_ref": "refs/heads/history/openquantum/c/distinguishability-rigorous-revision",
+      "destination_tip": "8e86fdfc819d66b27ad2b3f2afefc55dbd09bc9f"
+    },
+    {
+      "source_ref": "refs/heads/c/pra-decay-mode-hybridization",
+      "source_tip": "6dd02de9a9fbce4a56c7833170b4dabad6d88a1b",
+      "destination_ref": "refs/heads/history/openquantum/c/pra-decay-mode-hybridization",
+      "destination_tip": "542f9b790882ccb304076a8bcbdba4c6ac0701b2"
+    },
+    {
+      "source_ref": "refs/heads/c/pra-ep-scaling",
+      "source_tip": "58655de1c2f0d2e380cc32192d637b9ae90dd4de",
+      "destination_ref": "refs/heads/history/openquantum/c/pra-ep-scaling",
+      "destination_tip": "f7ebccf406e1ab8507b8a678a5b9a06ac8d724f5"
+    },
+    {
+      "source_ref": "refs/heads/c/pra-observable-relaxation",
+      "source_tip": "cb724c7122d3a8770a8efbdaa1debc217378decd",
+      "destination_ref": "refs/heads/history/openquantum/c/pra-observable-relaxation",
+      "destination_tip": "7d32dfc8857350392722f722f0d8fcb9e93b2175"
+    },
+    {
+      "source_ref": "refs/heads/c/prl-critical-noise-research",
+      "source_tip": "3b8eaef277228baa0e38b82c5ecfc17379448eb0",
+      "destination_ref": "refs/heads/history/openquantum/c/prl-critical-noise-research",
+      "destination_tip": "427b183815dc077d5fc60b3f896202a4adde8e2c"
+    },
+    {
+      "source_ref": "refs/heads/c/revise-e7-manuscript",
+      "source_tip": "7b5af10a72c8854402f03e18b8f42790ddbb03fd",
+      "destination_ref": "refs/heads/history/openquantum/c/revise-e7-manuscript",
+      "destination_tip": "11d1bed2d646a88e3b6e68052da1e78aedb40914"
+    }
+  ],
+  "commits": {
+    "7f0f8be1e0e3a3f6435d5f0e0b514cb9ebf3df4f": "c66b79c9ebae83c3f58eb7b5a024f92c53e557c9",
+    "9d07d0b3af32e2b0397c07124c18b0ed83b9f7d7": "b61466840113823744aef6490b1f054068ae0d97",
+    "100a43c32a8c1aeb7956f3f30cad1f12339e3e27": "f2d1198820a9a75e74a350d97da2a7ce00844ad3",
+    "1695a7137ba892a18d5fb54de4bc5ff35030fec4": "374727d82a701a4525b95027c49473d34fca003e",
+    "668291856b21fbd80880d2fa3cb89411117b649b": "2a200045690fe079e6a2ef8900e144de4e5391f0",
+    "b740632b798d528e81e962ebbca1e7f52fcf1c44": "9c87d454056ec42703ffb6d6111f1ae7386974d8",
+    "ede1e7397c860bad1d192a9964cdc1fde57196d2": "867f38f108210f26b6a7d033442aa39aafcb8f64",
+    "6295cc8f46afaa32eabf1d92648f77f216b5e576": "e9457e45b58df35e6fa0fce08dcea24982948450",
+    "1bcbbb37df8c4f918b5c6b058672e1e77ba270d1": "5a132528979d78f387d1eaf8136ca27b1b326e2c",
+    "2d9e02c31e85759589dea32b8e7877c194ef1b3b": "34d3cc716fffb7c511982c8ec7c9f956c9e5242a",
+    "0238b0b70f273d4f1723325efceaae43dbd847d6": "30c321062d58a5a18cc2e4c64b7d3f4c395c22b3",
+    "6dd02de9a9fbce4a56c7833170b4dabad6d88a1b": "542f9b790882ccb304076a8bcbdba4c6ac0701b2",
+    "a4b6501f0aa93e01511bd924086895e576b1db66": "c3e5f5306c262a548879550d23fd5d094b579294",
+    "ed7622503eae3f64c3c3531f549af8b427997d73": "61c4ef7c3fa7ab57aa16305ff632e968c3de542d",
+    "3b8eaef277228baa0e38b82c5ecfc17379448eb0": "427b183815dc077d5fc60b3f896202a4adde8e2c",
+    "7e42745ebd59a956f0c88e72e55d15fb4437431f": "ac59059869743d04d829baefa042cb7fd0fa4ba6",
+    "cb724c7122d3a8770a8efbdaa1debc217378decd": "7d32dfc8857350392722f722f0d8fcb9e93b2175",
+    "aa77ba50813750325fa5281563df87948f26a642": "08f7e99e1427e3e73491a83cdb8b09dd43dc5ea6",
+    "57401814c81204346a7d1e20ef0c3ae6bec77ade": "8f5c36c776661a4e50a296519d6c16efda227a49",
+    "4e91c4f55f05177e9b360131047d95917c611c73": "c4a90d7e46279d89b7cf380916eb5361d5eb7d9e",
+    "18615df8cad0837c57f95bbb4514cdee2c36cffc": "8e86fdfc819d66b27ad2b3f2afefc55dbd09bc9f",
+    "1754139744082abda9d852680c5b0bfaf2e6e064": "b9ea352d0ddcf3db3bce1da265f776b6aa0a7bdd",
+    "106c5c55391fda2e4c0c69f4bfc3e63b4b4557be": "afb159f6c9cc2750f933f9638f4e2b131ab07055",
+    "87eb6d2840ac180f34298bddce1b13b443b47930": "3cc3dce19f6a4ee5d672772847e45bf2502dff02",
+    "58655de1c2f0d2e380cc32192d637b9ae90dd4de": "f7ebccf406e1ab8507b8a678a5b9a06ac8d724f5",
+    "50893b01d8ce0d45626493d678656b55daba0933": "469128c1959626139ea16124b3fa09faa1c09671",
+    "7b5af10a72c8854402f03e18b8f42790ddbb03fd": "11d1bed2d646a88e3b6e68052da1e78aedb40914"
+  }
+}

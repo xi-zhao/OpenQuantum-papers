@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-29",
+  "scope": "Repository migration integrity and lightweight reproducibility; no new scientific acceptance.",
+  "move": {
+    "files": 1578,
+    "bytes": 226527794,
+    "sha256_verified": true,
+    "inodes_modes_mtimes_links_preserved": true,
+    "xattrs_verified": true,
+    "existing_internal_symlinks": [
+      {
+        "path": "outputs/prl-distinguishability/lean/.lake",
+        "target": "/Volumes/Elements/CodexArtifacts/Projects/openQuantum/2026-10-27--lean-formalization/lake-packages",
+        "resolves": true
+      }
+    ],
+    "compatibility_symlinks": [
+      "outputs/e7-rydberg-prl",
+      "outputs/prl-chiral-switching",
+      "outputs/prl-critical-noise",
+      "outputs/prl-dissipative-syk",
+      "outputs/prl-distinguishability",
+      "outputs/prl-highorder-ep",
+      "outputs/prl-adiabatic-chirality",
+      "outputs/prl-nh-neutral"
+    ]
+  },
+  "history": {
+    "research_commits": 27,
+    "research_branches": 7,
+    "all_branch_trees_identical": true,
+    "authors_dates_messages_preserved": true,
+    "git_fsck_passed": true
+  },
+  "syntax": {
+    "python_parsed": 297,
+    "python_errors": [],
+    "json_parsed": 256,
+    "json_errors": [],
+    "high_confidence_secret_patterns_found": []
+  },
+  "artifacts": [
+    {
+      "name": "Rydberg PRA",
+      "manifest": "outputs/prl-chiral-switching/data/pra_spectral/artifact_manifest.json",
+      "entries_checked": 89,
+      "mismatches": []
+    },
+    {
+      "name": "Fermionic EP",
+      "manifest": "outputs/prl-highorder-ep/data/artifact_manifest.json",
+      "entries_checked": 34,
+      "mismatches": []
+    }
+  ],
+  "manuscript_builds": [
+    {
+      "source": "outputs/e7-rydberg-prl/paper/e7_rydberg.tex",
+      "exit_code": 0,
+      "pages": 5,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "Underfull \\hbox (badness 6741) in paragraph at lines 32--40",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 230.",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 230.",
+        "Class revtex4-2 Warning: Deferred float stuck during \\clearpage processing."
+      ]
+    },
+    {
+      "source": "outputs/prl-chiral-switching/paper/main.tex",
+      "exit_code": 0,
+      "pages": 8,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 134--135",
+        "Underfull \\hbox (badness 1490) in paragraph at lines 165--166",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 248.",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 248.",
+        "Class revtex4-2 Warning: Deferred float stuck during \\clearpage processing."
+      ]
+    },
+    {
+      "source": "outputs/prl-chiral-switching/paper/supplement.tex",
+      "exit_code": 0,
+      "pages": 8,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "LaTeX Warning: `h' float specifier changed to `ht'."
+      ]
+    },
+    {
+      "source": "outputs/prl-critical-noise/paper/research_note.tex",
+      "exit_code": 0,
+      "pages": 4,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! "
+      ]
+    },
+    {
+      "source": "outputs/prl-dissipative-syk/paper/main.tex",
+      "exit_code": 0,
+      "pages": 5,
+      "text_matches_delivered_pdf": false,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "Underfull \\hbox (badness 1527) in paragraph at lines 39--41",
+        "Package hyperref Warning: Token not allowed in a PDF string (Unicode):",
+        "Package hyperref Warning: Token not allowed in a PDF string (Unicode):",
+        "Overfull \\hbox (0.91583pt too wide) detected at line 69",
+        "Package hyperref Warning: Token not allowed in a PDF string (Unicode):",
+        "Package hyperref Warning: Token not allowed in a PDF string (Unicode):",
+        "Underfull \\hbox (badness 1087) in paragraph at lines 112--113"
+      ],
+      "text_difference": "Only the automatic date changed from October 27 to October 29, 2026; otherwise identical."
+    },
+    {
+      "source": "outputs/prl-distinguishability/paper.tex",
+      "exit_code": 0,
+      "pages": 4,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "Underfull \\hbox (badness 2435) in paragraph at lines 307--315",
+        "Underfull \\hbox (badness 4048) in paragraph at lines 328--329"
+      ]
+    },
+    {
+      "source": "outputs/prl-distinguishability/supplement.tex",
+      "exit_code": 0,
+      "pages": 6,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Class revtex4-2 Warning: No type size specified, using default 10.",
+        "Package nameref Warning: The definition of \\label has changed! "
+      ]
+    },
+    {
+      "source": "outputs/prl-highorder-ep/paper/manuscript.tex",
+      "exit_code": 0,
+      "pages": 4,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 54--56",
+        "Underfull \\hbox (badness 2707) in paragraph at lines 54--56"
+      ]
+    },
+    {
+      "source": "outputs/prl-highorder-ep/paper/supplement.tex",
+      "exit_code": 0,
+      "pages": 4,
+      "text_matches_delivered_pdf": true,
+      "unresolved_references": false,
+      "warnings": [
+        "Package nameref Warning: The definition of \\label has changed! ",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 132.",
+        "LaTeX Warning: A float is stuck (cannot be placed) on input line 132.",
+        "Class revtex4-2 Warning: Deferred float stuck during \\clearpage processing."
+      ]
+    }
+  ],
+  "recovery_check": {
+    "sdp_case_count": 16,
+    "fourier_enumeration_max_error": 1.1102230246251565e-16,
+    "cdf_max_error": 3.3306690738754696e-16,
+    "versions": {
+      "python": "3.13.2",
+      "numpy": "2.2.6",
+      "scipy": "1.16.3",
+      "qiskit": "2.3.0",
+      "cvxpy": "1.9.2",
+      "clarabel": "0.11.1",
+      "scs": "3.2.11"
+    },
+    "scope": "Small-system consistency tests; analytic bounds at large n, not a large-n quantum simulation.",
+    "command": "python3 -I outputs/prl-distinguishability/code/recovery.py --check-only",
+    "exit_code": 0,
+    "warnings": "/Volumes/Elements/my_projects/OpenQuantum-papers/outputs/prl-distinguishability/code/recovery.py:206: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.\n  problem.solve(solver=\"CLARABEL\", tol_gap_abs=1e-8, tol_feas=1e-8, tol_gap_rel=1e-8)",
+    "solver_fallback_cases": 3,
+    "all_final_solver_statuses_optimal": true,
+    "log_wrapper_note": "The initial wrapper could not parse stderr prepended to JSON; the research command exited 0. Parsed the existing completed output without rerunning calculations."
+  },
+  "research_files_modified": 0,
+  "remote_configured": false
+}

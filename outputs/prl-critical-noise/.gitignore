@@ -1,0 +1,9 @@
+# Downloaded third-party literature stays local; sources/README.md records URLs.
+sources/*/
+# TeX intermediates and local render checks.
+paper/build/
+paper/preview/
+__pycache__/
+*.pyc
+# The delivery archive is reproducible from the committed files.
+critical-noise-research.zip

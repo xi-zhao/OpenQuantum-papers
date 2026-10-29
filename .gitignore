@@ -1,0 +1,43 @@
+# Local operating-system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Credentials and local environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+node_modules/
+.claude/settings.local.json
+
+# Python, Lean, and LaTeX build products
+__pycache__/
+*.pyc
+.lake/
+build/
+.build/
+.revision-baseline/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*Notes.bib
+
+# This bibliography belongs to an already versioned historical draft.
+!/outputs/prl-distinguishability/archive/initial-draft/paper.bbl
+
+# Downloaded third-party full texts; keep locally, do not redistribute.
+/outputs/prl-chiral-switching/src_dl/
+/outputs/prl-critical-noise/sources/*/
+
+# Individual projects additionally ignore previews and rebuildable source ZIPs.
+# Manuscript PDFs, figures, research data, and historical drafts remain versioned.

@@ -8,12 +8,18 @@ ROOT = Path(__file__).resolve().parents[1]
 FILES = [
   "README.md", "PRECHECK_B.md",
   "paper/manuscript.tex", "paper/references.bib", "paper/manuscript.pdf",
+  "paper/supplement.tex", "paper/supplement.pdf",
   "code/spectral_analysis.py", "code/make_figures.py", "code/package_source.py",
+  "code/observable_relaxation.py", "code/make_observable_figures.py",
   "review/block_parity_review.py", "review/prior_art.md", "review/semiclassical_review.md",
+  "review/observable_selection_review.md",
   "data/verified_algebra.json", "data/verified_perron.json",
   "data/verified_precision.json", "data/verified_blocks.json",
   "data/verification_summary.json", "data/scaling_table.csv", "data/splitting_table.csv",
+  "data/verified_observables.json", "data/observable_dynamics_table.csv", "data/rate_hierarchy_table.csv",
   "figs/scaling.pdf", "figs/splitting.pdf", "figs/scaling.png", "figs/splitting.png",
+  "figs/observable_dynamics.pdf", "figs/observable_dynamics.png",
+  "figs/rate_hierarchy.pdf", "figs/rate_hierarchy.png",
 ]
 
 
@@ -30,11 +36,11 @@ def main():
   destination = ROOT / "pra-ep-source.zip"
   with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
     for name in FILES + ["data/artifact_manifest.json"]:
-      archive.write(ROOT / name, arcname=f"pra-ep-scaling/{name}")
+      archive.write(ROOT / name, arcname=f"pra-observable-relaxation/{name}")
   with zipfile.ZipFile(destination) as archive:
     assert archive.testzip() is None
     for name, record in manifest["files"].items():
-      assert hashlib.sha256(archive.read(f"pra-ep-scaling/{name}")).hexdigest() == record["sha256"]
+      assert hashlib.sha256(archive.read(f"pra-observable-relaxation/{name}")).hexdigest() == record["sha256"]
   print(f"Verified bundle: {destination} ({destination.stat().st_size} bytes)")
 
 

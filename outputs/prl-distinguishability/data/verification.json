@@ -1,0 +1,157 @@
+{
+  "channel_errors": {
+    "n1_r0.0": 0.0,
+    "n1_r0.37": 2.7755575615628914e-17,
+    "n1_r1.0": 7.703719777548943e-34,
+    "n2_r0.0": 0.0,
+    "n2_r0.37": 1.1102230246251565e-16,
+    "n2_r1.0": 1.3877787807814457e-17,
+    "n3_r0.0": 0.0,
+    "n3_r0.37": 4.8696008501999263e-17,
+    "n3_r1.0": 3.0357660829594124e-18
+  },
+  "mub_checks": {
+    "1": {
+      "design_error": 8.326672684688674e-17,
+      "distance": 0.2777777777777778
+    },
+    "2": {
+      "design_error": 4.163336342344337e-17,
+      "distance": 0.2700000000000003
+    }
+  },
+  "correlated_pauli": {
+    "distance": 0.49524073791502327,
+    "lower": 0.31345461123716756,
+    "upper": 0.7907332462917537
+  },
+  "critical_r": 0.2523861665536424,
+  "stabilizer_rate_example": {
+    "lower_bound": 0.6214883767462702,
+    "privacy_amplification_bound": 0.47867783129575314
+  },
+  "renyi_identity_max_error": 3.166009121535751e-13,
+  "near_threshold": {
+    "kappa": 2.6440796184192448,
+    "values": [
+      {
+        "delta_r": 0.01,
+        "achievable_over_delta2": 2.592197165951059,
+        "projector_over_delta2": 2.642264471661767
+      },
+      {
+        "delta_r": 0.002,
+        "achievable_over_delta2": 2.633440357813514,
+        "projector_over_delta2": 2.643539711304384
+      },
+      {
+        "delta_r": 0.0004,
+        "achievable_over_delta2": 2.641940941154437,
+        "projector_over_delta2": 2.6439644794060033
+      }
+    ]
+  },
+  "lower_bound_vacuous_above_2_3": {
+    "4": {
+      "lower_r0.6": 0.029006250000000025,
+      "lower_r_ge_2/3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "8": {
+      "lower_r0.6": 0.004467143789062506,
+      "lower_r_ge_2/3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "12": {
+      "lower_r0.6": 0.0005220772404104011,
+      "lower_r_ge_2/3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "randomizing_identity_error": 7.105427357601002e-15,
+  "haar_dephasing_sampling": {
+    "4": {
+      "sampled": 0.48432773250324623,
+      "exact": 0.4838709677419355
+    },
+    "8": {
+      "sampled": 0.49896719529821953,
+      "exact": 0.49902152641878667
+    }
+  },
+  "global_depolarizing_bracket": {
+    "theta": 0.25,
+    "values": {
+      "8": {
+        "entropy_rate": 1.6013870808417956,
+        "lower": 0.12501144409179688,
+        "upper": 0.5000114440917969
+      },
+      "16": {
+        "entropy_rate": 1.5507048824310028,
+        "lower": 0.24218750017462298,
+        "upper": 0.312500000174623
+      },
+      "32": {
+        "entropy_rate": 1.5253524413893478,
+        "lower": 0.249969482421875,
+        "upper": 0.25390625
+      },
+      "64": {
+        "entropy_rate": 1.512676220694674,
+        "lower": 0.2499999995343387,
+        "upper": 0.2500152587890625
+      }
+    }
+  },
+  "twirl_to_global_depolarizing_error": 3.3307244178815313e-16,
+  "purity_threshold_r": 0.42264973081037416,
+  "hmin_le_h2": {
+    "states": 40,
+    "min_gap": -1.5084368198969855e-09
+  },
+  "checks_passed": true,
+  "haar_means_within_bounds_plus_5se": true,
+  "environment": {
+    "python": "3.13.2",
+    "numpy": "2.2.6",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.7"
+  },
+  "sampling": {
+    "seed": 20261027,
+    "pairs": 64,
+    "qubits": 8,
+    "r_values": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75
+    ],
+    "same_pairs_across_r": true,
+    "standard_error": "sample standard deviation (ddof=1) / sqrt(pairs)"
+  },
+  "evidence_scope": "Exact finite-dimensional channel evaluation on sampled Haar inputs; large-n curves are rigorous bounds, not simulated distances.",
+  "raw_sha256": "ab5794e5d9e33a64da41268e60f667bf25bad8c872e245f1a4ceb1b85911b354",
+  "script_sha256": "cc75a22d3fd913a9673aaaa7e52d25130ddee85bd4a6e5ce9adc46a4f3bd7059"
+}
