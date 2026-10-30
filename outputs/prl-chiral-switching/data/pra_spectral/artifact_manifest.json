@@ -1,14 +1,18 @@
 {
   "title": "Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble",
-  "created": "2026-10-29",
+  "created": "2026-10-30",
   "files": {
     "PRA_README.md": {
-      "bytes": 10924,
-      "sha256": "bf2ac1bd6ca98cb5315ff6a721a7044f170c4d5edcd64d995c03577850173c9f"
+      "bytes": 12261,
+      "sha256": "b0030f77db86a117f4d0c6134b9dbf1502ae7539ce2575db08063461c2338325"
     },
     "PRA_REPORT_2026-10-28.md": {
       "bytes": 6114,
       "sha256": "b38bf349a992cbc311f7dfc7ca45418d264458806ee2e61b1792a626c9be9cc4"
+    },
+    "PRA_RESPONSE_2026-10-30.md": {
+      "bytes": 10381,
+      "sha256": "2309319b40369a52c9a42e36d345face140d73edf1f975e3be6cbb1ca37800a6"
     },
     "PRA_REVISION_2026-10-29.md": {
       "bytes": 7459,
@@ -46,6 +50,14 @@
       "bytes": 2300,
       "sha256": "b972b526bd52f913bad7d89faf536261ac891e16758ac92d41748996e2216fc8"
     },
+    "code/coherence_response.py": {
+      "bytes": 13299,
+      "sha256": "7907bdfc3de61d684fe0df3bc3f3907357dac51fa32f8686e56bb44ab66a98f5"
+    },
+    "code/coherence_response_validate.py": {
+      "bytes": 5375,
+      "sha256": "556a358b0431356eff533af25adaddd2cd8e9458b71adbb9fa587adbb84385e3"
+    },
     "code/coherence_validate.py": {
       "bytes": 6330,
       "sha256": "2e2439f47948256ae92f41be149fcfcb7f5a672a177e1c95586b07d6d3f94d09"
@@ -71,8 +83,8 @@
       "sha256": "f95a5f5e166662ac3d51ee820e7ae4befc30a85fec0f5846b3af5358c8707938"
     },
     "code/pra_package.py": {
-      "bytes": 4797,
-      "sha256": "02a5cdd28355b4e2b9f427c8fbe918bd5fe4c2bba629f5e0bf494b71520ff28f"
+      "bytes": 5301,
+      "sha256": "94677e0057c704afb8a679b4a24355ce29cbb6f20151913908e55a6a327d7d47"
     },
     "code/pra_validate.py": {
       "bytes": 9229,
@@ -222,6 +234,14 @@
       "bytes": 33574,
       "sha256": "8730d75f4db5725ab40f4f694ebf735a7c25229d883097f177da58cc0bfe4862"
     },
+    "data/coherence_response/response_2026-10-30.json": {
+      "bytes": 32363,
+      "sha256": "0c3c69c7971695eda2ca02e7ba56f88faa833b7a0e37c0df109771db9a628c60"
+    },
+    "data/coherence_response/validation_2026-10-30.json": {
+      "bytes": 1908,
+      "sha256": "42d7026204b3cc869a87bec83d424e91733403e7505b69ef366c526ee875bffa"
+    },
     "data/pra_spectral/ep_N24.json": {
       "bytes": 25671,
       "sha256": "6c7e188c0eee7cc49bdfe45411499e76a011354cd0d22e8cede47db07ea30f68"
@@ -335,31 +355,31 @@
       "sha256": "a0c133888d8a460a45459d1e1a1bf1a2ff0ff8e3ab122747c3dde91b1e1fe211"
     },
     "paper/main.pdf": {
-      "bytes": 513660,
-      "sha256": "5dbd77602ad3c7a388599e639a96e8781f788fc21bb04e8baf3926688505b9d8"
+      "bytes": 516582,
+      "sha256": "0382ffe00f03e3ca7d5ada6b8851970d3b2a7ff98aa5fa7dff62ea781c127083"
     },
     "paper/main.tex": {
-      "bytes": 38306,
-      "sha256": "9b65b9c6e51809d6f1e327c668be9e471b9409a23536925464b9622fae49ccec"
+      "bytes": 39774,
+      "sha256": "d59b6499fca506746d5b028305a097fbf684879210e1238c96d8383454f79e12"
     },
     "paper/references_suggested_2026-10-29.bib": {
       "bytes": 9875,
       "sha256": "6cb21400daf022a40fa7fbbca630eb918f8aba418910bc9a98d27e568d53fc89"
     },
     "paper/supplement.pdf": {
-      "bytes": 321056,
-      "sha256": "ee2b4d068b62efb967675b4637f0a6b1be36ce40bd0588f27c1bc616d7d889a3"
+      "bytes": 336430,
+      "sha256": "f8ea04357f1d444e687f0c542b58ded8e96d2c0fec6a3fde7605f6d390092d36"
     },
     "paper/supplement.tex": {
-      "bytes": 33138,
-      "sha256": "ff6b303a90fa383a81aa277159a164d161b5f5e5fe148759353bbf0b8fcd121b"
+      "bytes": 38793,
+      "sha256": "545ad1e635c300e7e905d087f97424a8c5b9b1d3b312c715576b9e01064342af"
     },
     "requirements-pra.txt": {
       "bytes": 225,
       "sha256": "a705aca3d43f62d14b7026805da18234baeebf9554df7a69d5177c17f3dee497"
     }
   },
-  "total_bytes": 20100970,
+  "total_bytes": 20191556,
   "evidence": {
     "real gaps and gauge dependence": "data/biorthogonal_audit/analysis.json",
     "signed boundary flux": "data/biorthogonal_audit/boundary_flux.json",
@@ -368,8 +388,10 @@
     "small-N physical evolution and repeatability": "data/pra_spectral/validation_repeat.json",
     "complex EPs and monodromy": "data/pra_spectral/ep_summary.json",
     "Schur back-substitution and failure paths": "data/coherence_mechanism/validation.json",
-    "literature attribution and manuscript build checks": "PRA_REVISION_2026-10-29.md"
+    "literature attribution and manuscript build checks": "PRA_REVISION_2026-10-29.md",
+    "initial-coherence source and observable residues": "data/coherence_response/response_2026-10-30.json",
+    "dephasing preparation and independent integrator": "data/coherence_response/validation_2026-10-30.json"
   },
   "interpretation": "Finite-size numerical evidence; no established sigma=Phi identity or thermodynamic-limit mechanism.",
-  "review_status": "Local mathematical/data/layout checks completed; final independent manuscript review unavailable due to provider quota."
+  "review_status": "Local mathematical/data/layout checks and independent review of the existing finite-size mathematical claims completed; scope and response review are recorded in PRA_RESPONSE_2026-10-30.md."
 }

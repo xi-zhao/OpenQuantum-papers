@@ -250,6 +250,60 @@ This derivative normalization is standard in nonlinear eigenvalue theory~\cite{G
 
 If elimination remains regular, the effective branch is algebraically simple, and $f=f'=0$ with $f''\ne0$, the Schur determinant has a double zero. Back-substitution preserves the one-dimensional kernel, producing the usual EP2 structure~\cite{Heiss2012}. At a pole of the eliminated resolvent these arguments do not apply without examining the full block matrix. Neither this conditional criterion nor a local quadratic fit determines the large-$N$ minimum depth.
 
+\subsection{Initial-coherence source and physical residues}
+For the block decomposition $L=\left(\begin{smallmatrix}L_{00}&B\\C&L_{QQ}\end{smallmatrix}\right)$ and an initial operator $x$, the Laplace-domain equation $(zI-L)\widetilde x=x$ gives
+\begin{align}
+ \widetilde x_Q&=G(z)[x_Q+C\widetilde x_0],\\
+ [zI-K(z)]\widetilde x_0&=b(z),\qquad b(z)=x_0+BG(z)x_Q.
+\end{align}
+The Laplace transform is initially defined in its convergence half-plane; residues at negative decay rates use its meromorphic continuation. Applying the simple-root expansion above to a population observable yields
+\begin{equation}
+ a_i=\frac{(o_0^Tr_i)\,l_i^T[x_0+BG(\lambda_i)x_Q]}
+ {l_i^T[I-K'(\lambda_i)]r_i}.
+ \label{eq:sourceresidue}
+\end{equation}
+Both the source and denominator are essential. This is an application of the existing nonlinear resolvent expansion~\cite{GuttelTisseur2017,FSElimination2020}, not a new general residue theorem. The assumptions are a simple full root, a simple effective branch, and regular elimination near that root. For an observable with a nonzero $Q$ component, the detection factor must also include $o_Q^TGCr_i$; Eq.~\eqref{eq:sourceresidue} uses $o_Q=0$.
+
+The source is evaluated by the same positive-coherence recursion as the effective operator. With $X_q=zI-A_q-\Sigma_q(z)$, define
+\begin{equation}
+ \beta_{q_{\rm top}}=x_{q_{\rm top}},\qquad
+ \beta_q=x_q+U_qX_{q+1}^{-1}\beta_{q+1}\quad(q\ge1).
+\end{equation}
+For real $z$ and Hermitian $x$, $b(z)=x_0+2\operatorname{Re}[U_0X_1^{-1}\beta_1]$. This conjugate-sector formula is not a complex-parameter continuation. Right and transpose-left modes are separately back-substituted to check the source contraction and derivative denominator. The largest full-mode residual over the eight roots is $1.14\times10^{-13}$; the derivative pairing agrees with $W^TR$ to relative error below $9.3\times10^{-14}$. At $N=4$, $z=0.37$, a direct dense full-resolvent solve agrees with the reduced source equation to relative error $4.95\times10^{-16}$.
+
+We use the previously saved root positions, without refitting them, and compare with independently stored full-generator mode arrays. The sources are the high-branch difference, the fold product state itself, and the coherence-only difference defined below. A stationary subtraction changes no nonzero-mode residue because $W_i^T\rho_{\rm ss}=0$ for $\lambda_i\ne0$. However, this equivalence does not survive an inconsistent source ablation; all fold-source ablations below use the unsubtracted product state. The normalized error is $\|a_{\rm approximation}-a_{\rm full}\|_2/\|a_{\rm full}\|_2$, over the two real-mode residues.
+
+\begin{table}[ht]
+\caption{Schur-response validation at the crossing. The full-error column is the largest residue-vector error over the three sources. The other columns keep the roots fixed and remove only the stated response factor. The fold-source ablation uses $\rho_f$, without stationary subtraction.}
+\label{tab:source}
+\begin{ruledtabular}
+\begin{tabular}{rrrrr}
+$N$&Full error&High, omit $BGx_Q$&Fold, omit $BGx_Q$&High, replace denominator by 1\\
+24&$1.30\times10^{-12}$&3.694&0.7110&1.090\\
+32&$2.62\times10^{-11}$&10.898&0.7401&1.018\\
+40&$2.44\times10^{-10}$&29.913&0.7595&1.003\\
+48&$2.08\times10^{-9}$&80.462&0.7734&1.0005
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+For example, at $N=32$ the high-branch residues are $(6.16285,5.26413)\times10^{-4}$. Omitting the source contribution instead gives $(7.07828,-5.49532)\times10^{-3}$. The signs of the derivative denominators at the two roots are opposite, with values $0.193815$ and $-0.250672$ under $l^Tr=1$. Replacing them by one yields $(1.19445,-1.31957)\times10^{-4}$. These are finite-size response failures; the dimensionless denominator is not a probability or a decay rate.
+
+\subsection{Identical populations with different initial coherences}
+Let $\rho_f=\rho_1(q_f)^{\otimes N}$ and define
+\begin{equation}
+ \rho_d=\sum_k\Pi_k\rho_f\Pi_k
+ =\frac{1}{2\pi}\int_0^{2\pi}d\theta\,
+ e^{-i\theta N_e}\rho_f e^{i\theta N_e}.
+\end{equation}
+This global phase average is a CPTP preparation. It removes $q\ne0$ while preserving every $q=0$ Dicke population; it is not independent local dephasing. Both states are positive and normalized. Their difference $\delta\rho_c=\rho_f-\rho_d$ has $x_0=0$ and zero initial population signal, but $x_Q\ne0$. For the fixed drive phase used in the paper, the exact Heisenberg equation gives
+\begin{equation}
+ \delta\dot n(0)=-\Omega v_f=n_f=0.1569270404.
+\end{equation}
+Thus population-only initialization already fails at the first time derivative. For $N=32$, sampling $t=0,0.1,\ldots,12$ gives the largest magnitude $|\delta n|=0.1343027290$ at $t=1.1$. Its two real-mode residues are $(-1.2360093,1.0491984)$, recovered by Eq.~\eqref{eq:sourceresidue}; omitting $BGx_Q$ makes both identically zero. The real-pair contribution alone has relative $L^2$ error $1.00853$ over $6\le t\le12$, so this control establishes source dependence, not a two-mode dynamical closure. No new four-mode accuracy claim is made for this preparation.
+
+An independent construction in the full $2^N$ spin Hilbert space verifies global dephasing and its density response for $N=1$--$4$, with maximum density error $5.3\times10^{-15}$ at five times up to $t=2$. At $N=32$, an adaptive DOP853 integration additionally checks the sparse-exponential time series, with maximum absolute density difference $6.9\times10^{-14}$. All source records, errors, and full signals are saved in \texttt{data/coherence\_response/}. This finite-size calculation does not establish a $1/g_N$ residue asymptote or a real-axis Jordan limit.
+
 \subsection{Truncating coherence orders}
 Keeping only $|q|\le q_{\max}$ defines a truncated matrix, not a CPTP approximation. At low cutoffs the nearest real pair can change identity; all candidate eigenvalues are saved. Representative relative half-gap errors are given in Table~\ref{tab:cutoff}. Nonmonotonicity and different errors in the individual eigenvalues prevent treating one favorable gap value as convergence of the full spectrum.
 

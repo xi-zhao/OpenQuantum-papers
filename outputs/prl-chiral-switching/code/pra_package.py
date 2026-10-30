@@ -15,14 +15,14 @@ CODE = (
   'biorthogonal_analysis', 'biorthogonal_flux', 'coherence_fraction',
   'coherence_fraction_derivatives', 'coherence_validate', 'coherence_recurrence',
   'mf', 'pra_modes', 'pra_meanfield', 'pra_ep_verify', 'pra_figures', 'pra_validate',
-  'pra_package',
+  'coherence_response', 'coherence_response_validate', 'pra_package',
 )
 FIGURES = ('spectrum', 'residues', 'couplings', 'coherence', 'dynamics', 'ep_loop')
 
 
 def payload():
   paths = [ROOT/'PRA_README.md', ROOT/'PRA_REPORT_2026-10-28.md',
-    ROOT/'PRA_REVISION_2026-10-29.md', ROOT/'requirements-pra.txt',
+    ROOT/'PRA_REVISION_2026-10-29.md', ROOT/'PRA_RESPONSE_2026-10-30.md', ROOT/'requirements-pra.txt',
     ROOT/'paper/references_suggested_2026-10-29.bib']
   paths += [ROOT/f'code/{name}.py' for name in CODE]
   paths += [ROOT/f'paper/{name}.{ext}' for name in ('main', 'supplement') for ext in ('tex', 'pdf')]
@@ -40,6 +40,8 @@ def payload():
   paths += [pra/name for name in ('meanfield.json', 'modes_N32.json', 'modes_N40_quick.json',
     'mode_stability.json', 'validation_repeat.json')]
   paths += sorted(pra.glob('ep_*.json'))+sorted(pra.glob('ep_*_vectors.npz'))
+  paths += [ROOT/'data/coherence_response'/name for name in
+    ('response_2026-10-30.json', 'validation_2026-10-30.json')]
   return sorted(set(paths))
 
 
@@ -58,7 +60,7 @@ def main():
   files = {str(p.relative_to(ROOT)): dict(bytes=p.stat().st_size,
     sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths}
   manifest = dict(title='Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble',
-    created='2026-10-29', files=files, total_bytes=total,
+    created='2026-10-30', files=files, total_bytes=total,
     evidence={
       'real gaps and gauge dependence': 'data/biorthogonal_audit/analysis.json',
       'signed boundary flux': 'data/biorthogonal_audit/boundary_flux.json',
@@ -67,14 +69,16 @@ def main():
       'small-N physical evolution and repeatability': 'data/pra_spectral/validation_repeat.json',
       'complex EPs and monodromy': 'data/pra_spectral/ep_summary.json',
       'Schur back-substitution and failure paths': 'data/coherence_mechanism/validation.json',
-      'literature attribution and manuscript build checks': 'PRA_REVISION_2026-10-29.md'},
+      'literature attribution and manuscript build checks': 'PRA_REVISION_2026-10-29.md',
+      'initial-coherence source and observable residues': 'data/coherence_response/response_2026-10-30.json',
+      'dephasing preparation and independent integrator': 'data/coherence_response/validation_2026-10-30.json'},
     interpretation='Finite-size numerical evidence; no established sigma=Phi identity or thermodynamic-limit mechanism.',
-    review_status='Local mathematical/data/layout checks completed; final independent manuscript review unavailable due to provider quota.')
+    review_status='Local mathematical/data/layout checks and independent review of the existing finite-size mathematical claims completed; scope and response review are recorded in PRA_RESPONSE_2026-10-30.md.')
   manifest_path = ROOT/'data/pra_spectral/artifact_manifest.json'
   manifest_path.write_text(json.dumps(manifest, indent=2, allow_nan=False)+'\n')
   outdir = ROOT/'deliverables'
   outdir.mkdir(exist_ok=True)
-  archive = outdir/'pra-decay-mode-source-2026-10-29.zip'
+  archive = outdir/'pra-decay-mode-source-2026-10-30.zip'
   with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
     for p in paths+[manifest_path]:
       bundle.write(p, p.relative_to(ROOT))

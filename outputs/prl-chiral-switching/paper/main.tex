@@ -10,7 +10,7 @@
 \noaffiliation
 \date{\today}
 \begin{abstract}
-Mean-field multistability and the spectrum of a finite open quantum system describe different notions of degeneracy. We investigate their relation in a uniformly interacting Rydberg ensemble with independent local decay, retaining the full permutation-invariant operator space. On the monostable side of a mean-field fold, two real decay eigenvalues exhibit an avoided crossing with a rapidly decreasing finite-size gap. Physical product-state perturbations show that the high-branch relaxation response transfers between these modes across the crossing, while an oscillatory pair can decay more slowly than either real mode. A biorthogonal reduction identifies the normalization-invariant product of cross couplings that determines the gap; population tails alone do not determine its scaling. Eliminating nonzero coherence orders yields an exact spectral-parameter-dependent operator. The two decay eigenvalues are recovered as self-consistent roots of one effective eigenvalue branch, with full-generator residuals below $1.2\times10^{-13}\gamma$ for $N=24$--$48$. A local quadratic description reproduces the half-gap to relative errors decreasing from $1.2\%$ to $6.6\times10^{-6}$. We also verify exceptional points under complex-detuning continuation. These results establish a finite-size spectral description and its dynamical limits without identifying the observed gap exponent with a quasipotential or asserting an asymptotic fold correspondence.
+Mean-field multistability and the spectrum of a finite open quantum system describe different notions of degeneracy. We investigate their relation in a uniformly interacting Rydberg ensemble with independent local decay, retaining the full permutation-invariant operator space. On the monostable side of a mean-field fold, two real decay eigenvalues exhibit an avoided crossing with a rapidly decreasing finite-size gap. Physical product-state perturbations show that the high-branch relaxation response transfers between these modes across the crossing, while an oscillatory pair can decay more slowly than either real mode. A biorthogonal reduction identifies the normalization-invariant product of cross couplings that determines the gap; population tails alone do not determine its scaling. Eliminating nonzero coherence orders yields an exact spectral-parameter-dependent operator. The two decay eigenvalues are recovered as self-consistent roots of one effective eigenvalue branch, with full-generator residuals below $1.2\times10^{-13}\gamma$ for $N=24$--$48$. A local quadratic description reproduces the half-gap to relative errors decreasing from $1.2\%$ to $6.6\times10^{-6}$. Retaining the initial-coherence source also recovers physical residues; a dephasing control shows that identical initial populations can yield different density transients. We verify exceptional points under complex-detuning continuation. These results establish a finite-size spectral description and its dynamical limits without identifying the observed gap exponent with a quasipotential or asserting an asymptotic fold correspondence.
 \end{abstract}
 \maketitle
 
@@ -266,14 +266,24 @@ Then
  \boxed{W^TR=l^T(I-K_z)r=1-\mu_z=-f_z.}
  \label{eq:norm}
 \end{equation}
-At a root, this is the standard derivative pairing for the nonlinear eigenvalue problem $T(z)=zI-K(z)$~\cite{GuttelTisseur2017,FSElimination2020}. Its appearance here follows from Schur back-substitution, rather than a new normalization principle. Away from a root, the vectors instead satisfy
-\begin{equation}
- (L-zI)R=\binom{f(z)r}{0},\qquad
- W^T(L-zI)=(f(z)l^T,0).
-\end{equation}
-Thus $f_z(z_c)=0$ at the observed negative minimum does not make $z_c$ an EP: $f(z_c)\ne0$, so it is not an eigenvalue.
+At a root, this is the standard derivative pairing for the nonlinear eigenvalue problem $T(z)=zI-K(z)$~\cite{GuttelTisseur2017,FSElimination2020}. At the negative minimum, $f_z=0$ but $f\ne0$: the back-substituted vectors are not eigenmodes, so this is not an EP. Under regular elimination and a simple effective branch, $f=f_z=0$ with $f_{zz}\ne0$ would instead give an EP2 (SM). This criterion does not determine the observed depth $\epsilon_N$.
 
-For comparison, if the elimination is regular, the selected eigenvalue of $K(z_c)$ is algebraically simple, and $f=f_z=0$ with $f_{zz}\ne0$, Eq.~\eqref{eq:schur} implies an exactly double characteristic root. The kernel remains one-dimensional under back-substitution, giving an EP2. This conditional statement uses the analytic Schur operator and connects nonlinear spectral self-consistency to the usual defective-eigenvalue criterion. It does not supply the small depth $\epsilon_N$ in the present real-axis problem.
+\subsection{Initial coherences and observable residues}
+The same elimination must retain the initial-coherence source in Eq.~\eqref{eq:memory}. For an initial operator $x=(x_0,x_Q)^T$, its reduced Laplace transform obeys
+\begin{equation}
+ [zI-K(z)]\widetilde x_0(z)=b(z),\qquad
+ b(z)=x_0+BG(z)x_Q.
+ \label{eq:source}
+\end{equation}
+For the population observable, $o^T=(o_0^T,0)$, the standard simple-pole residue~\cite{GuttelTisseur2017,FSElimination2020} becomes
+\begin{equation}
+ a_i=\frac{(o_0^Tr_i)[l_i^Tb(\lambda_i)]}
+ {l_i^T[I-K'(\lambda_i)]r_i}.
+ \label{eq:schurresidue}
+\end{equation}
+At the four crossings $N=24,32,40,48$, this expression reproduces the archived full-mode residue vectors to relative errors below $2.1\times10^{-9}$. For the high-branch preparation, retaining the same roots and denominator but replacing $b$ by $x_0$ gives errors of $3.69$, $10.90$, $29.91$, and $80.46$. Correct rates alone do not fix observable weights.
+
+A physical control compares the fold product state $\rho_f$ with its excitation-number-dephased state $\mathcal D_{N_e}(\rho_f)=\sum_k\Pi_k\rho_f\Pi_k$. Their entire $q=0$ components agree, while their coherences differ. At the $N=32$ crossing, full evolution gives an excitation-density difference whose largest sampled magnitude is $0.1343$ at $t=1.1$, although its initial value is zero. A source depending only on $x_0$ would predict zero difference. The two real modes still give a $101\%$ relative error over $6\le t\le12$ for this control; retaining the source does not justify truncating the remaining spectrum. The SM gives the derivation, physical-state checks, and independent evolution control.
 
 \section{Dynamical reach and limits of the real-mode pair}
 \label{sec:dynamics}
@@ -290,7 +300,7 @@ Figure~\ref{fig:dynamics} removes the common real-pair decay envelope only for v
 \end{figure*}
 
 \section{Discussion and conclusions}
-We have resolved a finite-size exchange of physical relaxation response in a Rydberg model retaining independent local decay and all permutation-invariant spin blocks. Prior collective-spin studies establish finite-rate doublets and cancelling residues~\cite{RubioGarcia2022,Molina2026}; here physical preparations identify a detuning-dependent exchange near the mean-field fold. The invariant coupling product and two self-consistent Schur roots quantify its splitting using established methods. Freezing the Schur operator loses the pair, while a slower oscillatory pair is required for the tested transients. Together, these results separate spectral hybridization from a universal two-mode relaxation law.
+We have resolved a finite-size exchange of physical relaxation response in a Rydberg model retaining independent local decay and all permutation-invariant spin blocks. Prior collective-spin studies establish finite-rate doublets and cancelling residues~\cite{RubioGarcia2022,Molina2026}; here physical preparations identify a detuning-dependent exchange near the mean-field fold. The invariant coupling product and two self-consistent Schur roots quantify its splitting using established methods. The eliminated initial coherences are also needed to reproduce physical residues: keeping the rates while discarding this source can strongly distort the weights. A global-dephasing control isolates that dependence, while direct transients retain the limits of the real-mode truncation. Together, these results connect spectral hybridization to preparation-dependent response without imposing a universal two-mode relaxation law.
 
 The unresolved asymptotic target is the scaling of $\epsilon_N/c_N$, or equivalently $V_{ab}V_{ba}$, independently of the exact pair. Exact steady-state information is available~\cite{RobertsClerk2023}, and Noachtar and Clerk~\cite{NoachtarClerk2026} conjecture a barrier relation using a purification selected by hidden time-reversal symmetry. That conjecture concerns the ordinary Liouvillian gap, not our finite-rate splitting or an arbitrary excitation-number marginal potential $\Phi(n_f)$. Likewise, applying switching-instanton theory~\cite{PCE2026,CEP2026} to this excited pair requires a controlled construction for that spectral observable. Numerical agreement between finite-window exponents supplies neither derivation.
 
