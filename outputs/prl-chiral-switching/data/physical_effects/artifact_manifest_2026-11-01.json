@@ -1,0 +1,86 @@
+{
+  "created": "2026-11-01",
+  "scope": "Physical-effect audit; original manuscript package preserved",
+  "files": {
+    "PHYSICAL_EFFECT_TEST_2026-11-01.md": {
+      "sha256": "cc511edf233f49790798c970ed6f2207e49b1f1226025b772b7c33777bbed378",
+      "bytes": 3801
+    },
+    "PHYSICAL_EFFECT_REPORT_2026-11-01.md": {
+      "sha256": "d3f20cbc8a6ba6fe70e57bb56a1d90927acedcb00040bdd19ecb4c565a9c8550",
+      "bytes": 15972
+    },
+    "code/physical_effects.py": {
+      "sha256": "45c7ca34ac713328958c6a5170233e19946cb87d6f8a4e656cdfe061252a43c1",
+      "bytes": 13052
+    },
+    "code/physical_effects_bound.py": {
+      "sha256": "08a2dd8db40a09e0139a0e97af443dc02b9060c3a80a3dd1b770b44138767495",
+      "bytes": 2583
+    },
+    "code/physical_effects_figures.py": {
+      "sha256": "d00ba5b299e249461c585fb6f61612f102fb6a96ced8f152316496f1ac4da7a9",
+      "bytes": 6018
+    },
+    "code/physical_effects_review.py": {
+      "sha256": "0e510e096008ac1b486a7c5f5f41531112fe1a8c349c8c3195523cf3ca13fb0d",
+      "bytes": 16646
+    },
+    "code/physical_effects_sensitivity.py": {
+      "sha256": "d50c192341ec16db1ccd5a4f4e6b25b133d7517acaa0a42a9613a569dbc5f046",
+      "bytes": 5173
+    },
+    "code/physical_effects_validate.py": {
+      "sha256": "ea62e0a3f75f0e483da4bc789f84e3b1fcb69a94df85e228435b6eba94be0bc0",
+      "bytes": 8370
+    },
+    "data/physical_effects/bounds_2026-11-01.json": {
+      "sha256": "4107bc616d29a5ce92f5eac3a1e0efb09e4fb7a11cea0c61c688dfacc24ff74a",
+      "bytes": 1488
+    },
+    "data/physical_effects/effects_2026-11-01.json": {
+      "sha256": "4f9b3663bba3dcdd8cd4519a23691d09b1a2d5772f3e048dcf8a9497b7a10eb6",
+      "bytes": 2329306
+    },
+    "data/physical_effects/pilot_2026-11-01.json": {
+      "sha256": "e11eb56b87203164c17830378277cf579428604e6b83493288326c3d8d538e9a",
+      "bytes": 589825
+    },
+    "data/physical_effects/review_2026-11-01.json": {
+      "sha256": "6e9f0f6b4aefa8dbf155ad741d3887f980979b17b307d950d263302d9843709e",
+      "bytes": 172090
+    },
+    "data/physical_effects/sensitivity_2026-11-01.json": {
+      "sha256": "0dc567ca712015f6585c67bfb1d96a1a9817b1b7ec67191b90dc1a86b85b0f67",
+      "bytes": 91734
+    },
+    "data/physical_effects/validation_2026-11-01.json": {
+      "sha256": "16723460651f9964855aa44c4813a044d20a926514794cccd7449ccd8144e8f4",
+      "bytes": 20507
+    },
+    "data/physical_effects/validation_failure_2026-11-01.json": {
+      "sha256": "bcc687f514588222507603818d8473b518ea18e9ef8a23fb5ffcc97d4a1d4e6c",
+      "bytes": 737
+    },
+    "figs/physical_effects_2026-11-01_v2.csv": {
+      "sha256": "cb7e5201a4f0cbb3bb522c21cff2bbfc0dbdcc4ad708005c6029a434d65fbcb2",
+      "bytes": 30106
+    },
+    "figs/physical_effects_2026-11-01_v2.pdf": {
+      "sha256": "228b013d4f9e49df424b674b2c94376b792922fc9e3048bc05b8788d9e0a9658",
+      "bytes": 30217
+    },
+    "figs/physical_effects_2026-11-01_v2.png": {
+      "sha256": "ae0faaa090d30e89648e45787989743834c9f97305567beb8fd631612f089c4b",
+      "bytes": 278110
+    }
+  },
+  "existing_package_manifest_sha256": "2c970645821bd324da78efeb7ca5b418edf5502a259e6650888517e826d80605",
+  "existing_package_files_verified_unchanged": 94,
+  "review": {
+    "status": "passed",
+    "spectral_points": 32,
+    "rejected_candidate_attempts": 14
+  },
+  "total_bytes": 3615735
+}

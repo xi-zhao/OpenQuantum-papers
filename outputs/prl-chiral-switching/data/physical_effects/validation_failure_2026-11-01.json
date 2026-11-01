@@ -1,0 +1,13 @@
+{
+  "created": "2026-11-01",
+  "stage": "initial independent phase-quadrature validation",
+  "input": "data/physical_effects/effects_2026-11-01.json",
+  "input_sha256": "4f9b3663bba3dcdd8cd4519a23691d09b1a2d5772f3e048dcf8a9497b7a10eb6",
+  "status": "failed",
+  "process_exit_code": 1,
+  "error": "RuntimeError: Phase quadrature failed: N=48, delta=0.06, 4.811628375178678e-07",
+  "coarse_phases": 64,
+  "refined_phases": 128,
+  "absolute_threshold": 2e-7,
+  "resolution": "Preserve original samples and failed check. Refine the affected mean-field control to 256 phases and retain its corrected signal in validation_2026-11-01.json. The 128-to-256 difference is 1.0352330104268503e-11. No PI transient or spectral sample was changed."
+}

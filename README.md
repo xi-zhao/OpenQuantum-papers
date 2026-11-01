@@ -8,7 +8,7 @@
 
 | 项目 | 当前入口 | 状态与边界 |
 |---|---|---|
-| Rydberg 系综中有限尺寸衰减模混合 | [PRA 稿件与复现说明](outputs/prl-chiral-switching/PRA_README.md) · [正文](outputs/prl-chiral-switching/paper/main.pdf) · [补充材料](outputs/prl-chiral-switching/paper/supplement.pdf) | PRA 草稿；已补充文献归属与有限尺寸限定，未证明间距指数等于作用量。 |
+| Rydberg 系综中有限尺寸衰减模混合 | [PRA 稿件与复现说明](outputs/prl-chiral-switching/PRA_README.md) · [正文](outputs/prl-chiral-switching/paper/main.pdf) · [补充材料](outputs/prl-chiral-switching/paper/supplement.pdf) · [2026-11-01 物理效应检验](outputs/prl-chiral-switching/PHYSICAL_EFFECT_REPORT_2026-11-01.md) | PRA 草稿；有限尺寸论证保留。后续固定制备对照未发现强窄交叉人口响应；未证明间距指数等于作用量。 |
 | 费米 Liouvillian EP 附近依可观测量而异的弛豫 | [研究说明](outputs/prl-highorder-ep/README.md) · [正文](outputs/prl-highorder-ep/paper/manuscript.pdf) · [补充材料](outputs/prl-highorder-ep/paper/supplement.pdf) | PRA 草稿；保留可观测量选择、条件化制备代价及半经典适用范围。 |
 | 随机编码中经典与量子信息的共同恢复转变 | [研究说明](outputs/prl-distinguishability/README.md) · [正文](outputs/prl-distinguishability/paper.pdf) · [补充材料](outputs/prl-distinguishability/supplement.pdf) | 现有稿件与数值验证记录；旧两态稿和 Lean 证明单独保留，不冒充当前恢复定理的形式化证明。 |
 | Rydberg 链中的 E7 谱双通道信号 | [正文](outputs/e7-rydberg-prl/paper/e7_rydberg.pdf) · [修订记录](outputs/e7-rydberg-prl/paper/REVISION_NOTES.md) | 有限链稿件；A4 收敛和更重粒子分辨仍有明确限制。 |

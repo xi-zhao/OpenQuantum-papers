@@ -1,0 +1,5812 @@
+{
+  "created": "2026-11-01",
+  "status": "passed",
+  "seconds": 93.2782068339875,
+  "script": "code/physical_effects_review.py",
+  "script_sha256": "0e510e096008ac1b486a7c5f5f41531112fe1a8c349c8c3195523cf3ca13fb0d",
+  "inputs": {
+    "effects": {
+      "path": "data/physical_effects/effects_2026-11-01.json",
+      "sha256": "4f9b3663bba3dcdd8cd4519a23691d09b1a2d5772f3e048dcf8a9497b7a10eb6"
+    },
+    "sensitivity": {
+      "path": "data/physical_effects/sensitivity_2026-11-01.json",
+      "sha256": "0dc567ca712015f6585c67bfb1d96a1a9817b1b7ec67191b90dc1a86b85b0f67"
+    },
+    "sensitivity_role": "Frozen reviewed input and provenance; no large-N sensitivity evolution rerun."
+  },
+  "source_sha256": {
+    "code/physical_effects_review.py": "0e510e096008ac1b486a7c5f5f41531112fe1a8c349c8c3195523cf3ca13fb0d",
+    "data/physical_effects/effects_2026-11-01.json": "4f9b3663bba3dcdd8cd4519a23691d09b1a2d5772f3e048dcf8a9497b7a10eb6",
+    "data/physical_effects/sensitivity_2026-11-01.json": "0dc567ca712015f6585c67bfb1d96a1a9817b1b7ec67191b90dc1a86b85b0f67",
+    "data/biorthogonal_audit/N24_float64_s17_t-0.76.npz": "2517a6027f90438f2d19003847f156bbe920538546e28944b611a945db7220b9",
+    "data/biorthogonal_audit/N32_float64_s17_t-0.76.npz": "7eb8757ec9c279eed771cb51bb51e0eee3e45a0ec42faf1ff2f753e13c82ab25",
+    "data/biorthogonal_audit/N40_float64_s17_t-0.76.npz": "3d1846cabe024def6bed097fa567ccd9e477fcd9e1b21e98023b57bf5e8ce28f",
+    "data/biorthogonal_audit/N48_float64_s17_t-0.76.npz": "324ca5a879e9ebeb3da58170e30ebc1d4289ec21a984bb49fc017ac3e1b19caf",
+    "code/physical_effects.py": "45c7ca34ac713328958c6a5170233e19946cb87d6f8a4e656cdfe061252a43c1",
+    "code/physical_effects_sensitivity.py": "d50c192341ec16db1ccd5a4f4e6b25b133d7517acaa0a42a9613a569dbc5f046",
+    "code/biorthogonal_audit.py": "4430125dc9a96e6375dac4c69b689ec8de4e31cc61c26a5823149f3ce24553c9",
+    "code/biorthogonal_generator.py": "2458ea0e64ff0e61faf5fbb9cc337fa90f14a29868f411bbd39840fea9e5282d",
+    "code/pra_modes.py": "f95a5f5e166662ac3d51ee820e7ae4befc30a85fec0f5846b3af5358c8707938",
+    "code/mf.py": "4ce6ff1ec7321b6b78edbe5ba3ce1a0c73020ce0c9271a799fb899e65084c8be",
+    "code/coherence_response.py": "7907bdfc3de61d684fe0df3bc3f3907357dac51fa32f8686e56bb44ab66a98f5",
+    "code/coherence_fraction.py": "3a8f45740f0ec3d4e7c5a878a48413959afe5a5ed95671455996a5e633437e0c"
+  },
+  "environment": {
+    "python": "3.13.2",
+    "numpy": "2.2.6",
+    "scipy": "1.16.3",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "threads": {
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    },
+    "warning_options": [
+      "error"
+    ],
+    "bytecode_disabled": true
+  },
+  "earlier_attempt_note": {
+    "scope": "Historical execution note from the preceding interactive review, not new numerical data.",
+    "observed": "Direct NumPy dense matmul in subspace-overlap evaluation emitted divide-by-zero, overflow and invalid-value RuntimeWarnings. A subsequent dense scipy.linalg.expm attempt stopped at its internal matrix-squaring matmul under -W error on this Accelerate-backed environment.",
+    "resolution": "Warnings were not suppressed. Dense overlap contractions were replaced by einsum(optimize=False); the independent finite-difference evolution uses DOP853 with einsum, and augmented tangents use sparse expm_multiply. The successful versions are rerun here under -W error. Failed-attempt values are not used."
+  },
+  "subspace_tracking": [
+    {
+      "N": 24,
+      "dimension": 2925,
+      "crossing": 3.1374029517714037,
+      "mixing_width": 0.026490956762804663,
+      "projection_shift": -0.76,
+      "candidates_per_point": 8,
+      "candidate_residual_threshold": 1e-09,
+      "candidate_retry_policy": "Try shift -0.76 with tolerance 2e-13; on residual failure try tolerance 2e-14 with ncv=40; if still failing, try shift -0.9 with tolerance 2e-13. Record every attempt; only residual-accepted candidates determine identity.",
+      "steps": [
+        {
+          "step": -1,
+          "offset": -0.026490956762804663,
+          "detuning": 3.110911995008599,
+          "eigenvalues": [
+            -0.8251817366940533,
+            -0.7412717379097372
+          ],
+          "projection_seed": 72715,
+          "candidate_seed": 924,
+          "neighbor_right_min_cosine": 0.9942357210624978,
+          "neighbor_left_min_cosine": 0.9993148778691882,
+          "center_right_min_cosine": 0.9942357210624978,
+          "center_left_min_cosine": 0.9993148778691882,
+          "candidate_eigenvalues": [
+            [
+              -0.7412717379097374,
+              4.566702639618792e-15
+            ],
+            [
+              -0.8251817366940514,
+              2.1158653915331924e-15
+            ],
+            [
+              -1.2085421395517162,
+              -4.5099374442236576e-14
+            ],
+            [
+              -1.3988810110276972e-14,
+              5.836500932066588e-14
+            ],
+            [
+              -1.5071223698654945,
+              2.3865906802391246e-13
+            ],
+            [
+              -1.8682190497733142,
+              -1.1172363062609637e-12
+            ],
+            [
+              -2.201204043055706,
+              -6.84550732259478e-14
+            ],
+            [
+              -2.367818756611034,
+              -8.22835082347625e-13
+            ]
+          ],
+          "candidate_residuals": [
+            1.4414814513253282e-14,
+            5.4481502924315693e-14,
+            9.2747432247368e-13,
+            1.4610809004555945e-12,
+            1.521723946460586e-12,
+            1.3922033268894154e-12,
+            1.0473250943660764e-12,
+            1.903454236499076e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7412717379097374,
+                  4.566702639618792e-15
+                ],
+                [
+                  -0.8251817366940514,
+                  2.1158653915331924e-15
+                ],
+                [
+                  -1.2085421395517162,
+                  -4.5099374442236576e-14
+                ],
+                [
+                  -1.3988810110276972e-14,
+                  5.836500932066588e-14
+                ],
+                [
+                  -1.5071223698654945,
+                  2.3865906802391246e-13
+                ],
+                [
+                  -1.8682190497733142,
+                  -1.1172363062609637e-12
+                ],
+                [
+                  -2.201204043055706,
+                  -6.84550732259478e-14
+                ],
+                [
+                  -2.367818756611034,
+                  -8.22835082347625e-13
+                ]
+              ],
+              "residuals": [
+                1.4414814513253282e-14,
+                5.4481502924315693e-14,
+                9.2747432247368e-13,
+                1.4610809004555945e-12,
+                1.521723946460586e-12,
+                1.3922033268894154e-12,
+                1.0473250943660764e-12,
+                1.903454236499076e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9942357210624972,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.7520157772650099,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.38336040285766293,
+          "invariant_right_error": 3.184002105757336e-14,
+          "invariant_left_error": 4.361782125156508e-14,
+          "saved_eigenvalue_max_error": 4.551914400963142e-15
+        },
+        {
+          "step": -2,
+          "offset": -0.052981913525609325,
+          "detuning": 3.0844210382457944,
+          "eigenvalues": [
+            -0.8846034762899755,
+            -0.7487388728802866
+          ],
+          "projection_seed": 72716,
+          "candidate_seed": 925,
+          "neighbor_right_min_cosine": 0.9935948416174594,
+          "neighbor_left_min_cosine": 0.9992903176652407,
+          "center_right_min_cosine": 0.975903384085768,
+          "center_left_min_cosine": 0.997216361748953,
+          "candidate_eigenvalues": [
+            [
+              -0.7487388728802865,
+              -5.202086651008697e-15
+            ],
+            [
+              -0.8846034762900165,
+              2.1080140924717177e-14
+            ],
+            [
+              -1.2091541564332386,
+              -2.4227885561575955e-14
+            ],
+            [
+              7.30526750203353e-14,
+              -7.848054073065571e-14
+            ],
+            [
+              -1.5126749329706752,
+              1.987557364826001e-14
+            ],
+            [
+              -1.8793571383875416,
+              -8.53241988170258e-13
+            ],
+            [
+              -2.2271117160564313,
+              -2.9440059919443734e-13
+            ],
+            [
+              -2.388725323164855,
+              -3.2619594908347743e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.078629056409784e-14,
+            1.334761379909823e-13,
+            9.455427238733279e-13,
+            1.491880436978274e-12,
+            1.1165300394632503e-12,
+            1.7509883519602432e-12,
+            1.3957236484647771e-12,
+            2.0942495623144252e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7487388728802865,
+                  -5.202086651008697e-15
+                ],
+                [
+                  -0.8846034762900165,
+                  2.1080140924717177e-14
+                ],
+                [
+                  -1.2091541564332386,
+                  -2.4227885561575955e-14
+                ],
+                [
+                  7.30526750203353e-14,
+                  -7.848054073065571e-14
+                ],
+                [
+                  -1.5126749329706752,
+                  1.987557364826001e-14
+                ],
+                [
+                  -1.8793571383875416,
+                  -8.53241988170258e-13
+                ],
+                [
+                  -2.2271117160564313,
+                  -2.9440059919443734e-13
+                ],
+                [
+                  -2.388725323164855,
+                  -3.2619594908347743e-12
+                ]
+              ],
+              "residuals": [
+                1.078629056409784e-14,
+                1.334761379909823e-13,
+                9.455427238733279e-13,
+                1.491880436978274e-12,
+                1.1165300394632503e-12,
+                1.7509883519602432e-12,
+                1.3957236484647771e-12,
+                2.0942495623144252e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9935948416174465,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8043788108986459,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.32455068014326316,
+          "invariant_right_error": 4.19220558234641e-14,
+          "invariant_left_error": 1.532740619772761e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -3,
+          "offset": -0.07947287028841399,
+          "detuning": 3.05793008148299,
+          "eigenvalues": [
+            -0.9490917186196425,
+            -0.7530043444206399
+          ],
+          "projection_seed": 72717,
+          "candidate_seed": 926,
+          "neighbor_right_min_cosine": 0.993060823767666,
+          "neighbor_left_min_cosine": 0.999262400408703,
+          "center_right_min_cosine": 0.9442136086164781,
+          "center_left_min_cosine": 0.9936426793411021,
+          "candidate_eigenvalues": [
+            [
+              -0.7530043444206399,
+              -1.6478364865068247e-15
+            ],
+            [
+              -0.9490917186196024,
+              3.101607854416282e-15
+            ],
+            [
+              -1.2104036598642676,
+              5.6432850102816234e-14
+            ],
+            [
+              5.46229728115577e-14,
+              -1.1228993936676337e-13
+            ],
+            [
+              -1.5179105758866707,
+              -1.576168052021532e-13
+            ],
+            [
+              -1.8883342549510482,
+              -1.6970046239616565e-12
+            ],
+            [
+              -2.2470356294856284,
+              -9.793486454638427e-17
+            ],
+            [
+              -2.4032966462724854,
+              -1.3252604077122091e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.3208815062177371e-14,
+            3.4974183096578725e-13,
+            1.1881338751790488e-12,
+            1.8508704171986815e-12,
+            1.6768731974384284e-12,
+            1.9431416900620614e-12,
+            2.0326035410929738e-12,
+            3.1485143543502595e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7530043444206399,
+                  -1.6478364865068247e-15
+                ],
+                [
+                  -0.9490917186196024,
+                  3.101607854416282e-15
+                ],
+                [
+                  -1.2104036598642676,
+                  5.6432850102816234e-14
+                ],
+                [
+                  5.46229728115577e-14,
+                  -1.1228993936676337e-13
+                ],
+                [
+                  -1.5179105758866707,
+                  -1.576168052021532e-13
+                ],
+                [
+                  -1.8883342549510482,
+                  -1.6970046239616565e-12
+                ],
+                [
+                  -2.2470356294856284,
+                  -9.793486454638427e-17
+                ],
+                [
+                  -2.4032966462724854,
+                  -1.3252604077122091e-12
+                ]
+              ],
+              "residuals": [
+                1.3208815062177371e-14,
+                3.4974183096578725e-13,
+                1.1881338751790488e-12,
+                1.8508704171986815e-12,
+                1.6768731974384284e-12,
+                1.9431416900620614e-12,
+                2.0326035410929738e-12,
+                3.1485143543502595e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9930608237676797,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8543279670877975,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.2613119412446251,
+          "invariant_right_error": 9.056946979088012e-14,
+          "invariant_left_error": 1.9551791583537645e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -4,
+          "offset": -0.10596382705121865,
+          "detuning": 3.031439124720185,
+          "eigenvalues": [
+            -1.015680235656315,
+            -0.7561614927211604
+          ],
+          "projection_seed": 72718,
+          "candidate_seed": 927,
+          "neighbor_right_min_cosine": 0.992715250739572,
+          "neighbor_left_min_cosine": 0.9992220335766441,
+          "center_right_min_cosine": 0.8998275733554598,
+          "center_left_min_cosine": 0.9885206503558509,
+          "candidate_eigenvalues": [
+            [
+              -0.7561614927211604,
+              -1.5017543445252714e-15
+            ],
+            [
+              -1.0156802356563368,
+              -4.553440205549677e-15
+            ],
+            [
+              -1.2130753774087544,
+              2.16128204988621e-13
+            ],
+            [
+              4.996003610813204e-13,
+              4.030937395297071e-14
+            ],
+            [
+              -1.522930043270439,
+              -1.276398095984594e-12
+            ],
+            [
+              -1.8958305102061779,
+              2.081292707399063e-12
+            ],
+            [
+              -2.2623524637981873,
+              1.1082328649660943e-12
+            ],
+            [
+              -2.410905942472904,
+              2.0094409365823607e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.1418669488488187e-14,
+            8.754860365259803e-13,
+            1.9574099568752274e-12,
+            4.496439992403056e-12,
+            3.884764179345546e-12,
+            3.4576394320663336e-12,
+            5.343079749925621e-12,
+            6.441145034030297e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7561614927211604,
+                  -1.5017543445252714e-15
+                ],
+                [
+                  -1.0156802356563368,
+                  -4.553440205549677e-15
+                ],
+                [
+                  -1.2130753774087544,
+                  2.16128204988621e-13
+                ],
+                [
+                  4.996003610813204e-13,
+                  4.030937395297071e-14
+                ],
+                [
+                  -1.522930043270439,
+                  -1.276398095984594e-12
+                ],
+                [
+                  -1.8958305102061779,
+                  2.081292707399063e-12
+                ],
+                [
+                  -2.2623524637981873,
+                  1.1082328649660943e-12
+                ],
+                [
+                  -2.410905942472904,
+                  2.0094409365823607e-12
+                ]
+              ],
+              "residuals": [
+                1.1418669488488187e-14,
+                8.754860365259803e-13,
+                1.9574099568752274e-12,
+                4.496439992403056e-12,
+                3.884764179345546e-12,
+                3.4576394320663336e-12,
+                5.343079749925621e-12,
+                6.441145034030297e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9927152507395571,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8987671218533921,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.19739514175243933,
+          "invariant_right_error": 1.8769318117234335e-13,
+          "invariant_left_error": 7.551323740260282e-13,
+          "saved_eigenvalue_max_error": 2.7755575615628914e-15
+        },
+        {
+          "step": 1,
+          "offset": 0.026490956762804663,
+          "detuning": 3.1638939085342086,
+          "eigenvalues": [
+            -0.7608378277299402,
+            -0.6788141398452071
+          ],
+          "projection_seed": 72735,
+          "candidate_seed": 924,
+          "neighbor_right_min_cosine": 0.994897160352484,
+          "neighbor_left_min_cosine": 0.9993384015536017,
+          "center_right_min_cosine": 0.994897160352484,
+          "center_left_min_cosine": 0.9993384015536017,
+          "candidate_eigenvalues": [
+            [
+              -0.7608378277299404,
+              2.9811715991728273e-16
+            ],
+            [
+              -0.67881413984504,
+              2.0359455461827297e-14
+            ],
+            [
+              -1.208016091054497,
+              4.622533776713513e-13
+            ],
+            [
+              5.108913292417583e-12,
+              -6.070335282257841e-13
+            ],
+            [
+              -1.4946026211300452,
+              1.4026514336783703e-12
+            ],
+            [
+              -1.8355252869985168,
+              -1.0547916980067319e-11
+            ],
+            [
+              -2.133393427286273,
+              -3.434409108434227e-12
+            ],
+            [
+              -2.325712423610563,
+              7.905755410688748e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.5541951163564817e-14,
+            1.8404270422880328e-12,
+            2.1234990052075377e-11,
+            3.1934010465834634e-11,
+            2.3909864388885924e-11,
+            3.33091910497964e-11,
+            1.8253881498883668e-11,
+            3.5474140069865684e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7608378277299404,
+                  2.9811715991728273e-16
+                ],
+                [
+                  -0.67881413984504,
+                  2.0359455461827297e-14
+                ],
+                [
+                  -1.208016091054497,
+                  4.622533776713513e-13
+                ],
+                [
+                  5.108913292417583e-12,
+                  -6.070335282257841e-13
+                ],
+                [
+                  -1.4946026211300452,
+                  1.4026514336783703e-12
+                ],
+                [
+                  -1.8355252869985168,
+                  -1.0547916980067319e-11
+                ],
+                [
+                  -2.133393427286273,
+                  -3.434409108434227e-12
+                ],
+                [
+                  -2.325712423610563,
+                  7.905755410688748e-12
+                ]
+              ],
+              "residuals": [
+                1.5541951163564817e-14,
+                1.8404270422880328e-12,
+                2.1234990052075377e-11,
+                3.1934010465834634e-11,
+                2.3909864388885924e-11,
+                3.33091910497964e-11,
+                1.8253881498883668e-11,
+                3.5474140069865684e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9948971603525453,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.7631125662489352,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4471782633245568,
+          "invariant_right_error": 1.045190561439995e-12,
+          "invariant_left_error": 8.992700946599921e-13,
+          "saved_eigenvalue_max_error": 9.137135492665038e-14
+        },
+        {
+          "step": 2,
+          "offset": 0.052981913525609325,
+          "detuning": 3.190384865297013,
+          "eigenvalues": [
+            -0.7532356330340073,
+            -0.6268263175275813
+          ],
+          "projection_seed": 72736,
+          "candidate_seed": 925,
+          "neighbor_right_min_cosine": 0.9955106694459996,
+          "neighbor_left_min_cosine": 0.9993616034731392,
+          "center_right_min_cosine": 0.9809910845082479,
+          "center_left_min_cosine": 0.9974049205658676,
+          "candidate_eigenvalues": [
+            [
+              -0.7532356330340073,
+              -1.7001249727754351e-15
+            ],
+            [
+              -0.6268263175275999,
+              5.615257346294696e-15
+            ],
+            [
+              -1.2077828924920215,
+              -1.407581526909944e-13
+            ],
+            [
+              -1.0103029524088925e-13,
+              2.1093794066613472e-13
+            ],
+            [
+              -1.4873221828829943,
+              -5.527527329653735e-13
+            ],
+            [
+              -1.811627224636587,
+              2.8809337556193197e-13
+            ],
+            [
+              -2.0976002493519728,
+              1.2096647818523844e-12
+            ],
+            [
+              -2.3090872457971052,
+              2.151721566279606e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.673116125265728e-14,
+            3.1352493614122557e-13,
+            1.06055033466989e-12,
+            1.7472452519615356e-12,
+            1.40325015224661e-12,
+            1.865558357928477e-12,
+            1.6967639294423967e-12,
+            2.8389811338106908e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7532356330340073,
+                  -1.7001249727754351e-15
+                ],
+                [
+                  -0.6268263175275999,
+                  5.615257346294696e-15
+                ],
+                [
+                  -1.2077828924920215,
+                  -1.407581526909944e-13
+                ],
+                [
+                  -1.0103029524088925e-13,
+                  2.1093794066613472e-13
+                ],
+                [
+                  -1.4873221828829943,
+                  -5.527527329653735e-13
+                ],
+                [
+                  -1.811627224636587,
+                  2.8809337556193197e-13
+                ],
+                [
+                  -2.0976002493519728,
+                  1.2096647818523844e-12
+                ],
+                [
+                  -2.3090872457971052,
+                  2.151721566279606e-12
+                ]
+              ],
+              "residuals": [
+                1.673116125265728e-14,
+                3.1352493614122557e-13,
+                1.06055033466989e-12,
+                1.7472452519615356e-12,
+                1.40325015224661e-12,
+                1.865558357928477e-12,
+                1.6967639294423967e-12,
+                2.8389811338106908e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9955106694459944,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.7118593738214475,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4545472594580142,
+          "invariant_right_error": 1.5089195888209905e-13,
+          "invariant_left_error": 1.3896550905307843e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 3,
+          "offset": 0.07947287028841399,
+          "detuning": 3.2168758220598175,
+          "eigenvalues": [
+            -0.7485088860000428,
+            -0.5746112857733705
+          ],
+          "projection_seed": 72737,
+          "candidate_seed": 926,
+          "neighbor_right_min_cosine": 0.9960391541548465,
+          "neighbor_left_min_cosine": 0.9993847121908022,
+          "center_right_min_cosine": 0.9602913161698908,
+          "center_left_min_cosine": 0.9942826613712271,
+          "candidate_eigenvalues": [
+            [
+              -0.7485088860000428,
+              -1.443349034180939e-15
+            ],
+            [
+              -0.5746112857733552,
+              2.861577948998207e-14
+            ],
+            [
+              -1.207406903147302,
+              3.7090783662077673e-13
+            ],
+            [
+              7.538414337204813e-14,
+              -4.176379946203715e-14
+            ],
+            [
+              -1.4790548212333983,
+              4.0161175638301255e-13
+            ],
+            [
+              -1.7816392371402907,
+              -1.0550508051452624e-12
+            ],
+            [
+              -2.065444475359675,
+              -2.3599458238159344e-12
+            ],
+            [
+              -2.294964113890793,
+              -2.691009741259404e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.9468138068971452e-14,
+            2.032216528371008e-13,
+            7.499865127262438e-13,
+            8.069621942634972e-13,
+            1.024852297956317e-12,
+            1.1825563698192023e-12,
+            1.4375385029575494e-12,
+            1.7524781673386798e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7485088860000428,
+                  -1.443349034180939e-15
+                ],
+                [
+                  -0.5746112857733552,
+                  2.861577948998207e-14
+                ],
+                [
+                  -1.207406903147302,
+                  3.7090783662077673e-13
+                ],
+                [
+                  7.538414337204813e-14,
+                  -4.176379946203715e-14
+                ],
+                [
+                  -1.4790548212333983,
+                  4.0161175638301255e-13
+                ],
+                [
+                  -1.7816392371402907,
+                  -1.0550508051452624e-12
+                ],
+                [
+                  -2.065444475359675,
+                  -2.3599458238159344e-12
+                ],
+                [
+                  -2.294964113890793,
+                  -2.691009741259404e-12
+                ]
+              ],
+              "residuals": [
+                1.9468138068971452e-14,
+                2.032216528371008e-13,
+                7.499865127262438e-13,
+                8.069621942634972e-13,
+                1.024852297956317e-12,
+                1.1825563698192023e-12,
+                1.4375385029575494e-12,
+                1.7524781673386798e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9960391541548484,
+          "runner_up_pair_indices": [
+            0,
+            3
+          ],
+          "runner_up_overlap": 0.6674131099826176,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4588980171472592,
+          "invariant_right_error": 8.766593178407728e-14,
+          "invariant_left_error": 6.188702847974015e-14,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 4,
+          "offset": 0.10596382705121865,
+          "detuning": 3.2433667788226224,
+          "eigenvalues": [
+            -0.7446470519605594,
+            -0.524217141172602
+          ],
+          "projection_seed": 72738,
+          "candidate_seed": 927,
+          "neighbor_right_min_cosine": 0.9964730126989186,
+          "neighbor_left_min_cosine": 0.9994077811054612,
+          "center_right_min_cosine": 0.9345272291999941,
+          "center_left_min_cosine": 0.9900620681416298,
+          "candidate_eigenvalues": [
+            [
+              -0.7446470519605594,
+              -8.91230898569473e-16
+            ],
+            [
+              -0.5242171411726071,
+              8.383888320863839e-15
+            ],
+            [
+              -1.2067547688455953,
+              2.5399648777342294e-14
+            ],
+            [
+              5.10702591327572e-15,
+              5.838305693697462e-15
+            ],
+            [
+              -1.4694518517135466,
+              8.103897270926471e-14
+            ],
+            [
+              -1.7460715536511833,
+              2.2407922938696228e-14
+            ],
+            [
+              -2.0389287550673885,
+              -4.410933039054476e-14
+            ],
+            [
+              -2.2824688813705833,
+              -1.7377319399501666e-13
+            ]
+          ],
+          "candidate_residuals": [
+            1.1836463675603977e-14,
+            1.2899842605516377e-13,
+            1.882329436952962e-13,
+            3.2910332729843435e-13,
+            4.622334380892077e-13,
+            5.391954606218601e-13,
+            4.89062378383663e-13,
+            6.290476430731934e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7446470519605594,
+                  -8.91230898569473e-16
+                ],
+                [
+                  -0.5242171411726071,
+                  8.383888320863839e-15
+                ],
+                [
+                  -1.2067547688455953,
+                  2.5399648777342294e-14
+                ],
+                [
+                  5.10702591327572e-15,
+                  5.838305693697462e-15
+                ],
+                [
+                  -1.4694518517135466,
+                  8.103897270926471e-14
+                ],
+                [
+                  -1.7460715536511833,
+                  2.2407922938696228e-14
+                ],
+                [
+                  -2.0389287550673885,
+                  -4.410933039054476e-14
+                ],
+                [
+                  -2.2824688813705833,
+                  -1.7377319399501666e-13
+                ]
+              ],
+              "residuals": [
+                1.1836463675603977e-14,
+                1.2899842605516377e-13,
+                1.882329436952962e-13,
+                3.2910332729843435e-13,
+                4.622334380892077e-13,
+                5.391954606218601e-13,
+                4.89062378383663e-13,
+                6.290476430731934e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9964730126989185,
+          "runner_up_pair_indices": [
+            0,
+            3
+          ],
+          "runner_up_overlap": 0.6368437762781692,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.46210771688503594,
+          "invariant_right_error": 5.590869203615007e-14,
+          "invariant_left_error": 8.061346390511612e-14,
+          "saved_eigenvalue_max_error": 6.5503158452884236e-15
+        }
+      ],
+      "summary": {
+        "rejected_candidate_attempts": 0,
+        "minimum_neighbor_right_cosine": 0.992715250739572,
+        "minimum_neighbor_left_cosine": 0.9992220335766441,
+        "maximum_runner_up_overlap": 0.8987671218533921,
+        "minimum_target_to_returned_others": 0.19739514175243933,
+        "maximum_candidate_residual": 3.5474140069865684e-11,
+        "maximum_saved_eigenvalue_error": 9.137135492665038e-14
+      },
+      "scope": "Numerical continuation among eight returned candidates at each sampled point; not a proof of isolation from the entire spectrum. Cosines use stored-coordinate Euclidean subspace geometry, not physical-state fidelity."
+    },
+    {
+      "N": 32,
+      "dimension": 6545,
+      "crossing": 3.205747774994305,
+      "mixing_width": 0.007470470531590298,
+      "projection_shift": -0.76,
+      "candidates_per_point": 8,
+      "candidate_residual_threshold": 1e-09,
+      "candidate_retry_policy": "Try shift -0.76 with tolerance 2e-13; on residual failure try tolerance 2e-14 with ncv=40; if still failing, try shift -0.9 with tolerance 2e-13. Record every attempt; only residual-accepted candidates determine identity.",
+      "steps": [
+        {
+          "step": -1,
+          "offset": -0.007470470531590298,
+          "detuning": 3.1982773044627146,
+          "eigenvalues": [
+            -0.7800243631267697,
+            -0.751605367654846
+          ],
+          "projection_seed": 72723,
+          "candidate_seed": 932,
+          "neighbor_right_min_cosine": 0.9994324643514086,
+          "neighbor_left_min_cosine": 0.9999324890544136,
+          "center_right_min_cosine": 0.9994324643514086,
+          "center_left_min_cosine": 0.9999324890544136,
+          "candidate_eigenvalues": [
+            [
+              -0.7516053676548462,
+              8.191724089690394e-15
+            ],
+            [
+              -0.7800243631267725,
+              -8.346529878829216e-15
+            ],
+            [
+              -1.2115238983701033,
+              -2.9952278513962413e-13
+            ],
+            [
+              8.740785872873857e-13,
+              -6.299462923513585e-13
+            ],
+            [
+              -1.51063127210438,
+              1.1993210961687636e-12
+            ],
+            [
+              -1.8596398063380009,
+              -3.29479026802075e-11
+            ],
+            [
+              -2.0752374299612244,
+              -5.10677676715304e-11
+            ],
+            [
+              -2.293619648992288,
+              3.219538852402693e-11
+            ]
+          ],
+          "candidate_residuals": [
+            1.6369064911686092e-14,
+            4.140576255882566e-14,
+            1.5074321197548045e-11,
+            1.6967101174780624e-11,
+            1.561855905462647e-11,
+            2.669337320540382e-11,
+            2.595199913484608e-11,
+            1.142868901311161e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7516053676548462,
+                  8.191724089690394e-15
+                ],
+                [
+                  -0.7800243631267725,
+                  -8.346529878829216e-15
+                ],
+                [
+                  -1.2115238983701033,
+                  -2.9952278513962413e-13
+                ],
+                [
+                  8.740785872873857e-13,
+                  -6.299462923513585e-13
+                ],
+                [
+                  -1.51063127210438,
+                  1.1993210961687636e-12
+                ],
+                [
+                  -1.8596398063380009,
+                  -3.29479026802075e-11
+                ],
+                [
+                  -2.0752374299612244,
+                  -5.10677676715304e-11
+                ],
+                [
+                  -2.293619648992288,
+                  3.219538852402693e-11
+                ]
+              ],
+              "residuals": [
+                1.6369064911686092e-14,
+                4.140576255882566e-14,
+                1.5074321197548045e-11,
+                1.6967101174780624e-11,
+                1.561855905462647e-11,
+                2.669337320540382e-11,
+                2.595199913484608e-11,
+                1.142868901311161e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994324643514115,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.801711643176824,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4314995352433336,
+          "invariant_right_error": 6.258250486810858e-14,
+          "invariant_left_error": 2.712547631212063e-13,
+          "saved_eigenvalue_max_error": 1.5210055437364645e-14
+        },
+        {
+          "step": -2,
+          "offset": -0.014940941063180595,
+          "detuning": 3.1908068339311244,
+          "eigenvalues": [
+            -0.79936308980774,
+            -0.7540170934410392
+          ],
+          "projection_seed": 72724,
+          "candidate_seed": 933,
+          "neighbor_right_min_cosine": 0.9994190903140332,
+          "neighbor_left_min_cosine": 0.9999317658800837,
+          "center_right_min_cosine": 0.9977053801960041,
+          "center_left_min_cosine": 0.9997285597010381,
+          "candidate_eigenvalues": [
+            [
+              -0.7540170934410392,
+              9.686134825517644e-15
+            ],
+            [
+              -0.7993630898077237,
+              -1.9160338521254257e-14
+            ],
+            [
+              -1.2113111083371193,
+              9.049564376575062e-13
+            ],
+            [
+              -7.482903185973555e-14,
+              -1.4790080056323128e-13
+            ],
+            [
+              -1.5121772480550741,
+              -1.2900092177933514e-13
+            ],
+            [
+              -1.8670914056590153,
+              1.8356842731557914e-11
+            ],
+            [
+              -2.0929974844908266,
+              -1.9386766691518673e-11
+            ],
+            [
+              -2.297091961656978,
+              -4.602607683365383e-12
+            ]
+          ],
+          "candidate_residuals": [
+            1.9780055976340577e-14,
+            1.4510760214975467e-13,
+            1.0076491138428538e-11,
+            1.3803892130409432e-11,
+            1.0459129329202867e-11,
+            1.6042014044702388e-11,
+            1.2521248220468692e-11,
+            9.478225684506667e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7540170934410392,
+                  9.686134825517644e-15
+                ],
+                [
+                  -0.7993630898077237,
+                  -1.9160338521254257e-14
+                ],
+                [
+                  -1.2113111083371193,
+                  9.049564376575062e-13
+                ],
+                [
+                  -7.482903185973555e-14,
+                  -1.4790080056323128e-13
+                ],
+                [
+                  -1.5121772480550741,
+                  -1.2900092177933514e-13
+                ],
+                [
+                  -1.8670914056590153,
+                  1.8356842731557914e-11
+                ],
+                [
+                  -2.0929974844908266,
+                  -1.9386766691518673e-11
+                ],
+                [
+                  -2.297091961656978,
+                  -4.602607683365383e-12
+                ]
+              ],
+              "residuals": [
+                1.9780055976340577e-14,
+                1.4510760214975467e-13,
+                1.0076491138428538e-11,
+                1.3803892130409432e-11,
+                1.0459129329202867e-11,
+                1.6042014044702388e-11,
+                1.2521248220468692e-11,
+                9.478225684506667e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.999419090314035,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.817408945394567,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.41194801852937935,
+          "invariant_right_error": 1.5496653641513878e-13,
+          "invariant_left_error": 4.079788075145086e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -3,
+          "offset": -0.02241141159477089,
+          "detuning": 3.183336363399534,
+          "eigenvalues": [
+            -0.8200708351881099,
+            -0.7553703822538934
+          ],
+          "projection_seed": 72725,
+          "candidate_seed": 934,
+          "neighbor_right_min_cosine": 0.9994064191016638,
+          "neighbor_left_min_cosine": 0.999931043098467,
+          "center_right_min_cosine": 0.9947878394084785,
+          "center_left_min_cosine": 0.9993861950781923,
+          "candidate_eigenvalues": [
+            [
+              -0.7553703822538934,
+              3.4368501617660006e-15
+            ],
+            [
+              -0.8200708351881089,
+              -2.524428680316887e-15
+            ],
+            [
+              -1.2110967359103482,
+              -1.7109139262170045e-12
+            ],
+            [
+              7.207567875866516e-13,
+              3.570101228798308e-14
+            ],
+            [
+              -1.5136787680911001,
+              -6.2726867861437285e-12
+            ],
+            [
+              -1.873535388410802,
+              5.883163802003493e-11
+            ],
+            [
+              -2.1114483294577644,
+              -1.472888049241311e-11
+            ],
+            [
+              -2.300834906751213,
+              4.660968008438058e-11
+            ]
+          ],
+          "candidate_residuals": [
+            1.9488602892823956e-14,
+            2.5502695812658234e-13,
+            7.003789793019702e-12,
+            1.0597792999966551e-11,
+            1.1278791653712208e-11,
+            1.2511774198661902e-11,
+            1.18569057224588e-11,
+            9.44621206347918e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7553703822538934,
+                  3.4368501617660006e-15
+                ],
+                [
+                  -0.8200708351881089,
+                  -2.524428680316887e-15
+                ],
+                [
+                  -1.2110967359103482,
+                  -1.7109139262170045e-12
+                ],
+                [
+                  7.207567875866516e-13,
+                  3.570101228798308e-14
+                ],
+                [
+                  -1.5136787680911001,
+                  -6.2726867861437285e-12
+                ],
+                [
+                  -1.873535388410802,
+                  5.883163802003493e-11
+                ],
+                [
+                  -2.1114483294577644,
+                  -1.472888049241311e-11
+                ],
+                [
+                  -2.300834906751213,
+                  4.660968008438058e-11
+                ]
+              ],
+              "residuals": [
+                1.9488602892823956e-14,
+                2.5502695812658234e-13,
+                7.003789793019702e-12,
+                1.0597792999966551e-11,
+                1.1278791653712208e-11,
+                1.2511774198661902e-11,
+                1.18569057224588e-11,
+                9.44621206347918e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994064191016663,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8328700987054741,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.3910259007222383,
+          "invariant_right_error": 2.2186018003967038e-13,
+          "invariant_left_error": 8.157441456208982e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -4,
+          "offset": -0.02988188212636119,
+          "detuning": 3.1758658928679435,
+          "eigenvalues": [
+            -0.8414427861871391,
+            -0.756368442893845
+          ],
+          "projection_seed": 72726,
+          "candidate_seed": 935,
+          "neighbor_right_min_cosine": 0.9993944756939882,
+          "neighbor_left_min_cosine": 0.999930320637402,
+          "center_right_min_cosine": 0.9906571924410558,
+          "center_left_min_cosine": 0.9989034847031603,
+          "candidate_eigenvalues": [
+            [
+              -0.7563684428938451,
+              1.1122414526914833e-14
+            ],
+            [
+              -0.8414427861871647,
+              1.2594530991439889e-14
+            ],
+            [
+              -1.2108824489203924,
+              -2.9286711896730856e-12
+            ],
+            [
+              2.5623947408348613e-13,
+              5.038986242828633e-13
+            ],
+            [
+              -1.515140013724945,
+              -3.826263957935546e-12
+            ],
+            [
+              -1.8791174403165989,
+              2.985238251998858e-11
+            ],
+            [
+              -2.1302942778498504,
+              -3.324782967160067e-11
+            ],
+            [
+              -2.3049304895905043,
+              3.167572859427811e-11
+            ]
+          ],
+          "candidate_residuals": [
+            2.298809256703603e-14,
+            4.682839556003475e-13,
+            6.162685477964634e-12,
+            1.0582972235607077e-11,
+            1.1655810639028816e-11,
+            1.1823661011574644e-11,
+            1.502460347899203e-11,
+            1.051680258932137e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7563684428938451,
+                  1.1122414526914833e-14
+                ],
+                [
+                  -0.8414427861871647,
+                  1.2594530991439889e-14
+                ],
+                [
+                  -1.2108824489203924,
+                  -2.9286711896730856e-12
+                ],
+                [
+                  2.5623947408348613e-13,
+                  5.038986242828633e-13
+                ],
+                [
+                  -1.515140013724945,
+                  -3.826263957935546e-12
+                ],
+                [
+                  -1.8791174403165989,
+                  2.985238251998858e-11
+                ],
+                [
+                  -2.1302942778498504,
+                  -3.324782967160067e-11
+                ],
+                [
+                  -2.3049304895905043,
+                  3.167572859427811e-11
+                ]
+              ],
+              "residuals": [
+                2.298809256703603e-14,
+                4.682839556003475e-13,
+                6.162685477964634e-12,
+                1.0582972235607077e-11,
+                1.1655810639028816e-11,
+                1.1823661011574644e-11,
+                1.502460347899203e-11,
+                1.051680258932137e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9993944756939879,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8480026284212974,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.36943966273325335,
+          "invariant_right_error": 2.817147538635211e-13,
+          "invariant_left_error": 9.199280590267768e-13,
+          "saved_eigenvalue_max_error": 2.964295475749168e-14
+        },
+        {
+          "step": 1,
+          "offset": 0.007470470531590298,
+          "detuning": 3.213218245525895,
+          "eigenvalues": [
+            -0.7586261779231184,
+            -0.7304394183182631
+          ],
+          "projection_seed": 72743,
+          "candidate_seed": 932,
+          "neighbor_right_min_cosine": 0.999446463716262,
+          "neighbor_left_min_cosine": 0.9999332126052827,
+          "center_right_min_cosine": 0.999446463716262,
+          "center_left_min_cosine": 0.9999332126052827,
+          "candidate_eigenvalues": [
+            [
+              -0.7586261779231184,
+              1.1182244654746274e-14
+            ],
+            [
+              -0.7304394183182524,
+              3.671120887779549e-14
+            ],
+            [
+              -1.2119384960173687,
+              2.7431610755998675e-12
+            ],
+            [
+              1.3529177778082158e-12,
+              -3.4355821097653552e-12
+            ],
+            [
+              -1.5073855089496435,
+              8.348287056916735e-12
+            ],
+            [
+              -1.8411475188968196,
+              -1.8761794789966594e-10
+            ],
+            [
+              -2.0428116980580415,
+              -7.928942561983707e-11
+            ],
+            [
+              -2.2872474032661683,
+              -3.4832215389415045e-11
+            ]
+          ],
+          "candidate_residuals": [
+            2.1679201315677642e-14,
+            4.243338193909095e-13,
+            6.586095644735632e-11,
+            6.819804086838373e-11,
+            6.369591713501725e-11,
+            1.0495857352412148e-10,
+            1.0320338173024795e-10,
+            5.880012336108902e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7586261779231184,
+                  1.1182244654746274e-14
+                ],
+                [
+                  -0.7304394183182524,
+                  3.671120887779549e-14
+                ],
+                [
+                  -1.2119384960173687,
+                  2.7431610755998675e-12
+                ],
+                [
+                  1.3529177778082158e-12,
+                  -3.4355821097653552e-12
+                ],
+                [
+                  -1.5073855089496435,
+                  8.348287056916735e-12
+                ],
+                [
+                  -1.8411475188968196,
+                  -1.8761794789966594e-10
+                ],
+                [
+                  -2.0428116980580415,
+                  -7.928942561983707e-11
+                ],
+                [
+                  -2.2872474032661683,
+                  -3.4832215389415045e-11
+                ]
+              ],
+              "residuals": [
+                2.1679201315677642e-14,
+                4.243338193909095e-13,
+                6.586095644735632e-11,
+                6.819804086838373e-11,
+                6.369591713501725e-11,
+                1.0495857352412148e-10,
+                1.0320338173024795e-10,
+                5.880012336108902e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994464637162634,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8042325033223906,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4533123180942503,
+          "invariant_right_error": 1.0718220759361552e-12,
+          "invariant_left_error": 1.8322469630893244e-12,
+          "saved_eigenvalue_max_error": 3.7969627442180354e-14
+        },
+        {
+          "step": 2,
+          "offset": 0.014940941063180595,
+          "detuning": 3.2206887160574853,
+          "eigenvalues": [
+            -0.7562126229433934,
+            -0.712041240528313
+          ],
+          "projection_seed": 72744,
+          "candidate_seed": 933,
+          "neighbor_right_min_cosine": 0.9994609753174402,
+          "neighbor_left_min_cosine": 0.9999339364540982,
+          "center_right_min_cosine": 0.997816958536755,
+          "center_left_min_cosine": 0.9997343466526226,
+          "candidate_eigenvalues": [
+            [
+              -0.7562126229433932,
+              -1.0926518224291972e-15
+            ],
+            [
+              -0.7120412405283671,
+              2.336410901628565e-14
+            ],
+            [
+              -1.2121372258958978,
+              -2.7058314582454943e-12
+            ],
+            [
+              8.413270080609436e-13,
+              -1.1605002730956559e-12
+            ],
+            [
+              -1.5056730788380839,
+              2.8871580409042485e-12
+            ],
+            [
+              -1.8298883804793382,
+              4.1657562225190186e-11
+            ],
+            [
+              -2.0285405218697914,
+              -3.01425342227534e-11
+            ],
+            [
+              -2.2842601114137464,
+              8.32038865265177e-12
+            ]
+          ],
+          "candidate_residuals": [
+            2.11522122715497e-14,
+            2.5885335510441107e-13,
+            1.007485458131605e-11,
+            1.532028447073044e-11,
+            1.4102343317548637e-11,
+            1.525345702401331e-11,
+            1.4822586175861994e-11,
+            1.0941594197802903e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7562126229433932,
+                  -1.0926518224291972e-15
+                ],
+                [
+                  -0.7120412405283671,
+                  2.336410901628565e-14
+                ],
+                [
+                  -1.2121372258958978,
+                  -2.7058314582454943e-12
+                ],
+                [
+                  8.413270080609436e-13,
+                  -1.1605002730956559e-12
+                ],
+                [
+                  -1.5056730788380839,
+                  2.8871580409042485e-12
+                ],
+                [
+                  -1.8298883804793382,
+                  4.1657562225190186e-11
+                ],
+                [
+                  -2.0285405218697914,
+                  -3.01425342227534e-11
+                ],
+                [
+                  -2.2842601114137464,
+                  8.32038865265177e-12
+                ]
+              ],
+              "residuals": [
+                2.11522122715497e-14,
+                2.5885335510441107e-13,
+                1.007485458131605e-11,
+                1.532028447073044e-11,
+                1.4102343317548637e-11,
+                1.525345702401331e-11,
+                1.4822586175861994e-11,
+                1.0941594197802903e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994609753174339,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.7881637216518056,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.45592460295250437,
+          "invariant_right_error": 2.9604625169439223e-13,
+          "invariant_left_error": 7.001579058857617e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 3,
+          "offset": 0.02241141159477089,
+          "detuning": 3.2281591865890755,
+          "eigenvalues": [
+            -0.7548274047159779,
+            -0.6929292657709497
+          ],
+          "projection_seed": 72745,
+          "candidate_seed": 934,
+          "neighbor_right_min_cosine": 0.9994758649311533,
+          "neighbor_left_min_cosine": 0.9999346604769053,
+          "center_right_min_cosine": 0.9951621098921059,
+          "center_left_min_cosine": 0.9994057178654243,
+          "candidate_eigenvalues": [
+            [
+              -0.7548274047159778,
+              2.9146607566031387e-15
+            ],
+            [
+              -0.6929292657709849,
+              -1.1931022071253118e-14
+            ],
+            [
+              -1.2123281198342506,
+              6.218536605421375e-13
+            ],
+            [
+              7.69717622972621e-13,
+              -8.57386724326524e-13
+            ],
+            [
+              -1.5038904019156494,
+              -1.4888680617617675e-12
+            ],
+            [
+              -1.8172268517554864,
+              -2.333730676576299e-11
+            ],
+            [
+              -2.0157174472674213,
+              1.544565090516362e-11
+            ],
+            [
+              -2.2813625069174694,
+              9.452762491351433e-12
+            ]
+          ],
+          "candidate_residuals": [
+            2.5964209070161882e-14,
+            4.0935215271977904e-13,
+            7.476437787201049e-12,
+            1.1573187650324292e-11,
+            7.971644490913785e-12,
+            1.1340585252315348e-11,
+            8.754562622875912e-12,
+            9.772279447371717e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7548274047159778,
+                  2.9146607566031387e-15
+                ],
+                [
+                  -0.6929292657709849,
+                  -1.1931022071253118e-14
+                ],
+                [
+                  -1.2123281198342506,
+                  6.218536605421375e-13
+                ],
+                [
+                  7.69717622972621e-13,
+                  -8.57386724326524e-13
+                ],
+                [
+                  -1.5038904019156494,
+                  -1.4888680617617675e-12
+                ],
+                [
+                  -1.8172268517554864,
+                  -2.333730676576299e-11
+                ],
+                [
+                  -2.0157174472674213,
+                  1.544565090516362e-11
+                ],
+                [
+                  -2.2813625069174694,
+                  9.452762491351433e-12
+                ]
+              ],
+              "residuals": [
+                2.5964209070161882e-14,
+                4.0935215271977904e-13,
+                7.476437787201049e-12,
+                1.1573187650324292e-11,
+                7.971644490913785e-12,
+                1.1340585252315348e-11,
+                8.754562622875912e-12,
+                9.772279447371717e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994758649311433,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.7721475553941831,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4575007151182727,
+          "invariant_right_error": 1.9641218203645183e-13,
+          "invariant_left_error": 1.3307640262253475e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 4,
+          "offset": 0.02988188212636119,
+          "detuning": 3.235629657120666,
+          "eigenvalues": [
+            -0.753778120187402,
+            -0.673796427795389
+          ],
+          "projection_seed": 72746,
+          "candidate_seed": 935,
+          "neighbor_right_min_cosine": 0.9994909891732263,
+          "neighbor_left_min_cosine": 0.9999353845160702,
+          "center_right_min_cosine": 0.9915368802022965,
+          "center_left_min_cosine": 0.9989497338761281,
+          "candidate_eigenvalues": [
+            [
+              -0.7537781201874021,
+              4.419484021169284e-15
+            ],
+            [
+              -0.6737964277952833,
+              -6.010144610667838e-14
+            ],
+            [
+              -1.2125094645592724,
+              1.676964527916749e-12
+            ],
+            [
+              -7.506217869490683e-13,
+              7.903219820039413e-13
+            ],
+            [
+              -1.5020274622324576,
+              2.8580074711576128e-12
+            ],
+            [
+              -1.8032033851715195,
+              -2.6420643040437397e-11
+            ],
+            [
+              -2.0043597902153483,
+              1.7141390985328223e-11
+            ],
+            [
+              -2.278530552628392,
+              3.351706981859662e-12
+            ]
+          ],
+          "candidate_residuals": [
+            2.1472785987679888e-14,
+            3.988572730354045e-13,
+            4.667388176764805e-12,
+            7.451330183353996e-12,
+            5.0708933195152436e-12,
+            6.299456221241064e-12,
+            4.245768159885269e-12,
+            5.5984417695086225e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7537781201874021,
+                  4.419484021169284e-15
+                ],
+                [
+                  -0.6737964277952833,
+                  -6.010144610667838e-14
+                ],
+                [
+                  -1.2125094645592724,
+                  1.676964527916749e-12
+                ],
+                [
+                  -7.506217869490683e-13,
+                  7.903219820039413e-13
+                ],
+                [
+                  -1.5020274622324576,
+                  2.8580074711576128e-12
+                ],
+                [
+                  -1.8032033851715195,
+                  -2.6420643040437397e-11
+                ],
+                [
+                  -2.0043597902153483,
+                  1.7141390985328223e-11
+                ],
+                [
+                  -2.278530552628392,
+                  3.351706981859662e-12
+                ]
+              ],
+              "residuals": [
+                2.1472785987679888e-14,
+                3.988572730354045e-13,
+                4.667388176764805e-12,
+                7.451330183353996e-12,
+                5.0708933195152436e-12,
+                6.299456221241064e-12,
+                4.245768159885269e-12,
+                5.5984417695086225e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9994909891732384,
+          "runner_up_pair_indices": [
+            0,
+            3
+          ],
+          "runner_up_overlap": 0.7560359629372888,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.45873134437187046,
+          "invariant_right_error": 2.3946694232744376e-13,
+          "invariant_left_error": 1.2749449052187918e-12,
+          "saved_eigenvalue_max_error": 6.661338147750939e-14
+        }
+      ],
+      "summary": {
+        "rejected_candidate_attempts": 0,
+        "minimum_neighbor_right_cosine": 0.9993944756939882,
+        "minimum_neighbor_left_cosine": 0.999930320637402,
+        "maximum_runner_up_overlap": 0.8480026284212974,
+        "minimum_target_to_returned_others": 0.36943966273325335,
+        "maximum_candidate_residual": 1.0495857352412148e-10,
+        "maximum_saved_eigenvalue_error": 6.661338147750939e-14
+      },
+      "scope": "Numerical continuation among eight returned candidates at each sampled point; not a proof of isolation from the entire spectrum. Cosines use stored-coordinate Euclidean subspace geometry, not physical-state fidelity."
+    },
+    {
+      "N": 40,
+      "dimension": 12341,
+      "crossing": 3.250224606644004,
+      "mixing_width": 0.002129249412033602,
+      "projection_shift": -0.76,
+      "candidates_per_point": 8,
+      "candidate_residual_threshold": 1e-09,
+      "candidate_retry_policy": "Try shift -0.76 with tolerance 2e-13; on residual failure try tolerance 2e-14 with ncv=40; if still failing, try shift -0.9 with tolerance 2e-13. Record every attempt; only residual-accepted candidates determine identity.",
+      "steps": [
+        {
+          "step": -1,
+          "offset": -0.002129249412033602,
+          "detuning": 3.2480953572319704,
+          "eigenvalues": [
+            -0.7657437332358669,
+            -0.756500033148254
+          ],
+          "projection_seed": 72731,
+          "candidate_seed": 940,
+          "neighbor_right_min_cosine": 0.9999472157861585,
+          "neighbor_left_min_cosine": 0.999993427137227,
+          "center_right_min_cosine": 0.9999472157861585,
+          "center_left_min_cosine": 0.999993427137227,
+          "candidate_eigenvalues": [
+            [
+              -0.7565000331482553,
+              -5.5005180559406884e-14
+            ],
+            [
+              -0.7657437332358707,
+              5.4680360238760414e-14
+            ],
+            [
+              -1.2175848222164607,
+              1.1675936164860807e-11
+            ],
+            [
+              9.292899783019948e-12,
+              -1.3888089901278257e-11
+            ],
+            [
+              -1.5167693434396443,
+              1.2752201553836846e-11
+            ],
+            [
+              -1.8745701918222064,
+              1.7252209571846001e-09
+            ],
+            [
+              -1.9835696704086085,
+              -2.4191612356216216e-09
+            ],
+            [
+              -2.2819949088172438,
+              -2.526293646279341e-10
+            ]
+          ],
+          "candidate_residuals": [
+            2.425097352994131e-14,
+            3.8582088719411094e-14,
+            1.4162134170168267e-10,
+            2.206416088721717e-10,
+            2.646428508025958e-10,
+            3.1159472641754403e-10,
+            2.5761670454388086e-10,
+            1.6274172622827667e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7565000331482553,
+                  -5.5005180559406884e-14
+                ],
+                [
+                  -0.7657437332358707,
+                  5.4680360238760414e-14
+                ],
+                [
+                  -1.2175848222164607,
+                  1.1675936164860807e-11
+                ],
+                [
+                  9.292899783019948e-12,
+                  -1.3888089901278257e-11
+                ],
+                [
+                  -1.5167693434396443,
+                  1.2752201553836846e-11
+                ],
+                [
+                  -1.8745701918222064,
+                  1.7252209571846001e-09
+                ],
+                [
+                  -1.9835696704086085,
+                  -2.4191612356216216e-09
+                ],
+                [
+                  -2.2819949088172438,
+                  -2.526293646279341e-10
+                ]
+              ],
+              "residuals": [
+                2.425097352994131e-14,
+                3.8582088719411094e-14,
+                1.4162134170168267e-10,
+                2.206416088721717e-10,
+                2.646428508025958e-10,
+                3.1159472641754403e-10,
+                2.5761670454388086e-10,
+                1.6274172622827667e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999472157861524,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8282023492827204,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.45184108898059383,
+          "invariant_right_error": 1.8561784699070443e-13,
+          "invariant_left_error": 4.2855772312463796e-13,
+          "saved_eigenvalue_max_error": 8.026912468039882e-14
+        },
+        {
+          "step": -2,
+          "offset": -0.004258498824067204,
+          "detuning": 3.245966107819937,
+          "eigenvalues": [
+            -0.7719136303999177,
+            -0.7572546003913745
+          ],
+          "projection_seed": 72732,
+          "candidate_seed": 941,
+          "neighbor_right_min_cosine": 0.9999470129775094,
+          "neighbor_left_min_cosine": 0.9999934053253099,
+          "center_right_min_cosine": 0.9997884779082802,
+          "center_left_min_cosine": 0.9999736654021822,
+          "candidate_eigenvalues": [
+            [
+              -0.7572546003913745,
+              -1.650105077443619e-14
+            ],
+            [
+              -0.771913630399898,
+              3.3669175559794505e-14
+            ],
+            [
+              -1.2174801833527704,
+              -7.895960747122129e-11
+            ],
+            [
+              -6.352807169207608e-12,
+              5.338665443923434e-12
+            ],
+            [
+              -1.5171545971131433,
+              -2.340369466533239e-10
+            ],
+            [
+              -1.879168353512208,
+              2.583934899971813e-09
+            ],
+            [
+              -1.987949996811613,
+              -6.92657055651086e-10
+            ],
+            [
+              -2.2826509719540455,
+              -3.601638619062422e-11
+            ]
+          ],
+          "candidate_residuals": [
+            2.4190515146282802e-14,
+            1.259399820503251e-13,
+            1.0769706071224293e-10,
+            1.3573504380554594e-10,
+            1.4570319373194209e-10,
+            1.7557550877930107e-10,
+            1.5913000481654385e-10,
+            1.39362363655109e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7572546003913745,
+                  -1.650105077443619e-14
+                ],
+                [
+                  -0.771913630399898,
+                  3.3669175559794505e-14
+                ],
+                [
+                  -1.2174801833527704,
+                  -7.895960747122129e-11
+                ],
+                [
+                  -6.352807169207608e-12,
+                  5.338665443923434e-12
+                ],
+                [
+                  -1.5171545971131433,
+                  -2.340369466533239e-10
+                ],
+                [
+                  -1.879168353512208,
+                  2.583934899971813e-09
+                ],
+                [
+                  -1.987949996811613,
+                  -6.92657055651086e-10
+                ],
+                [
+                  -2.2826509719540455,
+                  -3.601638619062422e-11
+                ]
+              ],
+              "residuals": [
+                2.4190515146282802e-14,
+                1.259399820503251e-13,
+                1.0769706071224293e-10,
+                1.3573504380554594e-10,
+                1.4570319373194209e-10,
+                1.7557550877930107e-10,
+                1.5913000481654385e-10,
+                1.39362363655109e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999470129775124,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8327234659038647,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.44556655295285275,
+          "invariant_right_error": 4.232498546338309e-13,
+          "invariant_left_error": 8.181322860839379e-13,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -3,
+          "offset": -0.006387748236100806,
+          "detuning": 3.2438368584079034,
+          "eigenvalues": [
+            -0.7784592794803169,
+            -0.7576672703501552
+          ],
+          "projection_seed": 72733,
+          "candidate_seed": 942,
+          "neighbor_right_min_cosine": 0.9999468170066583,
+          "neighbor_left_min_cosine": 0.9999933835120253,
+          "center_right_min_cosine": 0.9995232603721895,
+          "center_left_min_cosine": 0.9999406507912348,
+          "candidate_eigenvalues": [
+            [
+              -0.7576672703501558,
+              -2.542455364770666e-14
+            ],
+            [
+              -0.7784592794803411,
+              8.525793817241245e-16
+            ],
+            [
+              -1.217375475585572,
+              1.6540563477529843e-11
+            ],
+            [
+              3.6185499041607727e-12,
+              -7.593645616611523e-13
+            ],
+            [
+              -1.5175371181781103,
+              1.833012745502892e-11
+            ],
+            [
+              -1.8834378117134976,
+              4.660586343013057e-10
+            ],
+            [
+              -1.9926791880872836,
+              -9.905061752207976e-10
+            ],
+            [
+              -2.28330791447613,
+              1.5740507111766226e-10
+            ]
+          ],
+          "candidate_residuals": [
+            2.707965151013554e-14,
+            2.365717880832575e-13,
+            6.034421331793075e-11,
+            1.0806097291395486e-10,
+            1.0078094296637705e-10,
+            9.87342974982541e-11,
+            9.235993872012201e-11,
+            1.4170708086352327e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7576672703501558,
+                  -2.542455364770666e-14
+                ],
+                [
+                  -0.7784592794803411,
+                  8.525793817241245e-16
+                ],
+                [
+                  -1.217375475585572,
+                  1.6540563477529843e-11
+                ],
+                [
+                  3.6185499041607727e-12,
+                  -7.593645616611523e-13
+                ],
+                [
+                  -1.5175371181781103,
+                  1.833012745502892e-11
+                ],
+                [
+                  -1.8834378117134976,
+                  4.660586343013057e-10
+                ],
+                [
+                  -1.9926791880872836,
+                  -9.905061752207976e-10
+                ],
+                [
+                  -2.28330791447613,
+                  1.5740507111766226e-10
+                ]
+              ],
+              "residuals": [
+                2.707965151013554e-14,
+                2.365717880832575e-13,
+                6.034421331793075e-11,
+                1.0806097291395486e-10,
+                1.0078094296637705e-10,
+                9.87342974982541e-11,
+                9.235993872012201e-11,
+                1.4170708086352327e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999468170066544,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8372193853874607,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.438916196105255,
+          "invariant_right_error": 4.897184220190525e-13,
+          "invariant_left_error": 1.60809893330928e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -4,
+          "offset": -0.008516997648134407,
+          "detuning": 3.2417076089958696,
+          "eigenvalues": [
+            -0.7851524962831218,
+            -0.7579662189057899
+          ],
+          "projection_seed": 72734,
+          "candidate_seed": 943,
+          "neighbor_right_min_cosine": 0.9999466276136655,
+          "neighbor_left_min_cosine": 0.9999933616979608,
+          "center_right_min_cosine": 0.9991511063544123,
+          "center_left_min_cosine": 0.9998943202651237,
+          "candidate_eigenvalues": [
+            [
+              -0.75796621890579,
+              4.204952187798104e-14
+            ],
+            [
+              -0.7851524962831087,
+              -8.54418005393142e-14
+            ],
+            [
+              -1.2172707120815873,
+              3.525206887962997e-11
+            ],
+            [
+              7.413736291539408e-12,
+              7.185186834744469e-13
+            ],
+            [
+              -1.5179169975712776,
+              8.966991754602513e-12
+            ],
+            [
+              -1.8873797211474208,
+              -2.728675296607846e-09
+            ],
+            [
+              -1.9977553056246975,
+              3.219130710889629e-09
+            ],
+            [
+              -2.2839661345634052,
+              -1.521993147753787e-10
+            ]
+          ],
+          "candidate_residuals": [
+            2.5935421239863292e-14,
+            3.2636523026183423e-13,
+            5.903612936271446e-11,
+            9.981609658384996e-11,
+            1.258897362581914e-10,
+            1.1697625109058326e-10,
+            1.233065021741354e-10,
+            1.0435161384704839e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.75796621890579,
+                  4.204952187798104e-14
+                ],
+                [
+                  -0.7851524962831087,
+                  -8.54418005393142e-14
+                ],
+                [
+                  -1.2172707120815873,
+                  3.525206887962997e-11
+                ],
+                [
+                  7.413736291539408e-12,
+                  7.185186834744469e-13
+                ],
+                [
+                  -1.5179169975712776,
+                  8.966991754602513e-12
+                ],
+                [
+                  -1.8873797211474208,
+                  -2.728675296607846e-09
+                ],
+                [
+                  -1.9977553056246975,
+                  3.219130710889629e-09
+                ],
+                [
+                  -2.2839661345634052,
+                  -1.521993147753787e-10
+                ]
+              ],
+              "residuals": [
+                2.5935421239863292e-14,
+                3.2636523026183423e-13,
+                5.903612936271446e-11,
+                9.981609658384996e-11,
+                1.258897362581914e-10,
+                1.1697625109058326e-10,
+                1.233065021741354e-10,
+                1.0435161384704839e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            1,
+            0
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.999946627613674,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.841682161373573,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.43211821579846554,
+          "invariant_right_error": 5.93549600166259e-13,
+          "invariant_left_error": 1.1296889445820298e-12,
+          "saved_eigenvalue_max_error": 2.853273173286652e-14
+        },
+        {
+          "step": 1,
+          "offset": 0.002129249412033602,
+          "detuning": 3.252353856056038,
+          "eigenvalues": [
+            -0.7588576998482534,
+            -0.7496387302685878
+          ],
+          "projection_seed": 72751,
+          "candidate_seed": 940,
+          "neighbor_right_min_cosine": 0.9999474256318945,
+          "neighbor_left_min_cosine": 0.9999934489472213,
+          "center_right_min_cosine": 0.9999474256318945,
+          "center_left_min_cosine": 0.9999934489472213,
+          "candidate_eigenvalues": [
+            [
+              -0.758857699848254,
+              -4.554903408688566e-14
+            ],
+            [
+              -0.7496387302684994,
+              5.835455368775127e-14
+            ],
+            [
+              -1.2177938410844857,
+              5.557835063324e-11
+            ],
+            [
+              6.864175894349955e-12,
+              -2.5381377073018028e-11
+            ],
+            [
+              -1.5159902398428593,
+              6.668352298271454e-10
+            ],
+            [
+              -1.86441458507466,
+              -7.647552390616575e-09
+            ],
+            [
+              -1.9758316791091695,
+              5.1404554098751986e-09
+            ],
+            [
+              -2.280683983677444,
+              -2.623331718488545e-10
+            ]
+          ],
+          "candidate_residuals": [
+            3.065598429119096e-14,
+            2.655970709500392e-13,
+            2.2743988203267414e-10,
+            3.5984600814541393e-10,
+            4.727729187674823e-10,
+            5.68251090232513e-10,
+            4.804730500557026e-10,
+            2.944243725121171e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.758857699848254,
+                  -4.554903408688566e-14
+                ],
+                [
+                  -0.7496387302684994,
+                  5.835455368775127e-14
+                ],
+                [
+                  -1.2177938410844857,
+                  5.557835063324e-11
+                ],
+                [
+                  6.864175894349955e-12,
+                  -2.5381377073018028e-11
+                ],
+                [
+                  -1.5159902398428593,
+                  6.668352298271454e-10
+                ],
+                [
+                  -1.86441458507466,
+                  -7.647552390616575e-09
+                ],
+                [
+                  -1.9758316791091695,
+                  5.1404554098751986e-09
+                ],
+                [
+                  -2.280683983677444,
+                  -2.623331718488545e-10
+                ]
+              ],
+              "residuals": [
+                3.065598429119096e-14,
+                2.655970709500392e-13,
+                2.2743988203267414e-10,
+                3.5984600814541393e-10,
+                4.727729187674823e-10,
+                5.68251090232513e-10,
+                4.804730500557026e-10,
+                2.944243725121171e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999474256319123,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8289447636514574,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4589361412362324,
+          "invariant_right_error": 1.2199335101590886e-12,
+          "invariant_left_error": 2.1811945610568963e-12,
+          "saved_eigenvalue_max_error": 4.3076653355456074e-14
+        },
+        {
+          "step": 2,
+          "offset": 0.004258498824067204,
+          "detuning": 3.254483105468071,
+          "eigenvalues": [
+            -0.7581037387234218,
+            -0.7435698315744527
+          ],
+          "projection_seed": 72752,
+          "candidate_seed": 941,
+          "neighbor_right_min_cosine": 0.9999476426575408,
+          "neighbor_left_min_cosine": 0.9999934707546783,
+          "center_right_min_cosine": 0.9997901564548721,
+          "center_left_min_cosine": 0.9999738398775171,
+          "candidate_eigenvalues": [
+            [
+              -0.758103738723422,
+              -4.8909251777512124e-14
+            ],
+            [
+              -0.7435698315744467,
+              2.0014919595075087e-14
+            ],
+            [
+              -1.217898193574882,
+              2.2402451505693486e-11
+            ],
+            [
+              -3.97104571447926e-12,
+              2.6381917779511832e-12
+            ],
+            [
+              -1.5155961733878536,
+              7.06096740589548e-11
+            ],
+            [
+              -1.8588846934909629,
+              -1.082846746646487e-09
+            ],
+            [
+              -1.9724478133340646,
+              3.637026536716303e-10
+            ],
+            [
+              -2.280028465959835,
+              -5.535145586532383e-12
+            ]
+          ],
+          "candidate_residuals": [
+            2.4483371553128178e-14,
+            2.252657835322148e-13,
+            7.408852199038545e-11,
+            1.0563618501958135e-10,
+            1.2113396895613134e-10,
+            1.486377070322749e-10,
+            1.42952382568751e-10,
+            1.1086231243644796e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.758103738723422,
+                  -4.8909251777512124e-14
+                ],
+                [
+                  -0.7435698315744467,
+                  2.0014919595075087e-14
+                ],
+                [
+                  -1.217898193574882,
+                  2.2402451505693486e-11
+                ],
+                [
+                  -3.97104571447926e-12,
+                  2.6381917779511832e-12
+                ],
+                [
+                  -1.5155961733878536,
+                  7.06096740589548e-11
+                ],
+                [
+                  -1.8588846934909629,
+                  -1.082846746646487e-09
+                ],
+                [
+                  -1.9724478133340646,
+                  3.637026536716303e-10
+                ],
+                [
+                  -2.280028465959835,
+                  -5.535145586532383e-12
+                ]
+              ],
+              "residuals": [
+                2.4483371553128178e-14,
+                2.252657835322148e-13,
+                7.408852199038545e-11,
+                1.0563618501958135e-10,
+                1.2113396895613134e-10,
+                1.486377070322749e-10,
+                1.42952382568751e-10,
+                1.1086231243644796e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999476426575404,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.824336412294648,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4597944548514602,
+          "invariant_right_error": 6.025082125884495e-13,
+          "invariant_left_error": 2.0059284163251138e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 3,
+          "offset": 0.006387748236100806,
+          "detuning": 3.256612354880105,
+          "eigenvalues": [
+            -0.7576890003140323,
+            -0.7371955888867159
+          ],
+          "projection_seed": 72753,
+          "candidate_seed": 942,
+          "neighbor_right_min_cosine": 0.9999478669532466,
+          "neighbor_left_min_cosine": 0.9999934925590118,
+          "center_right_min_cosine": 0.9995289242411974,
+          "center_left_min_cosine": 0.9999412396200347,
+          "candidate_eigenvalues": [
+            [
+              -0.7576890003140319,
+              -1.673649152337365e-14
+            ],
+            [
+              -0.7371955888867863,
+              1.6172102787356338e-14
+            ],
+            [
+              -1.21800242262696,
+              -5.824439721485252e-12
+            ],
+            [
+              2.450373237650183e-12,
+              1.8428884962551005e-12
+            ],
+            [
+              -1.515198939050364,
+              1.3441541511661696e-11
+            ],
+            [
+              -1.853079151864965,
+              -1.4123668548049133e-11
+            ],
+            [
+              -1.9693624684060864,
+              -1.6839756275089102e-12
+            ],
+            [
+              -2.2793725058914047,
+              4.651853342454068e-11
+            ]
+          ],
+          "candidate_residuals": [
+            2.9104364778857474e-14,
+            3.301006820734446e-13,
+            4.870136161893359e-11,
+            7.950899251218024e-11,
+            7.431643351062792e-11,
+            8.352747584809955e-11,
+            7.365306552509916e-11,
+            8.624981001383725e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7576890003140319,
+                  -1.673649152337365e-14
+                ],
+                [
+                  -0.7371955888867863,
+                  1.6172102787356338e-14
+                ],
+                [
+                  -1.21800242262696,
+                  -5.824439721485252e-12
+                ],
+                [
+                  2.450373237650183e-12,
+                  1.8428884962551005e-12
+                ],
+                [
+                  -1.515198939050364,
+                  1.3441541511661696e-11
+                ],
+                [
+                  -1.853079151864965,
+                  -1.4123668548049133e-11
+                ],
+                [
+                  -1.9693624684060864,
+                  -1.6839756275089102e-12
+                ],
+                [
+                  -2.2793725058914047,
+                  4.651853342454068e-11
+                ]
+              ],
+              "residuals": [
+                2.9104364778857474e-14,
+                3.301006820734446e-13,
+                4.870136161893359e-11,
+                7.950899251218024e-11,
+                7.431643351062792e-11,
+                8.352747584809955e-11,
+                7.365306552509916e-11,
+                8.624981001383725e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999478669532441,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8196210462067788,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4603134223129276,
+          "invariant_right_error": 6.540728035005758e-13,
+          "invariant_left_error": 1.3164683248399664e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 4,
+          "offset": 0.008516997648134407,
+          "detuning": 3.2587416042921387,
+          "eigenvalues": [
+            -0.757386464992045,
+            -0.7307430255841125
+          ],
+          "projection_seed": 72754,
+          "candidate_seed": 943,
+          "neighbor_right_min_cosine": 0.9999480985604896,
+          "neighbor_left_min_cosine": 0.99999351435964,
+          "center_right_min_cosine": 0.9991645277957238,
+          "center_left_min_cosine": 0.9998957159226576,
+          "candidate_eigenvalues": [
+            [
+              -0.7573864649920448,
+              1.8799830020843234e-14
+            ],
+            [
+              -0.7307430255842008,
+              -3.1757038049297614e-14
+            ],
+            [
+              -1.218106513332454,
+              -5.513791964537583e-12
+            ],
+            [
+              7.51487760908276e-12,
+              1.0516771748805671e-12
+            ],
+            [
+              -1.514798406326409,
+              -8.185554360076033e-12
+            ],
+            [
+              -1.8470208377935613,
+              5.57118012025498e-10
+            ],
+            [
+              -1.9665533707402365,
+              -6.566575739532742e-10
+            ],
+            [
+              -2.278715824147546,
+              6.58386302275651e-11
+            ]
+          ],
+          "candidate_residuals": [
+            2.7194536732992627e-14,
+            3.7162555959956794e-13,
+            3.6013822228427163e-11,
+            6.998062625834233e-11,
+            7.683775021604432e-11,
+            6.113121643973697e-11,
+            5.1075805909952545e-11,
+            6.438226680911588e-11
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7573864649920448,
+                  1.8799830020843234e-14
+                ],
+                [
+                  -0.7307430255842008,
+                  -3.1757038049297614e-14
+                ],
+                [
+                  -1.218106513332454,
+                  -5.513791964537583e-12
+                ],
+                [
+                  7.51487760908276e-12,
+                  1.0516771748805671e-12
+                ],
+                [
+                  -1.514798406326409,
+                  -8.185554360076033e-12
+                ],
+                [
+                  -1.8470208377935613,
+                  5.57118012025498e-10
+                ],
+                [
+                  -1.9665533707402365,
+                  -6.566575739532742e-10
+                ],
+                [
+                  -2.278715824147546,
+                  6.58386302275651e-11
+                ]
+              ],
+              "residuals": [
+                2.7194536732992627e-14,
+                3.7162555959956794e-13,
+                3.6013822228427163e-11,
+                6.998062625834233e-11,
+                7.683775021604432e-11,
+                6.113121643973697e-11,
+                5.1075805909952545e-11,
+                6.438226680911588e-11
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999480985604892,
+          "runner_up_pair_indices": [
+            0,
+            2
+          ],
+          "runner_up_overlap": 0.8149942863455767,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.460720048340409,
+          "invariant_right_error": 6.0157214524951e-13,
+          "invariant_left_error": 1.0138776120991928e-12,
+          "saved_eigenvalue_max_error": 4.218847493575595e-14
+        }
+      ],
+      "summary": {
+        "rejected_candidate_attempts": 0,
+        "minimum_neighbor_right_cosine": 0.9999466276136655,
+        "minimum_neighbor_left_cosine": 0.9999933616979608,
+        "maximum_runner_up_overlap": 0.841682161373573,
+        "minimum_target_to_returned_others": 0.43211821579846554,
+        "maximum_candidate_residual": 5.68251090232513e-10,
+        "maximum_saved_eigenvalue_error": 8.026912468039882e-14
+      },
+      "scope": "Numerical continuation among eight returned candidates at each sampled point; not a proof of isolation from the entire spectrum. Cosines use stored-coordinate Euclidean subspace geometry, not physical-state fidelity."
+    },
+    {
+      "N": 48,
+      "dimension": 20825,
+      "crossing": 3.282162525031712,
+      "mixing_width": 0.0006129597412478005,
+      "projection_shift": -0.76,
+      "candidates_per_point": 8,
+      "candidate_residual_threshold": 1e-09,
+      "candidate_retry_policy": "Try shift -0.76 with tolerance 2e-13; on residual failure try tolerance 2e-14 with ncv=40; if still failing, try shift -0.9 with tolerance 2e-13. Record every attempt; only residual-accepted candidates determine identity.",
+      "steps": [
+        {
+          "step": -1,
+          "offset": -0.0006129597412478005,
+          "detuning": 3.2815495652904643,
+          "eigenvalues": [
+            -0.761666067243874,
+            -0.7587112977168056
+          ],
+          "projection_seed": 72739,
+          "candidate_seed": 948,
+          "neighbor_right_min_cosine": 0.9999951946068822,
+          "neighbor_left_min_cosine": 0.9999993643764645,
+          "center_right_min_cosine": 0.9999951946068822,
+          "center_left_min_cosine": 0.9999993643764645,
+          "candidate_eigenvalues": [
+            [
+              -0.7616660672436235,
+              -2.1342560981463442e-13
+            ],
+            [
+              -0.758711297717038,
+              2.288654529723767e-13
+            ],
+            [
+              -1.2216514288504952,
+              3.937275194575483e-15
+            ],
+            [
+              -1.5202798621059004,
+              2.007888212910025e-13
+            ],
+            [
+              -1.1357581541915351e-13,
+              -1.4170903879563243e-13
+            ],
+            [
+              -1.8663157720249859,
+              -4.039449094428608e-12
+            ],
+            [
+              -1.9526808093980281,
+              2.5616802749235357e-12
+            ],
+            [
+              -2.283063859532695,
+              -7.70060080329413e-13
+            ]
+          ],
+          "candidate_residuals": [
+            9.582305029398735e-14,
+            9.842724171324603e-14,
+            3.4875880271524943e-13,
+            7.217738311769593e-13,
+            1.0260746745734736e-12,
+            9.868544901332818e-13,
+            8.749924118186656e-13,
+            7.990030032490664e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7587112977168047,
+                  2.6776854693154368e-14
+                ],
+                [
+                  -0.7616660672438724,
+                  -2.4846262166451425e-14
+                ],
+                [
+                  -1.2216514289262728,
+                  -4.288789367491047e-10
+                ],
+                [
+                  -7.595879480959411e-11,
+                  1.222261825506169e-10
+                ],
+                [
+                  -1.5202798631575298,
+                  -4.3353786037670644e-10
+                ],
+                [
+                  -1.8663157487951418,
+                  2.1920811212709012e-08
+                ],
+                [
+                  -1.9526808299803453,
+                  -1.5933164923742187e-08
+                ],
+                [
+                  -2.283063858118003,
+                  1.1237388730940932e-08
+                ]
+              ],
+              "residuals": [
+                2.942325080234504e-14,
+                4.141214963292793e-14,
+                1.8237567442507003e-09,
+                2.8517543602851757e-09,
+                3.17139030165149e-09,
+                2.9837205383607568e-09,
+                2.8841606321920425e-09,
+                2.9680782678002123e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7587112977168047,
+                  2.6776853289066295e-14
+                ],
+                [
+                  -0.7616660672438724,
+                  -2.4846274845211863e-14
+                ],
+                [
+                  -1.2216514289262714,
+                  -4.2887747493119413e-10
+                ],
+                [
+                  -7.595979401031627e-11,
+                  1.2222611054139063e-10
+                ],
+                [
+                  -1.5202798631575334,
+                  -4.335344899877809e-10
+                ],
+                [
+                  -1.8663157487953648,
+                  2.1918084097030845e-08
+                ],
+                [
+                  -1.9526808299795206,
+                  -1.5915913141918524e-08
+                ],
+                [
+                  -2.283063858916254,
+                  9.852337959147665e-09
+                ]
+              ],
+              "residuals": [
+                2.8722590692399704e-14,
+                4.137152244876491e-14,
+                1.8237558113210315e-09,
+                2.851756596071168e-09,
+                3.1713902289258246e-09,
+                2.9836962279141536e-09,
+                2.8840178584060016e-09,
+                2.8925815260673534e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7616660672436235,
+                  -2.1342560981463442e-13
+                ],
+                [
+                  -0.758711297717038,
+                  2.288654529723767e-13
+                ],
+                [
+                  -1.2216514288504952,
+                  3.937275194575483e-15
+                ],
+                [
+                  -1.5202798621059004,
+                  2.007888212910025e-13
+                ],
+                [
+                  -1.1357581541915351e-13,
+                  -1.4170903879563243e-13
+                ],
+                [
+                  -1.8663157720249859,
+                  -4.039449094428608e-12
+                ],
+                [
+                  -1.9526808093980281,
+                  2.5616802749235357e-12
+                ],
+                [
+                  -2.283063859532695,
+                  -7.70060080329413e-13
+                ]
+              ],
+              "residuals": [
+                9.582305029398735e-14,
+                9.842724171324603e-14,
+                3.4875880271524943e-13,
+                7.217738311769593e-13,
+                1.0260746745734736e-12,
+                9.868544901332818e-13,
+                8.749924118186656e-13,
+                7.990030032490664e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951946068925,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8455682137803546,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4599853616066212,
+          "invariant_right_error": 2.8946741937057974e-13,
+          "invariant_left_error": 1.0951676714791156e-12,
+          "saved_eigenvalue_max_error": 4.32542890393961e-13
+        },
+        {
+          "step": -2,
+          "offset": -0.001225919482495601,
+          "detuning": 3.280936605549216,
+          "eigenvalues": [
+            -0.7636224582988735,
+            -0.7589461438139723
+          ],
+          "projection_seed": 72740,
+          "candidate_seed": 949,
+          "neighbor_right_min_cosine": 0.9999951928735047,
+          "neighbor_left_min_cosine": 0.9999993637335923,
+          "center_right_min_cosine": 0.9999807751434142,
+          "center_left_min_cosine": 0.9999974562246287,
+          "candidate_eigenvalues": [
+            [
+              -0.7636224582988863,
+              -2.8245857221114146e-15
+            ],
+            [
+              -0.7589461438139683,
+              1.534253738032668e-14
+            ],
+            [
+              -1.2216150553075042,
+              5.757503590202177e-15
+            ],
+            [
+              -1.52038084268214,
+              7.88203054648746e-14
+            ],
+            [
+              3.3306690738754696e-15,
+              4.5426422557032023e-14
+            ],
+            [
+              -1.8688903355716757,
+              2.390648253256722e-12
+            ],
+            [
+              -1.952988377143087,
+              -3.0527206802870205e-12
+            ],
+            [
+              -2.283226661579937,
+              -8.759472438900016e-14
+            ]
+          ],
+          "candidate_residuals": [
+            4.706405682749652e-14,
+            4.825975890679751e-14,
+            1.480388374756501e-13,
+            6.760403719620477e-13,
+            4.878594090965269e-13,
+            5.724367370208968e-13,
+            6.507185683260451e-13,
+            1.260514994340182e-12
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7589461438139722,
+                  7.483819620084843e-14
+                ],
+                [
+                  -0.7636224582988776,
+                  -7.277708972334166e-14
+                ],
+                [
+                  -1.2216150556189587,
+                  9.23015405707811e-11
+                ],
+                [
+                  1.1202438976454232e-10,
+                  -2.0196252105666213e-11
+                ],
+                [
+                  -1.5203808428285805,
+                  -4.617020549774657e-10
+                ],
+                [
+                  -1.8688903276673725,
+                  1.2914068892060732e-08
+                ],
+                [
+                  -1.952988382710603,
+                  -1.7432836622467058e-08
+                ],
+                [
+                  -2.283226662980253,
+                  -2.1463041843864113e-09
+                ]
+              ],
+              "residuals": [
+                2.5750168378873502e-14,
+                1.158502074074688e-13,
+                1.1382564895569236e-09,
+                1.3948336868853216e-09,
+                2.026849552877848e-09,
+                2.789452041218716e-09,
+                2.5935188370889593e-09,
+                1.131048180294029e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7589461438139722,
+                  7.483812367062751e-14
+                ],
+                [
+                  -0.7636224582988776,
+                  -7.277623413153943e-14
+                ],
+                [
+                  -1.2216150556189582,
+                  9.230178343326474e-11
+                ],
+                [
+                  1.1202727634440635e-10,
+                  -2.0196678864879996e-11
+                ],
+                [
+                  -1.5203808428285912,
+                  -4.6169774444821604e-10
+                ],
+                [
+                  -1.868890327667952,
+                  1.2917154482466892e-08
+                ],
+                [
+                  -1.9529883827070134,
+                  -1.7448329971141287e-08
+                ],
+                [
+                  -2.283226662990042,
+                  -1.7739903271096182e-09
+                ]
+              ],
+              "residuals": [
+                2.5842600130304094e-14,
+                1.1622073381323918e-13,
+                1.1382558394971307e-09,
+                1.3948338132379018e-09,
+                2.0268498069894924e-09,
+                2.7894727533993044e-09,
+                2.593636934227696e-09,
+                1.1516259558701168e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7636224582988863,
+                  -2.8245857221114146e-15
+                ],
+                [
+                  -0.7589461438139683,
+                  1.534253738032668e-14
+                ],
+                [
+                  -1.2216150553075042,
+                  5.757503590202177e-15
+                ],
+                [
+                  -1.52038084268214,
+                  7.88203054648746e-14
+                ],
+                [
+                  3.3306690738754696e-15,
+                  4.5426422557032023e-14
+                ],
+                [
+                  -1.8688903355716757,
+                  2.390648253256722e-12
+                ],
+                [
+                  -1.952988377143087,
+                  -3.0527206802870205e-12
+                ],
+                [
+                  -2.283226661579937,
+                  -8.759472438900016e-14
+                ]
+              ],
+              "residuals": [
+                4.706405682749652e-14,
+                4.825975890679751e-14,
+                1.480388374756501e-13,
+                6.760403719620477e-13,
+                4.878594090965269e-13,
+                5.724367370208968e-13,
+                6.507185683260451e-13,
+                1.260514994340182e-12
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951928735051,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8468583365261344,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4579925970086307,
+          "invariant_right_error": 1.0750652299954983e-12,
+          "invariant_left_error": 2.9381862450762263e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -3,
+          "offset": -0.0018388792237434015,
+          "detuning": 3.2803236458079685,
+          "eigenvalues": [
+            -0.7656914291461513,
+            -0.7590718985242613
+          ],
+          "projection_seed": 72741,
+          "candidate_seed": 950,
+          "neighbor_right_min_cosine": 0.9999951911849341,
+          "neighbor_left_min_cosine": 0.9999993630906201,
+          "center_right_min_cosine": 0.9999567370938897,
+          "center_left_min_cosine": 0.9999942736291167,
+          "candidate_eigenvalues": [
+            [
+              -0.7656914291461948,
+              3.846927164760822e-14
+            ],
+            [
+              -0.7590718985242138,
+              -3.6715435044165206e-14
+            ],
+            [
+              -1.2215786960137223,
+              -7.000775431518749e-14
+            ],
+            [
+              -1.5204816843795577,
+              4.976897962391521e-13
+            ],
+            [
+              -9.270362255620057e-14,
+              2.3404901300226117e-14
+            ],
+            [
+              -1.8714514430309126,
+              5.1389255948963236e-12
+            ],
+            [
+              -1.9533123933961045,
+              -4.678066378101745e-12
+            ],
+            [
+              -2.2833892572752625,
+              -5.846810411621018e-13
+            ]
+          ],
+          "candidate_residuals": [
+            4.1867171542035334e-14,
+            4.461574146330064e-14,
+            2.1639270856588347e-13,
+            5.980035032612669e-13,
+            6.143142508855575e-13,
+            6.98634121793856e-13,
+            7.771838594915506e-13,
+            6.547015655669506e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7590718985242607,
+                  -1.0315735655586156e-13
+                ],
+                [
+                  -0.765691429146163,
+                  8.587331713624271e-14
+                ],
+                [
+                  -1.221578696026392,
+                  -1.568299257312396e-10
+                ],
+                [
+                  3.040678819843379e-11,
+                  1.3883859234281745e-10
+                ],
+                [
+                  -1.5204816855410517,
+                  8.427262674514756e-11
+                ],
+                [
+                  -1.871451432610416,
+                  7.672758703092816e-10
+                ],
+                [
+                  -1.953312400991294,
+                  9.981131680868037e-10
+                ],
+                [
+                  -2.283389259738905,
+                  -5.847320056378405e-10
+                ]
+              ],
+              "residuals": [
+                2.5772257633709577e-14,
+                2.1228285111253547e-13,
+                7.360897889472548e-10,
+                1.2897294811950498e-09,
+                1.3537107340788417e-09,
+                1.1533599394564794e-09,
+                1.0778652045391512e-09,
+                1.4222622730737363e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7590718985242607,
+                  -1.031573469890483e-13
+                ],
+                [
+                  -0.765691429146163,
+                  8.587304390626183e-14
+                ],
+                [
+                  -1.2215786960263886,
+                  -1.5682880111824794e-10
+                ],
+                [
+                  3.0403568551662374e-11,
+                  1.3883822893344134e-10
+                ],
+                [
+                  -1.5204816855410475,
+                  8.4271636403357e-11
+                ],
+                [
+                  -1.8714514326086689,
+                  7.676835206725741e-10
+                ],
+                [
+                  -1.9533124009982883,
+                  9.957659441944204e-10
+                ],
+                [
+                  -2.2833892604966763,
+                  -6.382151334865238e-11
+                ]
+              ],
+              "residuals": [
+                2.565413241208748e-14,
+                2.1227099653397524e-13,
+                7.360915703829288e-10,
+                1.2897306091359597e-09,
+                1.3537080665870705e-09,
+                1.1533693927698994e-09,
+                1.0779032919061554e-09,
+                1.3939537184521688e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7656914291461948,
+                  3.846927164760822e-14
+                ],
+                [
+                  -0.7590718985242138,
+                  -3.6715435044165206e-14
+                ],
+                [
+                  -1.2215786960137223,
+                  -7.000775431518749e-14
+                ],
+                [
+                  -1.5204816843795577,
+                  4.976897962391521e-13
+                ],
+                [
+                  -9.270362255620057e-14,
+                  2.3404901300226117e-14
+                ],
+                [
+                  -1.8714514430309126,
+                  5.1389255948963236e-12
+                ],
+                [
+                  -1.9533123933961045,
+                  -4.678066378101745e-12
+                ],
+                [
+                  -2.2833892572752625,
+                  -5.846810411621018e-13
+                ]
+              ],
+              "residuals": [
+                4.1867171542035334e-14,
+                4.461574146330064e-14,
+                2.1639270856588347e-13,
+                5.980035032612669e-13,
+                6.143142508855575e-13,
+                6.98634121793856e-13,
+                7.771838594915506e-13,
+                6.547015655669506e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951911849391,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8481469945368743,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.455887266867571,
+          "invariant_right_error": 1.589971234039609e-12,
+          "invariant_left_error": 2.7458190886686164e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": -4,
+          "offset": -0.002451838964991202,
+          "detuning": 3.279710686066721,
+          "eigenvalues": [
+            -0.7678001002579604,
+            -0.7591614414109428
+          ],
+          "projection_seed": 72742,
+          "candidate_seed": 951,
+          "neighbor_right_min_cosine": 0.9999951895395124,
+          "neighbor_left_min_cosine": 0.9999993624475415,
+          "center_right_min_cosine": 0.999923076486154,
+          "center_left_min_cosine": 0.9999898146834311,
+          "candidate_eigenvalues": [
+            [
+              -0.767800100258046,
+              -5.394924541050886e-14
+            ],
+            [
+              -0.7591614414108613,
+              5.854916839188059e-14
+            ],
+            [
+              -1.2215423510588657,
+              1.1774164935634484e-14
+            ],
+            [
+              -1.5205823882943474,
+              2.5686956944197303e-13
+            ],
+            [
+              -1.9317880628477724e-14,
+              8.476697330966906e-15
+            ],
+            [
+              -1.873997658045044,
+              -1.979531319939135e-12
+            ],
+            [
+              -1.95365429015256,
+              6.972205392901134e-13
+            ],
+            [
+              -2.2835516494961063,
+              -5.903841820831371e-13
+            ]
+          ],
+          "candidate_residuals": [
+            4.515992763349668e-14,
+            4.860261910835521e-14,
+            1.494370007444664e-13,
+            4.1812401638161054e-13,
+            4.892342524999204e-13,
+            5.176493091711924e-13,
+            5.599314203795563e-13,
+            7.960895909581785e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7591614414109428,
+                  5.76633880115123e-14
+                ],
+                [
+                  -0.7678001002579903,
+                  -5.428385211909999e-14
+                ],
+                [
+                  -1.2215423509847507,
+                  5.6152688003701015e-11
+                ],
+                [
+                  9.681122570270873e-11,
+                  9.649001271715369e-11
+                ],
+                [
+                  -1.5205823879766347,
+                  1.9957908260822401e-10
+                ],
+                [
+                  -1.8739976549361135,
+                  2.3160648599846435e-09
+                ],
+                [
+                  -1.9536542954438227,
+                  -3.1464786519582927e-09
+                ],
+                [
+                  -2.283551648613156,
+                  2.1933007486331404e-10
+                ]
+              ],
+              "residuals": [
+                3.29052586360874e-14,
+                3.663856217545398e-13,
+                6.983593608013541e-10,
+                1.113000770538283e-09,
+                1.3222170970360672e-09,
+                1.0064471086412832e-09,
+                7.74413572493919e-10,
+                1.0076718251978898e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7591614414109428,
+                  5.766336965224164e-14
+                ],
+                [
+                  -0.7678001002579903,
+                  -5.428300082675471e-14
+                ],
+                [
+                  -1.2215423509847463,
+                  5.6155972058411215e-11
+                ],
+                [
+                  9.681333512645551e-11,
+                  9.648968439074344e-11
+                ],
+                [
+                  -1.520582387976623,
+                  1.9957589971976631e-10
+                ],
+                [
+                  -1.8739976549396045,
+                  2.315396005847038e-09
+                ],
+                [
+                  -1.9536542954263214,
+                  -3.13940826540135e-09
+                ],
+                [
+                  -2.283551648883943,
+                  -3.7714006855232056e-10
+                ]
+              ],
+              "residuals": [
+                3.3116429751748756e-14,
+                3.6604981553303526e-13,
+                6.98358474623685e-10,
+                1.1129985584051604e-09,
+                1.3222175986523982e-09,
+                1.0064386572802203e-09,
+                7.744417728904843e-10,
+                9.782455246760287e-10
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.767800100258046,
+                  -5.394924541050886e-14
+                ],
+                [
+                  -0.7591614414108613,
+                  5.854916839188059e-14
+                ],
+                [
+                  -1.2215423510588657,
+                  1.1774164935634484e-14
+                ],
+                [
+                  -1.5205823882943474,
+                  2.5686956944197303e-13
+                ],
+                [
+                  -1.9317880628477724e-14,
+                  8.476697330966906e-15
+                ],
+                [
+                  -1.873997658045044,
+                  -1.979531319939135e-12
+                ],
+                [
+                  -1.95365429015256,
+                  6.972205392901134e-13
+                ],
+                [
+                  -2.2835516494961063,
+                  -5.903841820831371e-13
+                ]
+              ],
+              "residuals": [
+                4.515992763349668e-14,
+                4.860261910835521e-14,
+                1.494370007444664e-13,
+                4.1812401638161054e-13,
+                4.892342524999204e-13,
+                5.176493091711924e-13,
+                5.599314203795563e-13,
+                7.960895909581785e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951895395146,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8494326068623812,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.45374225080090524,
+          "invariant_right_error": 1.9201828201279034e-12,
+          "invariant_left_error": 4.985690285344362e-12,
+          "saved_eigenvalue_max_error": 3.963496197911809e-14
+        },
+        {
+          "step": 1,
+          "offset": 0.0006129597412478005,
+          "detuning": 3.2827754847729596,
+          "eigenvalues": [
+            -0.759478799400439,
+            -0.7565265562917093
+          ],
+          "projection_seed": 72759,
+          "candidate_seed": 948,
+          "neighbor_right_min_cosine": 0.9999951963867095,
+          "neighbor_left_min_cosine": 0.9999993650192782,
+          "center_right_min_cosine": 0.9999951963867095,
+          "center_left_min_cosine": 0.9999993650192782,
+          "candidate_eigenvalues": [
+            [
+              -0.7594787994004462,
+              2.7632176058933636e-13
+            ],
+            [
+              -0.7565265562917266,
+              -2.850612362098136e-13
+            ],
+            [
+              -1.2217242183190666,
+              -1.9120242415767336e-15
+            ],
+            [
+              -1.520077479813953,
+              1.9048411059206476e-13
+            ],
+            [
+              8.22675261247241e-14,
+              -1.0425968604039469e-15
+            ],
+            [
+              -1.8611313821678408,
+              -4.19648222934403e-12
+            ],
+            [
+              -1.9521099310854821,
+              3.912682373434974e-12
+            ],
+            [
+              -2.282737624942271,
+              3.631606465419916e-13
+            ]
+          ],
+          "candidate_residuals": [
+            1.0784560807455845e-13,
+            1.1068728693402194e-13,
+            3.021420355300058e-13,
+            6.613047501730678e-13,
+            9.014463223533186e-13,
+            9.196361571447032e-13,
+            8.398480472495e-13,
+            8.147767465082153e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7594787994004387,
+                  -9.013842439091312e-14
+                ],
+                [
+                  -0.7565265562917226,
+                  6.445188091142108e-14
+                ],
+                [
+                  -1.2217242188500694,
+                  1.1212218126490523e-10
+                ],
+                [
+                  4.764466599027628e-11,
+                  -1.9466958263058127e-11
+                ],
+                [
+                  -1.520077484415298,
+                  -2.9492160097143142e-09
+                ],
+                [
+                  -1.8611313494438104,
+                  3.81614681733814e-08
+                ],
+                [
+                  -1.9521099454065869,
+                  -2.952291123211562e-08
+                ],
+                [
+                  -2.2827376351721895,
+                  -8.959863987617055e-09
+                ]
+              ],
+              "residuals": [
+                3.9538757714018337e-14,
+                2.978670427027786e-13,
+                2.1129806303168486e-09,
+                3.751563814035469e-09,
+                3.9790781445352e-09,
+                3.4719122580340423e-09,
+                2.7308755011716077e-09,
+                3.6983903967732183e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7594787994004387,
+                  -9.013842575934687e-14
+                ],
+                [
+                  -0.7565265562917226,
+                  6.445196588845731e-14
+                ],
+                [
+                  -1.221724218850071,
+                  1.1212120086970354e-10
+                ],
+                [
+                  4.764111327659748e-11,
+                  -1.9467010045885416e-11
+                ],
+                [
+                  -1.5200774844152927,
+                  -2.94921118939303e-09
+                ],
+                [
+                  -1.8611313494451334,
+                  3.8163208636957774e-08
+                ],
+                [
+                  -1.9521099454002777,
+                  -2.9527423958347406e-08
+                ],
+                [
+                  -2.2827376331042215,
+                  -1.0617545610845549e-08
+                ]
+              ],
+              "residuals": [
+                3.925539962330059e-14,
+                2.977710698922601e-13,
+                2.112979411073492e-09,
+                3.751563322726861e-09,
+                3.979076433941307e-09,
+                3.47190858336144e-09,
+                2.731112999352219e-09,
+                3.4302695634330813e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7594787994004462,
+                  2.7632176058933636e-13
+                ],
+                [
+                  -0.7565265562917266,
+                  -2.850612362098136e-13
+                ],
+                [
+                  -1.2217242183190666,
+                  -1.9120242415767336e-15
+                ],
+                [
+                  -1.520077479813953,
+                  1.9048411059206476e-13
+                ],
+                [
+                  8.22675261247241e-14,
+                  -1.0425968604039469e-15
+                ],
+                [
+                  -1.8611313821678408,
+                  -4.19648222934403e-12
+                ],
+                [
+                  -1.9521099310854821,
+                  3.912682373434974e-12
+                ],
+                [
+                  -2.282737624942271,
+                  3.631606465419916e-13
+                ]
+              ],
+              "residuals": [
+                1.0784560807455845e-13,
+                1.1068728693402194e-13,
+                3.021420355300058e-13,
+                6.613047501730678e-13,
+                9.014463223533186e-13,
+                9.196361571447032e-13,
+                8.398480472495e-13,
+                8.147767465082153e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951963867088,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8457787112360208,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4622454189186276,
+          "invariant_right_error": 3.907063777916411e-12,
+          "invariant_left_error": 8.787027272129819e-12,
+          "saved_eigenvalue_max_error": 7.827072323607354e-14
+        },
+        {
+          "step": 2,
+          "offset": 0.001225919482495601,
+          "detuning": 3.2833884445142076,
+          "eigenvalues": [
+            -0.7592440576376496,
+            -0.7545805258289513
+          ],
+          "projection_seed": 72760,
+          "candidate_seed": 949,
+          "neighbor_right_min_cosine": 0.9999951982144636,
+          "neighbor_left_min_cosine": 0.9999993656619981,
+          "center_right_min_cosine": 0.9999807893835969,
+          "center_left_min_cosine": 0.9999974613670594,
+          "candidate_eigenvalues": [
+            [
+              -0.7592440576377464,
+              -6.807754208464975e-14
+            ],
+            [
+              -0.7545805258288188,
+              7.530201454379311e-14
+            ],
+            [
+              -1.2217606340587617,
+              -1.4938168248721683e-14
+            ],
+            [
+              -1.5199760757737149,
+              -1.2817501509505755e-13
+            ],
+            [
+              5.3734794391857577e-14,
+              -2.9836129566881847e-15
+            ],
+            [
+              -1.8585238241985453,
+              -1.1399272291683438e-12
+            ],
+            [
+              -1.9518443606418185,
+              3.098353603346015e-12
+            ],
+            [
+              -2.2825741867008458,
+              8.757993174273756e-13
+            ]
+          ],
+          "candidate_residuals": [
+            4.043023464409331e-14,
+            4.1066392469983885e-14,
+            1.3702174555125377e-13,
+            5.488576070016413e-13,
+            4.723556294771282e-13,
+            4.5462630303957057e-13,
+            5.6057624588011e-13,
+            4.994126106721309e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7592440576376506,
+                  5.134091757124988e-14
+                ],
+                [
+                  -0.7545805258288909,
+                  -5.3748356143965806e-14
+                ],
+                [
+                  -1.2217606342246157,
+                  1.8245304466552406e-10
+                ],
+                [
+                  4.5560111239240086e-11,
+                  -1.15881435826014e-11
+                ],
+                [
+                  -1.519976077030938,
+                  1.3338057316207536e-10
+                ],
+                [
+                  -1.8585237990466823,
+                  1.8343162936455906e-08
+                ],
+                [
+                  -1.9518443780555026,
+                  -2.6516332617157106e-08
+                ],
+                [
+                  -2.2825741843586798,
+                  -8.468025097219526e-10
+                ]
+              ],
+              "residuals": [
+                3.913677460920547e-14,
+                3.184629611934975e-13,
+                1.096339883281989e-09,
+                1.4362088002576568e-09,
+                1.7218729411339778e-09,
+                2.380776293182168e-09,
+                2.1849747445203263e-09,
+                9.567474401147252e-10
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7592440576376506,
+                  5.134091284120569e-14
+                ],
+                [
+                  -0.7545805258288909,
+                  -5.3748106191162844e-14
+                ],
+                [
+                  -1.2217606342246154,
+                  1.8245300229178198e-10
+                ],
+                [
+                  4.555811283779576e-11,
+                  -1.1588063881232441e-11
+                ],
+                [
+                  -1.5199760770309427,
+                  1.3337968923217458e-10
+                ],
+                [
+                  -1.858523799048052,
+                  1.8340602617879722e-08
+                ],
+                [
+                  -1.9518443780485066,
+                  -2.650226131865605e-08
+                ],
+                [
+                  -2.282574184276572,
+                  -1.044090783869257e-09
+                ]
+              ],
+              "residuals": [
+                3.926679861970207e-14,
+                3.183421697338859e-13,
+                1.0963398328358802e-09,
+                1.4362108641658322e-09,
+                1.7218722876860584e-09,
+                2.3807852623855583e-09,
+                2.184996380341655e-09,
+                9.815864570968211e-10
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7592440576377464,
+                  -6.807754208464975e-14
+                ],
+                [
+                  -0.7545805258288188,
+                  7.530201454379311e-14
+                ],
+                [
+                  -1.2217606340587617,
+                  -1.4938168248721683e-14
+                ],
+                [
+                  -1.5199760757737149,
+                  -1.2817501509505755e-13
+                ],
+                [
+                  5.3734794391857577e-14,
+                  -2.9836129566881847e-15
+                ],
+                [
+                  -1.8585238241985453,
+                  -1.1399272291683438e-12
+                ],
+                [
+                  -1.9518443606418185,
+                  3.098353603346015e-12
+                ],
+                [
+                  -2.2825741867008458,
+                  8.757993174273756e-13
+                ]
+              ],
+              "residuals": [
+                4.043023464409331e-14,
+                4.1066392469983885e-14,
+                1.3702174555125377e-13,
+                5.488576070016413e-13,
+                4.723556294771282e-13,
+                4.5462630303957057e-13,
+                5.6057624588011e-13,
+                4.994126106721309e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999951982144726,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8445016181438701,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4625165764211121,
+          "invariant_right_error": 2.7544616779953863e-12,
+          "invariant_left_error": 5.280402709965437e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 3,
+          "offset": 0.0018388792237434015,
+          "detuning": 3.2840014042554553,
+          "eigenvalues": [
+            -0.7591181622328363,
+            -0.7525291371949293
+          ],
+          "projection_seed": 72761,
+          "candidate_seed": 950,
+          "neighbor_right_min_cosine": 0.9999952000917152,
+          "neighbor_left_min_cosine": 0.9999993663046131,
+          "center_right_min_cosine": 0.9999567851640823,
+          "center_left_min_cosine": 0.9999942909847935,
+          "candidate_eigenvalues": [
+            [
+              -0.7591181622327388,
+              4.009610082011897e-15
+            ],
+            [
+              -0.7525291371950258,
+              -6.67312693710284e-15
+            ],
+            [
+              -1.2217970636762152,
+              -1.695527684949593e-14
+            ],
+            [
+              -1.5198745282067234,
+              3.300164550323231e-13
+            ],
+            [
+              -2.4313884239290928e-14,
+              -2.323709016517862e-14
+            ],
+            [
+              -1.855907368255203,
+              2.2620888228518877e-12
+            ],
+            [
+              -1.951590697511962,
+              -4.501853820590059e-12
+            ],
+            [
+              -2.28241053071668,
+              2.8410654398358356e-12
+            ]
+          ],
+          "candidate_residuals": [
+            4.7084656824490087e-14,
+            5.0073378054145197e-14,
+            1.6552610284910863e-13,
+            5.54169920772251e-13,
+            6.251690265835988e-13,
+            5.459554540745342e-13,
+            6.481660842507076e-13,
+            7.291430185836025e-13
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7591181622328365,
+                  -7.419639878137529e-14
+                ],
+                [
+                  -0.7525291371949214,
+                  6.729011262517778e-14
+                ],
+                [
+                  -1.2217970637721076,
+                  -1.8288340981475046e-10
+                ],
+                [
+                  1.7692847187333882e-11,
+                  -5.311766725806908e-12
+                ],
+                [
+                  -1.5198745289929376,
+                  -6.79821645964281e-10
+                ],
+                [
+                  -1.8559073655008764,
+                  5.273088313407902e-09
+                ],
+                [
+                  -1.9515907002471617,
+                  1.6284281567356432e-09
+                ],
+                [
+                  -2.2824105321643033,
+                  2.6420980165056827e-09
+                ]
+              ],
+              "residuals": [
+                3.846550368774073e-14,
+                3.5884194232455245e-13,
+                5.309034423748158e-10,
+                8.949241667003727e-10,
+                1.0463839852395624e-09,
+                9.266801703972866e-10,
+                9.065189262061097e-10,
+                1.1294801576576733e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.76,
+              "tolerance": 2e-14,
+              "ncv": 40,
+              "eigenvalues": [
+                [
+                  -0.7591181622328365,
+                  -7.419640372695349e-14
+                ],
+                [
+                  -0.7525291371949215,
+                  6.728628951135384e-14
+                ],
+                [
+                  -1.2217970637721005,
+                  -1.828692602056794e-10
+                ],
+                [
+                  1.769362434345112e-11,
+                  -5.3118059740230305e-12
+                ],
+                [
+                  -1.5198745289929523,
+                  -6.798250467290401e-10
+                ],
+                [
+                  -1.8559073654998648,
+                  5.2736596009964206e-09
+                ],
+                [
+                  -1.951590700254672,
+                  1.6243255981603451e-09
+                ],
+                [
+                  -2.2824105299837876,
+                  2.8610220554597617e-09
+                ]
+              ],
+              "residuals": [
+                3.79715208919271e-14,
+                3.586616495615761e-13,
+                5.309030093108039e-10,
+                8.949243469340777e-10,
+                1.0463842484134328e-09,
+                9.266806464128394e-10,
+                9.065605837234171e-10,
+                1.0735924354729748e-09
+              ],
+              "accepted": false
+            },
+            {
+              "shift": -0.9,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7591181622327388,
+                  4.009610082011897e-15
+                ],
+                [
+                  -0.7525291371950258,
+                  -6.67312693710284e-15
+                ],
+                [
+                  -1.2217970636762152,
+                  -1.695527684949593e-14
+                ],
+                [
+                  -1.5198745282067234,
+                  3.300164550323231e-13
+                ],
+                [
+                  -2.4313884239290928e-14,
+                  -2.323709016517862e-14
+                ],
+                [
+                  -1.855907368255203,
+                  2.2620888228518877e-12
+                ],
+                [
+                  -1.951590697511962,
+                  -4.501853820590059e-12
+                ],
+                [
+                  -2.28241053071668,
+                  2.8410654398358356e-12
+                ]
+              ],
+              "residuals": [
+                4.7084656824490087e-14,
+                5.0073378054145197e-14,
+                1.6552610284910863e-13,
+                5.54169920772251e-13,
+                6.251690265835988e-13,
+                5.459554540745342e-13,
+                6.481660842507076e-13,
+                7.291430185836025e-13
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999952000917163,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.8432092969060024,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.46267890144337886,
+          "invariant_right_error": 1.7913735650421353e-12,
+          "invariant_left_error": 4.623931110308079e-12,
+          "saved_eigenvalue_max_error": null
+        },
+        {
+          "step": 4,
+          "offset": 0.002451838964991202,
+          "detuning": 3.284614363996703,
+          "eigenvalues": [
+            -0.7590283517889277,
+            -0.7504451517129866
+          ],
+          "projection_seed": 72762,
+          "candidate_seed": 951,
+          "neighbor_right_min_cosine": 0.9999952020198517,
+          "neighbor_left_min_cosine": 0.9999993669471605,
+          "center_right_min_cosine": 0.999923190462215,
+          "center_left_min_cosine": 0.9999898558226262,
+          "candidate_eigenvalues": [
+            [
+              -0.7590283517889274,
+              5.461602143412739e-14
+            ],
+            [
+              -0.7504451517130194,
+              -7.425211186878254e-14
+            ],
+            [
+              -1.2218335070047295,
+              -4.03946379041744e-11
+            ],
+            [
+              -1.7478907210488615e-11,
+              -6.370477733087714e-11
+            ],
+            [
+              -1.519772835863141,
+              -2.3026806703745926e-10
+            ],
+            [
+              -1.8532829116432048,
+              2.2217456669612483e-09
+            ],
+            [
+              -1.9513480491863213,
+              1.2229574313213036e-09
+            ],
+            [
+              -2.2822466533934325,
+              7.693131224713708e-10
+            ]
+          ],
+          "candidate_residuals": [
+            3.299788815553928e-14,
+            3.8424964736499733e-13,
+            3.995688115590219e-10,
+            7.350665088341631e-10,
+            7.522504914397071e-10,
+            6.286712482293995e-10,
+            5.384809362079109e-10,
+            6.746000201471248e-10
+          ],
+          "candidate_attempts": [
+            {
+              "shift": -0.76,
+              "tolerance": 2e-13,
+              "ncv": null,
+              "eigenvalues": [
+                [
+                  -0.7590283517889274,
+                  5.461602143412739e-14
+                ],
+                [
+                  -0.7504451517130194,
+                  -7.425211186878254e-14
+                ],
+                [
+                  -1.2218335070047295,
+                  -4.03946379041744e-11
+                ],
+                [
+                  -1.7478907210488615e-11,
+                  -6.370477733087714e-11
+                ],
+                [
+                  -1.519772835863141,
+                  -2.3026806703745926e-10
+                ],
+                [
+                  -1.8532829116432048,
+                  2.2217456669612483e-09
+                ],
+                [
+                  -1.9513480491863213,
+                  1.2229574313213036e-09
+                ],
+                [
+                  -2.2822466533934325,
+                  7.693131224713708e-10
+                ]
+              ],
+              "residuals": [
+                3.299788815553928e-14,
+                3.8424964736499733e-13,
+                3.995688115590219e-10,
+                7.350665088341631e-10,
+                7.522504914397071e-10,
+                6.286712482293995e-10,
+                5.384809362079109e-10,
+                6.746000201471248e-10
+              ],
+              "accepted": true
+            }
+          ],
+          "target_candidate_indices": [
+            0,
+            1
+          ],
+          "real_candidate_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "candidate_pair_count": 28,
+          "best_pair_indices": [
+            0,
+            1
+          ],
+          "best_pair_overlap": 0.9999952020198501,
+          "runner_up_pair_indices": [
+            1,
+            2
+          ],
+          "runner_up_overlap": 0.841899956715023,
+          "best_pair_is_target": true,
+          "unique_best": true,
+          "target_to_other_returned_candidate_min_distance": 0.4628051552158018,
+          "invariant_right_error": 2.3943558101812063e-12,
+          "invariant_left_error": 5.624709298981907e-12,
+          "saved_eigenvalue_max_error": 2.5868196473766147e-14
+        }
+      ],
+      "summary": {
+        "rejected_candidate_attempts": 14,
+        "minimum_neighbor_right_cosine": 0.9999951895395124,
+        "minimum_neighbor_left_cosine": 0.9999993624475415,
+        "maximum_runner_up_overlap": 0.8494326068623812,
+        "minimum_target_to_returned_others": 0.45374225080090524,
+        "maximum_candidate_residual": 7.522504914397071e-10,
+        "maximum_saved_eigenvalue_error": 4.32542890393961e-13
+      },
+      "scope": "Numerical continuation among eight returned candidates at each sampled point; not a proof of isolation from the entire spectrum. Cosines use stored-coordinate Euclidean subspace geometry, not physical-state fidelity."
+    }
+  ],
+  "parameter_finite_difference": {
+    "N": 2,
+    "detuning": 3.205747774994305,
+    "preparation_reference_N": 32,
+    "preparations": {
+      "fold": [
+        0.15692704039732738,
+        0.31861940364584707,
+        -0.07846352019866601
+      ],
+      "high": [
+        0.3815022935112393,
+        -0.2324398709644795,
+        -0.19075114675562066
+      ],
+      "high_plus": [
+        0.38220468713652456,
+        -0.2274900544470248,
+        -0.19082834545179742
+      ],
+      "high_minus": [
+        0.3807998998859541,
+        -0.23738968748193418,
+        -0.1906739480594439
+      ],
+      "high_direction": [
+        0.14047872505704848,
+        0.9899633034909378,
+        -0.01543973923535378
+      ],
+      "high_step": 0.005,
+      "seed_detuning": 3.205747774994305
+    },
+    "dimension": 10,
+    "augmented_dimension": 30,
+    "derivative_convention": "y_j = partial_Delta^j rho; y_1(0)=y_2(0)=0; y_2_dot=L y_2+2 L1 y_1; Taylor coefficient is h^2/2.",
+    "independent_solver": {
+      "method": "DOP853",
+      "rtol": 5e-14,
+      "atol": 1e-15,
+      "finite_difference_order": 4,
+      "shift_multipliers": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ]
+    },
+    "checks": [
+      {
+        "time": 0.1,
+        "step": 0.004,
+        "augmented_density": [
+          0.007119780139427463,
+          0.00114142407190218
+        ],
+        "augmented_first_derivative": [
+          -0.003035861806201404,
+          -8.945365138328525e-05
+        ],
+        "augmented_second_derivative": [
+          -1.228033990500496e-05,
+          5.774542824679669e-07
+        ],
+        "finite_difference_first": [
+          -0.0030358618062035765,
+          -8.945365138326461e-05
+        ],
+        "finite_difference_second": [
+          -1.2280340088463397e-05,
+          5.774543000616316e-07
+        ],
+        "shifted_densities": [
+          [
+            0.007144066639590924,
+            0.0011421397195540985
+          ],
+          [
+            0.007131923488245171,
+            0.0011417818911226383
+          ],
+          [
+            0.007119780139427492,
+            0.0011414240719021815
+          ],
+          [
+            0.007107636594124374,
+            0.0011410662619209934
+          ],
+          [
+            0.007095492853322325,
+            0.0011407084612073367
+          ]
+        ],
+        "ode_evaluations": [
+          65,
+          65,
+          65,
+          65,
+          65
+        ],
+        "first_max_error": 2.1723074727919567e-15,
+        "second_max_error": 1.834584374471376e-13
+      },
+      {
+        "time": 0.1,
+        "step": 0.002,
+        "augmented_density": [
+          0.007119780139427463,
+          0.00114142407190218
+        ],
+        "augmented_first_derivative": [
+          -0.003035861806201404,
+          -8.945365138328525e-05
+        ],
+        "augmented_second_derivative": [
+          -1.228033990500496e-05,
+          5.774542824679669e-07
+        ],
+        "finite_difference_first": [
+          -0.0030358618062017876,
+          -8.945365138382027e-05
+        ],
+        "finite_difference_second": [
+          -1.2280343101641934e-05,
+          5.774540595042746e-07
+        ],
+        "shifted_densities": [
+          [
+            0.007131923488245171,
+            0.0011417818911226383
+          ],
+          [
+            0.00712585183845866,
+            0.0011416029803592684
+          ],
+          [
+            0.007119780139427492,
+            0.0011414240719021815
+          ],
+          [
+            0.007113708391274955,
+            0.0011412451657549112
+          ],
+          [
+            0.007107636594124374,
+            0.0011410662619209934
+          ]
+        ],
+        "ode_evaluations": [
+          65,
+          65,
+          65,
+          65,
+          65
+        ],
+        "first_max_error": 5.350131145401282e-16,
+        "second_max_error": 3.196636974017058e-12
+      },
+      {
+        "time": 1.0,
+        "step": 0.004,
+        "augmented_density": [
+          -0.10964034298348964,
+          -0.0010945494460089461
+        ],
+        "augmented_first_derivative": [
+          -0.0477280398439158,
+          -0.0008302640576323386
+        ],
+        "augmented_second_derivative": [
+          0.04146551109847285,
+          -0.0008727198643739207
+        ],
+        "finite_difference_first": [
+          -0.04772803984291202,
+          -0.0008302640576162624
+        ],
+        "finite_difference_second": [
+          0.041465511095558606,
+          -0.000872719864350074
+        ],
+        "shifted_densities": [
+          [
+            -0.1092571970081757,
+            -0.0010879353304914777
+          ],
+          [
+            -0.10944909975461542,
+            -0.0010912353803002393
+          ],
+          [
+            -0.10964034298348979,
+            -0.0010945494460089446
+          ],
+          [
+            -0.10983092276496062,
+            -0.0010978774751867404
+          ],
+          [
+            -0.11002083517847754,
+            -0.0011012194148179058
+          ]
+        ],
+        "ode_evaluations": [
+          461,
+          461,
+          473,
+          473,
+          473
+        ],
+        "first_max_error": 1.0037803921392197e-12,
+        "second_max_error": 2.914245234020285e-12
+      },
+      {
+        "time": 1.0,
+        "step": 0.002,
+        "augmented_density": [
+          -0.10964034298348964,
+          -0.0010945494460089461
+        ],
+        "augmented_first_derivative": [
+          -0.0477280398439158,
+          -0.0008302640576323386
+        ],
+        "augmented_second_derivative": [
+          0.04146551109847285,
+          -0.0008727198643739207
+        ],
+        "finite_difference_first": [
+          -0.047728039843848484,
+          -0.0008302640576311431
+        ],
+        "finite_difference_second": [
+          0.0414655110635385,
+          -0.0008727198631190529
+        ],
+        "shifted_densities": [
+          [
+            -0.10944909975461542,
+            -0.0010912353803002393
+          ],
+          [
+            -0.10954480405457949,
+            -0.0010928906644302953
+          ],
+          [
+            -0.10964034298348979,
+            -0.0010945494460089446
+          ],
+          [
+            -0.10973571605040418,
+            -0.0010962117184640013
+          ],
+          [
+            -0.10983092276496062,
+            -0.0010978774751867404
+          ]
+        ],
+        "ode_evaluations": [
+          461,
+          473,
+          473,
+          473,
+          473
+        ],
+        "first_max_error": 6.731420976180402e-14,
+        "second_max_error": 3.493435402068812e-11
+      },
+      {
+        "time": 3.0,
+        "step": 0.004,
+        "augmented_density": [
+          -0.02697464731146284,
+          -0.0007344771269092011
+        ],
+        "augmented_first_derivative": [
+          0.011178594285101914,
+          -0.0003907378189775292
+        ],
+        "augmented_second_derivative": [
+          0.09559234577572313,
+          0.0031612825152569895
+        ],
+        "finite_difference_first": [
+          0.011178594144002659,
+          -0.00039073781985284766
+        ],
+        "finite_difference_second": [
+          0.09559234568658463,
+          0.003161282511567147
+        ],
+        "shifted_densities": [
+          [
+            -0.027060960269432485,
+            -0.0007312498435798529
+          ],
+          [
+            -0.027018589827124316,
+            -0.0007328888572556147
+          ],
+          [
+            -0.026974647311462662,
+            -0.000734477126909203
+          ],
+          [
+            -0.0269291753525377,
+            -0.0007360148173382357
+          ],
+          [
+            -0.0268822169916517,
+            -0.0007375021088878848
+          ]
+        ],
+        "ode_evaluations": [
+          1265,
+          1265,
+          1265,
+          1265,
+          1265
+        ],
+        "first_max_error": 1.4109925554339764e-10,
+        "second_max_error": 8.913850213509988e-11
+      },
+      {
+        "time": 3.0,
+        "step": 0.002,
+        "augmented_density": [
+          -0.02697464731146284,
+          -0.0007344771269092011
+        ],
+        "augmented_first_derivative": [
+          0.011178594285101914,
+          -0.0003907378189775292
+        ],
+        "augmented_second_derivative": [
+          0.09559234577572313,
+          0.0031612825152569895
+        ],
+        "finite_difference_first": [
+          0.011178594276284141,
+          -0.00039073781903209084
+        ],
+        "finite_difference_second": [
+          0.09559234575911776,
+          0.003161282515897744
+        ],
+        "shifted_densities": [
+          [
+            -0.027018589827124316,
+            -0.0007328888572556147
+          ],
+          [
+            -0.026996812423918135,
+            -0.0007336893251509498
+          ],
+          [
+            -0.026974647311462662,
+            -0.000734477126909203
+          ],
+          [
+            -0.026952099831765955,
+            -0.0007352522836183737
+          ],
+          [
+            -0.0269291753525377,
+            -0.0007360148173382357
+          ]
+        ],
+        "ode_evaluations": [
+          1265,
+          1265,
+          1265,
+          1265,
+          1265
+        ],
+        "first_max_error": 8.817772900737708e-12,
+        "second_max_error": 1.6605369856925734e-11
+      }
+    ],
+    "summary": {
+      "maximum_first_error": 1.4109925554339764e-10,
+      "maximum_second_error": 8.913850213509988e-11,
+      "fine_step_maximum_first_error": 8.817772900737708e-12,
+      "fine_step_maximum_second_error": 3.493435402068812e-11
+    }
+  },
+  "initial_second_time_derivative": {
+    "detuning": 3.205747774994305,
+    "fold_state": [
+      0.15692704039732738,
+      0.31861940364584707,
+      -0.07846352019866601
+    ],
+    "gamma": 1.0,
+    "omega": 2.0,
+    "interaction": 10.0,
+    "formula": "s_second(0) = 3*gamma*Omega*v_f/2 - Omega*(Delta - V*(N-1)*n_f/N)*u_f",
+    "preparation": "rho_fold minus its global excitation-number dephasing",
+    "checks": [
+      {
+        "N": 1,
+        "analytic": -2.278217449211371,
+        "full_generator": -2.278217449211372,
+        "absolute_difference": 8.881784197001252e-16
+      },
+      {
+        "N": 2,
+        "analytic": -1.7782174489383291,
+        "full_generator": -1.778217448938328,
+        "absolute_difference": 1.1102230246251565e-15
+      },
+      {
+        "N": 4,
+        "analytic": -1.528217448801808,
+        "full_generator": -1.5282174488018077,
+        "absolute_difference": 4.440892098500626e-16
+      }
+    ],
+    "maximum_absolute_difference": 1.1102230246251565e-15
+  },
+  "interpretation": "The N24 local subspace continuation is repeated and extended by the same procedure to N32/40/48. The previously executed N2 parameter finite differences and N1/2/4 initial second-time-derivative checks are repeated. No main transient scan is repeated. This is numerical evidence, not full-spectrum isolation or an asymptotic proof."
+}

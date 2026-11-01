@@ -1,0 +1,53 @@
+{
+  "created": "2026-11-01",
+  "input": "data/physical_effects/effects_2026-11-01.json",
+  "input_sha256": "4f9b3663bba3dcdd8cd4519a23691d09b1a2d5772f3e048dcf8a9497b7a10eb6",
+  "source_sha256": "08a2dd8db40a09e0139a0e97af443dc02b9060c3a80a3dd1b770b44138767495",
+  "records": [
+    {
+      "N": 24,
+      "maximum_endpoint_bound_fraction": [
+        0.010129365426076054,
+        0.0020725030711924875
+      ],
+      "maximum_curvature_bound_fraction": [
+        0.00031876089585643094,
+        2.4751965454415907e-05
+      ]
+    },
+    {
+      "N": 32,
+      "maximum_endpoint_bound_fraction": [
+        0.008224729378109998,
+        0.0013740958503157398
+      ],
+      "maximum_curvature_bound_fraction": [
+        0.00021856007971016888,
+        1.2812988249847028e-05
+      ]
+    },
+    {
+      "N": 40,
+      "maximum_endpoint_bound_fraction": [
+        0.007000779859011292,
+        0.0009966172664110495
+      ],
+      "maximum_curvature_bound_fraction": [
+        0.0001631878629028036,
+        7.6079981813793334e-06
+      ]
+    },
+    {
+      "N": 48,
+      "maximum_endpoint_bound_fraction": [
+        0.006129395503157062,
+        0.0007656276000079548
+      ],
+      "maximum_curvature_bound_fraction": [
+        0.0001284235537041405,
+        4.94738603742638e-06
+      ]
+    }
+  ],
+  "scope": "Fixed physical preparations and bounded density observable at real detuning. Finite-time bounds only; no assertion of asymptotic mixing-width scaling or optimal detectability."
+}
