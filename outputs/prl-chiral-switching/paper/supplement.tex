@@ -88,6 +88,16 @@ The simple zero eigenvalue describes the linearization at the coalescing fixed p
 
 The separate exclusion of nontrivial Jordan blocks at zero follows from bounded evolution under a finite-dimensional completely positive and trace-preserving (CPTP) semigroup~\cite{AlbertJiang2014}. It applies to the physical real-parameter generator. The complex-detuning continuation below is generally not CPTP, so that argument does not constrain its Jordan structure.
 
+\subsection{Reference values for the real-axis crossings}
+The left-fold coordinates are $(\Delta_f,n_f)=(3.5996368905,0.1569270404)$. For $N=24,28,\ldots,56$, the real-mode crossing moves from $\Delta_*(24)=3.13740295$ to $\Delta_*(56)=3.30652148$, while its half-gap decreases from $0.0292933152$ to $0.000330979777$. Fits to $\ln g_N$ give $\sigma_{24:56}=0.14050$ and $\sigma_{40:56}=0.14305$; successive four-atom slopes increase from $0.13218$ to $0.14383$. These window-dependent slopes do not determine an asymptotic exponent or convergence to the fold.
+
+At $N=32$ and $\Delta_*=3.205747775$, representative full-generator eigenvalues are
+\begin{align}
+ \lambda_-&=-0.765098904,\qquad \lambda_+=-0.745092273,\\
+ \lambda_{\rm osc}&=-0.725036287\pm2.864794973i.
+\end{align}
+The oscillatory pair decays more slowly than both target real modes. The ordinary Liouvillian gap therefore differs from the real-pair half-gap even though the latter becomes small. Full-precision crossing records are retained in \texttt{data/biorthogonal\_audit/}.
+
 \section{Construction and validation of physical preparations}
 Let a strictly positive single-atom density matrix have Bloch vector $\bm b$, with $r=|\bm b|<1$. In the spin convention used by PIQS, the coordinates of the main text give
 \begin{equation}
@@ -120,6 +130,8 @@ For each detuning the real spectral pair is computed together with its transpose
 
 At $N=32$, changing the ARPACK seed and shift from $-0.76$ to $-0.80$ changes the two real eigenvalues at the three diagnostic detunings by less than $9.0\times10^{-15}$. Halving $\eta$ changes the residue vector divided by $2\eta$ by $4.96\times10^{-6}$, $7.29\times10^{-6}$, and $5.75\times10^{-6}$ in relative Euclidean norm, respectively. These checks support the perturbative interpretation of the first preparation. They do not turn the second, finite displacement into a linearized mean-field trajectory.
 
+For reference, the $N=32$ high-branch residues $(a_-,a_+)$ at $\delta=\mp0.06$ are $(8.94\times10^{-6},1.1694\times10^{-3})$ and $(1.1082\times10^{-3},-2.91\times10^{-6})$, respectively. The corresponding low-density absolute-profile fractions, using $k/N<0.22$, are $(0.209,0.0305)$ and $(0.0314,0.237)$. At $N=40$, the nondominant high-branch residue at either endpoint is below $7.3\times10^{-7}$. At the crossing center, the fold-state residues are approximately $(-1.666,1.423)$ for $N=32$ and $(-5.475,5.217)$ for $N=40$. These values characterize signed eigenmode weights; they are not state probabilities.
+
 \section{Biorthogonal projection and normalization conventions}
 The left eigenvectors are computed from $L^T$. In column-major vectorization the bilinear pairing $W^TR$ is the algebraic dual; physical observables use the corresponding transpose. For each simple real decay mode, we phase-align and Hermitize its right and dual left eigenoperators. We then enforce $W^TR=I$ in the selected two-dimensional subspace. Eigensolver, Hermiticity, trace, and subspace residuals are retained separately. Observable residues involve both excitation and detection overlaps; small left-right overlaps can produce large expansion coefficients~\cite{MoriShirai2020}.
 
@@ -145,7 +157,7 @@ Let $P=R_dW_d^T$ be the generally oblique spectral projector at $\Delta_*$ and $
 \end{align}
 The inverse acts on the range of $Q$. Thus the frozen linear matrix reproduces the value and first derivative at the reference point but not the complete neighboring spectrum. At $N=40$, over $|\delta|\le2g/|s_a-s_b|$, its largest tested half-gap relative error is $1.39\times10^{-3}$. A small absolute correction is not automatically negligible relative to a much smaller off-diagonal element.
 
-In the stored convention of Eq.~\eqref{eq:block}, the physical trace norm of a Hermitian right operator is
+The population-peak convention fixes $\max_k|P_i(k)|=1$ for $P_i(k)=\Tr(\Pi_kR_i)$, with the largest-magnitude entry positive. In the stored convention of Eq.~\eqref{eq:block}, the physical trace norm of a Hermitian right operator is
 \begin{equation}
  \|R\|_1=\sum_j\Tr|\widetilde R_j|.
 \end{equation}
@@ -182,6 +194,8 @@ At the gap minimum, $e_a=e_b$, this is a flux representation of the cross coupli
 They are coordinate masks, not quantum channels or probabilities of measurement outcomes.
 
 Eight cuts and nine sizes reconstruct the cross couplings with relative error below $1.6\times10^{-8}$. Nevertheless, splitting the weak flux into an absolute envelope and a cancellation factor is not invariant. For $n_c=0.157$, their fitted exponents over $N=24$--$56$ are approximately $0.13123$ and $0.13942$; at $n_c=0.30$ they become $0.01137$ and $0.25778$. The denominator correction restores the same total coupling exponent. This prevents interpreting the two contributions at one selected cut as two independently determined activation actions.
+
+At $N=40$, the output-diagonal and output-off-diagonal contributions to $W_b^TLR_a$ in the population-peak convention are $0.9659542705$ and $-0.9657905699$. Their sum is $V_{ba}\simeq1.6370\times10^{-4}$. The displayed terms are rounded; this coordinate partition does not define two independent physical processes.
 
 The weak-coupling contraction can also be written $W_b^T(L-e_a)R_a$. In the exact projected subspace, $(L-e_a)R_a=V_{ba}R_b$, so the small quantity is transferred from a large cancelling sum into an exponentially small residual. An asymptotic calculation must determine that residual independently; using exact spectral modes to reconstruct it is not a WKB prediction.
 
@@ -239,6 +253,27 @@ The middle equation is solved as a bordered linear system. All derivatives are w
 The root search selects the nearest effective real eigenvalue only within the local window. Such a selection is not a global branch-tracking algorithm and can jump between branches. A final residual check is therefore mandatory. In particular, $K=\operatorname{diag}(-0.80,-0.72)$ has no self-consistent root in $[-0.78,-0.74]$, although nearest-branch selection changes sign there and can make Brent's method report convergence. The implementation rejects this false root because the final residual is about $0.04$. It also rejects a nearest effective eigenvalue with any nonzero imaginary part returned by the real-matrix eigensolver; a small complex pair is not rounded into a real root. Complex spectral inputs or detunings are rejected by the $2\operatorname{Re}\Sigma$ implementation.
 
 For all eight retained roots, back-substitution reconstructs the complete right eigenoperator. The largest $\|LR-zR\|_2/\|R\|_2$ is $1.13\times10^{-13}$ and the largest normalized trace is $8.2\times10^{-14}$. The $q=0$ component carries between $0.360$ and $0.419$ of the full Euclidean norm. The smallest one-norm reciprocal condition estimates of the intermediate denominators at the roots range from $4.33\times10^{-4}$ to $1.73\times10^{-3}$. These checks test the computed points, not absence of poles over an entire real or complex domain. Small residuals alone are not rigorous forward-error bounds for a nonnormal matrix; the agreement with independent full-generator spectra is also retained.
+
+\subsection{Minimum depth, curvature, and quadratic gap}
+Table~\ref{tab:cf} gives the local minimum parameters and the error of $g_{N,\rm quad}=\sqrt{2\epsilon_N/c_N}$. Direct roots of $f_N=0$ instead reproduce the independent full-generator half-gaps to relative differences below $1.3\times10^{-9}$. This root-reconstruction accuracy is distinct from the larger error of the quadratic expansion.
+
+\begin{table}[ht]
+\caption{Local real-axis coherence reduction. $g_N$ is the independently computed full-generator half-gap; the last column is $g_{N,\rm quad}/g_N-1$. All entries use $\gamma=1$.}
+\label{tab:cf}
+\begin{ruledtabular}
+\begin{tabular}{rcccc}
+$N$&$\epsilon_N$&$c_N$&$g_N$&Relative error\\
+24&$9.33404\times10^{-3}$&22.28695&0.02929332&$-1.2002\times10^{-2}$\\
+32&$1.09619\times10^{-3}$&21.96534&0.01000332&$-1.2773\times10^{-3}$\\
+40&$1.28422\times10^{-4}$&24.11955&0.00326360&$-1.0842\times10^{-4}$\\
+48&$1.51689\times10^{-5}$&27.82335&0.00104421&$-6.5891\times10^{-6}$
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+The minimum need not coincide with the root midpoint: at $N=24$, $z_c=-0.745502759$, whereas $(z_-+z_+)/2=-0.750910792$. For $N=48$, the nearest eigenvalues of the frozen $K_N(z_c)$ include $-0.75910208$, $-0.21846755$, and zero; the two full-generator roots are $-0.76013902$ and $-0.75805059$. Thus freezing this effective operator removes the spectral dependence that retains the nearby pair.
+
+Over the four sizes in Table~\ref{tab:cf}, a fit of $\ln\epsilon_N$ gives $\alpha_\epsilon=0.267635$. The same convention applied to the curvature gives $\alpha_c=-0.009490$, so the fitted quadratic-gap exponent is $(\alpha_\epsilon-\alpha_c)/2=0.138562$, compared with $0.139030$ for the exact gap on the same window. This four-size window differs from the nine-size crossing fit. Neither fit establishes an asymptotic action or an algebraic curvature prefactor.
 
 \subsection{Derivative pairing and elimination poles}
 For $T(z)=zI-K(z)$ at a simple nonlinear eigenvalue $\lambda$, the singular part of the reduced resolvent is

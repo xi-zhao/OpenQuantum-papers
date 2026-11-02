@@ -49,11 +49,7 @@ Their stationary populations satisfy
  F(n)=n[(\Delta-Vn)^2+1/4+\Omega^2/2]-\Omega^2/4=0.
  \label{eq:cubic}
 \end{equation}
-At $\Omega=2$, $V=10$, the left fold is at
-\begin{equation}
- (\Delta_f,n_f)=(3.5996368905,\,0.1569270403).
-\end{equation}
-Using $F=\partial_nF=0$, the characteristic polynomial of the Bloch Jacobian at a fold reduces to
+At $\Omega=2$, $V=10$, the left fold is at $(\Delta_f,n_f)\simeq(3.60,0.157)$. Using $F=\partial_nF=0$, the characteristic polynomial of the Bloch Jacobian at a fold reduces to
 \begin{equation}
  \chi(\lambda)=\lambda[(\lambda+1)^2+\Omega^2/2].
  \label{eq:foldjac}
@@ -71,19 +67,9 @@ We locate a local minimum of the separation between two real decay eigenvalues a
  g_N=\frac{\lambda_+(\Delta_*)-\lambda_-(\Delta_*)}{2}>0.
  \label{eq:gap}
 \end{equation}
-The positions move from $\Delta_*(24)=3.13740295$ to $\Delta_*(56)=3.30652148$, and the half-gap decreases from $0.0292933152$ to $0.000330979777$ [Fig.~\ref{fig:spectrum}]. A least-squares slope of $\ln g_N$ over $N=24,28,\ldots,56$ gives $\sigma_{24:56}=0.14050$. Restricting to $N=40$--$56$ gives $0.14305$, while successive four-atom slopes increase from $0.13218$ to $0.14383$. We therefore use ``approximately exponential'' only for the observed size window. The data do not determine a limiting exponent or prove $\Delta_*(N)\to\Delta_f$.
+Across $N=24,28,\ldots,56$, the crossing drifts toward the fold while remaining on its monostable side, and the half-gap decreases by almost two orders of magnitude [Fig.~\ref{fig:spectrum}]. An exponential fit gives $\sigma\simeq0.14$, with a small systematic drift as the size window changes (SM). This finite-window trend determines neither a limiting exponent nor convergence of $\Delta_*(N)$ to $\Delta_f$.
 
-The small splitting must not be confused with a slow decay rate. At $N=32$ and $\Delta_*=3.205747775$, the real pair is
-\begin{equation}
- \lambda_-=-0.765098904,\qquad \lambda_+=-0.745092273,
- \label{eq:realpair}
-\end{equation}
-whereas an oscillatory pair occurs at
-\begin{equation}
- \lambda_{\rm osc}=-0.725036287\pm2.864794973i.
- \label{eq:oscpair}
-\end{equation}
-The oscillatory pair decays more slowly than both real modes. Thus $g_N$ is an excited-mode separation, distinct from the ordinary Liouvillian gap $\Gamma_{\rm diss}=-\max_{\lambda\ne0}\operatorname{Re}\lambda$. It does not measure the slowest relaxation toward the stationary sector.
+The small splitting must not be confused with a slow decay rate. At the $N=32$ crossing, $g_N\simeq0.01$ while the mean decay rate is $-\bar\lambda\simeq0.75$, where $\bar\lambda=(\lambda_++\lambda_-)/2$. An oscillatory pair decays more slowly than both real modes (SM). Thus $g_N$ is an excited-mode separation, distinct from the ordinary Liouvillian gap $\Gamma_{\rm diss}=-\max_{\lambda\ne0}\operatorname{Re}\lambda$.
 
 \section{Physical response and mode character}
 \label{sec:modes}
@@ -97,21 +83,13 @@ Let $R_i$ and $W_i$ be right and transpose-left eigenvectors of the stored gener
 \end{equation}
 Each residue is invariant under reciprocal rescaling of its left and right eigenvectors. These signed weights are not probabilities of physical states or metastable phases.
 
-We use two physical preparations, whose construction is specified in the SM. The first subtracts positive product states displaced by $\pm\eta$, with $\eta=0.005$, along the real relaxation direction of the high mean-field fixed point. This high-branch preparation is reconstructed at each detuning to follow local mode character. The second subtracts the exact stationary state from a fixed product state prepared at the left-fold Bloch vector. It probes low-population response without assuming a finite-size metastable state outside the bistable interval.
+We use two physical preparations, whose construction is specified in the SM. The first subtracts positive product states displaced slightly in opposite directions along the real relaxation direction of the high mean-field fixed point. This high-branch preparation is reconstructed at each detuning to follow local mode character. The second subtracts the exact stationary state from a fixed product state prepared at the left-fold Bloch vector. It probes low-population response without assuming a finite-size metastable state outside the bistable interval.
 
-For $N=32$, at $\delta=\Delta-\Delta_*=-0.06$, the high-branch perturbation has real-mode residues
-\begin{equation}
- (a_-,a_+)=(8.94\times10^{-6},\,1.1694\times10^{-3}).
-\end{equation}
-At $\delta=+0.06$, they become
-\begin{equation}
- (a_-,a_+)=(1.1082\times10^{-3},\,-2.91\times10^{-6}).
-\end{equation}
-The dominant high-branch response transfers from $\lambda_+$ to $\lambda_-$ [Fig.~\ref{fig:residues}(a)]. A separate $N=40$ calculation gives the same exchange, with the nondominant residue below $7.3\times10^{-7}$ at either endpoint. Halving $\eta$ changes the normalized residue vector by less than $7.3\times10^{-6}$ in relative Euclidean norm.
+Across the crossing, the dominant high-branch response transfers from $\lambda_+$ to $\lambda_-$ [Fig.~\ref{fig:residues}(a)]. The exchange persists in a separate $N=40$ calculation, and reducing the preparation displacement confirms the perturbative response (SM).
 
-The fold-state preparation excites both modes, with large opposite residues near the crossing [Fig.~\ref{fig:residues}(b)]. At $\delta=0$, they are approximately $(-1.666,1.423)$ for $N=32$ and $(-5.475,5.217)$ for $N=40$. Opposite residues can cancel in a bounded physical signal, as analyzed for collective-spin exceptional spectral phases~\cite{Molina2026}. Our values establish neither a $1/g_N$ residue asymptote nor a real-axis Jordan limit; the SM states the additional limiting conditions.
+The fold-state preparation instead excites both modes, with large opposite residues near the crossing [Fig.~\ref{fig:residues}(b)]. Large opposite residues can cancel in a bounded physical signal, as analyzed for collective-spin exceptional spectral phases~\cite{Molina2026}. These finite-size values establish neither a $1/g_N$ residue asymptote nor a real-axis Jordan limit; the SM states the additional limiting conditions.
 
-The second diagnostic is the signed excitation-number profile $P_i(k)=\Tr(\Pi_kR_i)$. We measure its absolute-profile fraction in the region $k/N<0.22$, using the same fixed diagnostic cutoff on both sides. For $N=32$, the fractions change from $(0.209,0.0305)$ at $\delta=-0.06$ to $(0.0314,0.237)$ at $\delta=+0.06$ [Fig.~\ref{fig:residues}(c)]. Thus the branch with greater low-density support exchanges places with the high-branch response. Neither profile is purely localized in that region. We describe the second branch as having enhanced low-density character; a rigorous identification with a universal ghost-escape mode would require an independently controlled escape problem and is not assumed here.
+The signed excitation-number profile $P_i(k)=\Tr(\Pi_kR_i)$ provides a complementary diagnostic. Its absolute-profile fraction below a fixed low-density cutoff exchanges between the branches, alongside the high-branch response [Fig.~\ref{fig:residues}(c)]. Neither profile is purely localized there. This supports enhanced low-density character of the second branch, without identifying it as a universal ghost-escape mode.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{../figs/pra_residues.pdf}
@@ -149,12 +127,7 @@ Under $R_i\mapsto c_iR_i$, $W_i\mapsto c_i^{-1}W_i$,
  V_{ab}\mapsto(c_b/c_a)V_{ab},\qquad
  V_{ba}\mapsto(c_a/c_b)V_{ba}.
 \end{equation}
-Individual coupling exponents can therefore depend on normalization if $c_i$ depend on $N$. We fix a population-peak convention, $\max_k|P_i(k)|=1$, with the largest-magnitude entry positive. Over $N=24$--$56$, the descriptive exponents are
-\begin{align}
- \alpha_{ab}&=0.009638,\qquad \alpha_{ba}=0.271365,\nonumber\\
- (\alpha_{ab}+\alpha_{ba})/2&=0.140501.
-\end{align}
-Normalizing the right operators by their physical trace norm changes the first two values to $0.003563$ and $0.277440$, while preserving their sum. A balanced convention makes both equal to $\sigma$ by construction [Fig.~\ref{fig:couplings}]. Thus a directional exponent cannot be assigned an invariant activation interpretation from this decomposition alone.
+Individual coupling exponents can therefore depend on normalization if $c_i$ depend on $N$. Switching from population-peak to physical trace-norm normalization changes both exponents while preserving their sum, $2\sigma$. A balanced convention makes each equal to $\sigma$ by construction [Fig.~\ref{fig:couplings}; definitions and values in the SM]. Thus this decomposition alone cannot assign an invariant activation interpretation to a directional exponent.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{../figs/pra_couplings.pdf}
@@ -162,25 +135,19 @@ Normalizing the right operators by their physical trace norm changes the first t
 \label{fig:couplings}
 \end{figure*}
 
-The weak matrix element contains cancellations involving coherences. For $N=40$, summing its output-diagonal and output-off-diagonal contributions separately gives
-\begin{equation}
- V_{ba}=0.9659542705-0.9657905699
-       =1.63700625\times10^{-4}.
-\end{equation}
-This is not a representation-independent separation into two physical processes. Indeed, $W_b^T(L-cI)R_a=W_b^TLR_a$ for any scalar $c$, and choosing $c=e_a$ moves the cancellation into the small residual $(L-e_a)R_a$. The robust conclusion is that a right population tail by itself does not determine the full biorthogonal matrix element. A boundary-flux identity and its dependence on the chosen cut are given in the SM.
+The weak matrix element contains cancellations involving coherences: at $N=40$, its output-diagonal and output-off-diagonal contributions cancel by almost four orders of magnitude (SM). This partition does not separate two invariant physical processes. Since $W_b^T(L-cI)R_a=W_b^TLR_a$ for any scalar $c$, choosing $c=e_a$ transfers the cancellation into the small residual $(L-e_a)R_a$. A right population tail alone therefore does not determine the full biorthogonal matrix element; the boundary-flux analysis in the SM reaches the same limitation.
 
 \subsection{Analytic continuation in detuning}
 We separately continue the full generator as $L_0+\zeta L_1$ for complex detuning $\zeta$. This continuation uses $-i[H(\zeta),\rho]$; it is not $-i[H\rho-\rho H^\dagger]$. The continued evolution preserves trace but generally not Hermiticity. It is therefore not a completely positive and trace-preserving (CPTP) physical map.
 
-A local two-subspace Newton calculation gives the upper-half-plane EP positions
-\begin{align}
- \zeta_{\rm EP}(24)&=3.136806063+0.026370766i,\nonumber\\
- \zeta_{\rm EP}(32)&=3.205686613+0.007464558i,\label{eq:ep}\\
- \zeta_{\rm EP}(40)&=3.250218904+0.002129005i.\nonumber
-\end{align}
-At each point, the projected traceless matrix $M$ has nonzero norm, while $\|M^2\|_F/\|M\|_F^2<3.3\times10^{-15}$, consistent with a rank-one nilpotent. For $N=32$, analytic continuation around a circle of radius $0.00223937$ exchanges the two full-generator eigenvalues after one circuit and restores them after two. Changing the eigensolver seed and shift and doubling the sampling density preserves the result (SM).
+Full-generator continuation locates nearby complex EPs for $N=24,32,40$. At each point, the projected traceless matrix is nonzero and squares to zero within numerical precision. At $N=32$, encircling the EP exchanges the two eigenvalues after one circuit and restores them after two (coordinates and stability checks in the SM).
 
-The local linear model predicts $|\operatorname{Im}\zeta_{\rm EP}|\simeq2g_N/|s_a-s_b|$. The relative differences in the imaginary parts are $0.456\%$, $0.0792\%$, and $0.0115\%$ for $N=24,32,40$, respectively. This verifies nearby complex partners for the studied crossings; we do not claim that an arbitrary avoided crossing necessarily has a nearby EP. Nor does an EP in complex detuning constitute a physical degeneracy at real parameters.
+The local linear model predicts
+\begin{equation}
+ |\operatorname{Im}\zeta_{\rm EP}|\simeq\frac{2g_N}{|s_a-s_b|},
+ \label{eq:epdistance}
+\end{equation}
+in subpercent agreement with the continued spectra at all three sizes. The complex EP distance thus tracks the real-axis mixing scale for these crossings. This local result does not imply a nearby EP for every avoided crossing or a physical degeneracy at real parameters.
 
 \section{Exact elimination of coherence sectors}
 \label{sec:coherence}
@@ -206,7 +173,7 @@ With $P$ projecting onto $q=0$ and $Q=I-P$, the Schur identity reads
  \det(zI-L)=\det(zI-L_{QQ})\det[zI-K_N(z)].
  \label{eq:schur}
 \end{equation}
-It applies where $z-L_{QQ}$ is invertible; the recursion also requires invertible intermediate denominators. Purely coherent modes with zero $q=0$ projection and points at elimination poles require separate treatment. For complex $z$, the analytic continuation involves $\Sigma_+(z)+\overline{\Sigma_+(\bar z)}$, not $2\operatorname{Re}\Sigma_+(z)$. Our real-axis recursion is not used to compute Eq.~\eqref{eq:ep}.
+It applies where $z-L_{QQ}$ is invertible; the recursion also requires invertible intermediate denominators. Purely coherent modes with zero $q=0$ projection and points at elimination poles require separate treatment. For complex $z$, the analytic continuation involves $\Sigma_+(z)+\overline{\Sigma_+(\bar z)}$, not $2\operatorname{Re}\Sigma_+(z)$. The complex-detuning EPs above are computed separately from the full generator.
 
 The spectral dependence has a time-domain counterpart in the projection-operator memory formalism~\cite{Nakajima1958,Zwanzig1960}. Direct elimination of $x_Q$ from our linear equations gives
 \begin{align}
@@ -230,25 +197,11 @@ Its two nearby roots give the two decay eigenvalues. Expanding around the minimu
 \end{equation}
 The derivatives are calculated analytically through the matrix recursion and the non-Hermitian effective eigenproblem (SM).
 
-\begin{table}[!htbp]
-\caption{Local real-axis coherence reduction. $g_N$ is the independently computed full-generator half-gap; the last column is $g_{N,\rm quad}/g_N-1$. All entries use $\gamma=1$.}
-\label{tab:cf}
-\begin{ruledtabular}
-\begin{tabular}{rcccc}
-$N$&$\epsilon_N$&$c_N$&$g_N$&Relative error\\
-24&$9.33404\times10^{-3}$&22.28695&0.02929332&$-1.2002\times10^{-2}$\\
-32&$1.09619\times10^{-3}$&21.96534&0.01000332&$-1.2773\times10^{-3}$\\
-40&$1.28422\times10^{-4}$&24.11955&0.00326360&$-1.0842\times10^{-4}$\\
-48&$1.51689\times10^{-5}$&27.82335&0.00104421&$-6.5891\times10^{-6}$
-\end{tabular}
-\end{ruledtabular}
-\end{table}
+For $N=24,32,40,48$, direct roots of $f_N=0$ reproduce the independent full-generator pair; back-substitution and numerical checks are given in the SM. The quadratic approximation has percent-level accuracy at the smallest size and improves rapidly with $N$ [Fig.~\ref{fig:coherence}]. Higher-order terms also shift the root midpoint away from $z_c$.
 
-For $N=24,32,40,48$, direct roots of $f_N=0$ reproduce the independent full-generator half-gaps to relative differences below $1.3\times10^{-9}$. Back-substituting all eight roots into the full generator gives $\|LR-zR\|_2/\|R\|_2<1.2\times10^{-13}$. Table~\ref{tab:cf} and Fig.~\ref{fig:coherence} show the separate, larger error of the quadratic approximation. The minimum location is not generally the midpoint of the two roots: at $N=24$, these are $z_c=-0.745502759$ and $(z_-+z_+)/2=-0.750910792$.
+Self-consistency in $z$ is essential: at $N=48$, freezing $K_N$ at $z_c$ leaves only one eigenvalue near the full-generator pair (SM). The two roots therefore arise from the spectral dependence of one effective branch, rather than two nearby eigenvalues of this frozen operator. This does not exclude other, correctly matched effective models.
 
-The two roots do not correspond to two nearby eigenvalues of a frozen $K_N(z_c)$. For $N=48$, its nearest eigenvalues include $-0.75910208$, $-0.21846755$, and zero, whereas the full generator has the two roots $-0.76013902$ and $-0.75805059$. The root pair is retained by self-consistency in $z$. This finding concerns this specific elimination; it does not rule out a different, correctly matched finite-dimensional effective model.
-
-A four-point fit of $\ln\epsilon_N$ gives $\alpha_\epsilon=0.267635$, while the same convention applied to the curvature gives $\alpha_c=-0.009490$. Consequently the quadratic gap has fitted exponent $(\alpha_\epsilon-\alpha_c)/2=0.138562$, compared with $0.139030$ for the exact gap over the same four sizes. These are different fit windows from $\sigma_{24:56}$ above. No argument yet fixes the large-$N$ scaling of $\epsilon_N$ or proves that $c_N$ contributes only an algebraic prefactor. Equation~\eqref{eq:quadratic} is therefore a tested finite-size description, not an action-based exponent prediction.
+Over the computed window, the minimum depth falls rapidly while the curvature changes modestly [Fig.~\ref{fig:coherence}]. Neither trend independently fixes the large-$N$ scaling of $\epsilon_N/c_N$. In particular, no argument establishes an algebraic curvature prefactor. Equation~\eqref{eq:quadratic} describes the finite-size gap but does not predict its exponent from an action.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{../figs/pra_coherence.pdf}
@@ -281,16 +234,22 @@ For the population observable, $o^T=(o_0^T,0)$, the standard simple-pole residue
  {l_i^T[I-K'(\lambda_i)]r_i}.
  \label{eq:schurresidue}
 \end{equation}
-At the four crossings $N=24,32,40,48$, this expression reproduces the archived full-mode residue vectors to relative errors below $2.1\times10^{-9}$. For the high-branch preparation, retaining the same roots and denominator but replacing $b$ by $x_0$ gives errors of $3.69$, $10.90$, $29.91$, and $80.46$. Correct rates alone do not fix observable weights.
+Across the four tested sizes, Eq.~\eqref{eq:schurresidue} recovers the full-mode residues. Removing $BGx_Q$ while keeping the same roots and denominator gives order-unity or larger relative errors for the high-branch source (SM). Correct rates alone do not fix observable weights.
 
-A physical control compares the fold product state $\rho_f$ with its globally excitation-number-dephased state $\rho_d=\sum_k\Pi_k\rho_f\Pi_k$. The two states have identical initial $q=0$ populations but different coherences. Their difference $\delta\rho_c=\rho_f-\rho_d$ consequently generates a nonzero density transient. A source depending only on $x_0$ would instead predict zero difference. The two real modes still give a $101\%$ relative error over $6\le t\le12$ at the $N=32$ crossing. Source reconstruction therefore does not justify a two-mode dynamical closure. Section~\ref{sec:dynamics} compares the complete signal with independent-atom and mean-field controls.
+A physical control compares the fold product state $\rho_f$ with its globally excitation-number-dephased state $\rho_d=\sum_k\Pi_k\rho_f\Pi_k$. The states share their initial $q=0$ populations, yet their difference $\delta\rho_c=\rho_f-\rho_d$ generates a nonzero density transient through its coherences; a source depending only on $x_0$ would predict zero. Yet the two real modes alone retain an order-unity relative error even in the late-time window at the $N=32$ crossing (SM). Source reconstruction therefore does not establish a two-mode dynamical closure.
 
 \section{Dynamical reach and limits of the real-mode pair}
 \label{sec:dynamics}
 \subsection{Accuracy of spectral truncations}
-Large expansion coefficients and preparation-dependent visibility make a direct dynamical comparison necessary~\cite{MoriShirai2020,Mori2021,Molina2026}. We compare the two-real-mode sum with full evolution for the preparations in Sec.~\ref{sec:modes}. At $N=32$, we also include the oscillatory conjugate pair in Eq.~\eqref{eq:oscpair}. Sparse exponential multiplication supplies the reference without fitting transient amplitudes or rates.
+Large expansion coefficients and preparation-dependent visibility require a direct dynamical comparison~\cite{MoriShirai2020,Mori2021,Molina2026}. We compare the two-real-mode sum with full evolution for the preparations in Sec.~\ref{sec:modes}, then include the slower oscillatory conjugate pair at $N=32$. Sparse exponential multiplication supplies the reference without fitting transient amplitudes or rates.
 
-At the crossing, the high-branch relative $L^2$ error over $6\le t\le12$ decreases from $25.1\%$ with two real modes to $0.506\%$ with four modes. The fold-state errors are $69.5\%$ and $5.00\%$, respectively, demonstrating the preparation dependence of the truncation. The high-branch four-mode error stays below $0.53\%$ at $\delta=\pm0.06$. The SM displays the spectral contributions after removing the common decay envelope; all errors use the unscaled signals. The oscillatory pair is needed over this time window, while the real-pair mean decay rate remains of order $\gamma$.
+At the crossing, adding the oscillatory pair reduces the high-branch relative $L^2$ error over $6\le t\le12$ from about $25\%$ to $0.5\%$. The fold-state four-mode error remains about an order of magnitude larger, demonstrating preparation dependence. The SM gives the full error table and displays spectral contributions after removing the common decay envelope; the reported errors use unscaled signals. These comparisons require the oscillatory pair over the tested window, while the real-pair mean decay rate remains of order $\gamma$.
+
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{../figs/physical_effects_2026-11-01_v2.pdf}
+\caption{Fixed-preparation density controls, in raw density units. (a) Fold coherence difference at $N=32$, $\Delta=\Delta_*(32)$: full permutation-invariant evolution, independent atoms, and a common-phase mean-field ensemble. (b) Largest sampled magnitude at the same detuning and single-atom seed, for $t=0,0.1,\ldots,12$. (c) Signed real-mode residues for the $N=48$ high-branch difference frozen at its crossing. (d) Difference between the complete signals at $\Delta_*+w_{48}$ and $\Delta_*-w_{48}$ for that fixed preparation. Lines in (b,c) guide the eye; residues in (c) are decomposition weights, whereas (d) compares physical density signals.}
+\label{fig:effects}
+\end{figure*}
 
 \subsection{Fixed-preparation tests across the crossing}
 To distinguish mode exchange from changes in preparation, we freeze the high-branch difference at $\Delta_*(N)$, denoting it by $\delta\rho_{\rm hi}^*$. We also use the coherence difference $\delta\rho_c$, with the same single-atom fold seed at every size and detuning. For each fixed source $x$, the complete density signal is
@@ -298,19 +257,13 @@ To distinguish mode exchange from changes in preparation, we freeze the high-bra
  s_N(t,\Delta)=\Tr\!\left[\frac{N_e}{N}e^{tL(\Delta)}x\right].
  \label{eq:fixedsignal}
 \end{equation}
-We compare the two sides $\Delta_*\pm w_N$, where $w_N=2g_N/|s_a-s_b|$ is the local mixing scale. The scans cover $N=24,32,40,48$ and sample $t=0,0.1,\ldots,12$, without removing any decay envelope.
+We compare $\Delta_*\pm w_N$, where $w_N=2g_N/|s_a-s_b|$ is the local mixing scale in Eq.~\eqref{eq:epdistance}. The scans cover $N=24,32,40,48$ and sample $0\le t\le12$, without removing any decay envelope.
 
-For the frozen high-branch source at $N=48$, individual residues change by approximately $8.5\times10^{-4}$ across $\pm w_N$. The maximum sampled change of the complete density signal is only $1.89\times10^{-6}$ [Fig.~\ref{fig:effects}(c,d)]. Direct propagation of the first two detuning derivatives predicts both endpoint signals from the center, without a fit or spectral truncation. The quadratic prediction has relative $L^2$ error below $1.1\times10^{-5}$ for this source at all four sizes. The SM gives the corresponding coherence-source tests and the elementary two-pole and trace-contraction bounds. These comparisons support smooth local response despite strong redistribution of spectral weights.
+For the frozen high-branch source at $N=48$, individual residues change by order $10^{-3}$ across this interval, whereas the maximum sampled change of the complete density signal is of order $10^{-6}$ [Fig.~\ref{fig:effects}(c,d)]. Direct propagation of the first two detuning derivatives accurately predicts both endpoint signals from the center, without a fit or spectral truncation. These comparisons support smooth local response despite strong redistribution of spectral weights. The SM gives derivative errors, coherence-source controls, and two-pole and trace-contraction bounds.
 
-The coherence-source peak also requires a baseline. At $\Delta_*(32)$, its largest sampled magnitude is $0.1343$, compared with $0.1636$ for independent atoms at the same bare detuning [Fig.~\ref{fig:effects}(a)]. Holding that detuning and the single-atom seed fixed gives peaks between $0.134$ and $0.135$ for $N=8$--$48$ [Fig.~\ref{fig:effects}(b)]. Thus this peak is neither enhanced over independent atoms nor evidence of increasing response with size in this control. The global initial trace distance is not held fixed across sizes (SM).
+The coherence-source peak at $\Delta_*(32)$ is smaller than its independent-atom counterpart [Fig.~\ref{fig:effects}(a)]. At this fixed detuning and single-atom seed, its magnitude stays near $0.13$ over $N=8$--$48$ [Fig.~\ref{fig:effects}(b)]. The peak therefore supplies no evidence of enhancement over independent atoms or growth with size in this control. The global initial trace distance varies across sizes (SM).
 
 Mean field nevertheless fails to reproduce the complete coherence-source transient [Fig.~\ref{fig:effects}(a)]. Its control evolves each common-phase product state separately before averaging, retaining the finite-$N$ interaction factor $(N-1)/N$. The discrepancy cannot be assigned to the target pair, whose standalone error for this preparation is already large. The negative enhancement and narrow-response tests apply to the stated preparations, density observable, sizes, and time window; they do not exclude other protocols.
-
-\begin{figure*}[t]
-\includegraphics[width=\textwidth]{../figs/physical_effects_2026-11-01_v2.pdf}
-\caption{Fixed-preparation density controls, in raw density units. (a) Fold coherence difference at $N=32$, $\Delta=\Delta_*(32)$: full permutation-invariant evolution, independent atoms, and a common-phase mean-field ensemble. (b) Largest sampled magnitude at the same detuning and single-atom seed, for $t=0,0.1,\ldots,12$. (c) Signed real-mode residues for the $N=48$ high-branch difference frozen at its crossing. (d) Difference between the complete signals at $\Delta_*+w_{48}$ and $\Delta_*-w_{48}$ for that fixed preparation. Lines in (b,c) guide the eye; residues in (c) are decomposition weights, whereas (d) compares physical density signals.}
-\label{fig:effects}
-\end{figure*}
 
 \section{Discussion and conclusions}
 The locally damped Rydberg ensemble exhibits a finite-size exchange of relaxation residues without a corresponding strong, narrow density response in the tested fixed preparations. This connects mode character, exact coherence elimination, and full transients within one model. Earlier collective-spin studies established finite-rate doublets and cancelling residues~\cite{RubioGarcia2022,Molina2026}; the present calculation resolves their detuning-dependent response counterpart with all local-decay spin blocks retained. The initial-coherence source is essential to that connection, because correct decay roots alone do not determine observable weights.
