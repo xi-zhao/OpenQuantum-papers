@@ -86,7 +86,7 @@ At stationarity, $v=-n/\Omega$ and $u=2n(\Delta-Vn)/\Omega$. Substituting these 
 
 The simple zero eigenvalue describes the linearization at the coalescing fixed points. The stationary cubic has a higher-order root at the cusp, without changing the zero root's algebraic multiplicity in this Jacobian. The stationary-root exponents of Li, Sun, and Yi~\cite{LiSunYi2026} concern the former polynomial. Their mean-field conventions map to ours through $\Omega_{\rm CPB}=\Omega/2$, $\Delta_{\rm CPB}=-\Delta$, $V_{\rm CPB}=V$, and $\Gamma=\gamma$. This mapping does not identify their nonlinear stationary-root structure with a defective Jacobian or a finite-$N$ many-body EP.
 
-The separate exclusion of nontrivial Jordan blocks at zero follows from bounded evolution under a finite-dimensional CPTP semigroup~\cite{AlbertJiang2014}. It applies to the physical real-parameter generator. The complex-detuning continuation below is generally not CPTP, so that argument does not constrain its Jordan structure.
+The separate exclusion of nontrivial Jordan blocks at zero follows from bounded evolution under a finite-dimensional completely positive and trace-preserving (CPTP) semigroup~\cite{AlbertJiang2014}. It applies to the physical real-parameter generator. The complex-detuning continuation below is generally not CPTP, so that argument does not constrain its Jordan structure.
 
 \section{Construction and validation of physical preparations}
 Let a strictly positive single-atom density matrix have Bloch vector $\bm b$, with $r=|\bm b|<1$. In the spin convention used by PIQS, the coordinates of the main text give
@@ -109,7 +109,7 @@ The high-branch difference is
  \delta\rho_{\rm hi}=\rho_1(q_{\rm hi}+\eta e_{\rm hi})^{\otimes N}
                     -\rho_1(q_{\rm hi}-\eta e_{\rm hi})^{\otimes N},
 \end{equation}
-where $q_{\rm hi}$ is the surviving high mean-field fixed point, $e_{\rm hi}$ is its Euclidean-normalized real relaxation eigenvector with positive population component, and $\eta=0.005$. The second difference is
+where $q_{\rm hi}$ is the surviving high mean-field fixed point, $e_{\rm hi}$ is its Euclidean-normalized real relaxation eigenvector with positive population component, and $\eta=0.005$. Both $q_{\rm hi}$ and $e_{\rm hi}$ are evaluated at the current detuning in the original mode-character scan. The later fixed-preparation controls instead freeze these values at $\Delta_*(N)$. The second difference is
 \begin{equation}
  \delta\rho_f=\rho_1(q_f)^{\otimes N}-\rho_{\rm ss}(\Delta),
  \qquad q_f=(0.15692704,0.31861940,-0.07846352).
@@ -332,7 +332,13 @@ The four-mode approximation includes the two real modes, the oscillatory eigenmo
  E(t_0)=\frac{\left[\sum_{t\in[t_0,12]}|\delta n_{\rm approx}(t)-\delta n_{\rm full}(t)|^2\right]^{1/2}}
  {\left[\sum_{t\in[t_0,12]}|\delta n_{\rm full}(t)|^2\right]^{1/2}}.
 \end{equation}
-The exponential envelope removed in the figure is not removed when calculating errors. Table~\ref{tab:time} lists the $t_0=6$ comparisons. Earlier times generally contain larger contributions from omitted modes; for example, at the crossing the high-branch four-mode error is $1.49\%$ over $4\le t\le12$.
+The exponential envelope removed in Fig.~\ref{fig:sm_dynamics} is not removed when calculating errors. Table~\ref{tab:time} lists the $t_0=6$ comparisons. Earlier times generally contain larger contributions from omitted modes; for example, at the crossing the high-branch four-mode error is $1.49\%$ over $4\le t\le12$.
+
+\begin{figure}[ht]
+\includegraphics[width=.96\textwidth]{../figs/pra_dynamics.pdf}
+\caption{Spectral contributions to the density transient at the $N=32$ crossing. Solid black: complete permutation-invariant evolution. Orange dashed: the target real pair with exact residues. Blue dotted: those modes plus the oscillatory conjugate pair. (a) High-branch product-state difference; (b) fold product state relative to the stationary state. Each signal is divided by its initial value and multiplied by $e^{-\bar\lambda t}$, where $\bar\lambda=(\lambda_-+\lambda_+)/2$. This display exposes omitted oscillations; the errors and physical-effect tests use raw density signals.}
+\label{fig:sm_dynamics}
+\end{figure}
 
 \begin{table}[h]
 \caption{Relative $L^2$ errors over $6\le t\le12$ for $N=32$. All values are percentages.}
@@ -348,6 +354,97 @@ $+0.06$&25.78&0.529&4.99&0.256
 \end{table}
 
 These are finite-time, preparation-dependent tests. The oscillatory pair has the less negative real part at the crossing, so the target real pair's small separation does not justify omitting it. Four modes do not close the dynamics exactly or uniformly over all initial states. More generally, large expansion coefficients can extend transients beyond an inverse-gap estimate~\cite{MoriShirai2020,Mori2021}. Our reported errors test the specified preparations and time interval, without establishing or excluding such behavior for every physical initial state.
+
+\section{Fixed-preparation controls for the complete density response}
+\label{sec:sm_effects}
+\subsection{Preparations, baselines, and size control}
+The two sources are $\delta\rho_c=\rho_f-\rho_d$ and the high-branch difference frozen at $\Delta_*(N)$, denoted by $\delta\rho_{\rm hi}^*$. Neither changes during a detuning scan. The high-branch seed depends on $N$; the fold single-atom seed is common to all sizes. We use $N=24,32,40,48$, with $\delta=0,\pm w_N,\pm4w_N,\pm0.06$ and $w_N=2g_N/|s_a-s_b|$. These are seven distinct points per size; their ordering by distance changes with $N$. Each full signal is sampled at $t=0,0.1,\ldots,12$. All reported maxima refer to this grid. Side-point residues use newly computed full-generator subspaces, not a frozen two-by-two projection.
+
+For $V=0$, the density response follows the exact one-atom Bloch equation at the same bare detuning. This remains true for the correlated common-phase mixture, because density is a one-body observable. A separate initial-Hartree-matched reference uses $\Delta_{\rm free}=\Delta-V(N-1)n_{\rm seed}/N$. At $\Delta_*(32)$ the coherence-source peaks are $0.1343027$ for full evolution, $0.1636293$ for independent atoms, and $0.1447327$ for the matched reference. Their sampled times are $1.1$, $0.8$, and $1.2$, respectively.
+
+The mean-field comparison uses $V_{\rm eff}=V(N-1)/N$ in the Bloch equations. For the dephased state, each initial coherence $(u_f+iv_f)e^{-i\theta}$ is evolved separately before averaging over $\theta$. Evolving only the averaged vector $(n_f,0,0)$ would change the initial correlation structure under a nonlinear closure. At the $N=32$ center, the resulting mean-field coherence signal differs from full evolution by $1.117$ in relative $L^2$ norm over $0\le t\le12$, with maximum absolute difference $0.1498$.
+
+The separate size control holds $\Delta=\Delta_*(32)$ and the fold seed fixed. Table~\ref{tab:fixedsize} records both its peak and initial trace distance $D_0=\|\delta\rho_c\|_1/2$. The latter uses the multiplicity-summed blocks of Eq.~\eqref{eq:block}, without another multiplicity factor. Fixed single-atom preparation therefore does not mean fixed global trace distance.
+\begin{table}[ht]
+\caption{Coherence-source size control at fixed detuning and single-atom seed. The peak is the largest sampled $|s_N|$ over $0\le t\le12$.}
+\label{tab:fixedsize}
+\begin{ruledtabular}
+\begin{tabular}{rrr}
+$N$&Density peak&$D_0$\\
+1&0.1636293&0.32814\\
+2&0.1145397&0.42925\\
+4&0.1293140&0.55907\\
+8&0.1349900&0.68136\\
+16&0.1349931&0.77071\\
+24&0.1345022&0.80829\\
+32&0.1343027&0.83076\\
+40&0.1342664&0.84645\\
+48&0.1343079&0.85816
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\subsection{Detuning derivatives without a fitted response curve}
+For a fixed initial source, define $y_j=\partial_\Delta^j x(t)$. Since $L=L_0+\Delta L_1$, the exact tangent equations are
+\begin{equation}
+ \dot y_0=Ly_0,\qquad
+ \dot y_1=Ly_1+L_1y_0,\qquad
+ \dot y_2=Ly_2+2L_1y_1,
+ \label{eq:tangent}
+\end{equation}
+with initial data $(x,0,0)$. We exponentiate this block-triangular generator and contract each component with $N_e/N$. The center predicts the two sides through $s(\Delta_*+h)=s_0+h s_1+h^2s_2/2+O(h^3)$, with $h=\pm w_N$. No side-point curve is fitted, and every mode remains included.
+
+Table~\ref{tab:effects} gives the largest relative $L^2$ prediction error over the two endpoints, normalized separately by each full endpoint signal. The high-branch maximum $|\partial_\Delta s|$ changes only from $0.001534$ to $0.001545$ between $N=24$ and $48$. The coherence-source values rise from $0.2964$ to $0.4450$. Neither follows the much larger growth of $1/w_N$ in this window. Small prediction errors diagnose smooth local response; they do not establish mean-field validity or experimental precision.
+\begin{table}[ht]
+\caption{Fixed-source crossing tests. $\Delta s$ is the high-branch signal difference between $\Delta_*\pm w_N$. The last two columns give relative errors of the complete-generator quadratic prediction. All quantities use $\gamma=1$.}
+\label{tab:effects}
+\begin{ruledtabular}
+\begin{tabular}{rrrrr}
+$N$&$w_N$&$\max_t|\Delta s_{\rm hi}|$&Coherence error&High-branch error\\
+24&0.0264910&$8.1281\times10^{-5}$&$2.32\times10^{-4}$&$1.03\times10^{-5}$\\
+32&0.00747047&$2.2984\times10^{-5}$&$7.54\times10^{-6}$&$1.79\times10^{-7}$\\
+40&0.00212925&$6.5658\times10^{-6}$&$2.34\times10^{-7}$&$4.11\times10^{-9}$\\
+48&0.000612960&$1.8941\times10^{-6}$&$7.11\times10^{-9}$&$9.95\times10^{-11}$
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\subsection{Finite splitting within the two-pole contribution}
+Write $\lambda_\pm=-\kappa\pm g$, with $\kappa>g>0$, and set $A=a_-+a_+$ and $B=g(a_+-a_-)$. The exact pair contribution and its coalesced-shape comparison are
+\begin{equation}
+ S_2(t)=e^{-\kappa t}\left[A\cosh(gt)+B\frac{\sinh(gt)}{g}\right],\qquad
+ S_0(t)=e^{-\kappa t}(A+Bt).
+\end{equation}
+This comparison holds $A,B,\kappa$ fixed algebraically; it does not vary a physical generator. The opposite-residue expansion has precedents~\cite{Molina2026}. Applying $\cosh u-1\le u^2e^u/2$ and $\sinh u-u\le u^3e^u/6$ for $u\ge0$ gives
+\begin{align}
+ |S_2-S_0|&\le g^2e^{-(\kappa-g)t}
+ \left(\frac{|A|t^2}{2}+\frac{|B|t^3}{6}\right),\\
+ \sup_{t\ge0}|S_2-S_0|&\le g^2\left[
+ \frac{2|A|}{e^2(\kappa-g)^2}+\frac{9|B|}{2e^3(\kappa-g)^3}\right].
+ \label{eq:pairbound}
+\end{align}
+For the coherence source, the all-time bounds at $N=24,32,40,48$ are approximately $8.18\times10^{-5}$, $1.04\times10^{-5}$, $1.18\times10^{-6}$, and $1.29\times10^{-7}$. The pair can contribute a nonexponential transient while the additional shape from its small splitting is limited. This is neither an error bound for complete evolution nor a CPTP replacement or metrological bound.
+
+\subsection{Trace-contraction bounds for the complete signal}
+For a fixed Hermitian difference $x=\rho_a-\rho_b$, put $D_0=\|x\|_1/2$ and $O=N_e/N$, so $0\le O\le I$. At real detuning, $T_\Delta(t)=e^{tL_\Delta}$ is CPTP and contracts the trace norm of Hermitian operators. Centering $N_e$ by $NI/2$ gives $\|[N_e,Y]\|_1\le N\|Y\|_1$. For traceless Hermitian $Y$, $|\Tr(OY)|\le\|Y\|_1/2$. Inserting $L_1=i[N_e,\cdot]$ in the Duhamel formula therefore yields
+\begin{equation}
+ |\partial_\Delta s(t)|\le NtD_0,\qquad
+ |\partial_\Delta^2s(t)|\le N^2t^2D_0.
+\end{equation}
+The second derivative contains two time-ordered insertions whose total integration volume is $t^2$. Integrating these bounds in detuning gives
+\begin{align}
+ |s(t,\Delta+w)-s(t,\Delta-w)|&\le2NwtD_0,\\
+ |s(t,\Delta+w)+s(t,\Delta-w)-2s(t,\Delta)|&\le N^2w^2t^2D_0.
+ \label{eq:signalbounds}
+\end{align}
+These elementary estimates concern complete signals, independent of spectral truncation. They are loose for the present data: the largest endpoint and curvature ratios are below $0.0102$ and $0.000319$, respectively. If $Nw_N\to0$ were independently established, the first inequality would suppress fixed-time finite-amplitude features across that width. The finite-size fits do not prove this premise. Detuning-dependent preparations introduce additional source derivatives, so Eq.~\eqref{eq:signalbounds} does not apply to the original varying-preparation scan without those terms.
+
+\subsection{Independent checks and retained failures}
+Explicit full-spin evolution at $N=1,4$ agrees with the corresponding PI density responses to less than $1.91\times10^{-13}$. The $N=4$, $V=0$ PI calculation agrees with the one-atom baseline to less than $4.21\times10^{-12}$. At $N=32$, independent DOP853 integration checks both full transients to less than $4.04\times10^{-14}$. Five-point detuning differences from a separate $N=2$ integration check Eq.~\eqref{eq:tangent}; at step $0.002$, first- and second-derivative differences are below $8.83\times10^{-12}$ and $3.50\times10^{-11}$.
+
+The mean-field phase integral uses 64 samples, checked against 128. One outer point, $N=48$ and $\delta=+0.06$, failed the $2\times10^{-7}$ threshold with difference $4.81\times10^{-7}$. Its 256-phase refinement agrees with 128 phases to $1.04\times10^{-11}$. The failed record and original curve remain stored; the corrected curve is stored separately. The center and $\pm w_N$ conclusions do not depend on this refinement.
+
+Subspace continuation takes eight steps per size from the center to $\pm4w_N$, giving 32 points. Among each solver's returned candidates, neighboring subspace overlaps uniquely identify the same real pair; saved scan eigenvalues agree to less than $4.34\times10^{-13}$. Fourteen $N=48$ candidate solves failed the $10^{-9}$ residual threshold and were retained before successful retries with a different shift. This is a candidate-set identity check, not global spectral isolation. Coordinate principal angles are not physical state fidelities. The full records, source hashes, rejected attempts, and successful refinements are in \texttt{data/physical\_effects/}.
 
 \section{Stationary potentials and the scope of the splitting exponent}
 The ordinary Liouvillian gap is $\Gamma_{\rm diss}=-\max_{\lambda\ne0}\operatorname{Re}\lambda$ in the relevant symmetry sector. Our half-gap $g_N=(\lambda_+-\lambda_-)/2$ instead compares two nonzero real eigenvalues. A prediction for $\Gamma_{\rm diss}$ therefore does not automatically predict $g_N$.

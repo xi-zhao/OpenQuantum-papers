@@ -16,14 +16,20 @@ CODE = (
   'coherence_fraction_derivatives', 'coherence_validate', 'coherence_recurrence',
   'mf', 'pra_modes', 'pra_meanfield', 'pra_ep_verify', 'pra_figures', 'pra_validate',
   'coherence_response', 'coherence_response_validate', 'pra_package',
+  'physical_effects', 'physical_effects_validate', 'physical_effects_sensitivity',
+  'physical_effects_bound', 'physical_effects_review', 'physical_effects_figures',
 )
+RELEASE = '2026-11-02'
 FIGURES = ('spectrum', 'residues', 'couplings', 'coherence', 'dynamics', 'ep_loop')
 
 
 def payload():
   paths = [ROOT/'PRA_README.md', ROOT/'PRA_REPORT_2026-10-28.md',
-    ROOT/'PRA_REVISION_2026-10-29.md', ROOT/'PRA_RESPONSE_2026-10-30.md', ROOT/'requirements-pra.txt',
-    ROOT/'paper/references_suggested_2026-10-29.bib']
+    ROOT/'PRA_REVISION_2026-10-29.md', ROOT/'PRA_RESPONSE_2026-10-30.md',
+    ROOT/'PRA_REVISION_2026-11-02.md', ROOT/'PHYSICAL_EFFECT_TEST_2026-11-01.md',
+    ROOT/'PHYSICAL_EFFECT_REPORT_2026-11-01.md', ROOT/'requirements-pra.txt',
+    ROOT/'paper/references_suggested_2026-10-29.bib',
+    ROOT/'data/pra_spectral/artifact_manifest.json']
   paths += [ROOT/f'code/{name}.py' for name in CODE]
   paths += [ROOT/f'paper/{name}.{ext}' for name in ('main', 'supplement') for ext in ('tex', 'pdf')]
   paths += [ROOT/f'figs/pra_{name}.{ext}' for name in FIGURES for ext in ('pdf', 'png')]
@@ -42,10 +48,24 @@ def payload():
   paths += sorted(pra.glob('ep_*.json'))+sorted(pra.glob('ep_*_vectors.npz'))
   paths += [ROOT/'data/coherence_response'/name for name in
     ('response_2026-10-30.json', 'validation_2026-10-30.json')]
+  paths += [ROOT/f'figs/physical_effects_2026-11-01_v2.{ext}' for ext in ('pdf', 'png', 'csv')]
+  paths += [ROOT/'data/physical_effects'/name for name in (
+    'artifact_manifest_2026-11-01.json', 'effects_2026-11-01.json',
+    'pilot_2026-11-01.json', 'validation_2026-11-01.json',
+    'validation_failure_2026-11-01.json', 'sensitivity_2026-11-01.json',
+    'bounds_2026-11-01.json', 'review_2026-11-01.json')]
   return sorted(set(paths))
 
 
 def main():
+  manifest_path = ROOT/f'data/pra_spectral/artifact_manifest_{RELEASE}.json'
+  archive = ROOT/f'deliverables/pra-decay-mode-source-{RELEASE}.zip'
+  if manifest_path.exists() or archive.exists():
+    raise FileExistsError('Preserve the existing release; choose a new RELEASE before packaging')
+  frozen = json.loads((ROOT/'data/physical_effects/artifact_manifest_2026-11-01.json').read_text())
+  for name, record in frozen['files'].items():
+    if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != record['sha256']:
+      raise RuntimeError(f'Frozen physical-effect evidence changed: {name}')
   paths = payload()
   if any(not p.is_file() for p in paths):
     raise FileNotFoundError([str(p) for p in paths if not p.is_file()])
@@ -60,7 +80,7 @@ def main():
   files = {str(p.relative_to(ROOT)): dict(bytes=p.stat().st_size,
     sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths}
   manifest = dict(title='Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble',
-    created='2026-10-30', files=files, total_bytes=total,
+    created=RELEASE, files=files, total_bytes=total,
     evidence={
       'real gaps and gauge dependence': 'data/biorthogonal_audit/analysis.json',
       'signed boundary flux': 'data/biorthogonal_audit/boundary_flux.json',
@@ -71,15 +91,23 @@ def main():
       'Schur back-substitution and failure paths': 'data/coherence_mechanism/validation.json',
       'literature attribution and manuscript build checks': 'PRA_REVISION_2026-10-29.md',
       'initial-coherence source and observable residues': 'data/coherence_response/response_2026-10-30.json',
-      'dephasing preparation and independent integrator': 'data/coherence_response/validation_2026-10-30.json'},
-    interpretation='Finite-size numerical evidence; no established sigma=Phi identity or thermodynamic-limit mechanism.',
-    review_status='Local mathematical/data/layout checks and independent review of the existing finite-size mathematical claims completed; scope and response review are recorded in PRA_RESPONSE_2026-10-30.md.')
-  manifest_path = ROOT/'data/pra_spectral/artifact_manifest.json'
+      'dephasing preparation and independent integrator': 'data/coherence_response/validation_2026-10-30.json',
+      'fixed-preparation signals and independent-atom controls': 'data/physical_effects/effects_2026-11-01.json',
+      'full-generator detuning derivatives and two-pole bound': 'data/physical_effects/sensitivity_2026-11-01.json',
+      'full-spin, ODE, and phase-quadrature checks': 'data/physical_effects/validation_2026-11-01.json',
+      'retained phase-quadrature failure': 'data/physical_effects/validation_failure_2026-11-01.json',
+      'full-signal trace-contraction bounds': 'data/physical_effects/bounds_2026-11-01.json',
+      'spectral identity and independent parameter differences': 'data/physical_effects/review_2026-11-01.json',
+      'PRA interpretation and manuscript checks': 'PRA_REVISION_2026-11-02.md'},
+    interpretation='Finite-size spectral hybridization with no strong narrow density response in the tested '
+      'fixed preparations and time window; no established sigma=Phi identity or thermodynamic-limit mechanism.',
+    historical_manifests={'data/pra_spectral/artifact_manifest.json':
+      'Frozen 2026-10-30 snapshot; its manuscript hashes describe the earlier archive, not this release.'},
+    review_status='Calculation reviews and manuscript checks have distinct scopes; see '
+      'PHYSICAL_EFFECT_REPORT_2026-11-01.md and PRA_REVISION_2026-11-02.md.')
   manifest_path.write_text(json.dumps(manifest, indent=2, allow_nan=False)+'\n')
-  outdir = ROOT/'deliverables'
-  outdir.mkdir(exist_ok=True)
-  archive = outdir/'pra-decay-mode-source-2026-10-30.zip'
-  with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
+  archive.parent.mkdir(exist_ok=True)
+  with zipfile.ZipFile(archive, 'x', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
     for p in paths+[manifest_path]:
       bundle.write(p, p.relative_to(ROOT))
   with zipfile.ZipFile(archive) as bundle:
