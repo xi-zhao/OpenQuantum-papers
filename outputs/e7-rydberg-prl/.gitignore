@@ -1,8 +1,0 @@
-.build/
-.revision-baseline/
-**/__pycache__/
-paper/*.aux
-paper/*.log
-paper/*.out
-paper/*Notes.bib
-paper/e7_rydberg_source.zip
