@@ -19,7 +19,7 @@ CODE = (
   'physical_effects', 'physical_effects_validate', 'physical_effects_sensitivity',
   'physical_effects_bound', 'physical_effects_review', 'physical_effects_figures',
 )
-RELEASE = '2026-11-02-r2'
+RELEASE = '2026-11-02-r3'
 FIGURES = ('spectrum', 'residues', 'couplings', 'coherence', 'dynamics', 'ep_loop')
 
 
@@ -31,7 +31,8 @@ def payload():
     ROOT/'PHYSICAL_EFFECT_REPORT_2026-11-01.md', ROOT/'requirements-pra.txt',
     ROOT/'paper/references_suggested_2026-10-29.bib',
     ROOT/'data/pra_spectral/artifact_manifest.json',
-    ROOT/'data/pra_spectral/artifact_manifest_2026-11-02.json']
+    ROOT/'data/pra_spectral/artifact_manifest_2026-11-02.json',
+    ROOT/'data/pra_spectral/artifact_manifest_2026-11-02-r2.json']
   paths += [ROOT/f'code/{name}.py' for name in CODE]
   paths += [ROOT/f'paper/{name}.{ext}' for name in ('main', 'supplement') for ext in ('tex', 'pdf')]
   paths += [ROOT/f'figs/pra_{name}.{ext}' for name in FIGURES for ext in ('pdf', 'png')]
@@ -82,7 +83,7 @@ def main():
   files = {str(p.relative_to(ROOT)): dict(bytes=p.stat().st_size,
     sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths}
   manifest = dict(title='Finite-size decay-mode hybridization near a mean-field fold in an open Rydberg ensemble',
-    created=RELEASE[:10], release=RELEASE, files=files, total_bytes=total,
+    author='OpenQuantum', created=RELEASE[:10], release=RELEASE, files=files, total_bytes=total,
     evidence={
       'real gaps and gauge dependence': 'data/biorthogonal_audit/analysis.json',
       'signed boundary flux': 'data/biorthogonal_audit/boundary_flux.json',
@@ -107,7 +108,9 @@ def main():
     historical_manifests={'data/pra_spectral/artifact_manifest.json':
       'Frozen 2026-10-30 snapshot; its manuscript hashes describe the earlier archive, not this release.',
       'data/pra_spectral/artifact_manifest_2026-11-02.json':
-      'Frozen first 2026-11-02 revision; its manuscript hashes precede the main-text concision.'},
+      'Frozen first 2026-11-02 revision; its manuscript hashes precede the main-text concision.',
+      'data/pra_spectral/artifact_manifest_2026-11-02-r2.json':
+      'Frozen r2 snapshot; its manuscript hashes precede the OpenQuantum author credit.'},
     review_status='Calculation reviews and manuscript checks have distinct scopes; see '
       'PHYSICAL_EFFECT_REPORT_2026-11-01.md, PRA_REVISION_2026-11-02.md, '
       'and PRA_CONCISE_2026-11-02.md.')
