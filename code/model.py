@@ -1,8 +1,12 @@
 """stories15M (llama2.c 格式) 的加载、分词与 FP32 前向（纯 numpy）。"""
+import os
 import struct
 import numpy as np
 
-MODEL_DIR = "/tmp/claude-0/-home-claude/2b4b55be-e4b8-52fa-a291-d66ebca29c21/scratchpad/model"
+# 模型文件默认放在项目根目录的 model/；也可用环境变量 QRNG_LLM_MODEL_DIR 指向别处
+MODEL_DIR = os.environ.get(
+    "QRNG_LLM_MODEL_DIR",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "model"))
 
 
 class Config:

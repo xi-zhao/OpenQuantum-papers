@@ -4,7 +4,7 @@
 端到端驱动真实预训练模型 stories15M 的采样，并完成随机性、安全、吞吐与成本的全链路评测。
 
 ## 目录
-- `paper/main.pdf`、`paper/main.tex` —— 中文论文（XeLaTeX + Noto CJK 编译）。配图 `fig_*.pdf`。
+- `paper/main.pdf`、`paper/main.tex` —— 中文论文（XeLaTeX + Noto CJK 编译；本机没有 Noto CJK 时自动改用 macOS 自带的宋体、冬青黑体）。配图 `fig_*.pdf`。
 - `code/` —— 全部脚本：
   - `qrng_payload.py` 构造 35 比特 QRNG 线路；真机原始比特见 `data/qz03_qrng_raw.json`。
   - `nist_sts.py` NIST SP 800-22 子集检验；`analyze_qrng.py` 偏置/最小熵 + Toeplitz 提取 + 检验。
@@ -15,21 +15,26 @@
 - `data/` —— 真机原始比特与各步结果 JSON，以及提取后的比特 `extracted_bits.npy`。
 
 ## 复现
+脚本在**当前目录**读写数据，所以先进入 `data/`，再调用 `../code/` 下的脚本；`figures.py` 会把配图直接写进 `paper/`。
+
 ```bash
-pip install numpy scipy matplotlib qiskit qiskit-aer
-# 1) 随机性分析（输入 data/qz03_qrng_raw.json）
-python analyze_qrng.py
-# 2) 采样对照、攻防、吞吐
-python qsample.py && python attack.py && python throughput.py
-# 3) 配图与论文
-python figures.py
+python3 -m venv .venv && source .venv/bin/activate
+pip install numpy scipy matplotlib   # 附录"全前向量子化"另需 qiskit qiskit-aer 与逻辑比特云 SDK lqcloud
+cd data
+# 1) 随机性分析（输入 qz03_qrng_raw.json）
+python ../code/analyze_qrng.py
+# 2) 采样对照、攻防、吞吐（前两个需要模型文件，见下）
+python ../code/qsample.py && python ../code/attack.py && python ../code/throughput.py
+# 3) 配图（写入 ../paper/）与论文
+python ../code/figures.py
 cd ../paper && xelatex main.tex && xelatex main.tex
 ```
 
 ## 模型文件（未随包提供）
-`model.py` 读取 `stories15M.bin` 与 `tokenizer.bin`（Karpathy 的 llama2.c 格式，公开可得）。
-请将二者放到 `model.py` 顶部 `MODEL_DIR` 指向的目录，或修改该路径。
-来源：llama2.c 项目（stories15M 预训练权重）与配套 tokenizer。
+`model.py` 读取 `stories15M.bin` 与 `tokenizer.bin`（Karpathy 的 llama2.c 格式，公开可得），
+默认放在项目根目录的 `model/` 下，也可用环境变量 `QRNG_LLM_MODEL_DIR` 指向其他目录。
+- `stories15M.bin`：https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin
+- `tokenizer.bin`：https://github.com/karpathy/llama2.c/raw/master/tokenizer.bin
 
 ## 真机平台
 逻辑比特云 `cloud.logicalqubit.com`，SDK `lqcloud`。

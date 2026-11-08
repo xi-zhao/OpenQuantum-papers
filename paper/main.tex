@@ -1,10 +1,17 @@
 \documentclass[11pt]{article}
 
 % ===== 中文 XeLaTeX（Noto CJK，无需 ctex/xeCJK）=====
+% 本机未安装 Noto CJK 时，自动改用 macOS 自带的宋体与冬青黑体
 \usepackage{fontspec}
-\setmainfont{Noto Serif CJK SC}
-\setsansfont{Noto Sans CJK SC}
-\newfontfamily\cjkmono{Noto Sans Mono CJK SC}
+\IfFontExistsTF{Noto Serif CJK SC}{%
+  \setmainfont{Noto Serif CJK SC}
+  \setsansfont{Noto Sans CJK SC}
+  \newfontfamily\cjkmono{Noto Sans Mono CJK SC}
+}{%
+  \setmainfont{Songti SC}
+  \setsansfont{Hiragino Sans GB}[BoldFont={Hiragino Sans GB W6}]
+  \newfontfamily\cjkmono{Hiragino Sans GB}
+}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
 
@@ -163,14 +170,14 @@ dim 288 / 6 层 / 6 头 / 词表 32000），\emph{不重新训练}。
 标准提取环节把真机读出偏置完整转化为合格随机源。
 
 \begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{../fig_bias.pdf}
+\includegraphics[width=\linewidth]{fig_bias.pdf}
 \caption{提取前的原始偏置（a）与保守最小熵（b）：流水线据此确定 0.785 的提取率。
 红色为偏离 0.5 超过 0.05 的比特。}
 \label{fig:bias}
 \end{figure}
 
 \begin{figure}[t]\centering
-\includegraphics[width=0.86\linewidth]{../fig_nist.pdf}
+\includegraphics[width=0.86\linewidth]{fig_nist.pdf}
 \caption{NIST SP 800-22 子集 $p$ 值（对数轴）。提取把 2/11 通过提升到 11/11 通过。}
 \label{fig:nist}
 \end{figure}
@@ -270,7 +277,7 @@ $p=0.84$）\footnote{碰撞基线由模型在该提示下的输出分布决定�
 缺口被关闭。
 
 \begin{figure}[t]\centering
-\includegraphics[width=0.62\linewidth]{../fig_attack.pdf}
+\includegraphics[width=0.62\linewidth]{fig_attack.pdf}
 \caption{种子劫持/预测攻击。观测 624 个输出后 MT19937 被 100\% 预测；量子随机数池下攻击者命中率落在分布自身的
 盲猜基线（虚线）。}
 \label{fig:attack}

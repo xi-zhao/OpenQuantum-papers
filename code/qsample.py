@@ -18,8 +18,6 @@ import numpy as np
 from math import erf, sqrt
 from scipy.stats import chisquare, kstest
 
-import sys
-sys.path.insert(0, "/tmp/claude-0/-home-claude/2b4b55be-e4b8-52fa-a291-d66ebca29c21/scratchpad/qllm")
 from model import load, Tokenizer, forward_fp
 
 BITS_PER_U = 16

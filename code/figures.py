@@ -1,12 +1,24 @@
 """论文配图（matplotlib，Noto Sans CJK SC，色盲友好配色）。"""
 import json
+import os
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 
-FONT = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+# 在 data/ 目录下运行本脚本（读取当前目录的结果 JSON），配图直接写进 paper/
+PAPER_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "paper")
+
+# 中文字体：优先原环境的 Noto Sans CJK，本机没有时用 macOS 自带的冬青黑体 / 华文黑体
+FONT_CANDIDATES = [
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",
+    "/System/Library/Fonts/STHeiti Medium.ttc",
+]
+FONT = next((p for p in FONT_CANDIDATES if os.path.exists(p)), None)
+if FONT is None:
+    raise SystemExit("找不到中文字体：请把本机的中文字体路径加进 FONT_CANDIDATES")
 fm.fontManager.addfont(FONT)
 plt.rcParams["font.family"] = fm.FontProperties(fname=FONT).get_name()
 plt.rcParams["axes.unicode_minus"] = False
@@ -42,7 +54,7 @@ def fig_bias():
     ax[1].set_title("(b) 逐比特最小熵（99% 保守下界）")
     ax[1].set_ylim(0, 1.05)
     ax[1].legend(frameon=False, fontsize=9)
-    fig.savefig("fig_bias.pdf")
+    fig.savefig(os.path.join(PAPER_DIR, "fig_bias.pdf"))
     plt.close(fig)
 
 
@@ -71,7 +83,7 @@ def fig_nist():
                  f"提取后 {A['nist_ext_pass']}/{A['nist_total']} 通过")
     ax.legend(frameon=False, loc="lower right", fontsize=9)
     ax.set_xlim(8e-5, 1.5)
-    fig.savefig("fig_nist.pdf")
+    fig.savefig(os.path.join(PAPER_DIR, "fig_nist.pdf"))
     plt.close(fig)
 
 
@@ -93,7 +105,7 @@ def fig_fidelity():
     ax.set_ylabel("概率")
     ax.set_title("首 token 的 top-p 目标分布（三种随机源均复现，见表）")
     ax.legend(frameon=False, fontsize=9)
-    fig.savefig("fig_fidelity.pdf")
+    fig.savefig(os.path.join(PAPER_DIR, "fig_fidelity.pdf"))
     plt.close(fig)
 
 
@@ -115,7 +127,7 @@ def fig_attack():
     ax.set_ylabel("攻击者命中率")
     ax.set_ylim(0, 110)
     ax.set_title("种子劫持/预测攻击：观测 624 个输出后")
-    fig.savefig("fig_attack.pdf")
+    fig.savefig(os.path.join(PAPER_DIR, "fig_attack.pdf"))
     plt.close(fig)
 
 
