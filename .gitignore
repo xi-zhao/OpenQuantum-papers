@@ -1,0 +1,12 @@
+# model weights (download separately, see README)
+model/
+*.bin
+# python
+.venv/
+__pycache__/
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

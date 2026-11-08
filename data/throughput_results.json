@@ -1,0 +1,23 @@
+{
+ "n_tasks": 20,
+ "raw_bits_total": 700000,
+ "extracted_bits_total": 549500,
+ "exec_s_mean": 1.1451594999999999,
+ "exec_s_std": 0.23818677855655632,
+ "exec_s_total": 22.90319,
+ "wall_s_mean": 1.4,
+ "wall_s_min": 1.0,
+ "wall_s_max": 2.0,
+ "rate_exec_raw_bps": 30563.42806395092,
+ "rate_exec_ext_bps": 23992.29103020147,
+ "rate_wall_raw_bps": 25000.0,
+ "cost_total": 200.0,
+ "currency": "CNY",
+ "cost_per_raw_bit": 0.00028571428571428574,
+ "cost_per_ext_bit": 0.0003639672429481347,
+ "cost_per_megabit_ext": 363.9672429481347,
+ "bits_per_token": 16,
+ "tokens_supported_by_pool": 34343,
+ "qpu_raw_bps_needed_for_1ktok_s": 20382.16560509554,
+ "qpu_raw_bps_needed_for_1tok_s": 20.38216560509554
+}

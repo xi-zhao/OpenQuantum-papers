@@ -1,0 +1,104 @@
+{
+ "prompt": "Once upon a time, there was a little",
+ "temp": 1.0,
+ "top_p": 0.9,
+ "bits_per_uniform": 16,
+ "qrng_pool_uniforms": 34350,
+ "experiment_A": {
+  "QRNG": {
+   "support": 5,
+   "draws": 15000,
+   "chi2_gof_p": 0.5621022650086441,
+   "ks_uniform_p": 0.8746357222965649,
+   "tv_distance": 0.004439822530894889,
+   "u_mean": 0.5005823201497396,
+   "u_std": 0.2879782347839574
+  },
+  "MT19937": {
+   "support": 5,
+   "draws": 15000,
+   "chi2_gof_p": 0.9443975716573588,
+   "ks_uniform_p": 0.11323938554731583,
+   "tv_distance": 0.001406816282069543,
+   "u_mean": 0.49695010681152346,
+   "u_std": 0.29083000778533313
+  },
+  "CSPRNG": {
+   "support": 5,
+   "draws": 15000,
+   "chi2_gof_p": 0.36135360450491766,
+   "ks_uniform_p": 0.5052354145769689,
+   "tv_distance": 0.003288183269516489,
+   "u_mean": 0.4992022989908854,
+   "u_std": 0.2895242136550638
+  }
+ },
+ "experiment_A_meta": {
+  "support_tokens": [
+   " b",
+   " girl",
+   " boy",
+   " bird",
+   " dog"
+  ],
+  "target_probs": [
+   0.01654803365411365,
+   0.69938572316687,
+   0.23495442644853293,
+   0.029870695761581672,
+   0.019241120968901855
+  ]
+ },
+ "experiment_B": {
+  "QRNG": {
+   "n_cont": 500,
+   "n_new": 20,
+   "distinct_1": 0.06,
+   "distinct_2": 0.166,
+   "distinct_3": 0.2587777777777778,
+   "unique_frac": 0.844,
+   "tokens_generated": 10000,
+   "u_used": 25000,
+   "sample_texts": [
+    " girl named Lily. She loved to draw and color with her crayons. One day,",
+    " girl named Lily. She had a dog named Max who loved to play with her. One day",
+    " girl named Lily. She loved playing with her toys, especially her stuffed leather ted"
+   ]
+  },
+  "MT19937": {
+   "n_cont": 500,
+   "n_new": 20,
+   "distinct_1": 0.0582,
+   "distinct_2": 0.16231578947368422,
+   "distinct_3": 0.249,
+   "unique_frac": 0.828,
+   "tokens_generated": 10000,
+   "u_used": 10000,
+   "sample_texts": [
+    " dog named Spot. Spot had a bossy friend, a kind girl named Sue.",
+    " girl named Lily. She loved to eat candy, but her mommy told her that too",
+    " girl named Lily. She loved going on adventures in the desert with her parents. One day"
+   ]
+  },
+  "CSPRNG": {
+   "n_cont": 500,
+   "n_new": 20,
+   "distinct_1": 0.0588,
+   "distinct_2": 0.1648421052631579,
+   "distinct_3": 0.25655555555555554,
+   "unique_frac": 0.846,
+   "tokens_generated": 10000,
+   "u_used": 10000,
+   "sample_texts": [
+    " girl named Lily. One day, Lily's mom asked her to help organize the",
+    " girl named Lily. She loved to play outside in the sunshine. One day, she",
+    " bunny named Bun. Bun loved to play in the woods, but one day he saw a"
+   ]
+  }
+ },
+ "token_freq_corr": {
+  "QRNG~MT19937": 0.9969790264750197,
+  "QRNG~CSPRNG": 0.9980998055918238,
+  "MT19937~CSPRNG": 0.9977127974365351
+ }
+}
