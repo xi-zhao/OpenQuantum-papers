@@ -1,0 +1,21 @@
+{
+ "mt_number_prediction": {
+  "observed": 624,
+  "predicted": 200,
+  "exact_hits": 200,
+  "hit_rate": 1.0
+ },
+ "mt_token_prediction": {
+  "n_steps": 30,
+  "token_hits": 30,
+  "hit_rate": 1.0,
+  "victim_text": " girl named Lily. She loved going to the park with her mom and dad. One day, they went to the park and saw a beautiful",
+  "predicted_text": " girl named Lily. She loved going to the park with her mom and dad. One day, they went to the park and saw a beautiful"
+ },
+ "qrng_token_prediction": {
+  "n_steps": 30,
+  "token_hits": 22,
+  "hit_rate": 0.7333333333333333,
+  "collision_baseline": 0.7042193048699326
+ }
+}
