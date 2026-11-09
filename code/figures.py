@@ -42,14 +42,14 @@ def fig_bias():
     fig, ax = plt.subplots(1, 2, figsize=(10, 3.2))
     ax[0].bar(q, p1, color=[C["red"] if abs(x - 0.5) > 0.05 else C["blue"] for x in p1])
     ax[0].axhline(0.5, color=C["gray"], lw=1, ls="--")
-    ax[0].set_xlabel("逻辑比特编号")
+    ax[0].set_xlabel("比特编号")
     ax[0].set_ylabel("输出为 1 的频率 $p_1$")
     ax[0].set_title("(a) QZ03 各比特偏置（20000 shots）")
     ax[0].set_ylim(0, 0.6)
     ax[1].bar(q, hcons, color=C["blue"])
     ax[1].axhline(hcons.mean(), color=C["orange"], lw=1.5,
                   label=f"平均 {hcons.mean():.3f} bit")
-    ax[1].set_xlabel("逻辑比特编号")
+    ax[1].set_xlabel("比特编号")
     ax[1].set_ylabel("最小熵 $H_\\infty$ (bit)")
     ax[1].set_title("(b) 逐比特最小熵（99% 保守下界）")
     ax[1].set_ylim(0, 1.05)
@@ -76,6 +76,8 @@ def fig_nist():
     ax.axvline(0.01, color=C["gray"], ls="--", lw=1.2)
     ax.text(0.0115, len(names) - 0.5, "通过阈值 0.01", fontsize=8, color=C["gray"])
     ax.set_xscale("log")
+    # 对数轴刻度由 mathtext 排版；冬青黑体缺少减号 U+2212，刻度数字改用 matplotlib 自带的 DejaVu Sans
+    ax.tick_params(axis="x", labelfontfamily="DejaVu Sans")
     ax.set_yticks(y)
     ax.set_yticklabels([labels[n] for n in names], fontsize=9)
     ax.set_xlabel("NIST SP 800-22  $p$ 值（对数轴，越大越随机）")
@@ -120,8 +122,9 @@ def fig_attack():
     vals = [mt_num, mt_tok, qr_tok]
     cols = [C["red"], C["red"], C["green"]]
     bars = ax.bar(cats, vals, color=cols, width=0.6)
-    ax.axhline(base, color=C["gray"], ls="--", lw=1.3)
-    ax.text(2.05, base + 1, f"盲猜碰撞基线 {base:.0f}%", fontsize=8, color=C["gray"], ha="right")
+    # 基线说明放进图例：原先的文字标注压在 QRNG 柱顶和 "73%" 上
+    ax.axhline(base, color=C["gray"], ls="--", lw=1.3, label=f"盲猜碰撞基线 {base:.0f}%")
+    ax.legend(frameon=False, loc="upper right", fontsize=8)
     for b, v in zip(bars, vals):
         ax.text(b.get_x() + b.get_width() / 2, v + 1.5, f"{v:.0f}%", ha="center", fontsize=10)
     ax.set_ylabel("攻击者命中率")
