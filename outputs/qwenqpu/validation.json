@@ -1,0 +1,21 @@
+{
+  "author": "OpenQuantum",
+  "affiliations": [],
+  "pages": 17,
+  "references": 30,
+  "figures": 5,
+  "main_tables": 5,
+  "appendix_tables": 2,
+  "pdf_author_metadata_verified": true,
+  "old_authors_absent_from_deliverables": true,
+  "compile_warnings": [],
+  "all_fonts_embedded": true,
+  "citation_audit": "30 references checked; 2 claim-to-source corrections and 9 bibliography enrichments",
+  "statistical_recalculation_matches_recorded_results": true,
+  "visual_review": "All 17 freshly rendered pages inspected after the reference audit; author, corrected citations, 30 bibliography entries, figures and tables are legible without overlap or clipping.",
+  "arxiv_submission_status": "paused at user request",
+  "local_tex_live": 2026,
+  "arxiv_server_compile": "not performed",
+  "source_archive_matches_current_source": true,
+  "source_code_commit": "caae45327b46458163d0840a4c1466e5575a7b4f"
+}
