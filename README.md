@@ -1,45 +1,97 @@
-# OpenQuantum-papers
+# OpenQuantum Papers
 
-`main` 仅保存论文 PDF（含补充材料）和本索引。LaTeX 源码、图件、计算代码、原始数据、验证记录与旧稿保存在研究分支。目录中的 `prl` 是历史名称，不表示投稿或发表状态。
+OpenQuantum 完成的六篇研究稿。从证明随机量子码的共同恢复规律，到把量子电路模拟器编进 Qwen 的权重，这里可以直接读到结果、推导与验证。
 
-**当前版本：2026-11-11。六篇正文及既有补充材料统一署名 OpenQuantum，PDF 作者属性同步。**
+**[阅读六篇论文](#六篇论文)** · **[试用 OpenQuantum][openquantum-start]** · [English](#english)
 
-| 论文 | 正文 | 补充材料 | 去重外部文献数 |
-|---|---|---|---:|
-| Rydberg 系综中的有限尺寸衰减模混合 | [PDF · 9 页](outputs/prl-chiral-switching/paper/main.pdf) | [PDF · 13 页](outputs/prl-chiral-switching/paper/supplement.pdf) | 30 |
-| 费米 Liouvillian EP 附近依可观测量而异的弛豫 | [PDF · 4 页](outputs/prl-highorder-ep/paper/manuscript.pdf) | [PDF · 9 页](outputs/prl-highorder-ep/paper/supplement.pdf) | 32 |
-| 随机编码中经典与量子信息的共同恢复转变 | [PDF · 5 页](outputs/prl-distinguishability/paper.pdf) | [PDF · 8 页](outputs/prl-distinguishability/supplement.pdf) | 33 |
-| Rydberg 链中 E7 谱的双通道信号 | [PDF · 4 页](outputs/e7-rydberg-prl/paper/e7_rydberg.pdf) | [PDF · 7 页](outputs/e7-rydberg-prl/paper/e7_rydberg_supplement.pdf) | 31 |
-| 耗散 Majorana 系统中四时关联的能量选择 | [PDF · 4 页](outputs/prl-dissipative-syk/paper/main.pdf) | [PDF · 8 页](outputs/prl-dissipative-syk/paper/supplement.pdf) | 24 |
-| QwenQPU：在语言模型标准层内执行量子电路模拟 | [PDF · 17 页](outputs/qwenqpu/paper/main.pdf) | 附录含于正文 PDF | 28（另含 2 条项目文档与数据，共 30 条） |
+## 六篇论文
 
-外部文献数不包含 Supplemental Material（SM）入口。随机码的 33 项为 32 篇论文和 Feller 的一本书，含 SM 共 34 条参考项；上一版索引将外部文献误计为 34，现已更正。
+### QwenQPU · 把量子电路模拟编进 Qwen
 
-## 2026-11-11 更新
+四个固定权重的标准 Qwen 层执行六比特量子电路的经典态矢量模拟，包括复振幅更新和测量概率读出。在同一语言模型上开启执行器，48 道固定测试的通过数从 **4/48 提升到 48/48**，相对 Qiskit 参考值的最大概率误差为 **1.42 × 10⁻⁵**。
 
-- 新增 QwenQPU 英文论文：17 页、5 幅图、5 张正文表和 2 张附录表，署名 OpenQuantum。
-- 已核对 30 条参考文献和 47 处正文引用，修正 2 处来源对应问题并完善书目信息；Wilson 区间、McNemar 检验和保守配对差区间复算与记录一致。
-- 本次加入的是参考文献核查后的 PDF；论文描述经典硬件上的有限容量量子电路模拟，不主张物理量子加速。arXiv 投稿尚未提交。
-- LaTeX 源码、5 幅图、源码 ZIP 与引用核验记录保存在 [QwenQPU 研究分支](https://github.com/xi-zhao/OpenQuantum-papers/tree/c/qwenqpu-paper-20261111/outputs/qwenqpu)。原有十份 PDF 保持原样；主分支现有十一份 PDF，共 88 页。
+[论文与附录][qwenqpu] · [实现与评测数据][qwenqpu-code]
 
-## 2026-11-09 更新
+![QwenQPU 的 H–T–H 演示。T 门改变相对相位，最后一个 H 门把相位变化转成概率，测得 1 的理想概率约为 0.14645。](assets/qwenqpu-phase.gif)
 
-- Rydberg 补准固定失谐与尺寸范围，图注和轴名明确绝对相对误差；费米 EP 补准纯指数尾部的实单根与重叠条件，保留 Jordan 多项式例外；随机码逐项明确 SDP 验证的尺寸—系综组合。
-- E7 澄清反射对称包络、开链质量比的分母和图例；Majorana 统一算符编号并定义能量分量记号。既有有限尺寸、资源成本、必要对照及失败边界均保留。
-- 五稿正文均有 SM 入口，且正文参考表覆盖各自 SI 的全部外部文献。E7 将原仅列于 SI 的五篇纳入正文表，去重仍为 31 篇。E7 的 Vovrosh 等文献更新为 PRX Quantum 7, 043018 (2026)，Majorana 的 García-García 等文献更新为 Phys. Rev. D 110, 086010 (2024)。
-- 十份 PDF 共 71 页，已完成编译、引用、字体嵌入、署名和版面核查。本次同步逐份核对 SHA256，使用已经验证的 PDF，没有重跑物理计算，不改变投稿或发表状态。
+*动图根据论文图 4 的 H–T–H 示例绘制。逐步状态来自理想电路，最终读数与 QwenQPU 留存结果对照。*
 
-## 版本来源
+### 随机量子码 · 经典与量子恢复共享一条临界曲线
 
-上述五篇物理论文的十份 PDF 来源于本地研究分支 `c/paper-review-fixes-20261109`，来源提交为 `d873e073f4f2247512ebd710b512ebabc4be6c9d`。完整源稿、书目、修复前审查报告及本轮验证记录保存在该研究提交中；2026-11-09 的同步仅将十份 PDF 和该版索引放入远端 `main`。
+对由精确酉 2-design 生成的随机码，给出 Pauli 噪声下经典整条消息读出与量子纠缠恢复的共同有限码长上下界。对满足条件的独立同分布噪声，在正码率临界窗口内，两种最优表现趋向**同一条高斯曲线**。
 
-E7 的科学基线为研究分支 `c/e7-manuscript-evidence` 的 `085fc08c79917ba007fd08650b1acf3ee768c4a9`；后续修订保留约 62% 的绑定偏差、固定能隙检验未过门槛和重粒子未分辨等结论边界。其余稿件采用各自已验证版本。
+[论文][random-codes] · [补充材料][random-codes-si]
 
-研究分支中的 `outputs/paper-review-fixes-2026-11-09/README.md`、`validation.json` 和 `delivery-validation.json` 保存修复清单、引用口径、验证范围、实际构建提示和逐文件 SHA256。旧审计及旧包保留历史语义。本地排版审阅包不是完整数值复现包；原始样本和计算材料仍保存在研究资料中。
+![随机码恢复的解析上下界随码长增加逐步收窄，趋向共同的高斯曲线。](assets/random-code-recovery.gif)
 
-## 历史研究资料
+*动图使用论文图 1b 的解析界。色带夹住两种最优表现，白线是它们共同的高斯极限。*
 
-- [完整迁移快照](https://github.com/xi-zhao/OpenQuantum-papers/tree/c/import-research-papers)：保留迁移时的来源记录、研究笔记、失败尝试、代码和数据。
-- [Rydberg 衰减模混合历史研究分支](https://github.com/xi-zhao/OpenQuantum-papers/tree/c/chiral-pra-concise)：保留此前稿件及配套计算、验证和交付清单。
+### 耗散 Majorana 系统 · 用四时关联选出能量弛豫
 
-研究笔记和创新性否决记录不列为论文成稿。更新 `main` 时只同步需要交付的 PDF，不合并整个研究分支。下载的第三方文献与编译缓存不进入 `main`。
+在同阶相互作用和均匀耗散下，把四次费米子插入组成两对短时探针，并对全部组分求和。两对的时长同为 ε 时，能量信号是 ε² 阶，其他衰减模的贡献为 O(ε⁴)。论文给出了有限时间窗口内的误差界。
+
+[论文][majorana] · [补充材料][majorana-si]
+
+### 费米 Liouvillian 异常点 · 同一初态，两种衰减速率
+
+从同一个初态出发，总粒子数和模式占据不平衡选中不同的衰减通道。对于只能读出保留系统或失败标记的实验，计入每次制备后，短时真空试验达到判别泵浦强度的最优制备次数标度。
+
+[论文][fermion-ep] · [补充材料][fermion-ep-si]
+
+### Rydberg 链的 E₇ 谱 · 两种探针定位四条候选谱线
+
+用均匀和交错探针把奇偶两个通道放到同一能标上。在严格阻塞模型的一个参数窗口内，四条低能候选峰的质量比与 E₇ 预测相差 **3% 以内**。最浅的 A₄ 候选在 36 原子工作点的结合能仍比理想值高约 62%，给出了有限链收敛的量化检验。
+
+[论文][e7] · [补充材料][e7-si]
+
+![36 原子周期链的双通道计算谱。交错探针通道出现 A₁ 和 A₃ 候选峰，均匀探针通道出现 A₂ 和 A₄ 候选峰。](assets/rydberg-e7-spectrum.gif)
+
+*动图使用论文图 2a 的 36 原子周期链计算谱。两个通道共用能标和强度归一化。*
+
+### 开放 Rydberg 系综 · 从衰减模交换算到密度信号
+
+在平均场折点附近，追踪两个衰减模如何在避交叉处交换权重，并通过消去相干自由度复原谱根与观测权重。在固定制备的 48 原子对照中，单个模的权重变化约 **8.5 × 10⁻⁴**，完整密度信号的最大变化约 **1.9 × 10⁻⁶**。
+
+[论文][rydberg-decay] · [补充材料][rydberg-decay-si]
+
+## 用 OpenQuantum 做自己的计算
+
+OpenQuantum 是开源量子科研 AI 平台，可在 Codex 或独立桌面应用中调用专业计算工具。可以从一段量子线路开始，用 Qiskit 模拟、用独立方法核对结果，再沿用同一工作区里的程序、参数和输出继续研究。
+
+**[开始使用 OpenQuantum][openquantum-start]** · [查看可复跑的计算案例][openquantum-examples] · [OpenQuantum 主仓库][openquantum]
+
+## English
+
+Six research manuscripts by OpenQuantum, with PDFs and supplements linked below.
+
+- [QwenQPU][qwenqpu] compiles a six-qubit classical state-vector simulator into four standard Qwen layers. Enabling execution raises the pass count from 4/48 to 48/48 on the frozen evaluation. [Code and data][qwenqpu-code]
+- [Random-code recovery][random-codes] gives a joint finite-length bracket for optimal complete-message decoding and entanglement fidelity under Pauli noise. Both approach the same Gaussian curve in the positive-rate critical window for regular i.i.d. noise. [Supplement][random-codes-si]
+- [Dissipative Majorana systems][majorana] use a four-time fermion correlation to select energy relaxation with a controlled finite-time remainder. [Supplement][majorana-si]
+- [Fermionic Liouvillian exceptional points][fermion-ep] show how two observables select different relaxation channels from one initial state and establish the optimal preparation-cost scaling for pump discrimination with a system-or-erasure readout. [Supplement][fermion-ep-si]
+- [Two-channel E₇ spectroscopy][e7] identifies four low-energy candidate lines in blockaded Rydberg chains and uses the shallow A₄ binding energy to quantify finite-size deviations. [Supplement][e7-si]
+- [Rydberg decay-mode hybridization][rydberg-decay] connects the exchange of decay-mode weights near a mean-field fold to the density response under fixed preparations. [Supplement][rydberg-decay-si]
+
+**[Explore OpenQuantum][openquantum]** for the open-source research workspace, installation options, and worked examples.
+
+## 研究记录
+
+[稿件版本与验证记录][manuscript-history] · [研究档案][research-archive] · [QwenQPU 稿件源码与图件][qwenqpu-tex]
+
+[openquantum]: https://github.com/xi-zhao/OpenQuantum
+[openquantum-start]: https://github.com/xi-zhao/OpenQuantum#快速开始
+[openquantum-examples]: https://github.com/xi-zhao/OpenQuantum#使用与结果
+[qwenqpu]: outputs/qwenqpu/paper/main.pdf
+[qwenqpu-code]: https://github.com/xi-zhao/QwenQPU/tree/caae45327b46458163d0840a4c1466e5575a7b4f
+[qwenqpu-tex]: https://github.com/xi-zhao/OpenQuantum-papers/tree/1749862c959b44dcc2810319ffeed74a725b08f9/outputs/qwenqpu
+[random-codes]: outputs/prl-distinguishability/paper.pdf
+[random-codes-si]: outputs/prl-distinguishability/supplement.pdf
+[majorana]: outputs/prl-dissipative-syk/paper/main.pdf
+[majorana-si]: outputs/prl-dissipative-syk/paper/supplement.pdf
+[fermion-ep]: outputs/prl-highorder-ep/paper/manuscript.pdf
+[fermion-ep-si]: outputs/prl-highorder-ep/paper/supplement.pdf
+[e7]: outputs/e7-rydberg-prl/paper/e7_rydberg.pdf
+[e7-si]: outputs/e7-rydberg-prl/paper/e7_rydberg_supplement.pdf
+[rydberg-decay]: outputs/prl-chiral-switching/paper/main.pdf
+[rydberg-decay-si]: outputs/prl-chiral-switching/paper/supplement.pdf
+[manuscript-history]: https://github.com/xi-zhao/OpenQuantum-papers/blob/e9acbf31ee1391e5eb3890450744147d917461c0/README.md
+[research-archive]: https://github.com/xi-zhao/OpenQuantum-papers/tree/c/import-research-papers
