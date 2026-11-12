@@ -1,12 +1,20 @@
 # OpenQuantum Papers
 
+<a id="english"></a>
+
+<p align="center"><strong>简体中文</strong> · <a href="docs/readme/README.en.md">English</a> · <a href="docs/readme/README.ja.md">日本語</a> · <a href="docs/readme/README.ko.md">한국어</a> · <a href="docs/readme/README.es.md">Español</a> · <a href="docs/readme/README.fr.md">Français</a> · <a href="docs/readme/README.de.md">Deutsch</a> · <a href="docs/readme/README.pt.md">Português</a> · <a href="docs/readme/README.ru.md">Русский</a> · <a href="docs/readme/README.ar.md">العربية</a></p>
+
 OpenQuantum 完成的六篇研究稿。从证明随机量子码的共同恢复规律，到把量子电路模拟器编进 Qwen 的权重，这里可以直接读到结果、推导与验证。
 
 用 OpenQuantum 在本地复算双量子位基态，再用独立精确解核对能量。算例无需模型密钥。
 
-**[阅读六篇论文](#六篇论文)** · **[复算双量子位基态][openquantum-first-run]** · [安装 OpenQuantum][openquantum-start] · [English](#english)
+**[阅读六篇论文](#papers)** · **[复算双量子位基态][openquantum-first-run]** · [安装 OpenQuantum][openquantum-start]
+
+<a id="papers"></a>
 
 ## 六篇论文
+
+论文与补充材料均为英文 PDF。
 
 ### QwenQPU · 把量子电路模拟编进 Qwen
 
@@ -46,7 +54,7 @@ OpenQuantum 完成的六篇研究稿。从证明随机量子码的共同恢复�
 
 ![同一初态经过两种读出，粒子数与模式不平衡给出不同衰减速率。右侧展示条件信号与存活比例。](assets/fermionic-ep-banner.gif)
 
-*论文图 1 的 12 模对照中，总粒子数和模式占据不平衡的衰减率分别约为 1.679γ 和 1.118γ。在 γt = 5 时，存活比例降至 1.18 × 10⁻¹⁵。*
+*论文图 1 的 12 模对照中，总粒子数和模式占据不平衡的弛豫率分别约为 1.679γ 和 1.118γ。在 γt = 5 时，存活比例降至 1.18 × 10⁻¹⁵。*
 
 ### Rydberg 链的 E₇ 谱 · 两种探针定位四条候选谱线
 
@@ -74,19 +82,6 @@ OpenQuantum 是开源量子科研 AI 平台，可在 Codex 或独立桌面应用
 
 **[安装 OpenQuantum][openquantum-start]** · [查看可复跑的计算案例][openquantum-examples] · [OpenQuantum 主仓库][openquantum]
 
-## English
-
-Six research manuscripts by OpenQuantum, with PDFs and supplements linked below.
-
-- [QwenQPU][qwenqpu] compiles a six-qubit classical state-vector simulator into four standard Qwen layers. Enabling execution raises the pass count from 4/48 to 48/48 on the frozen evaluation. [Code and data][qwenqpu-code]
-- [Random-code recovery][random-codes] gives a joint finite-length bracket for optimal complete-message decoding and entanglement fidelity under Pauli noise. Both approach the same Gaussian curve in the positive-rate critical window for regular i.i.d. noise. [Supplement][random-codes-si]
-- [Dissipative Majorana systems][majorana] use a four-time fermion correlation to select energy relaxation with a controlled finite-time remainder. [Supplement][majorana-si]
-- [Fermionic Liouvillian exceptional points][fermion-ep] show how two observables select different relaxation channels from one initial state and establish the optimal preparation-cost scaling for pump discrimination with a system-or-erasure readout. [Supplement][fermion-ep-si]
-- [Two-channel E₇ spectroscopy][e7] identifies four low-energy candidate lines in blockaded Rydberg chains and uses the shallow A₄ binding energy to quantify finite-size deviations. [Supplement][e7-si]
-- [Rydberg decay-mode hybridization][rydberg-decay] connects the exchange of decay-mode weights near a mean-field fold to the density response under fixed preparations. [Supplement][rydberg-decay-si]
-
-**[Recompute a two-qubit ground state][openquantum-first-run-en]** locally and compare it with an independent exact reference. The example runs without a model key. [Install OpenQuantum][openquantum-start-en]
-
 ## 研究记录
 
 [稿件版本与验证记录][manuscript-history] · [研究档案][research-archive] · [QwenQPU 稿件源码与图件][qwenqpu-tex]
@@ -95,8 +90,6 @@ Six research manuscripts by OpenQuantum, with PDFs and supplements linked below.
 [openquantum-start]: https://github.com/xi-zhao/OpenQuantum#快速开始
 [openquantum-examples]: https://github.com/xi-zhao/OpenQuantum/blob/main/docs/EXAMPLES.md
 [openquantum-first-run]: https://github.com/xi-zhao/OpenQuantum/blob/main/docs/EXAMPLES.md#不需要模型密钥复算一个固定案例
-[openquantum-first-run-en]: https://github.com/xi-zhao/OpenQuantum/blob/main/docs/readme/README.en.md#no-model-key-needed-recompute-a-fixed-case
-[openquantum-start-en]: https://github.com/xi-zhao/OpenQuantum/blob/main/docs/readme/README.en.md#quick-start
 [qwenqpu]: outputs/qwenqpu/paper/main.pdf
 [qwenqpu-code]: https://github.com/xi-zhao/QwenQPU/tree/caae45327b46458163d0840a4c1466e5575a7b4f
 [qwenqpu-tex]: https://github.com/xi-zhao/OpenQuantum-papers/tree/1749862c959b44dcc2810319ffeed74a725b08f9/outputs/qwenqpu
