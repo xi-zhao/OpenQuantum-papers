@@ -1,0 +1,15 @@
+{
+  "title": "QwenQPU Supplementary Data",
+  "article_title": "QwenQPU: A Large Language Model with an Internal Quantum Processing Unit",
+  "authors": [
+    "Xi Zhao",
+    "Yunlong Yu"
+  ],
+  "package": "QwenQPU-engineering-supplement-20261115.zip",
+  "bytes": 14900920,
+  "sha256": "73b978119bf382cd1cc33394f8a7960abd49a1486f906acae1de808ebfa5c1a2",
+  "nested_evidence_sha256": "f3b9d8ea845cb160ac9470f44fb0e63b5e9b338b40bc30f33c6a8b497f09d963",
+  "readme_sha256": "a282b5771f13ddab794aa775cbaa7188d91ba10ba0a298281be8f19a75faf930",
+  "contains_model_weights": false,
+  "data_and_executable_code_unchanged": true
+}
